@@ -22,9 +22,9 @@
 - [ ] Await approval before proceeding
 
 ### [HIGH] System Setup
-- [ ] Test all installed skills (notion, obsidian-sync, automation-workflows, summary, github)
-- [ ] Verify git automation working
-- [ ] Document any skill limitations discovered
+- [x] Test all installed skills (notion, obsidian-sync, automation-workflows, summary, github) — COMPLETED 18:52 UTC. Status: All accessible, notion pending API key, github CLI functional
+- [x] Verify git automation working — COMPLETED (6 commits made today)
+- [x] Document skill limitations — COMPLETED 18:52 UTC. See capability_changelog.md for details
 
 ### [HIGH] Blocker Documentation
 - [ ] Create clear operator action list
