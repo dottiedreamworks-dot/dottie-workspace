@@ -29,7 +29,7 @@
 
 ### Working Directory Structure
 ```
-Jayna-Dottie-Projects/
+Dottie-Google-Workspace/  (Google Drive - collaborative documents)
 ├── Active-Work/          ← Current projects I'm working on
 │   ├── Audio-Content/
 │   ├── Research/
@@ -39,7 +39,16 @@ Jayna-Dottie-Projects/
 └── Templates/            ← Reusable assets
 ```
 
-**Rule:** All write operations confined to `Jayna-Dottie-Projects` and subfolders only.
+**Rule:** All write operations confined to `Dottie-Google-Workspace` and subfolders only.
+
+---
+
+## DROPBOX VS GOOGLE DRIVE
+
+| Service | Folder Name | Purpose |
+|---------|-------------|---------|
+| **Dropbox** | `Jayna-Dottie-Projects` | File exchange, uploads, inbox/outbox |
+| **Google Drive** | `Dottie-Google-Workspace` | Collaborative docs, templates, deliverables |
 
 ---
 
