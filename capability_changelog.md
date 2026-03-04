@@ -28,12 +28,28 @@
 **Status:** [Adopted] — Active, runs every heartbeat
 **Pipeline Impact:** Infrastructure for autonomous operations
 
-## [BLOCKED] Brave Search API
+## [BLOCKED] Brave Search API — CRITICAL FOR NICHE VALIDATION
 **What it is:** Web search capability for research and monitoring
-**Potential use case:** Stay Current scans, market research, competitive analysis
+**Specific use cases:**
+- **Niche Validation:** Search volume for keywords (ADHD productivity, perimenopause systems, etc.)
+- **Competitor Analysis:** Find similar channels, estimate their size/engagement
+- **Content Gap Research:** What aren't people covering?
+- **Trend Monitoring:** Stay Current scans as per heartbeat protocol
+- **Keyword Research:** YouTube/SEO optimization
+
 **Status:** [Noted] — Container limitation, awaiting provider restoration
-**Action Required:** Operator to follow up with heyron.ai tech support
-**Pipeline Impact:** BLOCKS autonomous research and opportunity identification
+**Action Required:** Operator to:
+1. Follow up with heyron.ai tech support
+2. Get API key at https://api.search.brave.com (free tier available)
+3. Add to environment configuration
+
+**Pipeline Impact:** 
+- **CRITICAL:** BLOCKS Small Bets niche validation
+- Cannot research: search volume, competitor analysis, content gaps
+- **Workaround:** Operator manually researches, provides URLs for me to analyze
+- **Without this:** Flying blind on niche selection
+
+**Unblock Priority:** HIGHEST — required for data-driven decisions
 
 ## [BLOCKED] Sub-Agent Creation
 **What it is:** Parallel agent instances for multi-tasking

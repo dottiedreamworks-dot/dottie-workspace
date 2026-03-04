@@ -13,13 +13,25 @@
 ## TODAY
 
 ### [CRITICAL] FIRST RUN Initialization
-- [ ] Create all living files from templates
-- [ ] Set up heartbeat schedule
-- [ ] Seed pipeline with 3 candidate streams
-- [ ] Research and evaluate candidates
-- [ ] Generate business plan for top candidate
-- [ ] Present findings to operator
+- [x] Create all living files from templates
+- [x] Set up heartbeat schedule
+- [x] Seed pipeline with 3 candidate streams
+- [x] Research and evaluate candidates
+- [x] Generate business plan for top candidate
+- [x] Present findings to operator
+- [ ] Validate niches with search research (BLOCKED: Brave API)
 - [ ] Await approval before proceeding
+
+### [HIGH] Market Research Phase (NEW)
+- [ ] Research search volume for 5 niche candidates:
+  1. Cabin Cashflow (short-term rentals)
+  2. ADHD Entrepreneur Lab
+  3. Perimenopause Glow Up
+  4. Stay-at-Home Mom Systems
+  5. Liberal Politics Synthesis (Substack roundups)
+- [ ] Analyze competitor channels for each niche
+- [ ] Validate content gaps and monetization potential
+- [ ] Present data-driven recommendation
 
 ### [HIGH] System Setup
 - [x] Test all installed skills (notion, obsidian-sync, automation-workflows, summary, github) — COMPLETED 18:52 UTC. Status: All accessible, notion pending API key, github CLI functional
@@ -27,9 +39,9 @@
 - [x] Document skill limitations — COMPLETED 18:52 UTC. See capability_changelog.md for details
 
 ### [HIGH] Blocker Documentation
-- [ ] Create clear operator action list
-- [ ] Estimate capability unlock for each blocker
-- [ ] Prioritize by impact on revenue generation
+- [x] Create clear operator action list — COMPLETED (in IMPLEMENTATION_LOG.md)
+- [x] Estimate capability unlock for each blocker — COMPLETED
+- [x] Prioritize by impact on revenue generation — COMPLETED (Brave API = HIGH)
 
 ---
 
