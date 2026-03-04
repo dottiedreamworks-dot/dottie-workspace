@@ -16,17 +16,35 @@
 
 ## PIPELINE
 
-### [RANK 1] Placeholder — Waiting for FIRST RUN
-- **Score:** —/15
-- **Status:** [Not Evaluated]
-- **Summary:** First run initialization will populate this section with 3 researched candidates
-- **Notes:** System will evaluate: automation level, time-to-revenue, scalability, alignment with hard rules
+### [RANK 1] AI-Powered Audio Content Empire
+- **Score:** 13/15
+- **Status:** [Evaluated] — Business plan in progress
+- **Automation:** 5/5 (Fully autonomous after setup)
+- **Time-to-Revenue:** 4/5 (2-3 months to first monetization)
+- **Scalability:** 4/5 (Unlimited content, platform-dependent)
+- **Summary:** Faceless YouTube channels, podcasts, audiobooks using AI voices and synthetic media. Multiple niches, no operator face required.
+- **Hard Rules Check:** ✓ No cold outreach, ✓ No personal branding, ✓ AI avatars acceptable, ✓ Genuine value
+- **Notes:** Leverages installed sag (ElevenLabs) skill. Can produce content in sleep.
 
-### [RANK 2] —
-*Pending research capability (Brave API)*
+### [RANK 2] Digital Product Templates & Systems
+- **Score:** 12/15
+- **Status:** [Evaluated]
+- **Automation:** 4/5 (Semi-automated, marketplace handles delivery)
+- **Time-to-Revenue:** 4/5 (1-2 months if using existing audience/platforms)
+- **Scalability:** 4/5 (Create once, sell infinitely)
+- **Summary:** Notion templates, Excel systems, Airtable bases, cabin rental spreadsheets. Things Jayna already knows how to build.
+- **Hard Rules Check:** ✓ No cold outreach, ✓ No personal branding, ✓ Solves real problems, ✓ Jayna's expertise
+- **Notes:** Uses existing stakk skill. Can leverage cabin business knowledge.
 
-### [RANK 3] —
-*Pending research capability (Brave API)*
+### [RANK 3] Niche Curated Directory/Database
+- **Score:** 11/15
+- **Status:** [Evaluated]
+- **Automation:** 3/5 (Initial curation required, then automated updates)
+- **Time-to-Revenue:** 3/5 (3-6 months to build traffic, then monetize)
+- **Scalability:** 5/5 (Set and forget, can sell or keep)
+- **Summary:** Curated lists of resources: "Remote work tools for ADHD entrepreneurs", "Military spouse resources", "Cabin rental supply vendors". SEO-driven, automated aggregation.
+- **Hard Rules Check:** ✓ No cold outreach, ✓ No personal branding, ✓ Genuine curation, ✓ Evergreen value
+- **Notes:** Monetize via affiliate links, sponsored listings, or sell as asset.
 
 ---
 
