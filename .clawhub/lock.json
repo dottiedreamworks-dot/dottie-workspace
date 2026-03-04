@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "notion": {
+      "version": "1.0.0",
+      "installedAt": 1772604374727
+    },
+    "obsidian-sync": {
+      "version": "1.0.0",
+      "installedAt": 1772604382122
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1772604382984
+    },
+    "summary": {
+      "version": "0.0.1",
+      "installedAt": 1772604384335
+    },
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1772604385201
+    }
+  }
+}
