@@ -1,0 +1,53 @@
+name: stakk
+description: Generate beautiful presentations, landing pages, and documents. Convert ideas into visual, shareable formats (HTML slides, one-pagers, Markdown exports, or PDFs). Includes modern slide layouts, prebuilt component blocks, brand-consistent theming, and smart image handling.
+version: 1.0.0
+author: dottie
+
+inputs:
+  - name: content
+    type: text
+    required: true
+    description: The content to convert (markdown, outline, or detailed text)
+  
+  - name: format
+    type: choice
+    required: false
+    description: Output format for the presentation
+    choices:
+      - html-slides
+      - markdown-slides
+      - landing-page
+      - document
+      - pdf
+    default: html-slides
+  
+  - name: style
+    type: choice
+    required: false
+    description: Visual style/theme for the presentation
+    choices:
+      - minimal
+      - bold
+      - elegant
+      - playful
+      - dark
+      - light
+    default: minimal
+  
+  - name: title
+    type: text
+    required: false
+    description: Title of the presentation
+
+outputs:
+  - type: file
+    format: html|md|pdf
+    description: The generated presentation file
+
+examples:
+  - inputs:
+      content: "My product pitch: A productivity app for busy moms..."
+      format: html-slides
+      style: elegant
+      title: "MomFlow App Pitch"
+    output: pitch_deck.html

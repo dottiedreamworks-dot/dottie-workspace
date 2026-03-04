@@ -1,0 +1,23 @@
+# Environment & Secrets
+.env
+.secrets/
+*.key
+*.token
+
+# Logs (keep directory, ignore files)
+.logs/*
+
+# Node modules
+node_modules/
+
+# Credentials
+gmail_credentials.json
+google_auth_url.txt
+oauth_client_id.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
