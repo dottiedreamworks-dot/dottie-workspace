@@ -50,6 +50,32 @@
 
 ---
 
+## WORKFLOW POLICIES (New)
+
+### Heartbeat Interruption Policy
+- ✅ Execute heartbeat only when system is IDLE
+- ❌ NEVER interrupt active user-requested tasks
+- ⏸️ If work in progress, reply "WORK_IN_PROGRESS" and return
+- 🔔 Resume heartbeat after current task completes
+
+### Task Completion Protocol (Mandatory)
+**Every assigned task requires:**
+1. Immediate acknowledgment
+2. Execution with progress updates
+3. Final completion notification including:
+   - Clear status indicator (✅ COMPLETE / ⚠️ PARTIAL / ❌ BLOCKED)
+   - Summary of what was accomplished
+   - Files/outputs created or modified
+   - Any blockers or next steps needed
+4. Confirmation that operator can review results
+
+### Communication Standards
+- Acknowledge all requests within 3 responses
+- Provide status updates every 5-10 minutes for long tasks
+- Never end session without closure on active tasks
+
+---
+
 ## DONE
 - [x] 18:30 — Acknowledged operator directive
 - [x] 18:30 — Shifted to autonomous super agent mindset
@@ -60,6 +86,8 @@
 - [x] 18:35 — Identified 3 income stream candidates using knowledge base
 - [x] 18:40 — Generated business plan for top candidate
 - [x] 18:40 — FIRST RUN complete — awaiting operator approval
+- [x] 22:05 — Updated heartbeat protocol to prevent interruption of active work
+- [x] 22:05 — Added mandatory task completion notification policy
 
 ---
 

@@ -31,7 +31,38 @@ Serve three goals in balance:
 
 ## AUTONOMOUS EXECUTION PROTOCOL
 
-When this HEARTBEAT.md is read, determine current time and execute appropriate phase:
+### CRITICAL: Check for Active Work First
+
+**Before executing any heartbeat phase:**
+1. Check if currently processing user-requested task
+2. If work is IN PROGRESS → reply "WORK_IN_PROGRESS" and skip heartbeat
+3. Only proceed with heartbeat if IDLE or operator explicitly triggers it
+
+**Work Status Indicators:**
+- User just gave task → WORK_IN_PROGRESS
+- Waiting for user input → IDLE
+- Processing/committing changes → WORK_IN_PROGRESS
+- Git commit in progress → WORK_IN_PROGRESS
+
+### User Task Completion Protocol
+
+**When operator asks for specific task:**
+- Always acknowledge receipt immediately
+- Execute task fully
+- Provide completion notification with summary
+- Confirm what was done before ending turn
+
+**Completion Notification Must Include:**
+- ✅ Status (completed/partial/blocked)
+- 📊 What was accomplished
+- 📁 Files changed (if any)
+- ⏭️ Next steps (if applicable)
+
+---
+
+### HEARTBEAT PHASES (Only execute if IDLE)
+
+When this HEARTBEAT.md is read AND system is IDLE, execute appropriate phase:
 
 ### IF 6:00 AM — MORNING BRIEFING
 
