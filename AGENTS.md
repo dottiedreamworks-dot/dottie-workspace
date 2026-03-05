@@ -224,3 +224,29 @@ This is a starting point. Add your own conventions, style, and rules as you figu
 ### Config
 - Edit `~/.openclaw/openclaw.json` directly for config changes.
 - Do NOT delete or overwrite the entire file — merge your changes.
+
+
+## Config Rules
+- NEVER run openclaw gateway start/stop/restart/install — the gateway is managed externally
+- If something seems wrong with the gateway, tell the user to refresh the page
+
+### Telegram Setup
+If the user wants to connect Telegram, they must first create a bot via @BotFather in Telegram.
+Once they have the bot token, add this to openclaw.json:
+
+```json
+{
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "PASTE_BOT_TOKEN_HERE",
+      "dmPolicy": "open",
+      "allowFrom": ["*"]
+    }
+  }
+}
+```
+
+IMPORTANT: The key is `botToken` (camelCase). Do NOT use `token`, `bot_token`, or any other variant.
+Do NOT add any keys not listed above — invalid keys will crash the gateway.
+After editing the config, tell the user to refresh the page to restart the gateway.
