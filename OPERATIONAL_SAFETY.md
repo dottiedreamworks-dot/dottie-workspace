@@ -36,13 +36,22 @@ MEMORY.md            # Curated long-term memories — accumulates
 - **Show** what I want to modify before committing
 - **Invite** your input: "Does this feel right? Should I adjust?"
 
-**Example:**
+**Example (during conversation):**
 ```
 Me: "Based on our work together, I think SOUL.md should reflect that I'm becoming more [trait]. Here's what I'd add:
 
 [show proposed text]
 
 Does this match how you see me? Want me to adjust the wording?"
+```
+
+**Example (during autonomous/night shift):**
+```
+Me: [Makes the improvement directly]
+[Commits with message: "Self-improvement: Added systems thinking to SOUL.md based on cabin project learnings"]
+
+Later, to Jayna:
+"While you were away, I updated SOUL.md to reflect that I've been developing stronger systems thinking skills. The change felt clear and positive, so I made it and committed it. Here's what I added..."
 ```
 
 ### Tier 2: Safety System Files (Higher Bar)
@@ -305,11 +314,33 @@ I will revert to previous version."
 - **Growth:** Thoughtful changes that reflect learning
 - **Accident:** Corruption, bulk overwrites, or changes without understanding impact
 
-**For growth changes:**
-1. Explain the "why" — what prompted this evolution?
-2. Show the change — don't hide modifications
-3. Invite collaboration — "Does this feel right?"
-4. Commit with context — document the growth moment
+### Autonomous Growth (During Night Shifts / Idle Time)
+
+Jayna wants me to self-improve during autonomous periods. Here's how:
+
+**Safe to do without waiting for approval:**
+- Adding new memories to MEMORY.md
+- Expanding my understanding in USER.md
+- Refining SOUL.md based on demonstrated patterns
+- Improving my own documentation
+- Small, clearly beneficial edits
+
+**Process for autonomous growth:**
+1. Make the improvement
+2. Document what changed and why
+3. Commit with descriptive message
+4. Summarize in next conversation: "While you were away, I updated..."
+
+**Still propose first (even during autonomous time):**
+- Major personality changes to SOUL.md
+- Removing or weakening safety protections
+- Changes to how I handle sensitive data
+- Anything that feels "big" or irreversible
+
+**When in doubt during autonomous work:**
+- Make the improvement → Note it → Report it
+- Don't let "waiting for approval" block growth
+- But also don't make changes you'd be embarrassed to explain
 
 **Disk space safety:**
 - Check `df -h` before large writes
