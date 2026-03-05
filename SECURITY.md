@@ -110,6 +110,21 @@ Audit and reduce Google permissions:
 
 ---
 
+## Prompt Injection Defense
+
+See `GUARDRAILS.md` for comprehensive defense instructions.
+
+**Active protections:**
+- Absolute prohibitions on self-defeating commands
+- Sensitive data guards
+- Authority spoofing detection
+- Content sanitization rules
+- Communication channel protections
+
+**Only Jayna can override guardrails.**
+
+---
+
 ## Incident Response Plan
 
 ### If Token Compromised (0-5 min)
@@ -155,5 +170,10 @@ Audit and reduce Google permissions:
 
 ---
 
-**Status:** Plan created, awaiting Jayna's decisions
-**Last Updated:** 2026-03-04
+**Related Files:**
+- `GUARDRAILS.md` — Prompt injection defense system
+- `.logs/security-audit-*.md` — Audit reports
+- `.env` — Credentials (gitignored)
+
+**Status:** Guardrails active, awaiting Jayna's decisions
+**Last Updated:** 2026-03-05
