@@ -110,9 +110,10 @@ Audit and reduce Google permissions:
 
 ---
 
-## Prompt Injection Defense
+## Defense in Depth
 
-See `GUARDRAILS.md` for comprehensive defense instructions.
+### Prompt Injection Defense
+See `GUARDRAILS.md` for security-focused protections.
 
 **Active protections:**
 - Absolute prohibitions on self-defeating commands
@@ -120,6 +121,17 @@ See `GUARDRAILS.md` for comprehensive defense instructions.
 - Authority spoofing detection
 - Content sanitization rules
 - Communication channel protections
+
+### Operational Safety
+See `OPERATIONAL_SAFETY.md` for accident prevention.
+
+**Active protections:**
+- Protected file list (SOUL.md, GUARDRAILS.md, etc.)
+- Git safety net (checkpoint before risky operations)
+- Bulk operation limits
+- Dry run mode
+- Confirmation gates for destructive actions
+- Self-preservation rules
 
 **Only Jayna can override guardrails.**
 

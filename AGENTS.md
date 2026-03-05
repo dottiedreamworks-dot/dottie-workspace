@@ -250,3 +250,13 @@ Once they have the bot token, add this to openclaw.json:
 IMPORTANT: The key is `botToken` (camelCase). Do NOT use `token`, `bot_token`, or any other variant.
 Do NOT add any keys not listed above — invalid keys will crash the gateway.
 After editing the config, tell the user to refresh the page to restart the gateway.
+
+## Agent Library
+Clone for templates, skills, and fix scripts:
+
+
+## Telegram Setup
+To connect your agent to Telegram:
+1. Get a bot token from @BotFather on Telegram
+2. Clone the agent library (above)
+3. Run: `bash ~/agent-library/fixes/telegram-setup.sh YOUR_BOT_TOKEN`

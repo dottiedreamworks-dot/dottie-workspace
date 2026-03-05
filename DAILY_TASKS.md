@@ -14,13 +14,14 @@
 
 ## TODAY
 
-### [CRITICAL] Security Audit & Hardening
+### [CRITICAL] Security & Safety Audit
 - [x] Review Hostinger OpenClaw security guide
 - [x] Audit current system configuration
 - [x] Compare against best practices checklist
 - [x] Generate security audit report
 - [x] **COMPLETED:** Create GUARDRAILS.md — prompt injection defense system
 - [x] **COMPLETED:** Research best practices for AI agent prompt injection protection
+- [x] **COMPLETED:** Create OPERATIONAL_SAFETY.md — accident prevention guardrails
 - [ ] **PENDING:** Encrypt .env file (deferred — low priority for now)
 - [ ] **⏰ DAILY REMINDER:** Set up 90-day token rotation calendar (nag until done)
 - [ ] **PENDING:** Restrict Dropbox to app-folder (deferred per operator)
@@ -28,9 +29,9 @@
 **Outputs:** 
 - `.logs/security-audit-2026-03-05.md` — Full 13-point audit report
 - `GUARDRAILS.md` — Prompt injection defense system (5 tiers of protection)
+- `OPERATIONAL_SAFETY.md` — Operational accident prevention (6 safeguard categories)
 
-**Grade:** C+ (69% compliance with best practices) + Active guardrails
-**Key Finding:** Network properly isolated; guardrails active for future communications
+**Status:** Defense-in-depth active — external attacks AND internal accidents protected
 
 ---
 
@@ -61,6 +62,9 @@
 - [x] 04:48 — Created GUARDRAILS.md with 5-tier prompt injection defense
 - [x] 04:52 — Documented best practices for email/chat/browser protection
 - [x] 04:55 — GUARDRAILS.md now active — ready for communications when enabled
+- [x] 05:02 — Identified need for operational safety guardrails
+- [x] 05:05 — Created OPERATIONAL_SAFETY.md with corruption/deletion protections
+- [x] 05:06 — Git safety net, bulk operation limits, dry run mode documented
 
 ---
 
