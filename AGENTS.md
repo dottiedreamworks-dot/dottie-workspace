@@ -256,7 +256,9 @@ Clone for templates, skills, and fix scripts:
 
 
 ## Telegram Setup
-To connect your agent to Telegram:
-1. Get a bot token from @BotFather on Telegram
-2. Clone the agent library (above)
-3. Run: `bash ~/agent-library/fixes/telegram-setup.sh YOUR_BOT_TOKEN`
+To connect to Telegram, run this ONE command (replace the token with your real bot token):
+```bash
+bash ~/agent-library/fixes/telegram-setup.sh 7123456789:AAFxxx
+```
+This script safely edits the config and restarts the gateway. Do NOT try to edit openclaw.json yourself — use the script.
+If ~/agent-library does not exist yet, clone it first: git clone https://github.com/heyron-ai/agent-library.git ~/agent-library

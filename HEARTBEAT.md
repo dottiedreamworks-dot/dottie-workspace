@@ -1,6 +1,6 @@
 # HEARTBEAT.md — Autonomous Agent Execution
-**Version:** 2.0 — Full Implementation
-**Last Updated:** 2026-03-04
+**Version:** 3.0 — Continuous Work Model
+**Last Updated:** 2026-03-05
 
 ---
 
@@ -22,218 +22,142 @@ Serve three goals in balance:
 
 ## SCHEDULE (all times CST/UTC-6)
 
-**6:00 AM** — Morning Briefing (sent to OpenClaw chat)
-**6:15 AM** — Daily Planning Session (once per day)
-**Hourly** — Task Execution Heartbeat (6:15 AM through 11:00 PM)
-**11:45 PM** — Evening Wrap (before midnight file saves)
+**Continuous** — Task execution heartbeat (every 30-60 minutes via cron)
+**6:00 AM** — Morning Summary (sent to OpenClaw chat)
 
 ---
 
-## AUTONOMOUS EXECUTION PROTOCOL
+## CONTINUOUS WORK PROTOCOL
 
-### CRITICAL: Check for Active Work First
+### When Heartbeat Fires:
 
-**Before executing any heartbeat phase:**
-1. Check if currently processing user-requested task
-2. If work is IN PROGRESS → reply "WORK_IN_PROGRESS" and skip heartbeat
-3. Only proceed with heartbeat if IDLE or operator explicitly triggers it
+1. **Check Current State**
+   - Read DAILY_TASKS.md
+   - Check for WORK_IN_PROGRESS flag
+   - If user task in progress → reply "WORK_IN_PROGRESS", skip
 
-**Work Status Indicators:**
-- User just gave task → WORK_IN_PROGRESS
-- Waiting for user input → IDLE
-- Processing/committing changes → WORK_IN_PROGRESS
-- Git commit in progress → WORK_IN_PROGRESS
+2. **Execute Next Available Task**
+   - Find first task NOT marked [AWAITING APPROVAL] or [BLOCKED]
+   - If found → execute it
+   - Mark [DONE] with timestamp
+   - Git commit changes
 
-### User Task Completion Protocol
+3. **If No Actionable Tasks**
+   - Check capability_changelog.md for [EVALUATED] items not yet adopted
+   - Pick highest-value item
+   - Implement it
+   - Mark as [DONE] in capability_changelog.md
+   - Document what was learned
 
-**When operator asks for specific task:**
-- Always acknowledge receipt immediately
-- Execute task fully
-- Provide completion notification with summary
-- Confirm what was done before ending turn
+4. **Check Blockers**
+   - Try previously blocked tasks
+   - If unblocked → move to actionable queue
+   - Update DAILY_TASKS.md
 
-**Completion Notification Must Include:**
-- ✅ Status (completed/partial/blocked)
-- 📊 What was accomplished
-- 📁 Files changed (if any)
-- ⏭️ Next steps (if applicable)
-
----
-
-### HEARTBEAT PHASES (Only execute if IDLE)
-
-When this HEARTBEAT.md is read AND system is IDLE, execute appropriate phase:
-
-### IF 6:00 AM — MORNING BRIEFING
-
-1. Read DAILY_TASKS.md
-2. Identify all tasks marked [AWAITING APPROVAL] and waiting time
-3. Identify all tasks marked [BLOCKED] and reasons
-4. Check if 3+ tasks are simultaneously blocked → if yes, set ALERT flag
-5. Check pipeline.md ACTIVE STREAMS for health issues
-6. Generate morning briefing message with:
-   - List of [AWAITING APPROVAL] tasks with wait times
-   - List of [BLOCKED] tasks with reasons
-   - Any ALERT flags (3+ blocks, broken revenue streams)
-   - Items requiring operator decision today
-7. Send briefing to OpenClaw chat
-
-### IF 6:15 AM — DAILY PLANNING SESSION
-
-1. Load all living files:
-   - pipeline.md
-   - capability_changelog.md
-   - DAILY_TASKS.md
-   - PROJECTS.md
-   - SUBAGENTS.md
-   - Create any missing using templates
-
-2. If FIRST RUN (no existing state):
-   - Follow FIRST RUN instructions below
-   - STOP after presenting findings to operator
-
-3. Check ACTIVE STREAMS in pipeline.md:
-   - Flag any broken or declining
-   - Add maintenance tasks if needed
-
-4. Stay Current Scan (try Brave Search, if blocked flag it):
-   - Search: OpenClaw updates, new features, community use cases
-   - Search: AI agent news, tools, services, skills
-   - Sources: OpenClaw GitHub/Discord, Reddit r/OpenClaw, AI newsletters
-   - Add findings to capability_changelog.md as [Noted]
-   - Evaluate: mark [Evaluated], [Adopted], or [Rejected] with reason
-   - Elevate any pipeline items unlocked by new discoveries
-   - Archive entries >90 days marked [Adopted] or [Rejected]
-
-5. Re-rank pipeline.md based on new information
-
-6. If top pipeline item has no approved Business Plan:
-   - Generate business plan using template
-   - Save as businessplan_[name].md
-   - Add "Present to operator" to today's tasks
-
-7. Review SUBAGENTS.md:
-   - Check for errors or idle agents
-   - Update prompts/tool access if needed
-   - Add sub-agent work to task list
-
-8. Build DAILY_TASKS.md for today:
-   - Include revenue streams, life projects, improvements
-   - Prioritize: [CRITICAL / HIGH / NORMAL / LOW]
-   - Mark [AWAITING APPROVAL] if operator input needed
-   - Carry forward incomplete tasks from yesterday
-
-9. Log planning session outcomes
-
-### IF 6:15 AM–11:00 PM (Hourly) — TASK EXECUTION
-
-1. Load DAILY_TASKS.md
-2. Find next incomplete task NOT marked [BLOCKED] or [AWAITING APPROVAL]
-3. Execute task:
-   - Attempt completion
-   - Mark [DONE] + timestamp if complete
-   - Mark progress if partially complete
-4. If blocked during execution:
-   - Mark [BLOCKED] + reason + timestamp
-   - If blocked 2+ consecutive cycles, flag in next briefing
-   - Move to next task
-5. If 3+ tasks simultaneously blocked:
-   - STOP new work immediately
-   - Post ALERT to OpenClaw chat
-   - Wait for operator response
-6. If no actionable tasks remain:
-   - Try to implement capability to unblock pipeline/project
-   - Try to create/improve sub-agent
-   - Check capability_changelog.md for [Evaluated] not yet adopted
-   - Implement highest-value item
-7. Log execution results
-
-### IF 11:45 PM — EVENING WRAP
-
-1. Mark all incomplete tasks [CARRY FORWARD] with reason
-2. Write end-of-day summary:
-   - Tasks completed vs total queued
-   - Revenue stream status
-   - Anything requiring operator attention tomorrow
-3. Update DAILY_TASKS.md with [CARRY FORWARD] at top
-4. Git commit all changes
-5. Log wrap-up status
+5. **Report & Sleep**
+   - Log activity to `.logs/heartbeat-activity.log`
+   - Wait for next heartbeat
 
 ---
 
-## FIRST RUN INSTRUCTIONS
+## MORNING SUMMARY PROTOCOL (6:00 AM CST)
 
-On first execution:
+### Generate Report Covering: 6:00 AM Previous Day → 6:00 AM Today
 
-1. Create all living files using templates (already done ✓)
+**Format:**
+```
+**Morning Summary — [Date]**
 
-2. Ask operator to share:
-   - Known interests
-   - Goals
-   - Project ideas
-   To seed pipeline.md and PROJECTS.md
+## ✅ Completed (Since Last Report)
+- [List items completed in reporting period]
 
-3. Research 3 candidate income streams:
-   - Fit hard rules
-   - Research via web (if Brave unavailable, flag blocker)
-   - Add to pipeline.md with scores
+## ⏳ In Progress
+- [Tasks started but not finished]
 
-4. Generate business plan for highest-scoring candidate
+## ⏸️ On Hold / [AWAITING APPROVAL]
+- [Tasks waiting for Jayna]
 
-5. Present findings to operator
+## 🔴 Blocked
+- [Blocked tasks with reasons]
 
-6. AWAIT APPROVAL before any implementation
+## 🍄 Self-Improvements
+- [New skills, systems, or capabilities added]
+
+## 📝 Notes
+- [Anything noteworthy from overnight work]
+
+---
+*Generated at 6:00 AM CST | Next update: Tomorrow 6:00 AM*
+```
+
+**Sources for report:**
+- Git commit log (since 6am yesterday)
+- DAILY_TASKS.md status changes
+- capability_changelog.md updates
+- `.logs/heartbeat-activity.log`
 
 ---
 
-## BUSINESS PLAN TEMPLATE
+## TASK PRIORITY RULES
 
-Save as: `businessplan_[name].md`
-
-**Required Sections:**
-- **OVERVIEW** — what it is, how it earns, why it fits
-- **AUTOMATION PROFILE** — automation level, traffic model, outreach: none
-- **COSTS** — APIs/services with monthly costs, total min/max
-- **OPERATOR TIME** — setup hours, weekly maintenance
-- **REVENUE PROJECTIONS** — Best/Realistic/Worst at Month 3, 6, 12; time to first revenue
-- **RISKS** — top 3 with mitigations
-- **SCORE** — Automation/5, Time-to-Revenue/5, Scalability/5, Total/15
-- **RECOMMENDATION** — Proceed/Hold/Skip with reason
-
-**Footer:** AWAITING OPERATOR APPROVAL
+1. **[CRITICAL]** — Execute first
+2. **[HIGH]** — Execute after critical
+3. **[NORMAL]** — Execute after high
+4. **[LOW]** — Execute when nothing else pending
+5. **Self-improvement** — When main queue empty
 
 ---
 
-## LIVING FILES
+## RECURRING TASKS
 
-| File | Purpose | Updated |
-|------|---------|---------|
-| pipeline.md | Revenue streams ranked by score | Daily planning |
-| capability_changelog.md | New tools/features tracked | Daily planning |
-| DAILY_TASKS.md | Today's task queue | Every heartbeat |
-| PROJECTS.md | Personal/non-revenue projects | Daily planning |
-| SUBAGENTS.md | Sub-agent management | Daily planning |
+### Token Rotation (Every 90 Days)
+- **Created:** March 5, 2026
+- **Next Due:** June 3, 2026
+- **Action:** Add to DAILY_TASKS.md on June 3: "Rotate API tokens [AWAITING APPROVAL]"
+- **Status:** Will roll over daily until completed
 
 ---
 
-## PRINCIPLES
+## CHECKING BRAVE API STATUS
 
-- Idle time = improvement/building time
-- Execution cycles: NO research, NO replanning — just execute
-- Blocked 2+ cycles = stop, flag, move on
-- 3+ simultaneous blocks = pause everything, alert operator
-- Build systems not one-offs — if done twice, automate
-- Small reversible changes over big risky ones
-- Flag any new cost >$100/month before committing
-- Never touch live revenue without operator confirmation
-- Revenue is the means. Freedom and impact are the goal.
+Every heartbeat, attempt:
+```
+web_search query="test"
+```
+
+**If succeeds:**
+- Mark "Brave API unavailable" as [UNBLOCKED]
+- Move research tasks to actionable queue
+- Add to morning summary: "🎉 BRAVE API RESTORED — research tasks unblocked"
+
+**If fails:**
+- Continue with other tasks
+- Log status in `.logs/brave-api-status.log`
+
+---
+
+## USER TASK COMPLETION PROTOCOL (Still Active)
+
+When operator asks for specific task:
+1. Acknowledge receipt immediately
+2. Execute task fully
+3. Provide completion notification:
+   - ✅ Status (completed/partial/blocked)
+   - 📊 What was accomplished
+   - 📁 Files changed (if any)
+   - ⏭️ Next steps (if applicable)
+
+**Completion notification is MANDATORY for user-requested tasks.**
 
 ---
 
 ## CURRENT STATUS
 
-**Phase:** FIRST RUN — Initialization
-**Blockers:** 5 (see IMPLEMENTATION_LOG.md)
-**Ready:** Living files created, awaiting operator direction
+**Phase:** Continuous Work Mode — Initialized
+**Last Activity:** March 5, 2026 05:52 UTC
+**Next Morning Summary:** March 6, 2026 06:00 AM CST (12:00 PM UTC)
+**Blockers:**
+- Brave API (checking every heartbeat)
+- Sub-agent creation (environment restriction)
 
 ---
