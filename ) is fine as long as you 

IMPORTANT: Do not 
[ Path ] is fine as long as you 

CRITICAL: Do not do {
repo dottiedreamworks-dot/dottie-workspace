@@ -1,0 +1,296 @@
+# OpenClaw Automation Best Practices Report
+**Research Date:** March 5, 2026
+**Sources:** Yu Wenhao Tools Guide, Towards AI, Stormap, Markaicode, Official Docs
+
+## Executive Summary
+
+After researching OpenClaw automation best practices from multiple expert sources, I've identified **key misconfigurations** in our current setup that prevent true autonomous operation.
+
+### The Core Problem
+
+Our current setup uses **heartbeat polling** (I wake up every X minutes, check HEARTBEAT.md, then go back to sleep). This is **reactive**, not truly **continuous**.
+
+For true "work continuously while you sleep" autonomy, we need **cron jobs** with **isolated sessions** or **mode: session** with **thread: true**.
+
+---
+
+## What We Got Wrong Yesterday
+
+### Current Setup (Heartbeat Polling) ❌
+```
+Heartbeat fires → I check DAILY_TASKS.md → Report status → Sleep
+```
+**Problem:** I only work when heartbeat wakes me. If you don't message me, I don't work.
+
+### What We Actually Need ✅
+
+**Option 1: Cron Jobs (True Autonomy)**
+```bash
+openclaw cron add \
+  --name "Continuous Work" \
+  --every 300000 \
+  --session isolated \
+  --message "Read DAILY_TASKS.md, execute next task if any, then check capability_changelog.md for improvements"
+```
+**Result:** I work autonomously every 5 minutes, even when you're not chatting.
+
+**Option 2: Mode: Session (Thread-Bound Persistent Agent)**
+```
+sessions_spawn with runtime="acp", mode="session", thread=true
+```
+**Result:** A persistent session that stays alive, continuously processing.
+
+---
+
+## The Three Automation Patterns
+
+### Pattern 1: Heartbeat (What We Have) — Reactive
+**Best for:** Daily briefings, status checks, monitoring
+**How it works:** 
+- Every 30min, Gateway sends "HEARTBEAT_OK check"
+- I read HEARTBEAT.md
+- I either say "HEARTBEAT_OK" (silent) or message you
+
+**Limitation:** I'm passive. I don't proactively execute tasks.
+
+### Pattern 2: Cron Jobs (True Autonomy) — Proactive
+**Best for:** Continuous work, background processing, autonomous execution
+**How it works:**
+- Cron job runs on schedule (every 5min, hourly, daily)
+- Each run executes in **isolated session** (clean slate)
+- I execute task → save progress → exit
+- Next cron pick up where I left off
+
+**Key advantage:** I actually DO work while you sleep.
+
+### Pattern 3: Mode: Session (Persistent Thread) — Always-On
+**Best for:** Complex multi-step tasks requiring context
+**How it works:**
+- Spawn persistent session with `thread: true`
+- Session stays alive indefinitely
+- Maintains conversation context
+- Continuously processes until task complete
+
+---
+
+## Recommended Setup for Your Goals
+
+### For "Work Continuously Through the Night":
+
+**Primary: Cron Jobs (Every 5 minutes)**
+```bash
+# Task execution cron
+openclaw cron add \
+  --name "Task Worker" \
+  --every 300000 \
+  --session isolated \
+  --message "Execute next available task from DAILY_TASKS.md. If complete, work on capability improvements. Report any blocks."
+
+# Morning summary cron  
+openclaw cron add \
+  --name "Morning Brief" \
+  --cron "0 6 * * *" \
+  --tz "America/Chicago" \
+  --session main \
+  --message "Generate morning summary: what was completed since 6am yesterday"
+```
+
+**Secondary: Mode: Session for Complex Projects**
+```bash
+# For projects requiring persistent context
+openclaw sessions spawn \
+  --runtime acp \
+  --mode session \
+  --thread true \
+  --label "Deep Work"
+```
+
+### For "Tiny Wins Completion":
+
+**Use Mode: Session (Not what we tried yesterday)**
+```
+# Correct approach for "work on this until done"
+sessions_spawn with:
+  - runtime: "acp" OR "subagent" (if available)
+  - mode: "session" (persistent, not one-shot)
+  - thread: true (maintains context)
+  - task: "Complete Tiny Wins v2.0"
+```
+
+**What we did wrong:** 
+- Just updated HEARTBEAT.md instructions
+- Expected continuous work via heartbeat
+- Heartbeat is reactive, not proactive
+
+---
+
+## Configuration Fixes Needed
+
+### Fix 1: Enable Cron Service
+```bash
+# Check if cron is enabled
+openclaw cron list
+
+# If not running, enable in config:
+{
+  "cron": {
+    "enabled": true,
+    "store": "~/.openclaw/cron-store.json"
+  }
+}
+```
+
+### Fix 2: Add Continuous Work Cron Job
+```bash
+# Every 5 minutes during work hours
+openclaw cron add \
+  --name "Continuous Task Worker" \
+  --every 300000 \
+  --session isolated \
+  --message "Work through DAILY_TASKS.md: execute next task or work on capability improvements"
+```
+
+### Fix 3: Update HEARTBEAT.md Role
+**Current (wrong):** Heartbeat does ALL the work
+**Correct:** Heartbeat does CHECKS, Cron does WORK
+
+**New Structure:**
+```markdown
+## CRON JOBS (Do the work)
+- Task Worker (every 5min): Execute tasks
+- Morning Summary (6am): Report status
+
+## HEARTBEAT (Check status)
+- Check if blocks need escalation  
+- Check if 3+ tasks stuck → Alert Jayna
+```
+
+---
+
+## Tools vs Skills Revisited (Important!)
+
+From Yu Wenhao's guide:
+> **Tools are organs** — they determine IF I can do something
+> **Skills are textbooks** — they teach HOW to do something
+
+**Critical distinction:** Installing a Skill doesn't give permissions. Enabling a Tool does.
+
+**Current issue:** Our `sessions_spawn` restriction might be:
+1. **Tool-level:** The tool is disabled in policy
+2. **Skill-level:** We don't have the subagent skill installed
+3. **Config-level:** Runtime settings not enabled
+
+**Diagnostic:**
+```bash
+# Check if sessions_spawn tool is available
+openclaw tools list
+
+# Check current policy
+openclaw policy status
+```
+
+---
+
+## Recommended Architecture (Revised)
+
+```
+┌─────────────────────────────────────────┐
+│           OpenClaw Gateway              │
+├─────────────────────────────────────────┤
+│  HEARTBEAT (every 30min)                │
+│  ├── Check status only                  │
+│  └── HEARTBEAT_OK or alert              │
+├─────────────────────────────────────────┤
+│  CRON JOBS (autonomous execution)       │
+│  ├── Task Worker (every 5min)           │
+│  │   └── Execute DAILY_TASKS.md         │
+│  ├── Morning Summary (6am daily)        │
+│  │   └── Report progress                │
+│  └── Research Check (hourly)            │
+│      └── Check Brave API status         │
+├─────────────────────────────────────────┤
+│  MODE: SESSION (persistent)             │
+│  └── Deep Work Agent (when tasks need   │
+│      sustained context and focus)       │
+└─────────────────────────────────────────┘
+```
+
+---
+
+## Action Items for Jayna
+
+### Immediate (Today)
+1. **Verify cron service is enabled**
+   ```bash
+   openclaw cron list
+   ```
+
+2. **Add continuous work cron job**
+   ```bash
+   openclaw cron add \
+     --name "Task Worker" \
+     --every 300000 \
+     --session isolated \
+     --message "Execute DAILY_TASKS.md tasks and capability improvements"
+   ```
+
+3. **Diagnose sessions_spawn blocker**
+   ```bash
+   openclaw tools list | grep -i session
+   openclaw policy status
+   ```
+
+### Short-term (This Week)
+4. **Refactor HEARTBEAT.md** — Remove work logic, focus on status checks
+5. **Test cron execution** — Verify tasks actually execute during idle time
+6. **Set up morning summary cron** — 6am CST daily report
+
+### Testing
+7. **Verify autonomy:** Leave for 1 hour, check if work was done
+8. **Adjust intervals:** Find optimal 5min vs 15min for tasks
+9. **Monitor blocks:** Ensure stuck tasks get flagged properly
+
+---
+
+## Why Yesterday Didn't Work
+
+**What we did:**
+1. Set up HEARTBEAT.md with "continuous work mode"
+2. Expected it to proactively execute tasks
+3. I waited for heartbeats and reported status
+
+**Why it failed:**
+- Heartbeat is **reactive by design**
+- It checks status, it doesn't execute work
+- I was saying "WORK_IN_PROGRESS" because that's what heartbeat expects
+- No actual autonomous execution happened
+
+**What we need:**
+- **Cron jobs** for actual task execution
+- **Mode: session** for persistent work contexts
+- Heartbeat only for status/alerts
+
+---
+
+## References
+
+1. **Yu Wenhao Tools Guide** — Tools vs Skills distinction
+2. **Towards AI Complete Guide** — Cron job configuration
+3. **Stormap Autonomous Workflows** — Pattern comparisons
+4. **Markaicode Heartbeat Guide** — 15min heartbeat setup
+5. **OpenClaw Official Docs** — Cron jobs, runtime modes
+6. **Reddit r/AI_Agents** — Real-world troubleshooting
+
+---
+
+## Bottom Line
+
+For true "work continuously while I sleep":
+
+❌ **Don't:** Rely on heartbeat alone (reactive)
+✅ **Do:** Use cron jobs for autonomous execution (proactive)
+✅ **Do:** Use mode: session for persistent deep work
+✅ **Do:** Use heartbeat for status checks only
+
+**Expected result:** Cron fires → I execute task → Save progress → Next cron continues
+**Even when you're not chatting with me**
