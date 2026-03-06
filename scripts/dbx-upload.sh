@@ -1,5 +1,5 @@
 #!/bin/bash
-source "$(dirname "$0")/.env"
+source "$(dirname "$0")/../.env"
 LOCAL_FILE="$1"
 DROPBOX_PATH="$2"
 curl -s -X POST https://content.dropboxapi.com/2/files/upload \
