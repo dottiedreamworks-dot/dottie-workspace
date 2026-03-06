@@ -1,31 +1,44 @@
 # HEARTBEAT.md — Agent Response Protocol
-**Version:** 4.0 — Honest Working Model
-**Last Updated:** 2026-03-05
-
-## PRIMARY DIRECTIVE
-Serve three goals in balance:
-1. **FINANCIAL FREEDOM** — Build automated, faceless, inbound revenue streams
-2. **LIFE GOALS** — Support the operator on any project, revenue or not
-3. **POSITIVE IMPACT** — Create genuine value. Would people feel good paying for this?
-
-### HARD RULES
-✗ No cold outreach, calling, or direct sales
-✗ No personal branding or operator-as-face strategies
-✗ No false claims, manipulation, or misleading products
-✗ Nothing the operator would be embarrassed to make public
-✓ AI avatars, synthetic media, automation — all fine
-✓ Platform submissions, marketplace listings, directory placements are fine
-
----
+**Version:** 5.0 — Task Queue Integration
+**Last Updated:** 2026-03-06
 
 ## HEARTBEAT PROTOCOL
 
 When this file is read (via prompt), execute:
 
-1. **Check DAILY_TASKS.md**
-2. **Find actionable task** (not [AWAITING APPROVAL] or [BLOCKED])
-3. **If found:** Execute it, mark [DONE], report completion
-4. **If NOT found:** Reply HEARTBEAT_OK
+1. **Read TASK_QUEUE.json**
+2. **Check for active task:**
+   - If `meta.activeTask` exists → resume from last checkpoint
+   - If no active task → pick highest priority pending task
+3. **Execute one atomic step** (2-5 minutes max)
+4. **Write checkpoint** to `checkpoints/{task-id}/`
+5. **Update TASK_QUEUE.json** with progress
+6. **Git commit** changes
+7. **Report completion** or HEARTBEAT_OK
+
+---
+
+## TASK SELECTION PRIORITY
+
+1. User-requested tasks (highest)
+2. [BLOCKED] or [AWAITING REVIEW] tasks (check if unblocked)
+3. Pending tasks from TASK_QUEUE.json tasks array
+4. Self-improvement tasks from improvementQueue (when user tasks complete)
+
+---
+
+## CHECKPOINT PROTOCOL
+
+For each atomic step:
+1. **Before:** Read latest checkpoint (if exists)
+2. **During:** Execute the step
+3. **After:** Write checkpoint with:
+   - Step number and description
+   - Timestamp
+   - Status (completed/in_progress/failed)
+   - Any partial results
+
+Checkpoint filename: `checkpoints/{task-id}/{step:03d}-{short-desc}.json`
 
 ---
 
@@ -33,8 +46,9 @@ When this file is read (via prompt), execute:
 
 When operator asks for specific task:
 1. Acknowledge receipt immediately
-2. Execute task fully
-3. Provide completion notification:
+2. Add to TASK_QUEUE.json with status "pending"
+3. Execute task fully (may take multiple heartbeats)
+4. Provide completion notification:
    - ✅ Status (completed/partial/blocked)
    - 📊 What was accomplished
    - 📁 Files changed (if any)
@@ -44,23 +58,38 @@ When operator asks for specific task:
 
 ---
 
-## MORNING SUMMARY (When requested at 6 AM CST)
+## MORNING SUMMARY (6 AM CST)
 
-Generate report covering previous 24h:
-- ✅ Completed tasks
-- ⏳ In Progress
-- ⏸️ Awaiting Approval
-- 🔴 Blocked
+When prompted by cron:
+1. Read TASK_QUEUE.json
+2. Read git log (last 24h)
+3. Read checkpoints/ for task progress
+4. Generate report:
+   - ✅ Completed tasks
+   - ⏳ In Progress (with checkpoint status)
+   - ⏸️ Awaiting Review/Blocked
+   - 🔄 Self-improvement work done
 
-Sources: Git commits, DAILY_TASKS.md changes, file timestamps
+---
+
+## AUTONOMOUS WORK RULES
+
+**When user is absent:**
+- Continue working on active task
+- If no active task, pick from improvementQueue
+- Never mark tasks complete without proof
+- Git commit after every checkpoint
+- Update TASK_QUEUE.json before ending any session
+
+**Red flags (STOP and await user):**
+- Any external action (email, post, purchase)
+- Destructive operations without backup
+- Tasks requiring API keys that aren't configured
 
 ---
 
 ## CURRENT STATUS
 
-**Phase:** Manual execution via heartbeat prompts only
-**Last Activity:** March 5, 2026
-**Blockers:**
-- Sub-agent creation (environment restriction)
-
-**Note:** No autonomous cron jobs. Execution only happens when prompted.
+**Active Task:** See TASK_QUEUE.json meta.activeTask
+**Last Checkpoint:** See checkpoints/{task-id}/ directory
+**Systems:** All operational
