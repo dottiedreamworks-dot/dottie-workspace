@@ -125,6 +125,15 @@ When checking in during idle periods, don't just reply "OK." Use the time produc
 - Clean up temporary files
 - Archive old daily notes to MEMORY.md
 
+### 💾 Backup Check
+- Check for uncommitted changes: `git status --porcelain`
+- If changes exist:
+  1. `git add -A`
+  2. `git commit -m "Auto-backup: $(date '+%Y-%m-%d %H:%M:%S')"`
+  3. `git push origin master`
+- Verify push succeeded
+- **Purpose:** Protect against container restarts, session interruptions, or data loss
+
 ### 🔄 Reverse Prompting (Weekly)
 Once a week, surface ideas:
 - "Based on what I know about you, what interesting things could I do that you haven't thought of?"
