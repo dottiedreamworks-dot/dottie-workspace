@@ -1,46 +1,75 @@
 {
   "version": "1.0",
   "meta": {
-    "lastUpdated": "2026-03-06T03:35:00Z",
+    "lastUpdated": "2026-03-06T16:31:00Z",
     "activeTask": null,
-    "completedToday": 2,
-    "totalTasks": 5
+    "completedToday": 3,
+    "totalTasks": 3
   },
   "tasks": [
     {
-      "id": "setup-001",
-      "status": "completed",
-      "type": "system_setup",
-      "description": "Implement autonomous agent system - TASK_QUEUE, checkpoints, heartbeat protocol",
-      "created": "2026-03-06T03:35:00Z",
-      "started": "2026-03-06T03:35:00Z",
-      "completed": "2026-03-06T09:13:00Z",
-      "progress": 100,
-      "checkpoints": [
-        {"step": 1, "action": "researched autonomous agent patterns", "timestamp": "2026-03-06T02:00:00Z", "status": "completed"}
-      ],
+      "id": "research-001",
+      "status": "pending",
+      "type": "market_research",
+      "description": "Create comprehensive audio empire market research report with graphs",
+      "created": "2026-03-06T16:31:00Z",
+      "started": null,
+      "completed": null,
+      "progress": 0,
+      "checkpoints": [],
       "subtasks": [
-        {"id": "setup-001-1", "description": "Clean up broken cron jobs", "status": "completed"},
-        {"id": "setup-001-2", "description": "Create checkpoint directory structure", "status": "completed"},
-        {"id": "setup-001-3", "description": "Update HEARTBEAT.md with task execution protocol", "status": "completed"},
-        {"id": "setup-001-4", "description": "Test interruption recovery (simulate restart)", "status": "completed"},
-        {"id": "setup-001-5", "description": "Create morning summary template", "status": "completed"}
+        {"id": "research-001-1", "description": "Compile niche validation research into structured report", "status": "pending"},
+        {"id": "research-001-2", "description": "Create visual graphs/charts for market data", "status": "pending"},
+        {"id": "research-001-3", "description": "Generate PDF or HTML report", "status": "pending"},
+        {"id": "research-001-4", "description": "Upload report to Dropbox AgentProjects folder", "status": "pending"}
       ],
       "results": {},
       "error": null
+    },
+    {
+      "id": "travel-001",
+      "status": "pending",
+      "type": "travel_research",
+      "description": "Research flight options to Korea and alternative meeting locations",
+      "created": "2026-03-06T16:31:00Z",
+      "started": null,
+      "completed": null,
+      "progress": 0,
+      "checkpoints": [],
+      "subtasks": [
+        {"id": "travel-001-1", "description": "Research flights from your location to Seoul", "status": "pending"},
+        {"id": "travel-001-2", "description": "Research flights from your location to Hawaii", "status": "pending"},
+        {"id": "travel-001-3", "description": "Research flights from your location to Philippines", "status": "pending"},
+        {"id": "travel-001-4", "description": "Research flights from your location to Australia", "status": "pending"},
+        {"id": "travel-001-5", "description": "Research flights from Seoul to each alternative location", "status": "pending"},
+        {"id": "travel-001-6", "description": "Calculate total costs for each scenario", "status": "pending"},
+        {"id": "travel-001-7", "description": "Create comparison report with recommendations", "status": "pending"}
+      ],
+      "results": {},
+      "error": null
+    },
+    {
+      "id": "dev-001",
+      "status": "pending",
+      "type": "app_development",
+      "description": "Rebuild Tiny Wins app with checkmark feature and 7 new categories",
+      "created": "2026-03-06T16:31:00Z",
+      "started": null,
+      "completed": null,
+      "progress": 0,
+      "checkpoints": [],
+      "subtasks": [
+        {"id": "dev-001-1", "description": "Create HTML structure with 7 categories", "status": "pending"},
+        {"id": "dev-001-2", "description": "Add micro-tasks for each category", "status": "pending"},
+        {"id": "dev-001-3", "description": "Implement checkmark button on proposed tasks", "status": "pending"},
+        {"id": "dev-001-4", "description": "Implement auto-add to Done list functionality", "status": "pending"},
+        {"id": "dev-001-5", "description": "Style and polish the interface", "status": "pending"}
+      ],
+      "results": {},
+      "error": null,
+      "notes": "Categories: 🏠 Home & Space, 💸 Money & Admin, 🏥 Body & Self-Care, 📋 Organization & Errands, 🤝 Relationships & Social, 😌 Mental Reset, 💼 Work & Focus"
     }
   ],
   "backlog": [],
-  "improvementQueue": [
-    {
-      "id": "imp-001",
-      "type": "self_improvement",
-      "description": "Review and optimize file organization system",
-      "priority": "medium",
-      "created": "2026-03-06T03:15:00Z",
-      "started": "2026-03-06T10:43:00Z",
-      "completed": "2026-03-06T13:43:00Z",
-      "status": "completed"
-    }
-  ]
+  "improvementQueue": []
 }
