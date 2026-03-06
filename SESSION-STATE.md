@@ -1,6 +1,6 @@
 # SESSION-STATE.md — Active Working Memory
 
-**Purpose:** Active working memory for current session. This is your "RAM" — the only place specific details are safe during the danger zone.
+**Purpose:** This is your "RAM" — the only place specific details are safe from context loss.
 
 **Last Updated:** 2026-03-06
 
@@ -8,43 +8,40 @@
 
 ## Current Active Task
 
-**Task ID:** (none - idle)
-**Started:** 
+**Task ID:** 
 **Status:** 
-
-### Task Context
-
-
-### Recent Actions
-
-
-### Blockers/Issues
-
+**Started:** 
+**Description:** 
 
 ---
 
-## Working Buffer Status
+## Critical Details (WAL Protocol)
 
-**Context Usage:** 
-**Last Compaction:** 
+### Corrections
+- 
 
-### Danger Zone Log
-<!-- Captured automatically when context > 60% -->
+### Proper Nouns (Names, Places, Products)
+- 
 
+### Preferences
+- 
 
----
+### Decisions Made
+- 
 
-## Immediate Priorities
+### Draft Changes
+- 
 
-1. 
-2. 
-3. 
-
----
-
-## Notes for Next Session
-
+### Specific Values (Numbers, Dates, URLs)
+- 
 
 ---
 
-*This file is written to BEFORE responding (WAL Protocol). It's the first thing to check on wake-up.*
+## Open Threads
+
+- 
+
+---
+
+## Notes
+
