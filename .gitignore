@@ -1,6 +1,7 @@
 # Environment & Secrets
 .env
 .secrets/
+.credentials/
 *.key
 *.token
 
