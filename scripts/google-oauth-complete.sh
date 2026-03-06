@@ -5,8 +5,8 @@
 WORKSPACE="/root/.openclaw/workspace"
 cd "$WORKSPACE"
 
-if [ -f "gmail_credentials.json" ]; then
-    echo "Found gmail_credentials.json"
+if [ -f ".secrets/gmail_credentials.json" ]; then
+    echo "Found .secrets/gmail_credentials.json"
     
     # Check if curl is available
     if ! command -v curl &> /dev/null; then
@@ -15,8 +15,8 @@ if [ -f "gmail_credentials.json" ]; then
     fi
     
     # Extract client credentials
-    CLIENT_ID=$(jq -r '.installed.client_id' gmail_credentials.json 2>/dev/null)
-    CLIENT_SECRET=$(jq -r '.installed.client_secret' gmail_credentials.json 2>/dev/null)
+    CLIENT_ID=$(jq -r '.installed.client_id' .secrets/gmail_credentials.json 2>/dev/null)
+    CLIENT_SECRET=$(jq -r '.installed.client_secret' .secrets/gmail_credentials.json 2>/dev/null)
     
     if [ -z "$CLIENT_ID" ] || [ "$CLIENT_ID" = "null" ]; then
         echo "Error: Could not extract client_id from credentials"
@@ -54,7 +54,7 @@ if [ -f "gmail_credentials.json" ]; then
     fi
     
 else
-    echo "Error: gmail_credentials.json not found"
+    echo "Error: .secrets/gmail_credentials.json not found"
     echo "Please download your OAuth credentials from Google Cloud Console"
     exit 1
 fi

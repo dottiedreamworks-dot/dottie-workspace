@@ -12,8 +12,8 @@ WORKSPACE="/root/.openclaw/workspace"
 cd "$WORKSPACE"
 
 # Read credentials
-CLIENT_ID=$(jq -r '.installed.client_id' gmail_credentials.json)
-CLIENT_SECRET=$(jq -r '.installed.client_secret' gmail_credentials.json)
+CLIENT_ID=$(jq -r '.installed.client_id' .secrets/gmail_credentials.json)
+CLIENT_SECRET=$(jq -r '.installed.client_secret' .secrets/gmail_credentials.json)
 
 echo "Exchanging authorization code for tokens..."
 

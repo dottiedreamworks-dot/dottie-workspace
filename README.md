@@ -44,7 +44,7 @@ Finishes Google Workspace integration (Gmail, Calendar, Drive):
 2. Opens browser for OAuth flow
 3. Guides through approval process
 
-**Prerequisites:** Requires `gmail_credentials.json` from Google Cloud Console
+**Prerequisites:** Requires `.secrets/gmail_credentials.json` from Google Cloud Console
 
 #### `/scripts/google-oauth-exchange.sh`
 Exchanges auth code for refresh token:
@@ -115,11 +115,12 @@ The night worker will continue to:
 | File | Purpose |
 |------|---------|
 | `.env` | API keys and tokens (gitignored) |
+| `.secrets/` | Secure credential storage (restricted permissions) |
 | `HEARTBEAT.md` | Autonomous task definition |
 | `scripts/night-worker.sh` | Main automation script |
 | `dbx-*.sh` | Dropbox upload/download/list |
 | `.logs/night-worker.log` | Activity log |
-| `gmail_credentials.json` | Google OAuth client creds |
+| `.secrets/gmail_credentials.json` | Google OAuth client creds (secured) |
 
 ## 🍄 Skill Wishlist
 
