@@ -18,8 +18,8 @@ ENV_FILE="$WORKSPACE/.env"
 echo "Exchanging authorization code for tokens..."
 
 # Read app credentials
-APP_KEY=$(jq -r '.installed.client_id' "$SECRETS_DIR/gmail_credentials.json" 2>/dev/null)
-APP_SECRET=$(jq -r '.installed.client_secret' "$SECRETS_DIR/gmail_credentials.json" 2>/dev/null)
+APP_KEY=$(jq -r '.installed.client_id' "$SECRETS_DIR/dropbox_credentials.json" 2>/dev/null)
+APP_SECRET=$(jq -r '.installed.client_secret' "$SECRETS_DIR/dropbox_credentials.json" 2>/dev/null)
 
 # Exchange code for tokens
 RESPONSE=$(curl -s -X POST https://api.dropboxapi.com/oauth2/token \

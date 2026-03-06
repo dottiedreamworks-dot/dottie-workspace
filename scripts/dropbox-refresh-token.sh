@@ -15,8 +15,8 @@ fi
 
 # Read refresh token and app credentials
 REFRESH_TOKEN=$(grep "DROPBOX_REFRESH_TOKEN" "$ENV_FILE" | cut -d= -f2)
-APP_KEY=$(jq -r '.installed.client_id' "$SECRETS_DIR/gmail_credentials.json" 2>/dev/null)
-APP_SECRET=$(jq -r '.installed.client_secret' "$SECRETS_DIR/gmail_credentials.json" 2>/dev/null)
+APP_KEY=$(jq -r '.installed.client_id' "$SECRETS_DIR/dropbox_credentials.json" 2>/dev/null)
+APP_SECRET=$(jq -r '.installed.client_secret' "$SECRETS_DIR/dropbox_credentials.json" 2>/dev/null)
 
 echo "Refreshing Dropbox access token..."
 

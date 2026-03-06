@@ -12,15 +12,15 @@ echo "========================================="
 echo ""
 
 # Check for credentials
-if [ ! -f "$SECRETS_DIR/gmail_credentials.json" ]; then
+if [ ! -f "$SECRETS_DIR/dropbox_credentials.json" ]; then
     echo "Error: Dropbox app credentials not found"
     echo "Please ensure you have created a Dropbox app and have the credentials"
     exit 1
 fi
 
 # Read app key and secret
-APP_KEY=$(jq -r '.installed.client_id' "$SECRETS_DIR/gmail_credentials.json" 2>/dev/null)
-APP_SECRET=$(jq -r '.installed.client_secret' "$SECRETS_DIR/gmail_credentials.json" 2>/dev/null)
+APP_KEY=$(jq -r '.installed.client_id' "$SECRETS_DIR/dropbox_credentials.json" 2>/dev/null)
+APP_SECRET=$(jq -r '.installed.client_secret' "$SECRETS_DIR/dropbox_credentials.json" 2>/dev/null)
 
 if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "null" ]; then
     echo "Error: Could not read app credentials"
