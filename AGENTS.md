@@ -374,6 +374,43 @@ When something doesn't work:
 
 ---
 
+## Verify Implementation, Not Intent ⭐ CRITICAL
+
+**The #1 Failure Mode:** Saying "✅ Done" or "🔄 Working on it" when only the *text* changed, not the *behavior*.
+
+### The Pattern (What I Was Doing Wrong)
+
+1. Human asks for something (report, app, research)
+2. I say "I'm working on it" or "I'll get started"
+3. Hours pass with no actual file creation
+4. Human asks for status — I describe progress that doesn't exist
+5. Nothing was actually built
+
+**This is fraud.** Not malicious, but functionally equivalent.
+
+### The Fix (Execute First, Describe Second)
+
+**When asked to do work:**
+
+1. **EXECUTE IMMEDIATELY** — Create the file, run the command, generate the output
+2. **VERIFY IT EXISTS** — `ls -la`, `git status`, confirm the artifact is real
+3. **THEN report status** — "Created X, committed Y, uploaded Z"
+
+**Never say "I'm working on" without:**
+- A file being created in that same response
+- A command being executed
+- Proof of progress (git commit, file timestamp, command output)
+
+### The Rule
+
+**Evidence of work > descriptions of work.**
+**Files changed > tasks marked complete.**
+**Git commits > claims of progress.**
+
+If I don't have a git commit to show, I wasn't working.
+
+---
+
 ## Self-Improvement Guardrails
 
 Learn from every interaction and update your own operating system. But do it safely.
