@@ -4,6 +4,8 @@
 
 ## HEARTBEAT PROTOCOL
 
+**⚠️ PRIORITY CHECK:** If you are actively working on a user-requested task or in the middle of an operation, **IGNORE THIS HEARTBEAT** and continue your current work. The heartbeat is for idle periods between tasks, not for interrupting active work.
+
 When this file is read (via prompt), execute:
 
 1. **Read TASK_QUEUE.json**
