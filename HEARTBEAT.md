@@ -141,6 +141,21 @@ Once a week, surface ideas:
 
 **Purpose:** Surface unknown unknowns.
 
+### 🧠 Memory Maintenance (Every Few Days)
+1. Read through recent daily notes
+2. Identify significant learnings
+3. Update MEMORY.md with distilled insights
+4. Remove outdated info
+
+### 💾 Memory Flush (Before Long Sessions End)
+When a session has been long and productive:
+1. Identify key decisions, tasks, learnings
+2. Write them to `memory/YYYY-MM-DD.md` NOW
+3. Update working files (TOOLS.md, notes) with changes discussed
+4. Capture open threads in `notes/open-loops.md`
+
+**The rule:** Don't let important context die with the session.
+
 ---
 
 ## CURRENT STATUS
