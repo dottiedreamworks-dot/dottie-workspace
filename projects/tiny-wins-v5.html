@@ -3,576 +3,1054 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiny Wins V5 - Micro-Tasks for ADHD Minds</title>
+    <title>Tiny Wins v5 | ADHD-Optimized Micro-Tasks</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
             color: #333;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
-        header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            padding: 20px;
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
         }
+        
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .tagline {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        .version-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            margin-top: 10px;
-        }
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .stat-box {
-            background: rgba(255,255,255,0.95);
-            padding: 20px 30px;
-            border-radius: 15px;
+            color: white;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            min-width: 120px;
+            margin-bottom: 8px;
+            font-size: 2.2rem;
         }
-        .stat-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #667eea;
-        }
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        .streak-flame { color: #ff6b35; }
-        .growth-section {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
+        
+        .subtitle {
+            color: rgba(255,255,255,0.8);
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
-        .growth-title {
-            font-size: 1.2em;
-            color: #667eea;
-            margin-bottom: 15px;
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
-        .growth-visual {
-            font-size: 4em;
-            margin: 10px 0;
-            transition: all 0.5s ease;
+        
+        .card h2 {
+            color: #764ba2;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
         }
-        .growth-stage {
-            font-weight: bold;
-            color: #333;
-            margin-top: 10px;
-        }
-        .growth-progress {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 15px;
-            overflow: hidden;
-        }
-        .growth-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
+        
         .btn {
-            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             border: none;
-            border-radius: 25px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
-        .btn-shuffle {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
+        
+        .btn:active {
+            transform: translateY(0);
         }
-        .btn-done {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
+        
+        .btn-check {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            width: auto;
+            padding: 10px 20px;
+            margin-left: 10px;
         }
-        .category-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+        
+        .btn-skip {
+            background: #e2e8f0;
+            color: #4a5568;
+            width: auto;
+            padding: 10px 20px;
+            margin-left: 10px;
         }
-        .category-card:hover { transform: translateY(-5px); }
-        .category-header {
+        
+        .tiny-step {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            border-left: 4px solid #764ba2;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tiny-step-header {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #f0f0f0;
-        }
-        .category-icon { font-size: 2em; }
-        .category-title {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #333;
-        }
-        .task-list { list-style: none; }
-        .task-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            margin-bottom: 8px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        .task-item:hover { background: #e9ecef; }
-        .check-btn {
-            width: 28px;
-            height: 28px;
-            border: 2px solid #667eea;
-            border-radius: 50%;
-            background: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
-            color: transparent;
-        }
-        .check-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-        .check-btn.checked {
-            background: #28a745;
-            border-color: #28a745;
-            color: white;
-        }
-        .task-text { flex: 1; font-size: 0.95em; }
-        .done-section {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-top: 30px;
-        }
-        .done-header {
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            align-items: center;
+            margin-bottom: 8px;
         }
-        .done-title {
-            font-size: 1.8em;
-            color: #28a745;
+        
+        .tiny-step h3 {
+            color: #4a5568;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tiny-step p {
+            color: #2d3748;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.6);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #764ba2;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        .done-section h2 {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .done-list { list-style: none; }
+        
+        .done-count {
+            background: #48bb78;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .done-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+        
         .done-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 15px;
-            margin-bottom: 10px;
-            background: #d4edda;
+            padding: 12px;
+            background: #f7fafc;
             border-radius: 10px;
-            animation: slideIn 0.5s ease;
+            margin-bottom: 8px;
+            animation: slideIn 0.3s ease;
         }
+        
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(-20px); }
             to { opacity: 1; transform: translateX(0); }
         }
+        
+        .done-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #48bb78;
+            cursor: pointer;
+        }
+        
+        .done-item.completed span {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .done-item .timestamp {
+            font-size: 0.75rem;
+            color: #999;
+            margin-left: auto;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 30px;
+            font-style: italic;
+        }
+        
+        .motivation {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #744210;
+        }
+        
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        
+        .pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .pill:hover {
+            border-color: #764ba2;
+            color: #764ba2;
+        }
+        
+        .pill.active {
+            background: #764ba2;
+            border-color: #764ba2;
+            color: white;
+        }
+        
+        .success-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #48bb78;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease;
+            z-index: 1000;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Gamification elements */
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        .streak-flame {
+            color: #ff6b35;
+        }
+        
+        .level-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+            color: #744210;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Garden Visualization */
+        .garden-container {
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #90EE90 50%, #7CFC00 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .garden-title {
+            color: #2d3748;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .garden-plot {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: flex-end;
+            min-height: 120px;
+            padding: 10px;
+        }
+        
+        .plant {
+            font-size: 2rem;
+            animation: growPlant 0.5s ease;
+            transform-origin: bottom center;
+        }
+        
+        @keyframes growPlant {
+            0% { transform: scale(0) translateY(20px); }
+            50% { transform: scale(1.2) translateY(-5px); }
+            100% { transform: scale(1) translateY(0); }
+        }
+        
+        .plant:hover {
+            transform: scale(1.2);
+            transition: transform 0.2s;
+        }
+        
+        /* Celebration Effects */
         .celebration {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 5em;
+            font-size: 4rem;
+            animation: celebrate 0.8s ease-out;
             pointer-events: none;
-            animation: celebrate 1.5s ease forwards;
-            z-index: 1000;
-            text-shadow: 0 0 30px rgba(255,215,0,0.8);
+            z-index: 2000;
         }
+        
         @keyframes celebrate {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(0deg); }
-            25% { opacity: 1; transform: translate(-50%, -50%) scale(1.5) rotate(180deg); }
-            50% { transform: translate(-50%, -50%) scale(1.2) rotate(360deg); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(720deg); }
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
         }
+        
         .confetti {
             position: fixed;
             width: 10px;
             height: 10px;
             pointer-events: none;
+            z-index: 1999;
             animation: confetti-fall 3s ease-out forwards;
-            z-index: 999;
         }
+        
         @keyframes confetti-fall {
-            0% { opacity: 1; transform: translateY(0) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
-        .encouragement {
-            text-align: center;
+        
+        .streak-popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
             color: white;
-            font-size: 1.1em;
-            margin-top: 20px;
-            font-style: italic;
-            opacity: 0.9;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            animation: streakPop 0.5s ease;
+            z-index: 2001;
         }
-        @media (max-width: 768px) {
-            .categories-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2em; }
-            .stats-bar { gap: 15px; }
-            .stat-box { padding: 15px 20px; min-width: 100px; }
-            .growth-visual { font-size: 3em; }
+        
+        @keyframes streakPop {
+            0% { transform: translateX(-50%) scale(0); }
+            50% { transform: translateX(-50%) scale(1.1); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        .level-up-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .level-up-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            animation: levelUpBounce 0.6s ease;
+        }
+        
+        @keyframes levelUpBounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .level-up-emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        
+        .level-up-title {
+            font-size: 2rem;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .level-up-text {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .level-up-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>✨ Tiny Wins</h1>
-            <p class="tagline">Micro-tasks for ADHD minds. Small steps, big momentum.</p>
-            <span class="version-badge">V5 - 350 Tasks</span>
-        </header>
-
+        <h1>🌱 Tiny Wins</h1>
+        <p class="subtitle">One micro-task. Zero decision fatigue.</p>
+        
+        <!-- Gamification Stats -->
         <div class="stats-bar">
-            <div class="stat-box">
-                <div class="stat-value" id="streak-count">0</div>
-                <div class="stat-label"><span class="streak-flame">🔥</span> Day Streak</div>
+            <div class="stat">
+                <div class="stat-value" id="todayCount">0</div>
+                <div class="stat-label">Today</div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value" id="completed-count">0</div>
-                <div class="stat-label">Completed Today</div>
+            <div class="stat">
+                <div class="stat-value streak-flame" id="streakCount">🔥 0</div>
+                <div class="stat-label">Day Streak</div>
             </div>
-            <div class="stat-box">
-                <div class="stat-value" id="total-wins">0</div>
+            <div class="stat">
+                <div class="stat-value" id="totalCount">0</div>
                 <div class="stat-label">Total Wins</div>
             </div>
         </div>
-
-        <div class="growth-section">
-            <div class="growth-title">🌱 Your Growth Garden</div>
-            <div class="growth-visual" id="growth-emoji">🌱</div>
-            <div class="growth-stage" id="growth-stage">Tiny Seedling</div>
-            <div class="growth-progress">
-                <div class="growth-progress-bar" id="growth-bar" style="width: 0%"></div>
+        
+        <!-- Growth Garden -->
+        <div class="garden-container">
+            <div class="garden-title">🌻 Your Growth Garden</div>
+            <div class="garden-plot" id="gardenPlot">
+                <div style="color: rgba(0,0,0,0.3); font-size: 0.9rem; align-self: center;">
+                    Complete tasks to grow your garden! 🌱
+                </div>
             </div>
-            <p style="margin-top: 10px; color: #666; font-size: 0.9em;">
-                <span id="tasks-to-next">10</span> more tasks to reach <span id="next-stage">Sprout</span>
+        </div>
+        
+        <div class="motivation" id="motivation">
+            💡 Consistency beats intensity. A 2-minute action today beats a perfect plan tomorrow.
+        </div>
+        
+        <div class="card">
+            <div class="level-badge" id="levelBadge">🌱 Seedling</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="levelProgress" style="width: 0%"></div>
+            </div>
+            
+            <h2 style="margin-top: 16px;">Pick a category</h2>
+            <p style="color: #666; margin-bottom: 16px; font-size: 0.9rem;">
+                Select what type of task you need right now. We'll give you ONE tiny thing to do.
             </p>
-        </div>
-
-        <div class="controls">
-            <button class="btn btn-shuffle" onclick="shuffleTasks()">
-                🎲 Shuffle Tasks
-            </button>
-            <button class="btn btn-done" onclick="showDoneList()">
-                ✅ View Done List
-            </button>
-        </div>
-
-        <div class="categories-grid" id="categories-container">
-            <!-- Categories populated by JavaScript -->
-        </div>
-
-        <div class="done-section" id="done-section" style="display: none;">
-            <div class="done-header">
-                <h2 class="done-title">🎉 Done List</h2>
-                <button class="btn" onclick="hideDoneList()" style="background: #6c757d; color: white;">Hide</button>
+            
+            <div class="category-pills">
+                <span class="pill active" data-category="home">🏠 Home</span>
+                <span class="pill" data-category="selfcare">💆 Self-Care</span>
+                <span class="pill" data-category="admin">📋 Admin</span>
+                <span class="pill" data-category="work">💼 Work</span>
+                <span class="pill" data-category="social">👥 Social</span>
+                <span class="pill" data-category="learning">📚 Learning</span>
+                <span class="pill" data-category="creative">🎨 Creative</span>
+                <span class="pill" data-category="health">🏃 Health</span>
+                <span class="pill" data-category="finance">💰 Finance</span>
             </div>
-            <ul class="done-list" id="done-list"></ul>
+            
+            <button class="btn" onclick="generateTinyStep()">
+                ✨ Give Me a Tiny Task
+            </button>
+            
+            <div id="result"></div>
         </div>
-
-        <p class="encouragement" id="encouragement">
-            "Every tiny win is still a win. You've got this!"
-        </p>
+        
+        <div class="card done-section">
+            <h2>
+                ✅ Done List
+                <span class="done-count" id="doneCount">0</span>
+            </h2>
+            <ul class="done-list" id="doneList">
+                <li class="empty-state">No wins yet today. That's okay — even getting out of bed counts.</li>
+            </ul>
+        </div>
     </div>
-
+    
     <script>
-        // Task Database - 50 tasks per category (350 total)
+        // Tiny Wins v5 - Task Database (50+ tasks per category)
         const taskDatabase = {
-            home: {
-                id: 'home', icon: '🏠', title: 'Home Environment', color: '#ff6b6b',
-                tasks: ['Put one thing back where it belongs','Clear a surface (counter, table, desk)','Take out the trash','Do one dish or load/unload dishwasher','Make your bed (even just pulling up the covers)','Wipe one bathroom counter','Pick up clothes from floor','Water one plant','Open a window for fresh air','Put away 5 items','Sort mail into recycle/toss/file','Empty bathroom trash can','Wipe kitchen sink with sponge','Fold one towel','Straighten couch cushions','Dust one shelf','Clean one mirror','Sweep one room','Change one lightbulb','Organize one drawer','Wipe down microwave interior','Clean toilet bowl','Vacuum one high-traffic area','Wipe door handles and light switches','Take recycling out','Clean coffee maker','Wipe stovetop','Fluff pillows on couch','Hang up 3 pieces of clothing','Clean one window','Organize shoes by the door','Wipe baseboards in one room','Empty vacuum cleaner canister','Clean shower head','Wipe down fridge handles','Organize pantry shelf','Clean litter box or pet area','Shake out door mats','Wipe down trash can lid','Dust ceiling fan blades','Clean under couch cushions','Wipe down remote controls','Organize junk drawer','Clean bathroom mirror streaks','Sweep porch or entryway','Wipe down kitchen cabinets','Dust picture frames','Clean sink drain with baking soda','Organize medicine cabinet','Wipe down shower walls']
-            },
-            body: {
-                id: 'body', icon: '💪', title: 'Body & Movement', color: '#4ecdc4',
-                tasks: ['Stretch for 2 minutes','Take 10 deep breaths','Drink a glass of water','Do 5 jumping jacks','Walk around the room once','Roll your shoulders 5 times','Stand up and sit down 3 times','Touch your toes (or try!)','Do 3 push-ups (wall or floor)','Dance to one song','March in place for 1 minute','Do 10 arm circles forward','Do 10 arm circles backward','Neck rolls - 3 each direction','Wrist stretches - 10 seconds each','Ankle circles - 5 each foot','Calf raises - 10 reps','Wall sit for 20 seconds','Plank for 15 seconds','Side stretch - hold 15 seconds each','Hip circles - 5 each direction','Quad stretch - hold 20 seconds each leg','Hamstring stretch - hold 20 seconds','Chest opener stretch','Child pose for 30 seconds','Cat-cow stretch - 5 rounds','Seated spinal twist - 15 seconds each side','Butterfly stretch for 30 seconds','Walk up and down stairs once','Do 5 squats','Do 5 lunges (each leg)','High knees for 30 seconds','Butt kicks for 30 seconds','Arm raises overhead - 10 reps','Side lunges - 3 each direction','Tricep dips using chair - 5 reps','Step-ups on stairs - 5 each leg','Shadow box for 1 minute','Jump rope (real or imaginary) for 1 minute','Walk heel-to-toe in a line','Balance on one foot - 15 seconds each','Toe touches while seated','Shoulder blade squeeze - hold 10 seconds','Chin tucks - 5 reps','Pelvic tilts - 10 reps','Glute squeezes - hold 10 seconds, 5 reps','Abdominal bracing - hold 10 seconds','Finger spreads - open/close 10 times','Thumb touches - each fingertip, both hands','Self-massage neck and shoulders']
-            },
-            mind: {
-                id: 'mind', icon: '🧠', title: 'Mind & Focus', color: '#95e1d3',
-                tasks: ['Set a timer for 5 minutes of focus','Write down 3 things on your mind','Close eyes and breathe for 1 minute','Make a list of 2 priorities','Read one page of a book','Delete 3 old emails','Set one intention for today','Do a brain dump for 2 minutes','Practice gratitude: name 1 thing','Step away from screen for 2 minutes','Count backwards from 100 by 7s','Name 5 things you can see right now','Name 4 things you can touch','Name 3 things you can hear','Name 2 things you can smell','Name 1 thing you can taste','Box breathing: 4 counts in, hold, out, hold','4-7-8 breathing technique','Alternate nostril breathing','Body scan meditation - 3 minutes','Loving-kindness meditation - 2 minutes','Visualization: peaceful place - 2 minutes','Mindful eating of one snack','Mindful hand washing','Mindful tooth brushing','Single-task for 10 minutes','Pomodoro: 25 min focus, 5 min break','Write morning pages - 3 pages','Journal about one emotion','Write a letter to your future self','List 10 things you are good at','Identify one limiting belief','Reframe one negative thought','Practice saying no out loud','Set a boundary with yourself','Identify your energy level (1-10)','Notice without judgment for 2 minutes','Label emotions: name what you feel','Practice self-compassion phrase','Forgive yourself for one thing','Celebrate one recent win','Identify one strength you used today','Write an already done list','Create a not to do list','Define success for today','Identify your peak energy hours','Plan tomorrow top 3 priorities']
-            },
-            social: {
-                id: 'social', icon: '💬', title: 'Social Connection', color: '#f38181',
-                tasks: ['Send one text to a friend','Give someone a compliment','Say I love you to someone','Wave at a neighbor','Call someone for 2 minutes','Send a funny meme','Thank someone for something small','Smile at yourself in mirror','Ask someone how their day is','Send a voice note instead of text','React to 3 friends social media posts','Share a memory with someone','Ask for advice from someone you trust','Offer to help someone with a small task','Tell someone what you appreciate about them','Send a thinking of you message','Introduce yourself to someone new','Remember to use someone name in conversation','Ask someone about their weekend plans','Share a book or show recommendation','Send a photo that reminds you of someone','Wish someone happy birthday (if applicable)','Check in on someone who has been quiet','Tell a family member you appreciate them','Leave a positive review for a business','Send a thank you note (digital or paper)','Ask someone about their hobby or interest','Share a joke or funny story','Listen to someone without interrupting','Validate someone feelings','Apologize for something small you did','Forgive someone in your heart','Set a boundary kindly but firmly','Ask for what you need directly','Say no to something you do not want to do','Accept a compliment gracefully','Give yourself credit out loud','Tell someone you are proud of them','Celebrate someone else win','Send an encouraging message to someone struggling','Reconnect with an old friend','Make plans with someone for this week','Cancel plans you are dreading (gently)','Join a group or community event','Leave a nice comment on a creator post']
-            },
-            creative: {
-                id: 'creative', icon: '🎨', title: 'Creative Expression', color: '#aa96da',
-                tasks: ['Doodle for 2 minutes','Write one sentence','Take a photo of something beautiful','Hum or sing a song','Rearrange one thing decoratively','Write down one idea','Color for 3 minutes','Make a playlist of 3 songs','Look at art online for 2 minutes','Try a new recipe or food combo','Write a 6-word story','Draw your current mood','Make a collage from magazine cutouts','Write a poem (even a bad one)','Take 5 photos from different angles','Create a mood board','Design your dream room on paper','Write a letter you will not send','Make up a character and describe them','Sketch your coffee mug','Write a fake product review','Create a new word and define it','Draw with your non-dominant hand','Make a zine from one sheet of paper','Write a haiku about your day','Design a logo for an imaginary business','Create a color palette you love','Write a short dialogue between two people','Make a paper airplane','Origami - fold one simple shape','Finger paint (or use markers)','Create a vision board snippet','Write a bucket list item','Design a tattoo you would never get','Make a comic strip (3 panels)','Write a song parody','Create a new recipe combination','Decorate your planner or journal','Make a bookmark','Create a greeting card','Write a fake horoscope','Design a t-shirt graphic','Make a paper chain','Create a word cloud of your day','Write a mini movie review','Design your perfect workspace']
-            },
-            admin: {
-                id: 'admin', icon: '📋', title: 'Admin & Life Stuff', color: '#f7b731',
-                tasks: ['Pay one bill','File one paper','Make one appointment','Respond to one message','Check bank balance','Add one item to calendar','Unsubscribe from one email list','Set one reminder','Order one needed item online','Back up phone photos','Set up autopay for one bill','Update one password','Clear your downloads folder','Empty trash/recycle bin on computer','Organize desktop icons','Update software on one device','Clean out voicemail','Update your resume or LinkedIn','Schedule a doctor/dentist appointment','Check expiration dates on medications','Renew your driver license (if needed)','Update emergency contacts','Review and update insurance info','Check credit report (free annual)','Cancel one unused subscription','Return one item you have been meaning to','Organize receipts for taxes','Set a financial goal for the month','Check and update budget categories','Transfer money to savings','Review recurring charges','Update your address with one service','Register to vote or check registration','Research one financial question','Create a password for a new account','Enable two-factor authentication','Review privacy settings on one app','Delete old accounts you do not use','Organize bookmarks in browser','Clear browser cache and cookies','Update your phone contact list','Set up a filing system for papers','Shred old documents you do not need','Organize cords and cables','Label one container or shelf','Create a meal plan for tomorrow','Make a grocery list']
-            },
-            selfcare: {
-                id: 'selfcare', icon: '🌸', title: 'Self-Care & Comfort', color: '#ff9ff3',
-                tasks: ['Apply lotion to hands','Brush teeth (if not done)','Put on comfortable clothes','Light a candle or use nice scent','Look in mirror and say something kind','Take a shower (even quick)','Put on music you love','Make a cozy drink','Sit in sunlight for 2 minutes','Give yourself permission to rest','Take a warm bath with Epsom salts','Do a foot soak','Give yourself a hand massage','Apply lip balm','Trim your nails','Clean your glasses or sunglasses','Change your pillowcase','Make your sleeping area cozy','Use aromatherapy (candle, oil, spray)','Listen to calming music','Do a body scan for tension','Apply heat or ice to sore areas','Do a gentle face massage','Dry brush your skin','Put on clean, soft pajamas','Make your favorite comfort food','Eat something nourishing','Hydrate with herbal tea','Take a power nap (20 min)','Go to bed 30 minutes earlier','Sleep in an extra 15 minutes','Open curtains for natural light','Sit outside for fresh air','Watch a comfort show episode','Read a chapter of a favorite book','Listen to an audiobook','Do a puzzle or crossword','Play a calming game','Cuddle with a pet or stuffed animal','Wrap yourself in a blanket burrito','Use a weighted blanket','Put on noise-canceling headphones','Create a cozy reading nook','Light a scented candle','Watch the sunset or sunrise','Stargaze for 5 minutes','Sit by a window and people-watch']
-            }
+            home: [
+                "Put one thing back where it belongs","Wipe one surface (counter, table, or shelf)","Take out the trash bag",
+                "Put one load of laundry in the washer","Clean one toilet, sink, or mirror","Vacuum one room or one corner",
+                "Make your bed","Water one plant","Take 3 things off the floor and put them away",
+                "Switch laundry from washer to dryer","Fold one basket of laundry","Empty the dishwasher",
+                "Load the dishwasher","Wipe down the kitchen counters","Clean the bathroom mirror",
+                "Take out the recycling","Change one lightbulb","Dust one shelf","Organize one drawer",
+                "Clean the microwave","Wipe down the stovetop","Sweep one room","Mop one room",
+                "Clean the shower door","Scrub the toilet bowl","Take everything off one surface and wipe it",
+                "Put away 5 things that are out of place","Clean out the fridge door shelves","Wipe down the sink faucet",
+                "Empty all trash cans in one room","Fluff the couch pillows","Straighten one bookshelf",
+                "Organize the shoe rack","Clean the windowsill","Wipe down the front of appliances",
+                "Sweep the entryway","Hang up 3 pieces of clothing","Put all dirty dishes in the sink",
+                "Wipe down the bathroom counter","Change the sheets on one bed","Dust the ceiling fan",
+                "Clean the toilet handle","Wipe down doorknobs in one room","Organize the mail pile",
+                "Put away clean dishes from the rack","Clean the coffee maker","Wipe down the kitchen table",
+                "Take the trash to the curb","Organize the spice rack","Clean the bathroom floor",
+                "Put all remotes in their place","Straighten the towel rack"
+            ],
+            selfcare: [
+                "Brush your teeth","Wash your face","Take a 2-minute shower","Drink one full glass of water",
+                "Take your medication","Step outside for fresh air","Stretch for 60 seconds",
+                "Put on real clothes (not pajamas)","Comb or brush your hair","Apply lotion or sunscreen",
+                "Floss your teeth","Use mouthwash","Trim your nails","Apply lip balm","Take 3 deep breaths",
+                "Do a 1-minute meditation","Write down 3 things you're grateful for","Look in the mirror and smile",
+                "Put on deodorant","Wash your hands for 20 seconds","Apply hand cream","Clean your glasses",
+                "Put in/take out contacts","Shave one area","Apply a face mask","Soak your feet in warm water",
+                "Give yourself a hand massage","Roll your neck and shoulders","Do 5 shoulder rolls",
+                "Stand up and touch your toes","Do 10 jumping jacks","Hold a plank for 30 seconds",
+                "Do 5 push-ups","Dance to one song","Sing along to your favorite song","Read one page of a book",
+                "Write in your journal for 2 minutes","Call a friend or family member","Send a nice text to someone",
+                "Compliment yourself out loud","Set a bedtime alarm","Prepare your clothes for tomorrow",
+                "Make a healthy snack","Eat a piece of fruit","Take your vitamins","Put on comfortable socks",
+                "Open the windows for fresh air","Light a candle","Put on your favorite perfume/cologne",
+                "Do a face scrub","Apply eye cream"
+            ],
+            admin: [
+                "Delete 5 emails","Pay one bill","Make one appointment","File one piece of paper",
+                "Send one text you've been avoiding","Set a timer for 10 minutes of paperwork","Write one thank you note",
+                "Return one phone call","Add one event to your calendar","Decline one meeting you don't need",
+                "Unsubscribe from one email list","Update your password on one account","Check your bank balance",
+                "Review one credit card statement","Schedule a dentist appointment","Schedule a doctor checkup",
+                "Renew one subscription if needed","Check your insurance coverage","Update your address with one service",
+                "Scan one important document","Back up your phone photos","Clear your downloads folder",
+                "Empty your email trash","Archive old emails from one sender","Create one folder in your email",
+                "Set up one automatic payment","Check your credit score","Review your budget for 5 minutes",
+                "Cancel one unused subscription","Compare prices on one recurring bill","Update your resume with one new item",
+                "Update your LinkedIn profile","Respond to one LinkedIn message","Send one networking email",
+                "Request one letter of recommendation","Apply to one job posting","Update your portfolio with one piece",
+                "Create a to-do list for tomorrow","Review and update your goals","Set one reminder for next week",
+                "Create a grocery list","Meal plan for one day","Order groceries online",
+                "Schedule a car maintenance appointment","Check your tire pressure","Get gas if needed",
+                "Wash your car","Clean out your car trash","Update your driver's license if needed",
+                "Register to vote or check registration","Research one thing you've been putting off"
+            ],
+            work: [
+                "Open the document and read one paragraph","Send one work email","Write down 3 things you did today",
+                "Schedule one meeting","Research one question for 5 minutes","Draft one paragraph",
+                "Set a 10-minute timer and work","Close 5 browser tabs","Organize one desktop folder",
+                "Back up one important file","Create one slide for your presentation","Outline one section of your project",
+                "Email one colleague with an update","Review one document for feedback","Update your project status",
+                "Clear your desk of clutter","Write your to-do list for tomorrow","Set 3 priorities for next week",
+                "Block focus time on your calendar","Decline one unnecessary meeting","Prepare an agenda for your next meeting",
+                "Follow up on one pending item","Check in with one team member","Update your timesheet",
+                "Submit one expense report","Organize your email inbox","Create one email template",
+                "Set up one automation","Learn one keyboard shortcut","Watch one 5-minute tutorial",
+                "Read one industry article","Share one interesting article with your team","Post one update on LinkedIn",
+                "Connect with one new person on LinkedIn","Update your skills on your profile","Request feedback from one colleague",
+                "Give feedback to one colleague","Schedule a one-on-one with your manager","Update your resume with recent achievements",
+                "Write a case study about one project","Create a process document for one task","Review and update your goals",
+                "Set one professional development goal","Sign up for one webinar or course","Practice one presentation slide",
+                "Record yourself presenting for 2 minutes","Update your portfolio website","Write one blog post",
+                "Comment on one industry post","Join one professional group online","Research one competitor for 10 minutes"
+            ],
+            social: [
+                "Text one friend 'thinking of you'","Schedule one coffee date","Call a family member for 5 minutes",
+                "Send one thank you message","Reply to one message you've been avoiding","Invite someone to do something specific",
+                "Check in on one person you care about","Send a funny meme to someone","Write a quick appreciation note",
+                "Set a date to see someone in person","Like and comment on a friend's post","Share a memory with someone",
+                "Ask someone how their day was","Tell someone you're proud of them","Apologize for something small",
+                "Forgive someone in your heart","Send a voice note instead of text","Share a song that reminds you of someone",
+                "Recommend a book or movie to someone","Ask someone for advice","Offer to help someone with something",
+                "Introduce two people who should meet","Write a recommendation for someone","Celebrate someone's achievement publicly",
+                "Send a care package or gift","Plan a surprise for someone","Host a small get-together",
+                "Join a club or group activity","Attend one social event","Say yes to one invitation",
+                "Say no to one thing you don't want to do","Set a boundary with someone gently","Have a difficult conversation you've been avoiding",
+                "Tell someone you love them","Give someone a genuine compliment","Ask someone about their dreams",
+                "Listen to someone without interrupting","Remember someone's birthday","Send a birthday message",
+                "Check on a friend going through a hard time","Celebrate a friend's win","Be happy for someone's success",
+                "Let go of a grudge","Reach out to an old friend","Make a new friend","Be vulnerable with someone",
+                "Ask for help when you need it","Accept help when offered","Thank someone for being in your life",
+                "Tell someone what they mean to you","Create a new tradition with someone"
+            ],
+            learning: [
+                "Read one page of a book","Watch one 5-minute tutorial video","Write down one question you have",
+                "Research one topic for 5 minutes","Practice one skill for 5 minutes","Take notes on one concept",
+                "Find one example of what you're learning","Explain what you learned out loud","Set a learning goal for the week",
+                "Review notes from yesterday","Learn one new word","Practice vocabulary for 5 minutes",
+                "Do one exercise in your textbook","Solve one math problem","Write one paragraph in a new language",
+                "Listen to a podcast for 5 minutes","Watch a documentary for 10 minutes","Read one Wikipedia article",
+                "Learn one historical fact","Study one scientific concept","Practice an instrument for 5 minutes",
+                "Learn one new chord or note","Draw something for 5 minutes","Take one photo with intention",
+                "Edit one photo","Learn one keyboard shortcut","Code for 10 minutes","Debug one small problem",
+                "Read one technical documentation page","Try one new recipe","Learn one cooking technique",
+                "Practice public speaking for 2 minutes","Record yourself explaining something","Learn one negotiation tactic",
+                "Read about one leadership principle","Study one financial concept","Learn about one investment option",
+                "Research one career path","Learn about one industry","Study one marketing concept",
+                "Learn one design principle","Practice writing for 5 minutes","Learn one grammar rule",
+                "Study one piece of art","Learn about one artist","Research one musician or band",
+                "Learn one dance move","Study one philosophy concept","Learn about one culture",
+                "Research one country you'd like to visit","Learn one fact about nature"
+            ],
+            creative: [
+                "Doodle for 2 minutes","Write one sentence","Take one photo","Play one song on an instrument",
+                "Sketch one idea","Brainstorm 3 ideas","Organize one creative supply","Look at art for inspiration (5 min)",
+                "Write down one creative goal","Start one creative project for 5 minutes","Write a haiku","Draw your coffee mug",
+                "Color in a coloring book for 5 minutes","Make a collage with magazine cutouts","Write a 6-word story",
+                "Take a photo of something blue","Write a thank you poem","Sketch your hand","Create a mood board",
+                "Design a logo for a fake company","Write a character description","Plot a story in 3 sentences",
+                "Compose a melody for 2 minutes","Freestyle rap or sing for 1 minute","Dance to express an emotion",
+                "Paint with watercolors for 5 minutes","Sculpt something with clay or playdough","Make origami",
+                "Create a zentangle pattern","Design a tattoo you'd never get","Write a letter to your future self",
+                "Create a vision board","Design your dream home","Plan a dream vacation","Write a movie review",
+                "Create a playlist with a theme","Make up a recipe","Invent a new word","Create a fictional language phrase",
+                "Design a board game concept","Write a commercial script","Create a marketing campaign idea",
+                "Design an app interface","Plan a photoshoot concept","Write a scene of dialogue",
+                "Create a character backstory","Design a costume","Plan a party theme","Create a gift idea",
+                "Write a joke","Make a meme"
+            ],
+            health: [
+                "Do 5 jumping jacks","Hold a plank for 20 seconds","Do 5 push-ups (or knee push-ups)","Do 10 squats",
+                "Walk up and down stairs once","Stretch your hamstrings for 30 seconds","Do 5 lunges on each leg",
+                "Hold a wall sit for 30 seconds","Do arm circles for 30 seconds","March in place for 1 minute",
+                "Do calf raises for 30 seconds","Hold a tree pose for 30 seconds","Do 5 burpees","Run in place for 1 minute",
+                "Do high knees for 30 seconds","Do butt kicks for 30 seconds","Shadow box for 1 minute",
+                "Do jumping rope (real or imaginary) for 1 minute","Do bicycle crunches for 30 seconds","Hold a glute bridge for 30 seconds",
+                "Do superman holds for 30 seconds","Stretch your neck for 30 seconds","Roll your shoulders 10 times",
+                "Do wrist circles 10 times each direction","Stretch your hip flexors for 30 seconds each","Do cat-cow stretches for 1 minute",
+                "Child's pose for 1 minute","Downward dog for 30 seconds","Cobra stretch for 30 seconds",
+                "Spinal twist for 30 seconds each side","Drink a full glass of water","Eat a piece of fruit","Take your vitamins",
+                "Step outside for sunshine","Take 10 deep breaths","Close your eyes and rest for 2 minutes",
+                "Do a 1-minute meditation","Write down how you're feeling","Set a sleep alarm for tonight",
+                "Prepare a healthy snack","Meal prep one item","Track your water intake","Log your meals for the day",
+                "Weigh yourself","Take progress photos","Measure your waist","Schedule a workout for tomorrow",
+                "Put on workout clothes","Research a new healthy recipe","Plan your workouts for the week","Book a fitness class"
+            ],
+            finance: [
+                "Check your bank account balance","Review one credit card statement","Log one expense in your budget app",
+                "Transfer $5 to savings","Cancel one unused subscription","Compare prices on one bill",
+                "Research a cheaper phone plan","Check your credit score","Set up account alerts","Update your budget categories",
+                "Calculate your net worth","Review your investment portfolio","Research one stock or fund","Set up automatic savings",
+                "Create a savings goal","Calculate how much you need to retire","Research retirement accounts",
+                "Increase your 401k contribution by 1%","Review your insurance policies","Get quotes for cheaper insurance",
+                "Make a debt payment plan","Pay extra on one debt","Call to negotiate a lower interest rate",
+                "Consolidate accounts if needed","Organize financial documents","Scan important financial papers",
+                "Shred old financial documents","Update your beneficiaries","Create or update your will","Research estate planning",
+                "Set up a high-yield savings account","Research CD rates","Look into I Bonds","Research cryptocurrency basics",
+                "Learn about NFTs (just for knowledge)","Calculate your hourly worth","Track your time for one day",
+                "Identify one skill to monetize","Research side hustle ideas","List one item to sell",
+                "Research passive income ideas","Learn about dividend investing","Research real estate investing",
+                "Learn about REITs","Research tax deductions you might miss","Organize receipts for taxes",
+                "Set up a tax folder for next year","Learn about tax-advantaged accounts","Research HSA benefits",
+                "Calculate your emergency fund goal","Set a financial goal for the month"
+            ],
+            default: [
+                "Write down the smallest possible version of this goal","Set a 2-minute timer and work until it rings",
+                "Break this into 3 tiny steps","Text someone: 'Working on this for 5 min'","Set a 5-minute timer and work until it rings",
+                "Ask: 'What would this look like if it were easy?'","Write down ONE thing you could do in 2 minutes",
+                "Open the document and look at it for 60 seconds","Write down 3 questions you have","Find one example of someone who's done this",
+                "Write down why this matters to you","Identify the first physical action needed","Gather materials for 2 minutes only",
+                "Set up your workspace","Remove one distraction","Put your phone in another room","Close all unnecessary tabs",
+                "Write down your ideal outcome","Identify your biggest fear about this","Write down one way to make it fun",
+                "Promise yourself you'll stop after 5 minutes","Set a reward for completing this","Find an accountability partner",
+                "Post your intention on social media","Write down what you've already done","List 3 resources you have",
+                "Identify one person who could help","Google one specific question","Watch one tutorial video",
+                "Read one article about this","Join one online community about this","Ask one question in a forum",
+                "Find a template or example","Copy someone else's format","Start with the easiest part",
+                "Do a brain dump for 2 minutes","Organize your thoughts in a list","Create a rough outline",
+                "Set a deadline for yourself","Schedule time to work on this","Make a public commitment",
+                "Write down potential obstacles","Plan how to overcome one obstacle","Visualize yourself completing this",
+                "Take a before photo or screenshot","Set a reminder to continue tomorrow","Write down what success looks like",
+                "Identify your motivation style","Use the 5-second rule: 5-4-3-2-1-GO","Just start. Right now. For 2 minutes."
+            ]
         };
-
-        // Growth stages
-        const growthStages = [
-            { emoji: '🌱', name: 'Tiny Seedling', min: 0, max: 9 },
-            { emoji: '🌿', name: 'Little Sprout', min: 10, max: 24 },
-            { emoji: '🪴', name: 'Growing Plant', min: 25, max: 49 },
-            { emoji: '🌳', name: 'Strong Sapling', min: 50, max: 99 },
-            { emoji: '🌲', name: 'Mighty Tree', min: 100, max: 199 },
-            { emoji: '🌳✨', name: 'Ancient Oak', min: 200, max: 349 },
-            { emoji: '🌳👑', name: 'Legendary Grove', min: 350, max: Infinity }
+        const motivations = [
+            "💡 Consistency beats intensity. A 2-minute action today beats a perfect plan tomorrow.",
+            "🌱 You don't need to finish. You just need to start.",
+            "✨ Done is better than perfect. Way better.",
+            "🎯 Small steps compound. Today's 2 minutes is tomorrow's momentum.",
+            "💪 You don't need more motivation. You need smaller tasks.",
+            "🌟 Progress, not perfection. Always.",
+            "🎉 Celebrate showing up, not just the outcome.",
+            "⚡ The best time to start was yesterday. The second best is right now.",
+            "🌈 Every expert was once a beginner who didn't give up.",
+            "💫 You're not behind. You're exactly where you need to be."
         ];
-
-        // Encouraging messages
-        const encouragements = [
-            "Every tiny win is still a win. You've got this!",
-            "Progress, not perfection. Keep going!",
-            "Small steps lead to big changes.",
-            "You're doing better than you think.",
-            "One thing at a time. You're crushing it!",
-            "Your future self will thank you.",
-            "Momentum builds momentum. Keep it up!",
-            "You are enough, exactly as you are.",
-            "Tiny wins count. They all add up!",
-            "Be gentle with yourself. You're doing great."
+        
+        // Level progression system
+        const levels = [
+            { name: "🌱 Seedling", min: 0 },
+            { name: "🌿 Sprout", min: 5 },
+            { name: "🌾 Growing", min: 15 },
+            { name: "🌳 Thriving", min: 30 },
+            { name: "🌻 Blooming", min: 50 },
+            { name: "⭐ Achiever", min: 75 },
+            { name: "🚀 Unstoppable", min: 100 },
+            { name: "👑 Legendary", min: 150 },
+            { name: "🌟 Master", min: 200 },
+            { name: "💎 Titan", min: 300 }
         ];
-
-        // State
-        let completedTasks = JSON.parse(localStorage.getItem('tinyWinsV5_completed') || '[]');
-        let totalWins = parseInt(localStorage.getItem('tinyWinsV5_total') || '0');
-        let currentStreak = parseInt(localStorage.getItem('tinyWinsV5_streak') || '0');
-        let lastCompletedDate = localStorage.getItem('tinyWinsV5_lastDate');
-        let currentDisplayedTasks = {};
-
-        // Initialize
-        function init() {
-            checkStreak();
-            shuffleTasks();
-            updateStats();
-            updateGrowth();
-            renderDoneList();
+        
+        // Plants for garden (in order of growth)
+        const plants = [
+            '🌱', '🌿', '🌾', '🌵', '🌲', '🌳', '🌴', '🌻', '🌹', '🌷',
+            '🌺', '🌸', '🌼', '🍀', '🌵', '🎋', '🎍', '🪴', '🌾', '🌽',
+            '🥕', '🍅', '🍆', '🥒', '🥬', '🥦', '🧄', '🧅', '🍄', '🌰',
+            '🦋', '🐝', '🐞', '🪲', '🦗', '🕷️', '🦎', '🐢', '🐇', '🦔',
+            '🐿️', '🦌', '🦊', '🐻', '🐨', '🐼', '🦅', '🦉', '🦜', '🦚',
+            '🌈', '⭐', '✨', '💫', '🌟', '🎆', '🎇', '🌠', '🌌', '🪐'
+        ];
+        
+        const celebrations = ["🎉", "✨", "🌟", "💪", "🎯", "🔥", "⭐", "🏆", "🎊", "💫"];
+        
+        let currentCategory = 'home';
+        let doneItems = [];
+        let storageAvailable = false;
+        let currentTask = null;
+        let stats = { today: 0, streak: 0, total: 0, lastDate: null };
+        
+        // Check if localStorage is available
+        try {
+            localStorage.setItem('test', 'test');
+            localStorage.removeItem('test');
+            storageAvailable = true;
+            doneItems = JSON.parse(localStorage.getItem('tinyWins') || '[]');
+            stats = JSON.parse(localStorage.getItem('tinyWinsStats') || JSON.stringify(stats));
+            checkAndResetDailyStats();
+        } catch (e) {
+            console.log('localStorage not available');
+            storageAvailable = false;
         }
-
-        // Check and update streak
-        function checkStreak() {
+        
+        function checkAndResetDailyStats() {
             const today = new Date().toDateString();
-            const yesterday = new Date(Date.now() - 86400000).toDateString();
-            if (lastCompletedDate === today) {
-                // Already completed today
-            } else if (lastCompletedDate === yesterday) {
-                // Completed yesterday, streak continues
-            } else if (lastCompletedDate && lastCompletedDate !== today) {
-                currentStreak = 0;
-                localStorage.setItem('tinyWinsV5_streak', currentStreak);
+            if (stats.lastDate !== today) {
+                // Check if yesterday had activity for streak
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                if (stats.lastDate !== yesterday.toDateString() && stats.streak > 0) {
+                    stats.streak = 0; // Reset streak if missed a day
+                }
+                stats.today = 0;
+                stats.lastDate = today;
+                saveStats();
             }
         }
-
-        // Update growth visual
-        function updateGrowth() {
-            const stage = growthStages.find(s => totalWins >= s.min && totalWins <= s.max) || growthStages[0];
-            document.getElementById('growth-emoji').textContent = stage.emoji;
-            document.getElementById('growth-stage').textContent = stage.name;
+        
+        function saveStats() {
+            if (storageAvailable) {
+                localStorage.setItem('tinyWinsStats', JSON.stringify(stats));
+            }
+            updateStatsDisplay();
+            updateLevel();
+            updateGarden();
+        }
+        
+        function updateStatsDisplay() {
+            document.getElementById('todayCount').textContent = stats.today;
+            document.getElementById('streakCount').textContent = '🔥 ' + stats.streak;
+            document.getElementById('totalCount').textContent = stats.total;
+        }
+        
+        function updateLevel() {
+            let currentLevel = levels[0];
+            let nextLevel = levels[1];
+            let prevTotal = 0;
             
-            const nextStage = growthStages[growthStages.indexOf(stage) + 1];
-            if (nextStage) {
-                const progress = Math.min(100, ((totalWins - stage.min) / (nextStage.min - stage.min)) * 100);
-                document.getElementById('growth-bar').style.width = progress + '%';
-                document.getElementById('tasks-to-next').textContent = nextStage.min - totalWins;
-                document.getElementById('next-stage').textContent = nextStage.name;
+            for (let i = levels.length - 1; i >= 0; i--) {
+                if (stats.total >= levels[i].min) {
+                    currentLevel = levels[i];
+                    nextLevel = levels[i + 1] || null;
+                    prevTotal = levels[i].min;
+                    break;
+                }
+            }
+            
+            document.getElementById('levelBadge').textContent = currentLevel.name;
+            
+            if (nextLevel) {
+                const progress = ((stats.total - prevTotal) / (nextLevel.min - prevTotal)) * 100;
+                document.getElementById('levelProgress').style.width = progress + '%';
             } else {
-                document.getElementById('growth-bar').style.width = '100%';
-                document.getElementById('tasks-to-next').textContent = '0';
-                document.getElementById('next-stage').textContent = 'Max Level!';
-            }
-        }
-
-        // Shuffle and render tasks
-        function shuffleTasks() {
-            const container = document.getElementById('categories-container');
-            container.innerHTML = '';
-            currentDisplayedTasks = {};
-            
-            Object.values(taskDatabase).forEach(cat => {
-                const shuffled = [...cat.tasks].sort(() => 0.5 - Math.random());
-                const selected = shuffled.slice(0, 10);
-                currentDisplayedTasks[cat.id] = selected;
-                
-                const catDiv = document.createElement('div');
-                catDiv.className = 'category-card';
-                catDiv.innerHTML = `
-                    <div class="category-header">
-                        <span class="category-icon">${cat.icon}</span>
-                        <span class="category-title">${cat.title}</span>
-                    </div>
-                    <ul class="task-list">
-                        ${selected.map((task, index) => `
-                            <li class="task-item">
-                                <button class="check-btn" onclick="completeTask('${cat.id}', ${index}, '${task.replace(/'/g, "\\'")}')">✓</button>
-                                <span class="task-text">${task}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                `;
-                container.appendChild(catDiv);
-            });
-        }
-
-        // Complete a task
-        function completeTask(categoryId, taskIndex, taskText) {
-            const today = new Date().toDateString();
-            const timestamp = new Date().toLocaleString();
-            
-            // Add to completed
-            completedTasks.unshift({
-                text: taskText,
-                category: categoryId,
-                timestamp: timestamp
-            });
-            
-            // Update stats
-            totalWins++;
-            if (lastCompletedDate !== today) {
-                currentStreak++;
-                lastCompletedDate = today;
+                document.getElementById('levelProgress').style.width = '100%';
             }
             
-            // Save to localStorage
-            localStorage.setItem('tinyWinsV5_completed', JSON.stringify(completedTasks));
-            localStorage.setItem('tinyWinsV5_total', totalWins);
-            localStorage.setItem('tinyWinsV5_streak', currentStreak);
-            localStorage.setItem('tinyWinsV5_lastDate', lastCompletedDate);
-            
-            // Update UI
-            updateStats();
-            updateGrowth();
-            renderDoneList();
-            
-            // Visual celebration
-            createConfetti();
-            showCelebration();
-            
-            // Update encouragement
-            document.getElementById('encouragement').textContent = encouragements[Math.floor(Math.random() * encouragements.length)];
+            return { currentLevel, nextLevel };
         }
-
-        // Update stats display
-        function updateStats() {
-            const today = new Date().toDateString();
-            const todayCompleted = completedTasks.filter(t => t.timestamp && t.timestamp.includes(today.slice(4, 10))).length;
-            document.getElementById('streak-count').textContent = currentStreak;
-            document.getElementById('completed-count').textContent = todayCompleted;
-            document.getElementById('total-wins').textContent = totalWins;
-        }
-
-        // Render done list
-        function renderDoneList() {
-            const doneList = document.getElementById('done-list');
-            if (completedTasks.length === 0) {
-                doneList.innerHTML = '<li style="text-align: center; color: #666; padding: 20px;">No tasks completed yet. You have got this!</li>';
+        
+        function updateGarden() {
+            const garden = document.getElementById('gardenPlot');
+            if (stats.total === 0) {
+                garden.innerHTML = '<div style="color: rgba(0,0,0,0.3); font-size: 0.9rem; align-self: center;">Complete tasks to grow your garden! 🌱</div>';
                 return;
             }
             
-            doneList.innerHTML = completedTasks.slice(0, 20).map(task => `
-                <li class="done-item">
-                    <span>✅</span>
-                    <span>${task.text} <small style="color: #666;">(${task.timestamp})</small></span>
-                </li>
-            `).join('');
+            const plantCount = Math.min(stats.total, plants.length);
+            let gardenHTML = '';
+            for (let i = 0; i < plantCount; i++) {
+                gardenHTML += `<span class="plant" title="Task ${i + 1} completed!">${plants[i]}</span>`;
+            }
+            if (stats.total > plants.length) {
+                gardenHTML += `<span class="plant" title="+${stats.total - plants.length} more!">✨</span>`;
+            }
+            garden.innerHTML = gardenHTML;
         }
-
-        // Show/hide done list
-        function showDoneList() {
-            document.getElementById('done-section').style.display = 'block';
-            document.getElementById('done-section').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function hideDoneList() {
-            document.getElementById('done-section').style.display = 'none';
-        }
-
-        // Celebration effects
+        
         function showCelebration() {
-            const celebration = document.createElement('div');
-            celebration.className = 'celebration';
-            celebration.textContent = ['🎉','✨','🌟','💫','🎊','🏆'][Math.floor(Math.random() * 6)];
-            document.body.appendChild(celebration);
-            setTimeout(() => celebration.remove(), 1500);
+            const emoji = celebrations[Math.floor(Math.random() * celebrations.length)];
+            const el = document.createElement('div');
+            el.className = 'celebration';
+            el.textContent = emoji;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 800);
         }
-
-        // Create confetti
-        function createConfetti() {
-            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7', '#fd79a8'];
+        
+        function showConfetti() {
+            const colors = ['#ff6b35', '#f7931e', '#ffd700', '#48bb78', '#667eea', '#764ba2', '#ff69b4'];
             for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                document.body.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 3000);
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 50);
             }
         }
-
-        // Initialize on load
-        init();
+        
+        function showStreakPopup() {
+            const popup = document.createElement('div');
+            popup.className = 'streak-popup';
+            popup.textContent = `🔥 ${stats.streak} Day Streak! Keep it up!`;
+            document.body.appendChild(popup);
+            setTimeout(() => popup.remove(), 3000);
+        }
+        
+        function showLevelUp(newLevel) {
+            const modal = document.createElement('div');
+            modal.className = 'level-up-modal';
+            modal.innerHTML = `
+                <div class="level-up-content">
+                    <div class="level-up-emoji">🎉</div>
+                    <div class="level-up-title">Level Up!</div>
+                    <div class="level-up-text">You've reached ${newLevel.name}!<br>Keep growing your garden!</div>
+                    <button class="level-up-btn" onclick="this.closest('.level-up-modal').remove()">Awesome! 🌟</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            showConfetti();
+        }
+        
+        // Category selection
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+            });
+        });
+        
+        // Rotate motivation
+        setInterval(() => {
+            const idx = Math.floor(Math.random() * motivations.length);
+            const el = document.getElementById('motivation');
+            if (el) el.textContent = motivations[idx];
+        }, 10000);
+        
+        function generateTinyStep() {
+            // Get tasks from the database
+            const templates = taskDatabase[currentCategory] || taskDatabase.default;
+            currentTask = templates[Math.floor(Math.random() * templates.length)];
+            
+            document.getElementById('result').innerHTML = `
+                <div class="tiny-step">
+                    <div class="tiny-step-header">
+                        <h3>Your Tiny Next Step</h3>
+                        <div>
+                            <button class="btn btn-skip" onclick="generateTinyStep()" title="Get different task">↻ Skip</button>
+                            <button class="btn btn-check" onclick="addTaskToDone()" title="Mark as done">✓ Done!</button>
+                        </div>
+                    </div>
+                    <p>${escapeHtml(currentTask)}</p>
+                    <span class="time-badge">⏱️ 2-5 minutes max</span>
+                </div>
+            `;
+        }
+        
+        function addTaskToDone() {
+            if (!currentTask) return;
+            
+            const oldLevel = updateLevel().currentLevel;
+            
+            const item = {
+                text: currentTask,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                id: Date.now()
+            };
+            
+            doneItems.unshift(item);
+            
+            // Update stats
+            const wasFirstToday = stats.today === 0;
+            stats.today++;
+            stats.total++;
+            if (stats.today === 1 && stats.streak === 0) {
+                stats.streak = 1; // First win of a new streak
+            }
+            saveStats();
+            
+            if (storageAvailable) {
+                localStorage.setItem('tinyWins', JSON.stringify(doneItems));
+            }
+            
+            renderDoneList();
+            
+            // Enhanced celebrations
+            showCelebration();
+            showConfetti();
+            
+            if (wasFirstToday && stats.streak > 1) {
+                showStreakPopup();
+            }
+            
+            // Check for level up
+            const newLevel = updateLevel().currentLevel;
+            if (newLevel.name !== oldLevel.name) {
+                setTimeout(() => showLevelUp(newLevel), 500);
+            }
+            
+            showToast('Win added! 🎉');
+            
+            // Clear the result after adding
+            document.getElementById('result').innerHTML = '';
+            currentTask = null;
+        }
+        
+        function renderDoneList() {
+            const list = document.getElementById('doneList');
+            const count = document.getElementById('doneCount');
+            
+            count.textContent = doneItems.length;
+            
+            if (doneItems.length === 0) {
+                list.innerHTML = '<li class="empty-state">No wins yet today. That\'s okay — even getting out of bed counts.</li>';
+                return;
+            }
+            
+            // Show only last 5 completed tasks
+            const recentItems = doneItems.slice(0, 5);
+            list.innerHTML = recentItems.map(item => `
+                <li class="done-item">
+                    <input type="checkbox" checked disabled>
+                    <span>${escapeHtml(item.text)}</span>
+                    <span class="timestamp">${item.time}</span>
+                </li>
+            `).join('');
+            
+            if (doneItems.length > 5) {
+                list.innerHTML += `<li class="empty-state" style="padding: 10px;">+ ${doneItems.length - 5} more wins today!</li>`;
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function showToast(message, type = 'success') {
+            const existing = document.querySelector('.success-toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'success-toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+        
+        // Initial render
+        updateStatsDisplay();
+        updateLevel();
+        updateGarden();
+        renderDoneList();
     </script>
 </body>
 </html>
