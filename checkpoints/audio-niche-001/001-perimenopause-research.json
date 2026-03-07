@@ -1,0 +1,90 @@
+{
+  "step": 1,
+  "description": "Research perimenopause content market - competitive analysis",
+  "timestamp": "2026-03-07T11:23:00Z",
+  "status": "completed",
+  "researchFindings": {
+    "marketOverview": {
+      "totalPodcasts": "60+ menopause podcasts, 20+ specifically perimenopause",
+      "marketGrowth": "Podcast market valued at $39.63B in 2025, projected $204.75B by 2033 (24.8% CAGR)",
+      "femaleListenership": "45% of women listened to podcasts in last week (2025) vs 32% in 2024",
+      "globalListeners": "580M monthly listeners projected by end of 2025"
+    },
+    "topCompetitors": [
+      {
+        "name": "Hit Play Not Pause",
+        "host": "Selene Yeager",
+        "focus": "Active women, athletes",
+        "rating": "4.9/5 (888 reviews)",
+        "followers": "46.4K Instagram",
+        "avgLength": "65 min",
+        "differentiation": "Exercise-focused, evidence-based"
+      },
+      {
+        "name": "Perimenopause WTF?",
+        "host": "Perry Community",
+        "focus": "Community-driven, relatable",
+        "rating": "4.5/5 (82 reviews)",
+        "followers": "115K Instagram",
+        "avgLength": "55 min",
+        "differentiation": "Community app integration, peer support"
+      },
+      {
+        "name": "Dr. Louise Newson Podcast",
+        "host": "Dr. Louise Newson",
+        "focus": "Medical expertise, HRT",
+        "rating": "4.9/5 (1K reviews)",
+        "followers": "109.5K Instagram",
+        "avgLength": "32 min",
+        "differentiation": "Medical authority, evidence-based"
+      },
+      {
+        "name": "Hello Menopause!",
+        "host": "Stacy London / Christine Maginnis",
+        "focus": "Celebrity guests, mainstream appeal",
+        "rating": "4.8/5 (54 reviews)",
+        "followers": "29.1K Instagram",
+        "avgLength": "47 min",
+        "differentiation": "Celebrity interviews, destigmatization"
+      },
+      {
+        "name": "Menopause Reimagined",
+        "host": "Andrea Donsky",
+        "focus": "Nutrition, natural solutions",
+        "rating": "5/5 (38 reviews)",
+        "followers": "6.4K Instagram",
+        "avgLength": "46 min",
+        "differentiation": "Nutritionist background, natural approaches"
+      }
+    ],
+    "contentGaps": [
+      "ADHD + perimenopause intersection (barely covered)",
+      "Working women/career impact strategies",
+      "Perimenopause for women of color (limited representation)",
+      "Short-form daily content (most are 30-60 min weekly)",
+      "Partner/spouse perspective and communication",
+      "Financial planning during perimenopause",
+      "Practical symptom management (not just theory)"
+    ],
+    "audienceDemographics": {
+      "primaryAge": "35-55",
+      "secondaryAudience": "Partners, healthcare providers",
+      "listeningBehavior": "Seeking validation, practical solutions, community",
+      "painPoints": ["Feeling alone", "Symptoms dismissed by doctors", "Conflicting information", "Overwhelm"]
+    },
+    "monetizationOpportunities": [
+      "Supplement partnerships (high engagement)",
+      "HRT/clinic referrals",
+      "Fitness/wellness programs",
+      "Books/courses",
+      "Community memberships"
+    ],
+    "differentiationOpportunities": [
+      "AI-personalized content based on symptoms",
+      "Bite-sized daily episodes (5-10 min)",
+      "ADHD-specific perimenopause content",
+      "Actionable micro-tasks (Tiny Wins approach)",
+      "Data-driven symptom tracking integration"
+    ]
+  }
+}
