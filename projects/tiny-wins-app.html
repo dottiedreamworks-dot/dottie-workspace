@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Wins - Micro-Tasks for ADHD Minds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            min-width: 120px;
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .streak-flame {
+            color: #ff6b35;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-shuffle {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-done {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .category-icon {
+            font-size: 2em;
+        }
+
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            background: #e9ecef;
+        }
+
+        .check-btn {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+            color: transparent;
+        }
+
+        .check-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .check-btn.checked {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .task-text {
+            flex: 1;
+            font-size: 0.95em;
+        }
+
+        .done-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 30px;
+        }
+
+        .done-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .done-title {
+            font-size: 1.8em;
+            color: #28a745;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .done-list {
+            list-style: none;
+        }
+
+        .done-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #d4edda;
+            border-radius: 10px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4em;
+            pointer-events: none;
+            animation: celebrate 1s ease forwards;
+            z-index: 1000;
+        }
+
+        @keyframes celebrate {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .encouragement {
+            text-align: center;
+            color: white;
+            font-size: 1.1em;
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .stats-bar {
+                gap: 15px;
+            }
+            
+            .stat-box {
+                padding: 15px 20px;
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Tiny Wins</h1>
+            <p class="tagline">Micro-tasks for ADHD minds. Small steps, big momentum.</p>
+        </header>
+
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-value" id="streak-count">0</div>
+                <div class="stat-label"><span class="streak-flame">🔥</span> Day Streak</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="completed-count">0</div>
+                <div class="stat-label">Completed Today</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="total-wins">0</div>
+                <div class="stat-label">Total Wins</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-shuffle" onclick="shuffleTasks()">
+                🎲 Shuffle Tasks
+            </button>
+            <button class="btn btn-done" onclick="showDoneList()">
+                ✅ View Done List
+            </button>
+        </div>
+
+        <div class="categories-grid" id="categories-container">
+            <!-- Categories will be populated by JavaScript -->
+        </div>
+
+        <div class="done-section" id="done-section" style="display: none;">
+            <div class="done-header">
+                <h2 class="done-title">🎉 Done List</h2>
+                <button class="btn" onclick="hideDoneList()" style="background: #6c757d; color: white;">Hide</button>
+            </div>
+            <ul class="done-list" id="done-list">
+                <!-- Completed tasks will appear here -->
+            </ul>
+        </div>
+
+        <p class="encouragement" id="encouragement">
+            "Every tiny win is still a win. You've got this!"
+        </p>
+    </div>
+
+    <script>
+        // Category data with micro-tasks
+        const categories = [
+            {
+                id: 'home',
+                icon: '🏠',
+                title: 'Home Environment',
+                color: '#ff6b6b',
+                tasks: [
+                    'Put one thing back where it belongs',
+                    'Clear a surface (counter, table, desk)',
+                    'Take out the trash',
+                    'Do one dish or load/unload dishwasher',
+                    'Make your bed (even just pulling up the covers)',
+                    'Wipe one bathroom counter',
+                    'Pick up clothes from floor',
+                    'Water one plant',
+                    'Open a window for fresh air',
+                    'Put away 5 items'
+                ]
+            },
+            {
+                id: 'body',
+                icon: '💪',
+                title: 'Body & Movement',
+                color: '#4ecdc4',
+                tasks: [
+                    'Stretch for 2 minutes',
+                    'Take 10 deep breaths',
+                    'Drink a glass of water',
+                    'Do 5 jumping jacks',
+                    'Walk around the room once',
+                    'Roll your shoulders 5 times',
+                    'Stand up and sit down 3 times',
+                    'Touch your toes (or try!)',
+                    'Do 3 push-ups (wall or floor)',
+                    'Dance to one song'
+                ]
+            },
+            {
+                id: 'mind',
+                icon: '🧠',
+                title: 'Mind & Focus',
+                color: '#95e1d3',
+                tasks: [
+                    'Set a timer for 5 minutes of focus',
+                    'Write down 3 things on your mind',
+                    'Close eyes and breathe for 1 minute',
+                    'Make a list of 2 priorities',
+                    'Read one page of a book',
+                    'Delete 3 old emails',
+                    'Set one intention for today',
+                    'Do a brain dump for 2 minutes',
+                    'Practice gratitude: name 1 thing',
+                    'Step away from screen for 2 minutes'
+                ]
+            },
+            {
+                id: 'social',
+                icon: '💬',
+                title: 'Social Connection',
+                color: '#f38181',
+                tasks: [
+                    'Send one text to a friend',
+                    'Give someone a compliment',
+                    'Say "I love you" to someone',
+                    'Wave at a neighbor',
+                    'Call someone for 2 minutes',
+                    'Send a funny meme',
+                    'Thank someone for something small',
+                    'Smile at yourself in mirror',
+                    'Ask someone how their day is',
+                    'Send a voice note instead of text'
+                ]
+            },
+            {
+                id: 'creative',
+                icon: '🎨',
+                title: 'Creative Expression',
+                color: '#aa96da',
+                tasks: [
+                    'Doodle for 2 minutes',
+                    'Write one sentence',
+                    'Take a photo of something beautiful',
+                    'Hum or sing a song',
+                    'Rearrange one thing decoratively',
+                    'Write down one idea',
+                    'Color for 3 minutes',
+                    'Make a playlist of 3 songs',
+                    'Look at art online for 2 minutes',
+                    'Try a new recipe or food combo'
+                ]
+            },
+            {
+                id: 'admin',
+                icon: '📋',
+                title: 'Life Admin',
+                color: '#fcbad3',
+                tasks: [
+                    'Pay one bill',
+                    'File one paper',
+                    'Make one appointment',
+                    'Respond to one message',
+                    'Check bank balance',
+                    'Add one item to calendar',
+                    'Unsubscribe from one email list',
+                    'Set one reminder',
+                    'Order one needed item online',
+                    'Back up phone photos'
+                ]
+            },
+            {
+                id: 'self',
+                icon: '💝',
+                title: 'Self Care',
+                color: '#ffd93d',
+                tasks: [
+                    'Apply lotion to hands',
+                    'Brush teeth (if not done)',
+                    'Put on comfortable clothes',
+                    'Light a candle or use nice scent',
+                    'Look in mirror and say something kind',
+                    'Take a shower (even quick)',
+                    'Put on music you love',
+                    'Make a cozy drink',
+                    'Sit in sunlight for 2 minutes',
+                    'Give yourself permission to rest'
+                ]
+            }
+        ];
+
+        // Encouraging messages
+        const encouragements = [
+            "Every tiny win is still a win. You've got this!",
+            "Progress, not perfection. Keep going!",
+            "Small steps lead to big changes.",
+            "You're doing better than you think.",
+            "One thing at a time. You're crushing it!",
+            "Your future self will thank you.",
+            "Momentum builds momentum. Keep it up!",
+            "You are enough, exactly as you are.",
+            "Tiny wins count. They all add up!",
+            "Be gentle with yourself. You're doing great."
+        ];
+
+        // State
+        let completedTasks = JSON.parse(localStorage.getItem('tinyWins_completed') || '[]');
+        let totalWins = parseInt(localStorage.getItem('tinyWins_total') || '0');
+        let currentStreak = parseInt(localStorage.getItem('tinyWins_streak') || '0');
+        let lastCompletedDate = localStorage.getItem('tinyWins_lastDate');
+
+        // Initialize
+        function init() {
+            checkStreak();
+            renderCategories();
+            updateStats();
+            renderDoneList();
+        }
+
+        // Check and update streak
+        function checkStreak() {
+            const today = new Date().toDateString();
+            const yesterday = new Date(Date.now() - 86400000).toDateString();
+            
+            if (lastCompletedDate === today) {
+                // Already completed today, streak continues
+            } else if (lastCompletedDate === yesterday) {
+                // Completed yesterday, streak continues
+            } else if (lastCompletedDate && lastCompletedDate !== today) {
+                // Streak broken
+                currentStreak = 0;
+                localStorage.setItem('tinyWins_streak', currentStreak);
+            }
+        }
+
+        // Render categories
+        function renderCategories() {
+            const container = document.getElementById('categories-container');
+            container.innerHTML = categories.map(cat => `
+                <div class="category-card" data-category="${cat.id}">
+                    <div class="category-header">
+                        <span class="category-icon">${cat.icon}</span>
+                        <span class="category-title">${cat.title}</span>
+                    </div>
+                    <ul class="task-list">
+                        ${cat.tasks.map((task, index) => `
+                            <li class="task-item">
+                                <button class="check-btn" onclick="completeTask('${cat.id}', ${index}, '${task.replace(/'/g, "\\'")}')">✓</button>
+                                <span class="task-text">${task}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `).join('');
+        }
+
+        // Complete a task
+        function completeTask(categoryId, taskIndex, taskText) {
+            const taskKey = `${categoryId}-${taskIndex}`;
+            
+            if (completedTasks.includes(taskKey)) {
+                return; // Already completed
+            }
+
+            // Add to completed
+            completedTasks.push(taskKey);
+            totalWins++;
+            
+            // Update streak
+            const today = new Date().toDateString();
+            if (lastCompletedDate !== today) {
+                currentStreak++;
+                lastCompletedDate = today;
+                localStorage.setItem('tinyWins_streak', currentStreak);
+                localStorage.setItem('tinyWins_lastDate', lastCompletedDate);
+            }
+
+            // Save
+            localStorage.setItem('tinyWins_completed', JSON.stringify(completedTasks));
+            localStorage.setItem('tinyWins_total', totalWins);
+
+            // Visual feedback
+            const btn = event.target;
+            btn.classList.add('checked');
+            
+            // Add to done list
+            addToDoneList(taskText);
+            
+            // Celebration
+            showCelebration();
+            
+            // Update stats
+            updateStats();
+            
+            // New encouragement
+            showRandomEncouragement();
+        }
+
+        // Add to done list
+        function addToDoneList(taskText) {
+            const doneList = document.getElementById('done-list');
+            const li = document.createElement('li');
+            li.className = 'done-item';
+            li.innerHTML = `
+                <span>✅</span>
+                <span>${taskText}</span>
+                <span style="margin-left: auto; color: #666; font-size: 0.8em;">${new Date().toLocaleTimeString()}</span>
+            `;
+            doneList.insertBefore(li, doneList.firstChild);
+        }
+
+        // Render done list
+        function renderDoneList() {
+            const doneList = document.getElementById('done-list');
+            doneList.innerHTML = '';
+            // Note: In a full implementation, we'd track which specific tasks were done
+            // For now, we just show today's completed count
+        }
+
+        // Show celebration
+        function showCelebration() {
+            const celebrations = ['🎉', '⭐', '✨', '💪', '🎊', '🌟'];
+            const celebration = document.createElement('div');
+            celebration.className = 'celebration';
+            celebration.textContent = celebrations[Math.floor(Math.random() * celebrations.length)];
+            document.body.appendChild(celebration);
+            
+            setTimeout(() => celebration.remove(), 1000);
+        }
+
+        // Update stats
+        function updateStats() {
+            document.getElementById('streak-count').textContent = currentStreak;
+            document.getElementById('completed-count').textContent = completedTasks.length;
+            document.getElementById('total-wins').textContent = totalWins;
+        }
+
+        // Show random encouragement
+        function showRandomEncouragement() {
+            const encouragement = document.getElementById('encouragement');
+            const randomMsg = encouragements[Math.floor(Math.random() * encouragements.length)];
+            encouragement.textContent = `"${randomMsg}"`;
+        }
+
+        // Shuffle tasks
+        function shuffleTasks() {
+            categories.forEach(cat => {
+                for (let i = cat.tasks.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [cat.tasks[i], cat.tasks[j]] = [cat.tasks[j], cat.tasks[i]];
+                }
+            });
+            renderCategories();
+            showCelebration();
+        }
+
+        // Show/hide done list
+        function showDoneList() {
+            document.getElementById('done-section').style.display = 'block';
+            document.getElementById('done-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function hideDoneList() {
+            document.getElementById('done-section').style.display = 'none';
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
