@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seoul Family Vacation - June 2026 Options</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        h1 {
+            font-size: 2.3em;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .trip-details {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .trip-details h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .detail-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        
+        .detail-value {
+            color: #333;
+            margin-top: 5px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        .option-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .option-title {
+            font-size: 1.5em;
+            color: #764ba2;
+            font-weight: bold;
+        }
+        
+        .option-price {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .option-price.budget {
+            background: #28a745;
+        }
+        
+        .option-price.mid {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .option-price.premium {
+            background: #dc3545;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .pros {
+            background: #d4edda;
+        }
+        
+        .cons {
+            background: #f8d7da;
+        }
+        
+        .pros h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .cons h4 {
+            color: #721c24;
+            margin-bottom: 10px;
+        }
+        
+        .pros ul, .cons ul {
+            margin-left: 20px;
+        }
+        
+        .pros li {
+            margin-bottom: 5px;
+        }
+        
+        .cons li {
+            margin-bottom: 5px;
+        }
+        
+        .itinerary-day {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .day-title {
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+        
+        .cost-breakdown {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .cost-item.total {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #764ba2;
+            border-top: 2px solid #764ba2;
+            margin-top: 10px;
+            padding-top: 15px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .recommendation {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .recommendation-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #764ba2;
+            color: white;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .flight-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .badge-safe {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-family {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .badge-short {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌏 Seoul Family Vacation Options</h1>
+            <p class="subtitle">June 2026 | 2 Weeks | Jayna + 2 Kids + Husband in Seoul</p>
+        </header>
+
+        <div class="trip-details">
+            <h2>🎯 Trip Parameters</h2>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Departure</div>
+                    <div class="detail-value">Nashville (BNA) after June 6, 2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Duration</div>
+                    <div class="detail-value">2 weeks</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Travelers</div>
+                    <div class="detail-value">Jayna + 2 children</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Husband Location</div>
+                    <div class="detail-value">Seoul, South Korea</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Budget Priority</div>
+                    <div class="detail-value">As cheap as possible</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Seoul Stay</div>
+                    <div class="detail-value">Can use apartment (save ~1 week hotel)</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>✈️ Flight Cost Summary</h2>
+        
+        <table>
+            <tr>
+                <th>Route</th>
+                <th>Estimated Cost (Round-trip)</th>
+                <th>Flight Time</th>
+            </tr>
+            <tr>
+                <td>Nashville → Seoul</td>
+                <td>$1,100 - $1,500 per person</td>
+                <td>16-20 hours (1-2 stops)</td>
+            </tr>
+            <tr>
+                <td>Seoul → Tokyo</td>
+                <td>$130 - $250 per person</td>
+                <td>2.5 hours</td>
+            </tr>
+            <tr>
+                <td>Seoul → Taipei</td>
+                <td>$120 - $200 per person</td>
+                <td>2.5 hours</td>
+            </tr>
+            <tr>
+                <td>Seoul → Cebu (Philippines)</td>
+                <td>$170 - $300 per person</td>
+                <td>4.5 hours</td>
+            </tr>
+            <tr>
+                <td>Seoul → Da Nang (Vietnam)</td>
+                <td>$150 - $250 per person</td>
+                <td>5 hours</td>
+            </tr>
+        </table>
+
+        <div class="recommendation">
+            <div class="recommendation-title">💡 Key Insight</div>
+            <p>Flights from Seoul to other Asian destinations are incredibly cheap ($120-250 round-trip). This makes multi-destination trips very affordable! The expensive part is getting from Nashville to Seoul.</p>
+        </div>
+
+        <h2>🗺️ 4 Vacation Options</h2>
+
+        <!-- OPTION 1 -->
+        <div class="option-card">
+            <div class="option-header">
+                <div class="option-title">Option 1: Seoul + Tokyo Adventure</div>
+                <div class="option-price budget">~$5,500 - $6,500 total</div>
+            </div>
+            
+            <div class="flight-info">
+                <strong>Flights:</strong> Nashville → Seoul (3 people: $3,300-4,500) + Seoul → Tokyo (4 people: $520-1,000) = <strong>$3,820-5,500</strong>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                        <li>Tokyo is extremely safe & family-friendly</li>
+                        <li>Short flight from Seoul (2.5 hrs)</li>
+                        <li>Amazing mix of traditional & modern</li>
+                        <li>Incredible food, clean, efficient</li>
+                        <li>Theme parks: Disney, Universal, TeamLab</li>
+                        <li>English signage widely available</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                        <li>Tokyo is expensive (accommodation, food)</li>
+                        <li>Can be overwhelming/crowded</li>
+                        <li>Language barrier outside tourist areas</li>
+                        <li>Limited time in each city</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>📅 Suggested Itinerary</h4>
+            <div class="itinerary-day">
+                <div class="day-title">Days 1-7: Seoul</div>
+                Stay at husband's apartment. Explore: Gyeongbokgung Palace, Bukchon Hanok Village, N Seoul Tower, Lotte World, Hongdae, Myeongdong shopping.
+            </div>
+            <div class="itinerary-day">
+                <div class="day-title">Days 8-14: Tokyo</div>
+                Fly to Tokyo. Stay in Shibuya/Shinjuku area. Visit: Senso-ji Temple, TeamLab Planets, Tokyo DisneySea, Shibuya Crossing, Harajuku, Meiji Shrine, day trip to Nikko or Kamakura.
+            </div>
+
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span>Flights (Nashville-Seoul + Seoul-Tokyo for 3-4 people)</span>
+                    <span>$3,820 - $5,500</span>
+                </div>
+                <div class="cost-item">
+                    <span>Tokyo accommodation (7 nights, budget hotel)</span>
+                    <span>$700 - $1,400</span>
+                </div>
+                <div class="cost-item">
+                    <span>Food & activities (2 weeks)</span>
+                    <span>$800 - $1,200</span>
+                </div>
+                <div class="cost-item total">
+                    <span>ESTIMATED TOTAL</span>
+                    <span>$5,320 - $8,100</span>
+                </div>
+            </div>
+
+            <span class="badge badge-safe">Very Safe</span>
+            <span class="badge badge-family">Very Family-Friendly</span>
+            <span class="badge badge-short">Short Flight</span>
+        </div>
+
+        <!-- OPTION 2 -->
+        <div class="option-card">
+            <div class="option-header">
+                <div class="option-title">Option 2: Seoul + Taiwan Discovery</div>
+                <div class="option-price budget">~$5,000 - $6,000 total</div>
+            </div>
+            
+            <div class="flight-info">
+                <strong>Flights:</strong> Nashville → Seoul ($3,300-4,500) + Seoul → Taipei ($480-800) = <strong>$3,780-5,300</strong>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                        <li>Cheapest option after Seoul alone</li>
+                        <li>Very safe, clean, family-friendly</li>
+                        <li>Short flight from Seoul (2.5 hrs)</li>
+                        <li>More affordable than Tokyo</li>
+                        <li>Amazing night markets & food</li>
+                        <li>Beautiful nature (Taroko Gorge, Sun Moon Lake)</li>
+                        <li>Warm, welcoming culture</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                        <li>Less "famous" than Tokyo (kids may not recognize)</li>
+                        <li>Hot and humid in June</li>
+                        <li>Less English spoken than Tokyo</li>
+                        <li>Typhoon season starts in June</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>📅 Suggested Itinerary</h4>
+            <div class="itinerary-day">
+                <div class="day-title">Days 1-8: Seoul</div>
+                Stay at husband's apartment. Explore Seoul thoroughly with day trips to DMZ, Suwon Hwaseong Fortress, or Nami Island.
+            </div>
+            <div class="itinerary-day">
+                <div class="day-title">Days 9-14: Taiwan</div>
+                Fly to Taipei (3-4 days): Night markets, Taipei 101, National Palace Museum, hot springs. Then train to Taichung/Sun Moon Lake (2-3 days) for nature and relaxation.
+            </div>
+
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span>Flights (Nashville-Seoul + Seoul-Taipei)</span>
+                    <span>$3,780 - $5,300</span>
+                </div>
+                <div class="cost-item">
+                    <span>Taiwan accommodation (6 nights)</span>
+                    <span>$400 - $800</span>
+                </div>
+                <div class="cost-item">
+                    <span>Food & activities</span>
+                    <span>$600 - $900</span>
+                </div>
+                <div class="cost-item total">
+                    <span>ESTIMATED TOTAL</span>
+                    <span>$4,780 - $7,000</span>
+                </div>
+            </div>
+
+            <span class="badge badge-safe">Very Safe</span>
+            <span class="badge badge-family">Family-Friendly</span>
+            <span class="badge badge-short">Short Flight</span>
+        </div>
+
+        <!-- OPTION 3 -->
+        <div class="option-card">
+            <div class="option-header">
+                <div class="option-title">Option 3: Seoul + Philippines Beach</div>
+                <div class="option-price mid">~$5,200 - $6,200 total</div>
+            </div>
+            
+            <div class="flight-info">
+                <strong>Flights:</strong> Nashville → Seoul ($3,300-4,500) + Seoul → Cebu ($680-1,200) = <strong>$3,980-5,700</strong>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                        <li>Amazing beaches and island hopping</li>
+                        <li>Very affordable once there</li>
+                        <li>English widely spoken</li>
+                        <li>Unique experiences: whale sharks, snorkeling</li>
+                        <li>Relaxing beach time after Seoul</li>
+                        <li>Kids love beaches and water activities</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                        <li>Longer flight from Seoul (4.5 hrs)</li>
+                        <li>Safety concerns in some areas (research needed)</li>
+                        <li>June is rainy season</li>
+                        <li>Less developed infrastructure</li>
+                        <li>Travel between islands takes time</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>📅 Suggested Itinerary</h4>
+            <div class="itinerary-day">
+                <div class="day-title">Days 1-8: Seoul</div>
+                Stay at husband's apartment. Full week exploring Seoul and surrounding areas.
+            </div>
+            <div class="itinerary-day">
+                <div class="day-title">Days 9-14: Cebu, Philippines</div>
+                Fly to Cebu. Base in Moalboal or Mactan. Island hopping, snorkeling, canyoneering at Kawasan Falls, Oslob whale shark watching (ethical concerns - research first), beautiful beaches.
+            </div>
+
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span>Flights (Nashville-Seoul + Seoul-Cebu)</span>
+                    <span>$3,980 - $5,700</span>
+                </div>
+                <div class="cost-item">
+                    <span>Cebu accommodation (6 nights)</span>
+                    <span>$300 - $600</span>
+                </div>
+                <div class="cost-item">
+                    <span>Food & activities</span>
+                    <span>$500 - $800</span>
+                </div>
+                <div class="cost-item total">
+                    <span>ESTIMATED TOTAL</span>
+                    <span>$4,780 - $7,100</span>
+                </div>
+            </div>
+
+            <span class="badge badge-family">Beach Paradise</span>
+            <span class="badge badge-short">Affordable Activities</span>
+        </div>
+
+        <!-- OPTION 4 -->
+        <div class="option-card">
+            <div class="option-header">
+                <div class="option-title">Option 4: All Seoul + Korean Adventures</div>
+                <div class="option-price budget">~$4,000 - $5,000 total</div>
+            </div>
+            
+            <div class="flight-info">
+                <strong>Flights:</strong> Nashville → Seoul round-trip (3 people) = <strong>$3,300-4,500</strong>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <h4>✅ Pros</h4>
+                    <ul>
+                        <li>Cheapest option (no extra flights)</li>
+                        <li>Stay at husband's apartment = save ~$1,000+</li>
+                        <li>Deep dive into Korean culture</li>
+                        <li>No packing/unpacking multiple times</li>
+                        <li>Day trips: Busan, Jeju Island, DMZ</li>
+                        <li>Kids get quality time with dad</li>
+                        <li>Less travel stress</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h4>❌ Cons</h4>
+                    <ul>
+                        <li>Less variety in the trip</li>
+                        <li>Apartment may be cramped for 2 weeks</li>
+                        <li>Kids might get bored in one city</li>
+                        <li>Missing "vacation" feel of beach/resort</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>📅 Suggested Itinerary</h4>
+            <div class="itinerary-day">
+                <div class="day-title">Days 1-7: Seoul Base</div>
+                Stay at apartment. Explore: Gyeongbokgung Palace, Bukchon Hanok Village, N Seoul Tower, Lotte World, Everland (theme park), Hongdae, Myeongdong, Gangnam, Han River parks.
+            </div>
+            <div class="itinerary-day">
+                <div class="day-title">Days 8-10: Busan</div>
+                KTX train to Busan (2.5 hours). Beaches (Haeundae), Gamcheon Culture Village, seafood markets, Jagalchi Fish Market.
+            </div>
+            <div class="itinerary-day">
+                <div class="day-title">Days 11-14: Seoul + Day Trips</div>
+                Return to Seoul. Day trip options: DMZ Tour, Nami Island, Petite France, Korean Folk Village, Suwon Hwaseong Fortress.
+            </div>
+
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <span>Flights (Nashville-Seoul round-trip, 3 people)</span>
+                    <span>$3,300 - $4,500</span>
+                </div>
+                <div class="cost-item">
+                    <span>Busan accommodation (3 nights)</span>
+                    <span>$150 - $300</span>
+                </div>
+                <div class="cost-item">
+                    <span>KTX train to Busan (round-trip, 3 people)</span>
+                    <span>$150 - $200</span>
+                </div>
+                <div class="cost-item">
+                    <span>Food & activities (2 weeks)</span>
+                    <span>$600 - $900</span>
+                </div>
+                <div class="cost-item total">
+                    <span>ESTIMATED TOTAL</span>
+                    <span>$4,200 - $5,900</span>
+                </div>
+            </div>
+
+            <span class="badge badge-safe">Safest</span>
+            <span class="badge badge-family">Most Family Time</span>
+            <span class="badge badge-short">Most Affordable</span>
+        </div>
+
+        <h2>📊 Comparison Summary</h2>
+        
+        <table>
+            <tr>
+                <th>Option</th>
+                <th>Total Cost</th>
+                <th>Safety</th>
+                <th>Family-Friendly</th>
+                <th>Variety</th>
+            </tr>
+            <tr>
+                <td><strong>1. Seoul + Tokyo</strong></td>
+                <td>$5,320 - $8,100</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐⭐</td>
+            </tr>
+            <tr>
+                <td><strong>2. Seoul + Taiwan</strong></td>
+                <td>$4,780 - $7,000</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐</td>
+            </tr>
+            <tr>
+                <td><strong>3. Seoul + Philippines</strong></td>
+                <td>$4,780 - $7,100</td>
+                <td>⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐⭐</td>
+            </tr>
+            <tr>
+                <td><strong>4. All Seoul</strong></td>
+                <td>$4,200 - $5,900</td>
+                <td>⭐⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐⭐</td>
+                <td>⭐⭐⭐</td>
+            </tr>
+        </table>
+
+        <div class="highlight-box">
+            <h4>🎯 My Recommendation</h4>
+            <p><strong>Option 2: Seoul + Taiwan</strong> offers the best balance of:</p>
+            <ul style="margin-top: 10px; margin-left: 20px;">
+                <li>✅ Affordability (cheapest multi-destination)</li>
+                <li>✅ Safety (extremely safe for families)</li>
+                <li>✅ Short flights (2.5 hours)</li>
+                <li>✅ Cultural variety without overwhelming</li>
+                <li>✅ Amazing food and experiences</li>
+                <li>✅ Less crowded than Tokyo</li>
+            </ul>
+            <p style="margin-top: 15px;">However, if budget is the #1 priority, <strong>Option 4 (All Seoul)</strong> saves $500-1,000 and gives the family maximum time together.</p>
+        </div>
+
+        <h2>📋 Next Steps</h2>
+        
+        <ol style="margin-left: 20px; line-height: 2;">
+            <li><strong>Decide on your preferred option</strong> (consider budget vs. experience priorities)</li>
+            <li><strong>Book Nashville → Seoul flights ASAP</strong> (prices increase closer to date)</li>
+            <li><strong>Check passport expiration dates</strong> (must be valid 6+ months)</li>
+            <li><strong>Research visa requirements</strong> (US citizens get visa-free entry to Korea, Japan, Taiwan, Philippines)</li>
+            <li><strong>Book accommodation</strong> for non-Seoul portion</li>
+            <li><strong>Get travel insurance</strong></li>
+            <li><strong>Notify banks</strong> of international travel</li>
+        </ol>
+
+        <div class="recommendation">
+            <div class="recommendation-title">⚠️ Important Notes</div>
+            <ul style="margin-left: 20px;">
+                <li>All flight prices are estimates based on current research. Book soon for best rates.</li>
+                <li>June is summer in Asia - hot and humid. Pack light, breathable clothing.</li>
+                <li>Book accommodations with AC!</li>
+                <li>Consider travel insurance that covers trip cancellation and medical.</li>
+                <li>Download offline maps and translation apps before departure.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 3px solid #f0f0f0; color: #666;">
+            <p>Created with 💜 for Jayna & Family</p>
+            <p>March 7, 2026</p>
+        </div>
+    </div>
+</body>
+</html>
