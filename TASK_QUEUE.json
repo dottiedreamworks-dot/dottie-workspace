@@ -181,8 +181,87 @@
     }
   ],
   "improvementQueue": [],
+  "workspaceOrganization": {
+    "status": "pending",
+    "description": "Reorganize all project files into proper folder structure",
+    "created": "2026-03-07T14:57:00Z",
+    "priority": "high",
+    "dependsOn": ["tinywins-v5-fix"],
+    "folderStructure": {
+      "tiny-wins/": {
+        "description": "Tiny Wins app versions and assets",
+        "subfolders": ["versions/", "assets/", "database/"]
+      },
+      "audio-empire/": {
+        "description": "Audio Empire podcast project",
+        "subfolders": ["niche-research/", "implementation/", "brand-guidelines/", "marketing/", "scripts/"]
+      },
+      "seoul-family-trip/": {
+        "description": "Korea/Asia family vacation planning",
+        "subfolders": ["flight-research/", "itineraries/", "budget/"]
+      },
+      "disney-trip/": {
+        "description": "Disney World Magic Kingdom trip",
+        "subfolders": ["itinerary/", "tips/", "budget/"]
+      },
+      "str-digital-products/": {
+        "description": "Short-term rental digital products",
+        "subfolders": ["maintenance-system/", "direct-booking/", "market-research/"]
+      },
+      "rolling-strong/": {
+        "description": "Rolling Strong AI fitness video research",
+        "subfolders": ["research/", "recommendations/"]
+      }
+    },
+    "tasks": [
+      {
+        "id": "org-001",
+        "description": "Create folder structure for all projects",
+        "status": "pending"
+      },
+      {
+        "id": "org-002",
+        "description": "Move Tiny Wins files to tiny-wins/ folder with versions subfolder",
+        "status": "pending"
+      },
+      {
+        "id": "org-003",
+        "description": "Move Audio Empire files to audio-empire/ with niche subfolders",
+        "status": "pending"
+      },
+      {
+        "id": "org-004",
+        "description": "Move trip planning files to respective folders",
+        "status": "pending"
+      },
+      {
+        "id": "org-005",
+        "description": "Move STR and Rolling Strong files to respective folders",
+        "status": "pending"
+      },
+      {
+        "id": "org-006",
+        "description": "Update all internal references and links",
+        "status": "pending"
+      },
+      {
+        "id": "org-007",
+        "description": "Sync reorganized structure to Dropbox",
+        "status": "pending"
+      },
+      {
+        "id": "org-008",
+        "description": "Commit reorganization to GitHub",
+        "status": "pending"
+      }
+    ]
+  },
   "tinyWinsV5": {
-    "status": "completed",
+    "status": "in_progress",
+    "activeTask": "tinywins-v5-fix",
+    "description": "FIX CRITICAL: Rebuild Tiny Wins V5 using V4 as base - categories not loading",
+    "created": "2026-03-07T14:48:00Z",
+    "priority": "critical",
     "description": "Tiny Wins V5 - Major enhancements based on user feedback",
     "started": "2026-03-07T07:52:00Z",
     "completed": "2026-03-07T09:52:00Z",
