@@ -230,15 +230,21 @@
     },
     {
       "id": "family-trip-reroute",
-      "status": "pending",
+      "status": "completed",
       "type": "research_update",
       "description": "Re-research family trip: Nashville → Asia (not Seoul) → Korea, or skip Korea entirely",
       "created": "2026-03-07T17:12:00Z",
+      "completedAt": "2026-03-07T18:30:00Z",
       "priority": "medium",
-      "deliverable": "projects/seoul-family-trip/flight-research/korea-trip-flight-research.html",
+      "deliverable": "projects/seoul-family-trip/flight-research/korea-trip-flight-research-updated.html",
       "feedback": "Were there no viable options to fly into Asia somewhere else cheaper, then go to Korea, or skip Korea entirely?",
-      "action": "Research multi-city options: Nashville → Philippines/Taiwan/Japan → Seoul, and Nashville → Asia destination (no Korea). Compare costs and viability.",
-      "estimatedTime": "30 minutes"
+      "action": "Created updated report with multi-city routing options (Nashville → Tokyo/Taipei/Manila → Seoul) and 'skip Korea' scenarios (meet in Hawaii/Japan/Taiwan). Key finding: Multi-city routing doesn't save money, but meeting in Hawaii or Japan offers similar costs with different experiences.",
+      "estimatedTime": "30 minutes",
+      "results": {
+        "multiCityOptions": ["Tokyo → Seoul", "Taipei → Seoul", "Manila → Seoul"],
+        "skipKoreaOptions": ["Meet in Hawaii", "Meet in Japan", "Meet in Taiwan"],
+        "keyFinding": "Multi-city routing costs similar to direct Seoul. Best value alternatives: Meet in Hawaii (easiest) or Meet in Japan (most memorable)."
+      }
     }
   ],
   "workspaceOrganization": {

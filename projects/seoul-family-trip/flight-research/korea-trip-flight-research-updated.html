@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korea Trip Flight Research Report - Updated</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        .trip-details {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .trip-details strong {
+            color: #667eea;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+        tr:hover {
+            background: #f5f5f5;
+        }
+        .price {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.1em;
+        }
+        .price-highlight {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.3em;
+        }
+        .option-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        .option-card.recommended {
+            border-left-color: #28a745;
+            background: linear-gradient(135deg, #f8fff8 0%, #f0f8f0 100%);
+        }
+        .option-card.budget {
+            border-left-color: #ffc107;
+            background: linear-gradient(135deg, #fffbf0 0%, #f8f5e8 100%);
+        }
+        .option-card.new {
+            border-left-color: #17a2b8;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e8f4f8 100%);
+        }
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .option-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+        .badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .badge-recommended {
+            background: #28a745;
+            color: white;
+        }
+        .badge-budget {
+            background: #ffc107;
+            color: #333;
+        }
+        .badge-new {
+            background: #17a2b8;
+            color: white;
+        }
+        .badge-standard {
+            background: #6c757d;
+            color: white;
+        }
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .pros, .cons {
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .pros {
+            background: #d4edda;
+        }
+        .cons {
+            background: #f8d7da;
+        }
+        .pros h4, .cons h4 {
+            margin-bottom: 10px;
+        }
+        .pros ul, .cons ul {
+            margin-left: 20px;
+        }
+        .total-cost {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        .recommendation {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        .recommendation h2 {
+            color: white;
+            border-bottom: 2px solid white;
+        }
+        .update-banner {
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .route-visual {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .comparison-table {
+            margin: 20px 0;
+        }
+        .comparison-table td {
+            vertical-align: top;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✈️ Korea Trip Flight Research Report</h1>
+        <p class="subtitle">Flight Options & Cost Analysis for June 2026 Travel</p>
+        
+        <div class="update-banner">
+            <strong>🔄 UPDATED:</strong> Added multi-city routing options (Nashville → Asia → Seoul) and "Skip Korea" scenarios
+        </div>
+        
+        <div class="trip-details">
+            <strong>Departure:</strong> Nashville (BNA) | 
+            <strong>Dates:</strong> After June 6, ~2 weeks | 
+            <strong>Travelers:</strong> Family of 4 (Jayna + 2 kids + husband in Seoul)
+        </div>
+
+        <div class="section">
+            <h2>📊 Flight Cost Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Route</th>
+                        <th>One-Way (from)</th>
+                        <th>Round-Trip (typical)</th>
+                        <th>Airlines</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Nashville → Seoul</strong></td>
+                        <td class="price">$383</td>
+                        <td class="price">$1,015 - $1,500</td>
+                        <td>Korean Air, Air Canada, American, United</td>
+                    </tr>
+                    <tr>
+                        <td>Nashville → Tokyo</td>
+                        <td class="price">$450</td>
+                        <td class="price">$900 - $1,400</td>
+                        <td>ANA, JAL, United, American</td>
+                    </tr>
+                    <tr>
+                        <td>Nashville → Taipei</td>
+                        <td class="price">$520</td>
+                        <td class="price">$950 - $1,300</td>
+                        <td>China Airlines, EVA Air, United</td>
+                    </tr>
+                    <tr>
+                        <td>Nashville → Manila</td>
+                        <td class="price">$427</td>
+                        <td class="price">$850 - $1,200</td>
+                        <td>China Eastern, STARLUX, Philippine Airlines</td>
+                    </tr>
+                    <tr>
+                        <td>Nashville → Hawaii</td>
+                        <td class="price">$205</td>
+                        <td class="price">$634 - $800</td>
+                        <td>Southwest, Delta, American</td>
+                    </tr>
+                    <tr>
+                        <td>Nashville → Australia</td>
+                        <td class="price">$464</td>
+                        <td class="price">$1,400 - $1,800</td>
+                        <td>Various (1+ stops)</td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>Tokyo → Seoul</strong></td>
+                        <td class="price">$89</td>
+                        <td class="price">$150 - $250</td>
+                        <td>Jeju Air, T'way, ANA, Korean Air</td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>Taipei → Seoul</strong></td>
+                        <td class="price">$95</td>
+                        <td class="price">$160 - $280</td>
+                        <td>Tigerair, Jeju Air, China Airlines</td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>Manila → Seoul</strong></td>
+                        <td class="price">$67</td>
+                        <td class="price">$133 - $200</td>
+                        <td>Jeju Air, Cebu Pacific, Philippine Airlines</td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>Seoul → Hawaii</strong></td>
+                        <td class="price">$253</td>
+                        <td class="price">$600 - $800</td>
+                        <td>Air Premia, Korean Air, Asiana</td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>Seoul → Australia</strong></td>
+                        <td class="price">$152</td>
+                        <td class="price">$362 - $500</td>
+                        <td>Jetstar, Korean Air, Asiana</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🆕 NEW: Multi-City Routing Options</h2>
+            <p class="highlight-box">
+                <strong>User Question:</strong> "Were there no viable options to fly into Asia somewhere else cheaper, then go to Korea, or skip Korea entirely?"
+            </p>
+            <p>Here are the alternative routing scenarios, including flying into other Asian hubs first, then connecting to Seoul:</p>
+
+            <div class="option-card new">
+                <div class="option-header">
+                    <span class="option-title">Option A: Nashville → Tokyo → Seoul</span>
+                    <span class="badge badge-new">MULTI-CITY</span>
+                </div>
+                <div class="route-visual">BNA → NRT/HND → ICN → BNA</div>
+                <div class="total-cost">Total: ~$1,050 - $1,650</div>
+                <p><strong>Breakdown:</strong> Nashville-Tokyo (~$900-1,400) + Tokyo-Seoul (~$150-250)</p>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Pros</h4>
+                        <ul>
+                            <li>Experience Japan + Korea in one trip</li>
+                            <li>Tokyo-Seoul flight is short (~2.5 hrs)</li>
+                            <li>Many flight options between cities</li>
+                            <li>Japan is extremely family-friendly</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Cons</h4>
+                        <ul>
+                            <li>More complex itinerary</li>
+                            <li>Japan is expensive (hotels, food)</li>
+                            <li>Need to coordinate 2 destinations</li>
+                            <li>Similar cost to direct Seoul</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card new">
+                <div class="option-header">
+                    <span class="option-title">Option B: Nashville → Taipei → Seoul</span>
+                    <span class="badge badge-new">MULTI-CITY</span>
+                </div>
+                <div class="route-visual">BNA → TPE → ICN → BNA</div>
+                <div class="total-cost">Total: ~$1,110 - $1,580</div>
+                <p><strong>Breakdown:</strong> Nashville-Taipei (~$950-1,300) + Taipei-Seoul (~$160-280)</p>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Pros</h4>
+                        <ul>
+                            <li>Taiwan is affordable and safe</li>
+                            <li>Great food and night markets</li>
+                            <li>English signage common in Taipei</li>
+                            <li>Short flight to Seoul (~2.5 hrs)</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Cons</h4>
+                        <ul>
+                            <li>More expensive than direct Seoul</li>
+                            <li>Hot and humid in June</li>
+                            <li>Typhoon season starts</li>
+                            <li>Less "wow factor" than Japan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card new">
+                <div class="option-header">
+                    <span class="option-title">Option C: Nashville → Philippines → Seoul</span>
+                    <span class="badge badge-new">MULTI-CITY</span>
+                </div>
+                <div class="route-visual">BNA → MNL → ICN → BNA</div>
+                <div class="total-cost">Total: ~$983 - $1,400</div>
+                <p><strong>Breakdown:</strong> Nashville-Manila (~$850-1,200) + Manila-Seoul (~$133-200)</p>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Pros</h4>
+                        <ul>
+                            <li>Cheapest multi-city option</li>
+                            <li>Beaches + city combo</li>
+                            <li>English widely spoken</li>
+                            <li>Very affordable once there</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Cons</h4>
+                        <ul>
+                            <li>Manila airport can be chaotic</li>
+                            <li>Hot and humid in June</li>
+                            <li>Monsoon season</li>
+                            <li>Need domestic flights for beaches</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🆕 NEW: Skip Korea Entirely Options</h2>
+            <p>If meeting somewhere other than Seoul works for your family, here are alternatives where everyone flies to a neutral location:</p>
+
+            <div class="option-card budget">
+                <div class="option-header">
+                    <span class="option-title">Option D: Everyone Meets in Hawaii</span>
+                    <span class="badge badge-budget">FAMILY FRIENDLY</span>
+                </div>
+                <div class="route-visual">BNA → HNL ← ICN (husband flies to Hawaii)</div>
+                <div class="total-cost">Your cost: $634 - $800 | Husband: ~$600 - $800</div>
+                <p><strong>Total family cost:</strong> ~$1,234 - $1,600</p>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Pros</h4>
+                        <ul>
+                            <li>No passport/visa needed for you</li>
+                            <li>Beaches, relaxation, family fun</li>
+                            <li>No language barrier</li>
+                            <li>Great for kids</li>
+                            <li>Similar cost to Seoul trip</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Cons</h4>
+                        <ul>
+                            <li>Husband has long flight (~10 hrs)</li>
+                            <li>Hawaii is expensive for hotels/food</li>
+                            <li>No "Asia experience"</li>
+                            <li>Peak season = crowded</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card">
+                <div class="option-header">
+                    <span class="option-title">Option E: Everyone Meets in Japan</span>
+                    <span class="badge badge-standard">ADVENTURE</span>
+                </div>
+                <div class="route-visual">BNA → NRT/HND ← ICN (husband flies to Tokyo)</div>
+                <div class="total-cost">Your cost: $900 - $1,400 | Husband: ~$150 - $300</div>
+                <p><strong>Total family cost:</strong> ~$1,050 - $1,700</p>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Pros</h4>
+                        <ul>
+                            <li>Amazing cultural experience</li>
+                            <li>Extremely safe and clean</li>
+                            <li>Great for kids (trains, culture)</li>
+                            <li>Husband has short flight (~2 hrs)</li>
+                            <li>Unique family vacation</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Cons</h4>
+                        <ul>
+                            <li>Japan is expensive</li>
+                            <li>More complex planning</li>
+                            <li>Language barrier (but manageable)</li>
+                            <li>June is rainy season</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card">
+                <div class="option-header">
+                    <span class="option-title">Option F: Everyone Meets in Taiwan</span>
+                    <span class="badge badge-standard">BUDGET FRIENDLY</span>
+                </div>
+                <div class="route-visual">BNA → TPE ← ICN (husband flies to Taipei)</div>
+                <div class="total-cost">Your cost: $950 - $1,300 | Husband: ~$160 - $280</div>
+                <p><strong>Total family cost:</strong> ~$1,110 - $1,580</p>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>✅ Pros</h4>
+                        <ul>
+                            <li>Affordable for everyone</li>
+                            <li>Great food and culture</li>
+                            <li>Safe and family-friendly</li>
+                            <li>Husband has short flight (~2.5 hrs)</li>
+                            <li>English widely spoken</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>❌ Cons</h4>
+                        <ul>
+                            <li>Hot and humid in June</li>
+                            <li>Typhoon season</li>
+                            <li>Less "famous" than Japan</li>
+                            <li>Limited kid-specific attractions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Complete Comparison Table</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Your Cost</th>
+                        <th>Husband Cost</th>
+                        <th>Total</th>
+                        <th>Complexity</th>
+                        <th>Kid-Friendly</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Direct Seoul</strong></td>
+                        <td class="price">$1,015-1,500</td>
+                        <td>$0 (already there)</td>
+                        <td class="price-highlight">$1,015-1,500</td>
+                        <td>⭐ Low</td>
+                        <td>⭐⭐⭐ Good</td>
+                    </tr>
+                    <tr style="background: #fff3cd;">
+                        <td><strong>Seoul + Philippines</strong></td>
+                        <td class="price">$1,148-1,700</td>
+                        <td>$0</td>
+                        <td class="price-highlight">$1,148-1,700</td>
+                        <td>⭐⭐ Medium</td>
+                        <td>⭐⭐⭐ Great</td>
+                    </tr>
+                    <tr>
+                        <td>Seoul + Japan</td>
+                        <td class="price">$1,165-1,750</td>
+                        <td>$0</td>
+                        <td class="price-highlight">$1,165-1,750</td>
+                        <td>⭐⭐⭐ High</td>
+                        <td>⭐⭐⭐ Great</td>
+                    </tr>
+                    <tr>
+                        <td>Seoul + Taiwan</td>
+                        <td class="price">$1,175-1,780</td>
+                        <td>$0</td>
+                        <td class="price-highlight">$1,175-1,780</td>
+                        <td>⭐⭐ Medium</td>
+                        <td>⭐⭐ Good</td>
+                    </tr>
+                    <tr style="background: #d4edda;">
+                        <td><strong>Meet in Hawaii</strong></td>
+                        <td class="price">$634-800</td>
+                        <td>$600-800</td>
+                        <td class="price-highlight">$1,234-1,600</td>
+                        <td>⭐ Low</td>
+                        <td>⭐⭐⭐ Excellent</td>
+                    </tr>
+                    <tr>
+                        <td>Meet in Japan</td>
+                        <td class="price">$900-1,400</td>
+                        <td>$150-300</td>
+                        <td class="price-highlight">$1,050-1,700</td>
+                        <td>⭐⭐ Medium</td>
+                        <td>⭐⭐⭐ Great</td>
+                    </tr>
+                    <tr>
+                        <td>Meet in Taiwan</td>
+                        <td class="price">$950-1,300</td>
+                        <td>$160-280</td>
+                        <td class="price-highlight">$1,110-1,580</td>
+                        <td>⭐⭐ Medium</td>
+                        <td>⭐⭐ Good</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="recommendation">
+            <h2>🎯 Updated Recommendations</h2>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px;">If You Want to Include Korea:</h3>
+                <p><strong>Best Value: Seoul + Philippines</strong> — Still the winner at $1,148-1,700 total. The Philippines add-on is cheap ($133-200) and gives you beaches after Seoul.</p>
+                <br>
+                <p><strong>Best Experience: Seoul + Japan</strong> — For ~$100-200 more, you get two incredible countries. Japan is magical for kids and the flight to Seoul is only 2.5 hours.</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="margin-bottom: 15px;">If You're Open to Skipping Korea:</h3>
+                <p><strong>Easiest: Meet in Hawaii</strong> — No passports needed, everyone speaks English, beaches are perfect for kids. Total cost similar to Seoul trip ($1,234-1,600).</p>
+                <br>
+                <p><strong>Most Memorable: Meet in Japan</strong> — Unique cultural experience, extremely safe, husband has short flight. Total cost $1,050-1,700.</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px;">
+                <h3 style="margin-bottom: 15px;">💡 Key Insight</h3>
+                <p>Multi-city routing (Nashville → Asia → Seoul) doesn't save money compared to direct Seoul flights. The real savings come from:</p>
+                <ul style="margin-left: 30px; margin-top: 10px;">
+                    <li>Meeting in Hawaii (saves ~$200-400 vs Seoul)</li>
+                    <li>Adding Philippines to Seoul (only $133-200 extra)</li>
+                    <li>Meeting in Japan (similar cost, better experience)</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px; font-style: italic;">💡 Pro tip: If your husband can get time off, meeting in Japan or Hawaii gives you the best family experience for similar cost to Seoul-only.</p>
+        </div>
+
+        <div class="footer">
+            <p>Report updated by Dottie | March 7, 2026</p>
+            <p>Data sources: Expedia, Kayak, Skyscanner, Google Flights, airline websites</p>
+            <p><em>Prices are estimates for June 2026 travel. Book 2-3 months in advance for best rates.</em></p>
+        </div>
+    </div>
+</body>
+</html>
