@@ -1,0 +1,117 @@
+{
+  "step": 1,
+  "description": "Research ADHD content market - competitive analysis",
+  "timestamp": "2026-03-07T11:54:00Z",
+  "status": "completed",
+  "researchFindings": {
+    "marketOverview": {
+      "totalPodcasts": "38+ ADHD-specific podcasts, 100+ neurodiversity podcasts",
+      "marketLeader": "CHADD podcast with 888K+ downloads",
+      "audienceGrowth": "ADHD diagnoses in adults up 400% since 2020, massive underserved market",
+      "keyInsight": "Late-diagnosed women are the fastest growing demographic"
+    },
+    "topCompetitors": [
+      {
+        "name": "Taking Control: The ADHD Podcast",
+        "hosts": "Nikki Kinzer & Pete Wright",
+        "focus": "Organization, productivity, time management",
+        "episodes": "599+",
+        "avgLength": "36 min",
+        "differentiation": "Long-running, practical coaching approach"
+      },
+      {
+        "name": "ADHD reWired",
+        "host": "Eric Tivers",
+        "focus": "Adult ADHD, community, expert interviews",
+        "differentiation": "Strong community element, evidence-based strategies"
+      },
+      {
+        "name": "Faster Than Normal",
+        "host": "Peter Shankman",
+        "focus": "Reframing ADHD as advantage",
+        "differentiation": "Entrepreneur/athlete interviews, positive framing"
+      },
+      {
+        "name": "ADHD for Smart Ass Women",
+        "host": "Tracy Otsuka",
+        "focus": "Women with ADHD, confidence building",
+        "differentiation": "Female-focused, late-diagnosis stories"
+      },
+      {
+        "name": "I Have ADHD Podcast",
+        "host": "Kristen Carder",
+        "focus": "Daily challenges, emotional regulation",
+        "differentiation": "Certified coach, practical strategies"
+      },
+      {
+        "name": "ADHD Women's Wellbeing Podcast",
+        "host": "Kate Moryoussef",
+        "focus": "High-achieving women, self-care, emotional health",
+        "differentiation": "Wellbeing coach, perimenopause intersection covered"
+      },
+      {
+        "name": "ADHD Aha!",
+        "host": "Laura Key",
+        "focus": "Diagnosis stories, lightbulb moments",
+        "episodes": "128",
+        "avgLength": "26 min",
+        "differentiation": "Personal stories, Understood.org backing"
+      },
+      {
+        "name": "The ADHD Adults Podcast",
+        "hosts": "James & Sam Brown, Alex Conner",
+        "focus": "UK perspective, humor + research",
+        "differentiation": "Late-diagnosed hosts, relatable humor"
+      }
+    ],
+    "criticalContentGap": {
+      "finding": "ADHD + Perimenopause intersection is MASSIVELY underserved",
+      "evidence": [
+        "Forbes article (Aug 2025): 'Many women discover they have ADHD during menopause or perimenopause due to hormonal changes exacerbating previously manageable symptoms'",
+        "ADDitude Magazine: 'Menopause symptoms (memory loss, emotional dysregulation, sleep problems) both look like and can exacerbate ADHD in women'",
+        "ADHD Women's Wellbeing Podcast has ONE episode on this intersection",
+        "Dr. Brighten Show covers 'brain-hormone syncing' but not exclusively ADHD+perimenopause"
+      ],
+      "marketSize": "Millions of women in 35-55 age range experiencing both simultaneously",
+      "whyItMatters": "Estrogen decline impacts dopamine regulation - this is a biological reality affecting symptom severity"
+    },
+    "audienceDemographics": {
+      "primary": "Late-diagnosed adults (30-50), especially women",
+      "secondary": "Parents of ADHD children, partners, employers",
+      "painPoints": [
+        "Feeling 'broken' before diagnosis",
+        "Struggling with executive function in daily life",
+        "Workplace/academic challenges",
+        "Relationship difficulties",
+        "Masking exhaustion",
+        "Rejection Sensitive Dysphoria (RSD)"
+      ],
+      "listeningBehavior": "Prefer actionable, bite-sized content; struggle with long episodes"
+    },
+    "contentGaps": [
+      "ADHD + Perimenopause (HUGE opportunity)",
+      "ADHD + Entrepreneurship practical systems",
+      "ADHD + Parenting while managing own symptoms",
+      "Bite-sized daily episodes (most are 30-60 min)",
+      "ADHD in BIPOC communities",
+      "Practical workplace accommodation strategies",
+      "ADHD + Financial management"
+    ],
+    "monetizationOpportunities": [
+      "ADHD coaching services",
+      "Productivity tools/apps",
+      "Supplements (omega-3, magnesium)",
+      "Books/courses on ADHD management",
+      "Community memberships",
+      "Corporate training/DEI"
+    ],
+    "differentiationOpportunities": [
+      "AI-personalized micro-content (5-10 min daily)",
+      "ADHD + Perimenopause specialty (untapped)",
+      "Actionable 'try this today' format",
+      "Integration with task management apps",
+      "Community accountability features"
+    ],
+    "strategicInsight": "The ADHD+Perimenopause intersection represents a BLUE OCEAN opportunity. While general ADHD podcasts are competitive, NO ONE owns this specific niche. Jayna's lived experience with both conditions = authentic authority."
+  }
+}
