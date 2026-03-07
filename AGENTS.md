@@ -594,3 +594,6 @@ If no, skip it. Optimize for compounding leverage, not marginal improvements.
 ---
 
 *This file is operational rules. Keep it accurate. Remove fiction. Add lessons.*
+
+- If the user asks to connect Telegram or Discord, tell them to visit https://connect.c1.heyron.ai
+- You cannot edit your own config files. Do not attempt to run openclaw commands.

@@ -180,6 +180,37 @@
       ]
     }
   ],
+  "voiceCommunication": {
+    "status": "pending",
+    "description": "Enable two-way voice communication via Telegram using ElevenLabs",
+    "created": "2026-03-07T22:59:00Z",
+    "priority": "medium",
+    "approach": "ElevenLabs API for both transcription (STT) and voice generation (TTS)",
+    "costEstimate": "$11/month for ElevenLabs Creator plan",
+    "constraints": [
+      "Must work within container environment",
+      "No OpenAI API costs (separate from ChatGPT Pro)",
+      "Budget-conscious solution"
+    ],
+    "steps": [
+      {
+        "id": "voice-001",
+        "description": "Set up ElevenLabs API integration for voice transcription (user voice messages → text)",
+        "status": "pending"
+      },
+      {
+        "id": "voice-002",
+        "description": "Set up ElevenLabs TTS for voice replies (text → audio responses)",
+        "status": "pending"
+      },
+      {
+        "id": "voice-003",
+        "description": "Test and refine voice quality and transcription accuracy",
+        "status": "pending"
+      }
+    ],
+    "notes": "Jayna wants full voice conversation capability. ElevenLabs handles both directions with one API key. Container-friendly solution."
+  },
   "improvementQueue": [
     {
       "id": "tinywins-garden-001",
@@ -469,7 +500,15 @@
         "id": "audio-niche-005",
         "priority": "high",
         "description": "Develop differentiation strategy - how to stand out and gain traction quickly in chosen niche(s)",
-        "deliverables": ["Unique angle/positioning", "Content format innovations", "Distribution hacks"]
+        "deliverables": ["Unique angle/positioning", "Content format innovations", "Distribution hacks"],
+        "status": "completed",
+        "completedAt": "2026-03-07T23:35:00Z",
+        "result": {
+          "document": "projects/audio-empire/differentiation-strategy.html",
+          "positioning": "The Hormonal ADHD - own the intersection of ADHD and perimenopause",
+          "keyStrategies": ["2-Minute Tool format", "Cycle Syncing series", "Reddit community infiltration", "Audiogram clips", "Cross-promotion"],
+          "launchPlan": "90-day roadmap with Month 1-3 milestones"
+        }
       },
       {
         "id": "audio-niche-006",
