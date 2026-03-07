@@ -1,10 +1,16 @@
 {
   "version": "1.0",
   "meta": {
-    "lastUpdated": "2026-03-07T01:15:00Z",
-    "activeTask": "implementation-001",
-    "completedToday": 2,
-    "totalTasks": 4
+    "lastUpdated": "2026-03-07T04:49:00Z",
+    "activeTask": null,
+    "completedToday": 0,
+    "totalTasks": 6,
+    "backupProtocol": {
+      "dropbox": true,
+      "github": true,
+      "frequency": "After each major deliverable"
+    },
+ "sessionInstructions": "User has gone to bed. Work through tasks autonomously. Backup all deliverables to Dropbox and GitHub. If all tasks complete, research self-improvement opportunities or build a surprise."
   },
   "tasks": [
     {
@@ -167,5 +173,544 @@
       "notes": "Tiny Wins folder moved to projects/tiny-wins/. Check for any other folders outside projects/ that should be consolidated."
     }
   ],
-  "improvementQueue": []
+  "improvementQueue": [],
+  "tinyWinsV5": {
+    "status": "pending",
+    "description": "Tiny Wins V5 - Major enhancements based on user feedback",
+    "created": "2026-03-07T04:06:00Z",
+    "tasks": [
+      {
+        "id": "tinywins-v5-001",
+        "priority": "high",
+        "description": "Expand task database - Each category should have ~50 tasks (currently 10), randomly selected",
+        "notes": "Current: 7 categories × 10 tasks = 70 total. Target: 7 categories × 50 tasks = 350 total. Tasks should be diverse, ADHD-friendly micro-tasks."
+      },
+      {
+        "id": "tinywins-v5-002",
+        "priority": "high",
+        "description": "Fix or remove the text entry box - Currently no connection between typed input and generated tasks",
+        "options": [
+          "Option A: Remove the text entry box entirely",
+          "Option B: Implement smart task matching based on user input (e.g., type 'kitchen' → show kitchen-related tasks)",
+          "Option C: Use input as intent detection to filter/sort relevant categories"
+        ],
+        "notes": "User reported: typing 'clean the kitchen' returns 'load laundry' - no logical connection."
+      },
+      {
+        "id": "tinywins-v5-003",
+        "priority": "high",
+        "description": "Enhance celebration system - More visual and rewarding completion experience",
+        "notes": "Current: simple emoji animation. Need: richer visual feedback, satisfying completion moment."
+      },
+      {
+        "id": "tinywins-v5-004",
+        "priority": "high",
+        "description": "Design long-term growth system - What keeps users coming back at 485+ day streaks?",
+        "notes": "Consider: evolving visuals, unlockables, milestone rewards, progression systems that scale with user commitment. Seedling→sprout concept is good but needs to grow meaningfully over hundreds of days."
+      },
+      {
+        "id": "tinywins-v5-005",
+        "priority": "medium",
+        "description": "Implement visual growth progression - Plant/tree that evolves with streak/tasks",
+        "notes": "Think about: what does day 1 look like vs day 100 vs day 485? How many tasks completed by then? Visual representation should reflect that journey."
+      }
+    ]
+  },
+  "seoulFamilyTrip": {
+    "status": "pending",
+    "description": "Family trip to Seoul/Asia - June 2026 vacation planning",
+    "created": "2026-03-07T04:13:00Z",
+    "constraints": {
+      "departure": "Nashville (BNA)",
+      "departureDate": "After June 6, 2026",
+      "duration": "2 weeks",
+      "travelers": "Jayna + 2 children (departing Nashville), Husband (in Seoul)",
+      "husbandLocation": "Seoul, South Korea",
+      "budget": "As cheap as possible",
+      "preferences": "Safe, family-friendly, multiple locations OK if flights are short",
+      "seoulStay": "Can stay at husband's apartment for up to 1 week (saves money but not comfortable)"
+    },
+    "tasks": [
+      {
+        "id": "seoul-trip-001",
+        "priority": "high",
+        "description": "Research flight options from Nashville to Seoul for June 2026 (departing after June 6)",
+        "notes": "2 adults + 2 children. Look for cheapest fares, consider different airlines, layover options."
+      },
+      {
+        "id": "seoul-trip-002",
+        "priority": "high",
+        "description": "Research alternative meeting destinations in Asia - safe and family-friendly",
+        "notes": "Consider: Japan (Tokyo, Osaka), Taiwan (Taipei), Thailand (Chiang Mai, Bangkok - check safety), Vietnam (Da Nang, Hanoi), Philippines (Cebu, Palawan), Malaysia (Kuala Lumpur, Penang), Singapore. Factor in flight times from both Nashville and Seoul."
+      },
+      {
+        "id": "seoul-trip-003",
+        "priority": "high",
+        "description": "Research multi-destination itineraries within Asia",
+        "notes": "If meeting in Seoul, where else can they go with short flights? (Busan, Jeju, Japan, Taiwan). If meeting elsewhere, what combinations work?"
+      },
+      {
+        "id": "seoul-trip-004",
+        "priority": "high",
+        "description": "Calculate total costs for each option including flights, accommodation, food, activities",
+        "notes": "Factor in: staying at husband's apartment for part of Seoul trip (saves ~7 nights hotel), family of 4 costs, budget-friendly accommodation options."
+      },
+      {
+        "id": "seoul-trip-005",
+        "priority": "high",
+        "description": "Create 3-4 complete vacation options with detailed itineraries",
+        "notes": "Each option should include: flight routes and costs, accommodation suggestions, day-by-day itinerary, estimated total budget, pros/cons."
+      }
+    ]
+  },
+  "audioEmpireNicheResearch": {
+    "status": "pending",
+    "description": "Audio Empire - Niche research, brand guidelines, and marketing strategy",
+    "created": "2026-03-07T04:24:00Z",
+    "userDecisions": {
+      "automationLevel": "Full AI autopilot - decisions based on AI capability, not personal preference",
+      "voiceStrategy": "Professional voice (not Jayna's), unique sounding, high audio quality priority",
+      "reviewProcess": "Jayna reviews 5-10 episodes before full automation",
+      "hosting": "n8n Cloud hosted initially, self-hosted possible if scaled",
+      "nichesToResearch": ["Perimenopause", "ADHD", "Short-term rentals"]
+    },
+    "tasks": [
+      {
+        "id": "audio-niche-001",
+        "priority": "high",
+        "description": "Research perimenopause content market - popular topics, existing podcasts, content gaps, audience size",
+        "deliverables": ["Competitive analysis", "Content opportunity assessment", "Audience demographics"]
+      },
+      {
+        "id": "audio-niche-002",
+        "priority": "high",
+        "description": "Research ADHD content market - popular topics, existing podcasts, content gaps, audience size",
+        "deliverables": ["Competitive analysis", "Content opportunity assessment", "Audience demographics"]
+      },
+      {
+        "id": "audio-niche-003",
+        "priority": "high",
+        "description": "Research short-term rental content market - popular topics, existing podcasts, content gaps, audience size",
+        "deliverables": ["Competitive analysis", "Content opportunity assessment", "Audience demographics"]
+      },
+      {
+        "id": "audio-niche-004",
+        "priority": "high",
+        "description": "Analyze which niche scales fastest - market size, content velocity, monetization potential, competition level",
+        "deliverables": ["Scoring matrix comparing all 3 niches", "Recommendation with rationale"]
+      },
+      {
+        "id": "audio-niche-005",
+        "priority": "high",
+        "description": "Develop differentiation strategy - how to stand out and gain traction quickly in chosen niche(s)",
+        "deliverables": ["Unique angle/positioning", "Content format innovations", "Distribution hacks"]
+      },
+      {
+        "id": "audio-niche-006",
+        "priority": "medium",
+        "description": "Create brand guidelines based on market research - tone, style, content boundaries, voice characteristics",
+        "deliverables": ["Brand voice document", "Content guidelines", "What to avoid/never cover"]
+      },
+      {
+        "id": "audio-niche-007",
+        "priority": "medium",
+        "description": "Write sample episode scripts for top 2 niches (2-3 scripts each)",
+        "deliverables": ["Sample scripts demonstrating voice and format", "Script templates for automation"]
+      },
+      {
+        "id": "audio-niche-008",
+        "priority": "medium",
+        "description": "Develop complete marketing plan - launch strategy, growth tactics, distribution channels",
+        "deliverables": ["Go-to-market plan", "First 90 days strategy", "Organic growth playbook"]
+      },
+      {
+        "id": "audio-niche-009",
+        "priority": "low",
+        "description": "Research ElevenLabs professional voices - identify unique, high-quality options that sound like real people",
+        "deliverables": ["Voice recommendations with samples", "Pros/cons of each option"]
+      }
+    ]
+  },
+  "disneyOrlandoTrip": {
+    "status": "pending",
+    "description": "Disney World Orlando Magic Kingdom trip - March 13, 2026",
+    "created": "2026-03-07T04:32:00Z",
+    "constraints": {
+      "travelers": "Jayna + 2 daughters (ages 8 and 12)",
+      "park": "Magic Kingdom only",
+      "dates": {
+        "departure": "March 12, 2026 (hotel night)",
+        "parkDay": "March 13, 2026 (Friday)",
+        "return": "March 13 or 14 (hotel night if needed)"
+      },
+      "hotelNights": "March 12 and possibly 13",
+      "budget": "Very limited",
+      "military": "Yes - eligible for military discounts",
+      "girlsInterests": {
+        "both": "Roller coasters (2-3 desired)",
+        "youngest": "Age 8 - magical experiences, character encounters",
+        "oldest": "Age 12 - Disney experience (not just rides)"
+      },
+      "goal": "Magical Disney experience, not just a theme park day"
+    },
+    "tasks": [
+      {
+        "id": "disney-001",
+        "priority": "high",
+        "description": "Research military discounts for Disney World 1-day tickets",
+        "notes": "Check Shades of Green, military ticket offices, Disney's official military offers, any special promotions for March 2026"
+      },
+      {
+        "id": "disney-002",
+        "priority": "high",
+        "description": "Find budget-friendly hotel options near Magic Kingdom for March 12-13",
+        "notes": "Consider: Disney value resorts vs off-site hotels, military discounts on hotels, shuttle availability, proximity to park"
+      },
+      {
+        "id": "disney-003",
+        "priority": "high",
+        "description": "Research Magic Kingdom crowd levels for Friday March 13, 2026",
+        "notes": "Check crowd calendars, historical data, what to expect for mid-March Friday, strategies for busy days"
+      },
+      {
+        "id": "disney-004",
+        "priority": "high",
+        "description": "Identify must-do Disney experiences for 8-year-old (magical encounters, characters, immersive experiences)",
+        "notes": "Focus on: character meet & greets, immersive attractions (not just rides), parades, fireworks, any bookable experiences"
+      },
+      {
+        "id": "disney-005",
+        "priority": "high",
+        "description": "Identify must-do Disney experiences for 12-year-old (the 'Disney magic', not just thrill rides)",
+        "notes": "Focus on: immersive theming, unique Disney-only experiences, nostalgia factor, photo opportunities, special moments"
+      },
+      {
+        "id": "disney-006",
+        "priority": "high",
+        "description": "Plan optimal Magic Kingdom itinerary for maximum experiences in one day",
+        "notes": "Include: rope drop strategy, Genie+/lightning lane recommendations, best order to hit attractions, dining suggestions, break times"
+      },
+      {
+        "id": "disney-007",
+        "priority": "high",
+        "description": "Identify best roller coasters at Magic Kingdom and strategy to ride 2-3 with minimal wait",
+        "notes": "Seven Dwarfs Mine Train, Space Mountain, Big Thunder Mountain, TRON (if open). Best times to ride, lightning lane options."
+      },
+      {
+        "id": "disney-008",
+        "priority": "medium",
+        "description": "Research what needs to be booked in advance for March 13",
+        "notes": "Dining reservations, Genie+, Lightning Lane selections, any special experiences, mobile order setup"
+      },
+      {
+        "id": "disney-009",
+        "priority": "medium",
+        "description": "Compile best tips and tricks for Magic Kingdom on a budget with kids",
+        "notes": "Money-saving hacks, free experiences, what to bring, what to skip, insider secrets, avoiding regrets"
+      },
+      {
+        "id": "disney-010",
+        "priority": "high",
+        "description": "Create complete trip plan with day-by-day itinerary, costs, and booking checklist",
+        "deliverables": ["Complete itinerary document", "Cost breakdown", "Booking checklist with deadlines", "Packing list", "Day-of strategy guide"]
+      }
+    ]
+  },
+  "strDigitalProducts": {
+    "status": "pending",
+    "description": "Short-term rental digital products - Maintenance system & direct booking strategies",
+    "created": "2026-03-07T04:38:00Z",
+    "productIdeas": [
+      "Comprehensive property maintenance system (beyond just a checklist)",
+      "Direct booking growth system for owners and property managers"
+    ],
+    "tasks": [
+      {
+        "id": "str-maint-001",
+        "priority": "high",
+        "description": "Research comprehensive STR maintenance requirements - all tasks owners need to track",
+        "deliverables": [
+          "HVAC maintenance (filters, servicing)",
+          "Safety systems (fire extinguishers, smoke/CO detectors, inspections)",
+          "Seasonal maintenance (winterization, spring prep)",
+          "Exterior upkeep (deck staining, painting, roof, gutters)",
+          "Pest control schedules",
+          "Appliance maintenance and replacement cycles",
+          "Deep cleaning schedules",
+          "Landscaping/ground maintenance",
+          "Plumbing/electrical checks",
+          "Linen and supply refresh cycles",
+          "Regulatory compliance (permits, inspections)"
+        ]
+      },
+      {
+        "id": "str-maint-002",
+        "priority": "high",
+        "description": "Design maintenance tracking system - more valuable than a simple checklist",
+        "featuresToConsider": [
+          "Automated calendar integration (Google/Apple/Outlook)",
+          "Recurring task automation with reminders",
+          "Vendor/contact management for each service type",
+          "Cost tracking and budget forecasting",
+          "Photo documentation for before/after",
+          "Maintenance history log",
+          "Seasonal checklists that auto-rotate",
+          "Multiple property support",
+          "Team/contractor assignment",
+          "Mobile-friendly interface"
+        ]
+      },
+      {
+        "id": "str-maint-003",
+        "priority": "medium",
+        "description": "Research delivery formats - Notion template vs standalone app vs other platforms",
+        "optionsToEvaluate": [
+          "Notion template with automations",
+          "Airtable base with interfaces",
+          "Google Sheets with Apps Script",
+          "Standalone web app",
+          "ClickUp/Monday.com template",
+          "Combination approach"
+        ]
+      },
+      {
+        "id": "str-direct-001",
+        "priority": "high",
+        "description": "Research direct booking strategies for STR owners and property managers",
+        "topicsToCover": [
+          "Website building options (low-cost to premium)",
+          "Booking engine solutions",
+          "Payment processing setup",
+          "Marketing strategies to drive direct traffic",
+          "Guest communication automation",
+          "Review generation for direct bookings",
+          "Rate parity strategies",
+          "Guest retention and repeat booking systems",
+          "Social media strategies for direct bookings",
+          "Email marketing for past guests",
+          "SEO for vacation rental websites",
+          "Google Business Profile optimization"
+        ]
+      },
+      {
+        "id": "str-direct-002",
+        "priority": "medium",
+        "description": "Research existing direct booking solutions and identify gaps/opportunities",
+        "deliverables": [
+          "Competitive analysis of existing courses/templates",
+          "What's missing from current offerings",
+          "Unique angle or positioning opportunity",
+          "Pricing research"
+        ]
+      },
+      {
+        "id": "str-product-001",
+        "priority": "medium",
+        "description": "Define product bundle - what gets packaged together and how",
+        "considerations": [
+          "Maintenance system as standalone product?",
+          "Direct booking system as standalone?",
+          "Bundle both together?",
+          "Tiered pricing (basic vs premium)?",
+          "Ongoing subscription vs one-time purchase?"
+        ]
+      },
+      {
+        "id": "str-product-002",
+        "priority": "low",
+        "description": "Create product specifications and development roadmap",
+        "deliverables": [
+          "Detailed product specs for each offering",
+          "Development timeline",
+          "Resource requirements",
+          "Launch strategy"
+        ]
+      },
+      {
+        "id": "str-opportunity-001",
+        "priority": "high",
+        "description": "Research trending topics and pain points for STR owners in 2026",
+        "researchAreas": [
+          "Regulatory changes and compliance challenges (new laws, permits, taxes)",
+          "AI and automation in property management",
+          "Sustainability and eco-friendly hosting trends",
+          "Guest experience innovations and expectations",
+          "Pricing strategy and revenue optimization",
+          "Cleaning and turnover automation",
+          "Smart home technology integration",
+          "Insurance and liability concerns",
+          "Multi-channel distribution strategies",
+          "Niche market opportunities (pet-friendly, workations, etc.)",
+          "Staffing and virtual assistant solutions",
+          "Guest screening and security issues"
+        ]
+      },
+      {
+        "id": "str-opportunity-002",
+        "priority": "high",
+        "description": "Brainstorm monetizable digital products and services for STR owners",
+        "productCategories": [
+          "Templates and systems (SOPs, checklists, spreadsheets)",
+          "Educational content (courses, guides, ebooks)",
+          "Tools and calculators (pricing, ROI, occupancy)",
+          "Automation solutions (message templates, workflows)",
+          "Design resources (listing photos, interior design guides)",
+          "Legal/compliance resources (contracts, local law guides)",
+          "Community/membership offerings",
+          "Done-for-you services (listing optimization, pricing setup)",
+          "Software integrations and add-ons"
+        ]
+      },
+      {
+        "id": "str-opportunity-003",
+        "priority": "medium",
+        "description": "Research successful STR influencers and businesses - what's working for them",
+        "deliverables": [
+          "Top STR content creators and their monetization models",
+          "Popular courses and their pricing/content",
+          "Successful digital product examples",
+          "Affiliate opportunities in the STR space",
+          "Partnership and collaboration possibilities"
+        ]
+      },
+      {
+        "id": "str-opportunity-004",
+        "priority": "medium",
+        "description": "Identify underserved niches within the STR market",
+        "nichesToExplore": [
+          "Specific property types (cabins, tiny homes, luxury, urban apartments)",
+          "Specific owner types (remote landlords, first-time hosts, portfolio owners)",
+          "Specific geographic regions",
+          "Specific guest types (families, business travelers, digital nomads)",
+          "Specific operational models (co-hosting, rental arbitrage, house hacking)"
+        ]
+      },
+      {
+        "id": "str-opportunity-005",
+        "priority": "low",
+        "description": "Create comprehensive STR business opportunity map",
+        "deliverables": [
+          "Visual map of all identified opportunities",
+          "Priority ranking based on: market size, competition, ease of execution, Jayna's expertise",
+          "Recommended first 3 products to build",
+          "Long-term product roadmap and ecosystem vision"
+        ]
+      }
+    ]
+  },
+  "rollingStrongAiFitness": {
+    "status": "pending",
+    "description": "Rolling Strong - AI avatar fitness video research for trucking industry",
+    "created": "2026-03-07T04:45:00Z",
+    "client": {
+      "name": "Rolling Strong",
+      "website": "https://www.rollingstrong.com/",
+      "industry": "Trucking/Transportation health & wellness",
+      "targetAudience": "Truck drivers",
+      "currentChallenge": "Generating quality fitness videos on low budget"
+    },
+    "projectRequirements": {
+      "videoType": "Workout/fitness videos",
+      "duration": "10-20 minutes",
+      "quality": "High quality",
+      "deliveryMethod": "AI avatar",
+      "automationGoal": "Fully autonomous generation"
+    },
+    "tasks": [
+      {
+        "id": "rs-fitness-001",
+        "priority": "high",
+        "description": "Research AI avatar video generation tools for fitness/workout content",
+        "toolsToResearch": [
+          "HeyGen",
+          "Synthesia",
+          "D-ID",
+          "Hour One",
+          "Colossyan",
+          "Runway ML",
+          "Pika Labs",
+          "Kling AI",
+          "Other emerging platforms"
+        ],
+        "evaluationCriteria": [
+          "Video length capabilities (10-20 min support)",
+          "Avatar quality and realism",
+          "Fitness movement rendering",
+          "Customization options",
+          "API/automation support",
+          "Pricing models"
+        ]
+      },
+      {
+        "id": "rs-fitness-002",
+        "priority": "high",
+        "description": "Research autonomous video production workflows",
+        "questionsToAnswer": [
+          "Can scripts be automatically generated from workout templates?",
+          "Can avatar movements be programmed for exercises?",
+          "What level of human oversight is required?",
+          "How much can be automated end-to-end?",
+          "What are the technical requirements?"
+        ]
+      },
+      {
+        "id": "rs-fitness-003",
+        "priority": "high",
+        "description": "Analyze costs for AI avatar fitness video production",
+        "costCategories": [
+          "Platform subscriptions (monthly/annual)",
+          "Per-video generation costs",
+          "Avatar creation/customization fees",
+          "API usage costs",
+          "Storage and hosting costs",
+          "Labor costs for setup and oversight"
+        ],
+        "deliverables": [
+          "Cost comparison across platforms",
+          "Per-video cost estimates",
+          "Monthly operational costs at scale",
+          "ROI analysis vs traditional video production"
+        ]
+      },
+      {
+        "id": "rs-fitness-004",
+        "priority": "medium",
+        "description": "Assess technical complexity and implementation requirements",
+        "areasToEvaluate": [
+          "Technical expertise needed",
+          "Integration with existing Rolling Strong app",
+          "Content management system requirements",
+          "Quality control processes",
+          "Scalability considerations",
+          "Timeline to first video",
+          "Timeline to full automation"
+        ]
+      },
+      {
+        "id": "rs-fitness-005",
+        "priority": "medium",
+        "description": "Research fitness-specific AI video considerations",
+        "topics": [
+          "Exercise form accuracy in AI avatars",
+          "Safety considerations for workout instruction",
+          "Trucking-specific fitness needs (limited space, sedentary lifestyle)",
+          "Accessibility requirements",
+          "Audio quality and voice options"
+        ]
+      },
+      {
+        "id": "rs-fitness-006",
+        "priority": "low",
+        "description": "Create comprehensive recommendation report",
+        "deliverables": [
+          "Executive summary with go/no-go recommendation",
+          "Top 3 platform recommendations with pros/cons",
+          "Implementation roadmap",
+          "Cost projections",
+          "Sample workflow diagram",
+          "Risk assessment and mitigation strategies"
+        ]
+      }
+    ]
+  }
 }
