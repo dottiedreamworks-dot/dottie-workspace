@@ -143,6 +143,35 @@ On platforms that support reactions (Discord, Slack), use emoji reactions natura
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes in `TOOLS.md`.
 
+## Learnings vs Tasks — Critical Distinction
+
+**LEARNINGS.md** (in `.learnings/`) is for **systemic improvements** — things that change how you work:
+- Corrections to your behavior or process (when user says "You keep doing X wrong")
+- Knowledge gaps (things you didn't know that affect future work)
+- Best practices (better approaches discovered)
+- Recurring patterns (issues that happen 3+ times)
+
+**NOT for:**
+- One-off task corrections ("Fix the typo in this document")
+- Specific deliverable feedback ("Add more thrill rides to Disney plan")
+- Temporary to-do items
+
+**TASK_QUEUE.json** is for **actual work to be done**:
+- Specific deliverable updates
+- Research tasks
+- Content creation
+- Feature development
+
+**The Rule:**
+- User corrects your PROCESS → Log to LEARNINGS.md
+- User wants specific work done → Create task in TASK_QUEUE.json
+- After 3+ similar learnings → Promote to AGENTS.md/TOOLS.md/SOUL.md
+
+**Example:**
+- ❌ WRONG: Log "Disney plan needs more thrill rides" to LEARNINGS.md
+- ✅ RIGHT: Create task in TASK_QUEUE.json to update Disney deliverable
+- ✅ RIGHT: Log "I keep forgetting to check learnings before tasks" to LEARNINGS.md (systemic issue)
+
 **📝 Platform Formatting:**
 
 - **Discord/WhatsApp:** No markdown tables! Use bullet lists instead
