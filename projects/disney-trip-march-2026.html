@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney World Magic Kingdom Trip Plan - March 13, 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .trip-details {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .trip-details h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .detail-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        
+        .detail-value {
+            color: #333;
+            margin-top: 5px;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .alert-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .success .alert-title {
+            color: #155724;
+        }
+        
+        .cost-breakdown {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .cost-item:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #764ba2;
+            border-top: 2px solid #764ba2;
+            margin-top: 10px;
+            padding-top: 15px;
+        }
+        
+        .itinerary {
+            margin: 20px 0;
+        }
+        
+        .time-slot {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .time {
+            font-weight: bold;
+            color: #764ba2;
+            min-width: 100px;
+            font-size: 1.1em;
+        }
+        
+        .activity {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .activity-desc {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .tips-list li:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+        
+        .roller-coaster {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .roller-coaster h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .coaster-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .coaster-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .coaster-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .booking-checklist {
+            background: #e7f3ff;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #cce5ff;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .priority-high {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .magic-experience {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .magic-experience h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .age-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            color: #333;
+        }
+        
+        .age-section h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Disney World Magic Kingdom</h1>
+            <p class="subtitle">Complete Trip Plan for Jayna & Daughters<br>March 13, 2026 (Friday)</p>
+        </header>
+
+        <div class="trip-details">
+            <h2>🎯 Trip Overview</h2>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Travelers</div>
+                    <div class="detail-value">Jayna + 2 daughters (ages 8 & 12)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Park</div>
+                    <div class="detail-value">Magic Kingdom Only</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Date</div>
+                    <div class="detail-value">Friday, March 13, 2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Hotel Nights</div>
+                    <div class="detail-value">March 12 & 13</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Budget</div>
+                    <div class="detail-value">Very Limited (Military Discounts)</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Goal</div>
+                    <div class="detail-value">Magical Experience + 2-3 Roller Coasters</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert">
+            <div class="alert-title">⚠️ CROWD WARNING</div>
+            <p>March 13, 2026 is a <strong>FRIDAY</strong> during peak spring break season. Expect <strong>MODERATE TO HEAVY CROWDS</strong> (estimated 7-8/10). However, this itinerary is designed to maximize your experience even on busy days!</p>
+        </div>
+
+        <h2>💰 Cost Breakdown</h2>
+        
+        <div class="cost-breakdown">
+            <div class="cost-item">
+                <span>🎟️ Military Promotional Tickets (4-Day Park Hopper)</span>
+                <span>$405 × 3 = $1,215</span>
+            </div>
+            <div class="cost-item">
+                <span>🏨 Hotel (2 nights) - Budget Option</span>
+                <span>$120 × 2 = $240</span>
+            </div>
+            <div class="cost-item">
+                <span>🍕 Food & Snacks (budget-friendly)</span>
+                <span>$150</span>
+            </div>
+            <div class="cost-item">
+                <span>🚗 Parking at Magic Kingdom</span>
+                <span>$30</span>
+            </div>
+            <div class="cost-item">
+                <span>💨 Lightning Lane Multi Pass (optional but recommended)</span>
+                <span>$~35 × 3 = $105</span>
+            </div>
+            <div class="cost-item">
+                <span>🎁 Souvenirs (small budget)</span>
+                <span>$50</span>
+            </div>
+            <div class="cost-item">
+                <span>💵 ESTIMATED TOTAL</span>
+                <span>$1,790</span>
+            </div>
+        </div>
+
+        <div class="success">
+            <div class="alert-title">💡 MONEY-SAVING TIP</div>
+            <p>You're saving approximately <strong>$600+</strong> with military tickets vs. regular pricing! Regular 4-day Park Hopper tickets would be ~$600 each.</p>
+        </div>
+
+        <h2>🎖️ Military Ticket Information</h2>
+        
+        <h3>Where to Buy</h3>
+        <p><strong>Shades of Green Resort</strong> (on Disney property, military-only resort)</p>
+        <ul>
+            <li>📍 Location: On Disney property, walking distance to Magic Kingdom</li>
+            <li>🎫 4-Day Park Hopper Military Promotional: <strong>$405 per person</strong></li>
+            <li>🎫 5-Day Park Hopper Military Promotional: <strong>$425 per person</strong></li>
+            <li>✅ Valid through December 18, 2026</li>
+            <li>📞 Order online at: <a href="https://shadesofgreenresort.zendesk.com/hc/en-us/requests/new">shadesofgreen.org</a></li>
+        </ul>
+
+        <div class="alert">
+            <div class="alert-title">⚠️ IMPORTANT</div>
+            <p>You must have a valid military ID to purchase AND use these tickets. The service member or spouse must be present.</p>
+        </div>
+
+        <h2>🏨 Hotel Recommendations</h2>
+        
+        <h3>Option 1: Shades of Green (BEST for Military)</h3>
+        <ul>
+            <li>💰 Military rates typically $150-200/night</li>
+            <li>🚶 Walking distance to Magic Kingdom</li>
+            <li>🚌 Free shuttle to all parks</li>
+            <li>🎟️ Easy ticket purchasing</li>
+            <li>🍳 Kitchenettes available (save on food!)</li>
+        </ul>
+
+        <h3>Option 2: Disney's Pop Century (Budget Disney Resort)</h3>
+        <ul>
+            <li>💰 ~$180-220/night</li>
+            <li>🚝 Skyliner access to Hollywood Studios/Epcot</li>
+            <li>🚌 Bus to Magic Kingdom</li>
+            <li>✨ Disney theming and early park entry</li>
+        </ul>
+
+        <h3>Option 3: Off-Site Budget Hotels</h3>
+        <ul>
+            <li>💰 $80-120/night</li>
+            <li>🏨 Wyndham Orlando Resort Celebration: ~$88/night</li>
+            <li>🏨 Holiday Inn Express Lake Buena Vista: ~$100/night</li>
+            <li>🏨 Best Western Lake Buena Vista: ~$95/night</li>
+            <li>🚗 10-15 minute drive to Magic Kingdom</li>
+            <li>🚌 Most offer shuttle service</li>
+        </ul>
+
+        <h2>🎢 Roller Coaster Strategy</h2>
+        
+        <div class="roller-coaster">
+            <h3>🎢 The Big 3 Coasters at Magic Kingdom</h3>
+            <ul class="coaster-list">
+                <li><strong>1. Seven Dwarfs Mine Train</strong> - Family-friendly, smooth, 38" height req<br>
+                    <em>Strategy: Rope drop this FIRST or buy Lightning Lane Single Pass (~$12-15)</em></li>
+                <li><strong>2. Space Mountain</strong> - Indoor dark coaster, thrilling but not too intense, 44" height req<br>
+                    <em>Strategy: Ride during Early Entry or use Lightning Lane</em></li>
+                <li><strong>3. Big Thunder Mountain Railroad</strong> - Outdoor mine train, 40" height req<br>
+                    <em>Strategy: Better at night! Ride during evening for cooler temps and shorter waits</em></li>
+            </ul>
+        </div>
+
+        <h2>✨ Magical Experiences by Age</h2>
+        
+        <div class="magic-experience">
+            <h3>🌟 For Your 8-Year-Old (The Magic Seeker)</h3>
+            <div class="age-section">
+                <h4>Character Encounters</h4>
+                <ul>
+                    <li><strong>Princess Fairytale Hall</strong> - Meet multiple princesses in one location</li>
+                    <li><strong>Town Square Theater</strong> - Meet Mickey Mouse in his theater</li>
+                    <li><strong>Enchanted Tales with Belle</strong> - Interactive storytelling experience (DO NOT MISS!)</li>
+                    <li><strong>Under the Sea ~ Journey of The Little Mermaid</strong> - Ride + character vibes</li>
+                </ul>
+                
+                <h4>Magical Moments</h4>
+                <ul>
+                    <li><strong>Magic Kingdom Welcome Show</strong> - Happens at park opening on the train station stage</li>
+                    <li><strong>Festival of Fantasy Parade</strong> (3:00 PM daily) - All the princesses!</li>
+                    <li><strong>Mickey's Magical Friendship Faire</strong> - Castle stage show (multiple times daily)</li>
+                    <li><strong>Fireworks: Happily Ever After</strong> (9:00 PM) - Pure Disney magic</li>
+                    <li><strong>Make a tiara at Crystal Arts</strong> on Main Street (budget: $15-25)</li>
+                </ul>
+            </div>
+
+            <h3>🌟 For Your 12-Year-Old (The Tween)</h3>
+            <div class="age-section">
+                <h4>The "Disney Experience" (Not Just Rides)</h4>
+                <ul>
+                    <li><strong>Pirates of the Caribbean</strong> - Classic Disney immersive storytelling</li>
+                    <li><strong>Haunted Mansion</strong> - Spooky fun, incredible detail</li>
+                    <li><strong>Jungle Cruise</strong> - Corny jokes, classic Disney</li>
+                    <li><strong>TRON Lightcycle Run</strong> (if open) - Cutting-edge Disney tech</li>
+                </ul>
+                
+                <h4>Photo Opportunities & Memories</h4>
+                <ul>
+                    <li><strong>Photopass photographers</strong> - Professional castle photos (free with their camera)</li>
+                    <li><strong>Hidden Mickeys</strong> - Make it a game to find them throughout the park</li>
+                    <li><strong>Dole Whip at Aloha Isle</strong> - Iconic Disney treat</li>
+                    <li><strong>Main Street USA</strong> - Window shopping, atmosphere, the "Disney feeling"</li>
+                    <li><strong>PeopleMover</strong> - Relaxing tour of Tomorrowland, great for photos</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>📅 Detailed Itinerary - March 13, 2026</h2>
+        
+        <div class="itinerary">
+            <div class="time-slot">
+                <div class="time">6:30 AM</div>
+                <div class="activity">
+                    <div class="activity-title">Wake Up & Breakfast</div>
+                    <div class="activity-desc">Eat at hotel or bring breakfast bars. Pack snacks and water bottles in your bag.</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">7:15 AM</div>
+                <div class="activity">
+                    <div class="activity-title">Arrive at Magic Kingdom Parking</div>
+                    <div class="activity-desc">Parking opens ~1 hour before park opening. Take tram or walk to Transportation & Ticket Center, then monorail to Magic Kingdom.</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">8:00 AM</div>
+                <div class="activity">
+                    <div class="activity-title">Rope Drop - Park Opening</div>
+                    <div class="activity-desc"><strong>HEAD STRAIGHT TO:</strong> Seven Dwarfs Mine Train. This is your #1 priority. Run (walk quickly) to Fantasyland immediately upon entering.</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">8:30 AM</div>
+                <div class="activity">
+                    <div class="activity-title">Early Entry Rides</div>
+                    <div class="activity-desc">After Mine Train: Peter Pan's Flight → It's a Small World → Under the Sea (Little Mermaid). These will have short waits now.</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">10:00 AM</div>
+                <div class="activity">
+                    <div class="activity-title">Tomorrowland</div>
+                    <div class="activity-desc">Space Mountain (2nd coaster!) → Buzz Lightyear's Space Ranger Spin → PeopleMover (relaxing break)</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">11:30 AM</div>
+                <div class="activity">
+                    <div class="activity-title">Enchanted Tales with Belle</div>
+                    <div class="activity-desc">Head back to Fantasyland for this interactive show. Perfect for your 8-year-old!</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">12:30 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Lunch Break</div>
+                    <div class="activity-desc"><strong>Budget Option:</strong> Columbia Harbour House (good prices, air conditioning). Or mobile order from Casey's Corner on Main Street.</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">1:30 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Adventureland & Character Meet</div>
+                    <div class="activity-desc">Pirates of the Caribbean → Jungle Cruise → Check app for character meet times (Mickey at Town Square Theater)</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">3:00 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Festival of Fantasy Parade</div>
+                    <div class="activity-desc">Find a spot on Main Street USA (near Crystal Arts) 20 minutes early. This is the Disney magic moment!</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">4:00 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Rest & Snack Break</div>
+                    <div class="activity-desc">Dole Whip at Aloha Isle → Sit in shade → Recharge phones → Check wait times on app</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">5:00 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Frontierland</div>
+                    <div class="activity-desc">Big Thunder Mountain Railroad (3rd coaster!) → Country Bear Jamboree (funny show, air conditioned)</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">6:30 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Dinner</div>
+                    <div class="activity-desc">Pinocchio Village Haus (quick service, affordable) or Pecos Bill Tall Tale Inn (tacos/burritos)</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">7:30 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Castle Photos & Main Street</div>
+                    <div class="activity-desc">Photopass photographer in front of castle → Window shop on Main Street → Get a spot for fireworks</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">9:00 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Happily Ever After Fireworks</div>
+                    <div class="activity-desc">THE highlight of the day. Find a spot on Main Street or near the hub (in front of castle) 30-45 minutes early.</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">9:30 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Evening Rides (Optional)</div>
+                    <div class="activity-desc">Many families leave after fireworks. Short waits for: Space Mountain, Pirates, Haunted Mansion</div>
+                </div>
+            </div>
+
+            <div class="time-slot">
+                <div class="time">10:30 PM</div>
+                <div class="activity">
+                    <div class="activity-title">Park Close</div>
+                    <div class="activity-desc">Kiss Goodnight show on castle → Exit through Main Street (prettiest at night!) → Monorail to parking</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>📋 Booking Checklist (DO ASAP!)</h2>
+        
+        <div class="booking-checklist">
+            <div class="checklist-item">
+                <input type="checkbox" id="tickets">
+                <label for="tickets"><span class="priority-high">URGENT:</span> Purchase military tickets through Shades of Green</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="hotel">
+                <label for="hotel"><span class="priority-high">URGENT:</span> Book hotel for March 12 & 13</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="park-res">
+                <label for="park-res">Make Magic Kingdom park reservation (required with tickets)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="lightning-lane">
+                <label for="lightning-lane">Download My Disney Experience app and set up Lightning Lane (decide day-of)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="dining">
+                <label for="dining">Mobile order lunch/dinner in app (can do morning of)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="packing">
+                <label for="packing">Pack: Comfortable shoes, portable charger, snacks, water bottles, sunscreen</label>
+            </div>
+        </div>
+
+        <h2>💡 Budget Tips & Money-Saving Hacks</h2>
+        
+        <ul class="tips-list">
+            <li><strong>Bring your own snacks and water bottles</strong> - Disney allows outside food (no glass, no large coolers)</li>
+            <li><strong>Share meals</strong> - Disney portions are huge. Two kids can easily share one kids meal.</li>
+            <li><strong>Free water</strong> - Any quick-service restaurant will give you free cups of ice water</li>
+            <li><strong>Skip the Lightning Lane</strong> - If budget is tight, you can do this itinerary without it using rope drop strategy</li>
+            <li><strong>Photopass hack</strong> - Photopass photographers will take photos with YOUR phone for free</li>
+            <li><strong>Shop off-site</strong> - Buy Disney souvenirs at Disney Store or online before/after trip (cheaper)</li>
+            <li><strong>Character dining</strong> - Skip it (expensive). Meet characters in the park for free instead</li>
+            <li><strong>Parking</strong> - If staying off-site, parking is $30/day at Magic Kingdom</li>
+            <li><strong>Memory Maker</strong> - Skip it ($185). Use Photopass photographers with your own phone</li>
+            <li><strong>Breakfast</strong> - Eat at hotel or bring granola bars. Don't buy in park</li>
+        </ul>
+
+        <h2>🎒 Packing List</h2>
+        
+        <ul>
+            <li>✅ Comfortable walking shoes (broken in!)</li>
+            <li>✅ Portable phone charger (essential)</li>
+            <li>✅ Snacks (granola bars, fruit snacks, crackers)</li>
+            <li>✅ Refillable water bottles</li>
+            <li>✅ Sunscreen & sunglasses</li>
+            <li>✅ Light jacket (March evenings can be cool)</li>
+            <li>✅ Small backpack (must fit under seat on rides)</li>
+            <li>✅ Autograph book & pen (for 8-year-old)</li>
+            <li>✅ Hand sanitizer & wet wipes</li>
+            <li>✅ MagicBands (if you have them) or set up Disney MagicMobile on phones</li>
+            <li>✅ Military ID (required for tickets!)</li>
+        </ul>
+
+        <h2>📱 Essential Apps</h2>
+        
+        <ul>
+            <li><strong>My Disney Experience</strong> - Park maps, wait times, mobile ordering, Lightning Lane</li>
+            <li><strong>Disney Play</strong> - Games to play in line (great for kids!)</li>
+            <li><strong>Character Locator</strong> - Third-party app showing character meet times</li>
+        </ul>
+
+        <h2>🎯 Final Tips for a Magical Day</h2>
+        
+        <div class="alert">
+            <div class="alert-title">🌟 The Secret to Disney Magic</div>
+            <p>The "Disney experience" isn't about doing everything. It's about:</p>
+            <ul style="margin-top: 10px; margin-left: 20px;">
+                <li>The excitement of walking down Main Street USA</li>
+                <li>Seeing your daughters' faces during the fireworks</li>
+                <li>The corny jokes on Jungle Cruise</li>
+                <li>Singing "It's a Small World" even though you said you wouldn't</li>
+                <li>The feeling that, just for one day, you're in a place where dreams come true</li>
+            </ul>
+        </div>
+
+        <div class="success">
+            <div class="alert-title">💝 You've Got This!</div>
+            <p>Amare is not too old. At 12, she's at the perfect age to appreciate both the thrills AND the magic. Your 8-year-old is in the sweet spot for pure Disney wonder. This will be a day they remember forever.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 3px solid #f0f0f0; color: #666;">
+            <p>Created with 💜 for Jayna & the girls</p>
+            <p>March 7, 2026</p>
+        </div>
+    </div>
+</body>
+</html>
