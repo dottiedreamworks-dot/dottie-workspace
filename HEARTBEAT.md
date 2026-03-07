@@ -8,10 +8,12 @@
 
 When this file is read (via prompt), execute:
 
-1. **Read TASK_QUEUE.json**
-2. **Check for active task:**
+1. **Read .learnings/LEARNINGS.md** — Check for pending corrections and insights
+2. **Read TASK_QUEUE.json**
+3. **Check for active task:**
    - If `meta.activeTask` exists → resume from last checkpoint
    - If no active task → pick highest priority pending task
+   - If pending corrections in LEARNINGS.md → prioritize those first
 3. **Execute one atomic step** (2-5 minutes max)
 4. **Write checkpoint** to `checkpoints/{task-id}/`
 5. **Update TASK_QUEUE.json** with progress
