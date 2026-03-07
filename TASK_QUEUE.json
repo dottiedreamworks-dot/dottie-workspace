@@ -211,7 +211,33 @@
         "psychology": "Abundance mindset (more wins = more garden), not scarcity (miss a day = lose progress)",
         "userType": "Built for inconsistent overachievers - people who CAN do amazing things but need right framing"
       },
-      "dependsOn": ["workspaceOrganization", "disney-trip-questions", "family-trip-questions"]
+      "dependsOn": ["workspaceOrganization"]
+    }
+  ],
+  "pendingCorrections": [
+    {
+      "id": "disney-thrill-verify",
+      "status": "pending",
+      "type": "deliverable_update",
+      "description": "Verify Disney trip plan emphasizes thrill rides for daredevil daughters",
+      "created": "2026-03-07T17:12:00Z",
+      "priority": "medium",
+      "deliverable": "projects/disney-trip/itinerary/disney-trip-march-2026.html",
+      "feedback": "Daughters are daredevils and will want the most intense rides. Current plan may underweight thrill rides.",
+      "action": "Review and verify Space Mountain, Big Thunder Mountain, Seven Dwarfs Mine Train, TRON are highlighted as priorities. Ensure itinerary emphasizes thrill rides.",
+      "estimatedTime": "15 minutes"
+    },
+    {
+      "id": "family-trip-reroute",
+      "status": "pending",
+      "type": "research_update",
+      "description": "Re-research family trip: Nashville → Asia (not Seoul) → Korea, or skip Korea entirely",
+      "created": "2026-03-07T17:12:00Z",
+      "priority": "medium",
+      "deliverable": "projects/seoul-family-trip/flight-research/korea-trip-flight-research.html",
+      "feedback": "Were there no viable options to fly into Asia somewhere else cheaper, then go to Korea, or skip Korea entirely?",
+      "action": "Research multi-city options: Nashville → Philippines/Taiwan/Japan → Seoul, and Nashville → Asia destination (no Korea). Compare costs and viability.",
+      "estimatedTime": "30 minutes"
     }
   ],
   "workspaceOrganization": {

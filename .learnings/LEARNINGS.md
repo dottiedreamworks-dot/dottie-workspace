@@ -1,6 +1,6 @@
 # Learnings Log
 
-Captured learnings, corrections, and discoveries. Review before major tasks.
+Captured learnings, errors, and discoveries. Review before major tasks.
 
 **Categories**: correction | insight | knowledge_gap | best_practice  
 **Areas**: frontend | backend | infra | tests | docs | config | workflow  
@@ -12,7 +12,7 @@ Captured learnings, corrections, and discoveries. Review before major tasks.
 
 **Logged**: 2026-03-07T14:22:00Z  
 **Priority**: high  
-**Status**: pending  
+**Status**: promoted  
 **Area**: workflow
 
 ### Summary
@@ -27,83 +27,7 @@ Created dbx-upload.sh script and synced all 8 deliverables to Dropbox AgentProje
 ### Prevention
 Add "Upload to Dropbox" as final step in completion checklist for all deliverables.
 
----
-
-## [LRN-2026-03-07-003] correction
-
-**Logged**: 2026-03-07T14:48:00Z  
-**Priority**: high  
-**Status**: pending  
-**Area**: docs
-
-### Summary
-Disney trip recommendations did not account for daughters being daredevils who want the most intense rides. Need to verify thrill ride focus in recommendations.
-
-### Context
-User's daughter feedback: "they are daredevils and will want to ride the most intense rides." Current plan focused on "magical experiences" but may have underweighted thrill rides.
-
-### Resolution
-Review and verify: Space Mountain, Big Thunder Mountain, Seven Dwarfs Mine Train, TRON (if open) are the most intense. Confirm these are highlighted as priorities.
-
----
-
-## [LRN-2026-03-07-004] correction
-
-**Logged**: 2026-03-07T14:48:00Z  
-**Priority**: critical  
-**Status**: resolved  
-**Area**: frontend
-
-### Summary
-Tiny Wins V5 is completely broken — lost all categories and task generation. Unusable. Must redo using V4 as base.
-
-### Context
-User reported: "Tiny Wins V5 lost all of the categories and how to generate tasks entirely. It is unusable." V5 was built from scratch instead of iterating on working V4.
-
-### Resolution
-✅ COMPLETED: Rebuilt V5 using V4 as base. Preserved single-task-at-a-time UX, added 50+ tasks per category (9 categories), enhanced celebrations (confetti, level-up modals), growth garden visualization. File: projects/tiny-wins/versions/tiny-wins-v5.html
-
----
-
-## [LRN-2026-03-07-005] correction
-
-**Logged**: 2026-03-07T14:48:00Z  
-**Priority**: high  
-**Status**: pending  
-**Area**: docs
-
-### Summary
-Family trip research may have missed cheaper "fly elsewhere in Asia first" options. Need to verify if flying to alternative destinations (Philippines, Taiwan, etc.) then to Korea, or skipping Korea entirely, was thoroughly explored.
-
-### Context
-User question: "were there no viable options to fly into Asia somewhere else that is cheaper and then go to Korea afterwards to save costs, or even leave out Korea entirely?" Need to verify research covered multi-city itineraries and Korea-as-optional scenarios.
-
-### Resolution
-Re-review flight research. Check if multi-city (Nashville → X → Seoul) or Nashville → X (no Korea) options were fully analyzed. Current recommendation was Seoul + Philippines ($1,148-$1,700 total).
-
----
-
-## [LRN-2026-03-07-006] best_practice
-
-**Logged**: 2026-03-07T14:57:00Z  
-**Priority**: high  
-**Status**: resolved  
-**Area**: workflow
-
-### Summary
-Files are disorganized — everything dumped in root folders. Need proper project folder structure with each project in its own folder.
-
-### Context
-User feedback: "Each project should have its very own folder... hard to find things as you make more changes and iterations." Current structure has all HTML files flat in /projects/.
-
-### Resolution
-✅ COMPLETED: Created organized folder structure with subfolders for all 6 project areas. Moved 21 files to proper locations. All files now in:
-- /projects/tiny-wins/ (versions/, assets/, database/)
-- /projects/audio-empire/ (niche-research/, implementation/, brand-guidelines/, marketing/, scripts/)
-- /projects/seoul-family-trip/ (flight-research/, itineraries/, budget/)
-- /projects/disney-trip/ (itinerary/, tips/, budget/)
-- /projects/str-digital-products/ (maintenance-system/, direct-booking/, market-research/)
-- /projects/rolling-strong/ (research/, recommendations/)
+**Promoted**: AGENTS.md - Added to workflow checklist
 
 ---
 
@@ -111,7 +35,7 @@ User feedback: "Each project should have its very own folder... hard to find thi
 
 **Logged**: 2026-03-07T14:22:00Z  
 **Priority**: medium  
-**Status**: pending  
+**Status**: resolved  
 **Area**: workflow
 
 ### Summary
@@ -122,5 +46,61 @@ Skill was extracted but .learnings/ files remained in skills/self-improving-agen
 
 ### Resolution
 Copied template files to ~/.openclaw/workspace/.learnings/
+
+---
+
+## [LRN-2026-03-07-003] correction
+
+**Logged**: 2026-03-07T17:10:00Z  
+**Priority**: high  
+**Status**: pending  
+**Area**: workflow  
+**Pattern-Key**: workflow.learnings_usage
+
+### Summary
+Misused LEARNINGS.md as secondary task list instead of systemic improvement tracker. Logged task-specific corrections (Disney rides, trip options) instead of behavioral patterns.
+
+### Context
+User clarified: "self improvement skill was more for correcting mistakes and documenting and learning from those mistakes, not adding another place to hold task specific instructions or updates."
+
+### Resolution
+- Removed task-specific entries from LEARNINGS.md
+- Created proper tasks in TASK_QUEUE.json for deliverable updates
+- Keeping only systemic learnings (workflow improvements, recurring patterns)
+- Updated AGENTS.md and HEARTBEAT.md to check learnings before tasks
+
+### Prevention
+LEARNINGS.md is for:
+- Systemic mistakes (things I do wrong repeatedly)
+- Workflow improvements (better ways to work)
+- Knowledge gaps (things I didn't know)
+- Best practices (patterns to adopt)
+
+NOT for:
+- One-off task corrections
+- Specific deliverable feedback
+- Temporary to-do items
+
+**See Also**: This is the third workflow pattern correction today - need to be more careful about understanding tool purposes before using them.
+
+---
+
+## [LRN-2026-03-07-004] best_practice
+
+**Logged**: 2026-03-07T14:57:00Z  
+**Priority**: high  
+**Status**: promoted  
+**Area**: workflow
+
+### Summary
+Files are disorganized — everything dumped in root folders. Need proper project folder structure with each project in its own folder.
+
+### Context
+User feedback: "Each project should have its very own folder... hard to find things as you make more changes and iterations." Current structure has all HTML files flat in /projects/.
+
+### Resolution
+✅ COMPLETED: Created organized folder structure with subfolders for all 6 project areas. Moved 21 files to proper locations.
+
+**Promoted**: AGENTS.md - File organization is now standard practice
 
 ---
