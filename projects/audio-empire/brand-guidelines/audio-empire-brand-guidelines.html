@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Empire - Brand Guidelines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #f0f0f0;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        .podcast-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .podcast-title h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .podcast-title p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #667eea;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        .brand-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .brand-section h3 {
+            margin-top: 0;
+        }
+        
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .do, .dont {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .do {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+        }
+        
+        .dont {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .do h4, .dont h4 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .voice-example {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .voice-example.good {
+            border-color: #28a745;
+            background: #f0f9f0;
+        }
+        
+        .voice-example.bad {
+            border-color: #dc3545;
+            background: #fff5f5;
+        }
+        
+        .voice-example h4 {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .voice-example.good h4 {
+            color: #28a745;
+        }
+        
+        .voice-example.bad h4 {
+            color: #dc3545;
+        }
+        
+        .content-boundary {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .content-boundary h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.3em;
+            font-style: italic;
+            color: #764ba2;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .target-audience {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .target-audience h3 {
+            color: #764ba2;
+        }
+        
+        .persona {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .persona h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎙️ Audio Empire</h1>
+            <p class="subtitle">Brand Guidelines & Voice Standards</p>
+        </header>
+        
+        <div class="podcast-title">
+            <h2>Focus & Flow</h2>
+            <p>ADHD for Inconsistent Overachievers</p>
+        </div>
+        
+        <div class="tagline">
+            "Small steps. Real progress. No shame."
+        </div>
+        
+        <h2>🎯 Brand Positioning</h2>
+        
+        <div class="brand-section">
+            <h3>Unique Angle</h3>
+            <p><strong>The only ADHD podcast for high-functioning adults who struggle with consistency despite being capable.</strong></p>
+            <p>We don't talk down to our audience. We don't offer generic advice that ignores ADHD realities. We understand that "just try harder" doesn't work.</p>
+            <p>Our listeners are smart, ambitious, and tired of feeling broken. We help them work with their brains, not against them.</p>
+        </div>
+        
+        <div class="brand-section">
+            <h3>What Makes Us Different</h3>
+            <ul>
+                <li><strong>No medical jargon</strong> - We speak human, not clinician</li>
+                <li><strong>No toxic positivity</strong> - We acknowledge the struggle is real</li>
+                <li><strong>Actionable micro-steps</strong> - 2-minute tools, not 30-day overhauls</li>
+                <li><strong>Built by ADHD, for ADHD</strong> - We get it because we live it</li>
+                <li><strong>Shame-free zone</strong> - Missed a habit? Forgot a task? You're not alone</li>
+            </ul>
+        </div>
+        
+        <h2>👥 Target Audience</h2>
+        
+        <div class="target-audience">
+            <h3>Primary Listener: "The Inconsistent Overachiever"</h3>
+            
+            <div class="persona">
+                <h4>Demographics</h4>
+                <ul>
+                    <li>Age: 28-45 (primarily millennials)</li>
+                    <li>Gender: 60% women, 40% men (ADHD diagnoses rising in women)</li>
+                    <li>Professional: Knowledge workers, creatives, entrepreneurs, parents</li>
+                    <li>Income: Middle to upper-middle class</li>
+                    <li>Location: US, Canada, UK, Australia (English-speaking)</li>
+                </ul>
+            </div>
+            
+            <div class="persona">
+                <h4>Psychographics</h4>
+                <ul>
+                    <li>Diagnosed with ADHD (or suspects they have it)</li>
+                    <li>High IQ, creative, capable of deep work when interested</li>
+                    <li>Struggles with: consistency, follow-through, time management</li>
+                    <li>Tired of: generic productivity advice, shame-based motivation</li>
+                    <li>Seeks: understanding, practical tools, community</li>
+                    <li>Values: authenticity, efficiency, self-improvement without burnout</li>
+                </ul>
+            </div>
+            
+            <div class="persona">
+                <h4>Pain Points</h4>
+                <ul>
+                    <li>"I know what to do, I just can't make myself do it consistently"</li>
+                    <li>"I start projects with excitement, then abandon them"</li>
+                    <li>"I feel like I'm wasting my potential"</li>
+                    <li>"Other people make it look so easy"</li>
+                    <li>"I've tried every planner/app/system and nothing sticks"</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>🗣️ Voice & Tone</h2>
+        
+        <div class="brand-section">
+            <h3>Voice Characteristics</h3>
+            
+            <div class="do-dont">
+                <div class="do">
+                    <h4>✅ DO</h4>
+                    <ul>
+                        <li>Sound like a knowledgeable friend</li>
+                        <li>Use casual, conversational language</li>
+                        <li>Be encouraging but realistic</li>
+                        <li>Use humor (self-deprecating is OK)</li>
+                        <li>Validate struggles before offering solutions</li>
+                        <li>Keep sentences short and punchy</li>
+                        <li>Use "we" and "us" (community feel)</li>
+                    </ul>
+                </div>
+                <div class="dont">
+                    <h4>❌ DON'T</h4>
+                    <ul>
+                        <li>Sound clinical or academic</li>
+                        <li>Use corporate buzzwords</li>
+                        <li>Be preachy or judgmental</li>
+                        <li>Overpromise or hype results</li>
+                        <li>Use toxic positivity ("just think positive!")</li>
+                        <li>Talk down to listeners</li>
+                        <li>Use "you should" or "just do this"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="brand-section">
+            <h3>Voice Examples</h3>
+            
+            <div class="voice-example good">
+                <h4>✅ Good: Friendly & Understanding</h4>
+                <p>"So you bought another planner, filled it out for three days, and now it's collecting dust on your shelf? Welcome to the club. Let's talk about why that happens and what actually works for ADHD brains."</p>
+            </div>
+            
+            <div class="voice-example bad">
+                <h4>❌ Bad: Clinical & Distant</h4>
+                <p>"Individuals with Attention Deficit Hyperactivity Disorder often struggle with executive function deficits including planning, organization, and task initiation. Research suggests cognitive behavioral therapy can improve outcomes."</p>
+            </div>
+            
+            <div class="voice-example good">
+                <h4>✅ Good: Realistic & Encouraging</h4>
+                <p>"Look, some days you're going to crush it and some days you're going to forget to brush your teeth. Both are part of the ADHD experience. The goal isn't perfection—it's progress, however small."</p>
+            </div>
+            
+            <div class="voice-example bad">
+                <h4>❌ Bad: Toxic Positivity</h4>
+                <p>"You just need to manifest success! Visualize your goals and the universe will provide! Every day is a fresh start and you can do anything you set your mind to!"</p>
+            </div>
+        </div>
+        
+        <h2>🚫 Content Boundaries</h2>
+        
+        <div class="content-boundary">
+            <h4>⚠️ NEVER Cover:</h4>
+            <ul>
+                <li><strong>Medical advice</strong> - No medication recommendations, dosage info, or medical treatment advice</li>
+                <li><strong>Unproven "cures"</strong> - No pseudoscience, miracle supplements, or "one weird trick" content</li>
+                <li><strong>Shame-based motivation</strong> - No "what's your excuse?" or "just try harder" messaging</li>
+                <li><strong>Politics or controversy</strong> - Stay focused on ADHD, avoid divisive topics</li>
+                <li><strong>Other people's stories without permission</strong> - Respect privacy</li>
+            </ul>
+        </div>
+        
+        <div class="content-boundary">
+            <h4>✅ ALWAYS Include:</h4>
+            <ul>
+                <li><strong>Disclaimer</strong> - "This is not medical advice, consult your healthcare provider"</li>
+                <li><strong>Validation</strong> - Acknowledge that ADHD is real and challenging</li>
+                <li><strong>Actionable takeaways</strong> - Every episode should have at least one practical tool</li>
+                <li><strong>Hope without hype</strong> - Realistic optimism, not false promises</li>
+            </ul>
+        </div>
+        
+        <h2>🎨 Content Format Standards</h2>
+        
+        <div class="brand-section">
+            <h3>Episode Structure</h3>
+            <ol>
+                <li><strong>Hook (0:00-1:00)</strong> - Relatable problem or question</li>
+                <li><strong>Validation (1:00-2:00)</strong> - "You're not alone, this is common with ADHD"</li>
+                <li><strong>Main Content (2:00-8:00)</strong> - Insights, strategies, stories</li>
+                <li><strong>2-Minute Tool (8:00-10:00)</strong> - Actionable micro-strategy</li>
+                <li><strong>Outro (10:00-12:00)</strong> - Recap, encouragement, call to action</li>
+            </ol>
+            <p><em>Total runtime: 10-15 minutes (ADHD-friendly length)</em></p>
+        </div>
+        
+        <div class="brand-section">
+            <h3>Signature Segments</h3>
+            <ul>
+                <li><strong>"The 2-Minute Reset"</strong> - Ultra-short actionable tool listeners can do immediately</li>
+                <li><strong>"ADHD Reality Check"</strong> - Honest talk about what actually works vs. what should work</li>
+                <li><strong>"Small Win Spotlight"</strong> - Celebrating listener victories (no matter how small)</li>
+                <li><strong>"The Anti-Planner"</strong> - Systems for people who hate traditional planning</li>
+            </ul>
+        </div>
+        
+        <h2>📱 Visual Brand Elements</h2>
+        
+        <div class="brand-section">
+            <h3>Color Palette</h3>
+            <ul>
+                <li><strong>Primary:</strong> Purple (#764ba2) - Creativity, wisdom, calm</li>
+                <li><strong>Secondary:</strong> Blue (#667eea) - Trust, focus, reliability</li>
+                <li><strong>Accent:</strong> Green (#28a745) - Growth, progress, success</li>
+                <li><strong>Neutral:</strong> Gray (#f8f9fa) - Clean, uncluttered backgrounds</li>
+            </ul>
+        </div>
+        
+        <div class="brand-section">
+            <h3>Typography</h3>
+            <ul>
+                <li><strong>Headers:</strong> Clean sans-serif (Segoe UI, Roboto, or similar)</li>
+                <li><strong>Body:</strong> Readable sans-serif</li>
+                <li><strong>Style:</strong> Modern, friendly, approachable</li>
+            </ul>
+        </div>
+        
+        <div class="brand-section">
+            <h3>Imagery Style</h3>
+            <ul>
+                <li>Warm, authentic photography (not stock-looking)</li>
+                <li>Diverse representation of ADHD adults</li>
+                <li>Organized chaos aesthetic (realistic, not perfect)</li>
+                <li>Minimalist graphics with clean lines</li>
+                <li>Avoid: Clinical imagery, overly happy stock photos, cluttered/busy designs</li>
+            </ul>
+        </div>
+        
+        <h2>🎯 Key Messages</h2>
+        
+        <div class="tagline">
+            "Work with your brain, not against it."
+        </div>
+        
+        <div class="brand-section">
+            <h3>Core Messages to Repeat</h3>
+            <ul>
+                <li>"Small steps count. Progress is progress."</li>
+                <li>"Your brain isn't broken, it's just different."</li>
+                <li>"Consistency beats intensity."</li>
+                <li>"You don't need more motivation, you need better systems."</li>
+                <li>"Done is better than perfect."</li>
+                <li>"It's an ADHD thing. You're not alone."</li>
+            </ul>
+        </div>
+        
+        <h2>✅ Brand Checklist</h2>
+        
+        <div class="brand-section">
+            <h3>Before Publishing Any Content</h3>
+            <ul>
+                <li>☐ Does it sound like a knowledgeable friend?</li>
+                <li>☐ Is it free of medical advice?</li>
+                <li>☐ Does it validate before advising?</li>
+                <li>☐ Is there an actionable takeaway?</li>
+                <li>☐ Is the tone encouraging but realistic?</li>
+                <li>☐ Would it make someone feel less alone?</li>
+                <li>☐ Is it ADHD-friendly length and format?</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
