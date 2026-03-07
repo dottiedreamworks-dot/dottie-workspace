@@ -1,0 +1,124 @@
+{
+  "step": 1,
+  "description": "Research short-term rental content market - competitive analysis",
+  "timestamp": "2026-03-07T12:24:00Z",
+  "status": "completed",
+  "researchFindings": {
+    "marketOverview": {
+      "totalPodcasts": "45+ STR-specific podcasts, 20+ Airbnb-focused shows",
+      "marketMaturity": "Highly saturated - one of the most competitive niches",
+      "industrySize": "$100 billion vacation rental industry",
+      "keyInsight": "Most shows focus on investment/acquisition; few focus on operations/management"
+    },
+    "topCompetitors": [
+      {
+        "name": "Get Paid For Your Pad",
+        "hosts": "Jasper Ribbers, Eric Moeller, Kaye Putnam",
+        "focus": "Pricing strategies, revenue management, direct bookings",
+        "rating": "4.9/5 (900+ reviews)",
+        "differentiation": "Best-selling book author, industry veteran since 2014"
+      },
+      {
+        "name": "Vacation Rental Success",
+        "host": "Heather Bayer",
+        "focus": "Marketing, branding, interior design, guest satisfaction",
+        "rating": "4.7/5 (275 reviews)",
+        "followers": "2.9K Facebook",
+        "avgLength": "50 min",
+        "differentiation": "Former CEO of rental agency, 10+ years experience"
+      },
+      {
+        "name": "The Short Term Show",
+        "host": "Avery Carl",
+        "focus": "STR investing, acquisition strategies",
+        "rating": "4.9/5 (435 reviews)",
+        "followers": "80.2K Instagram",
+        "differentiation": "Millionaire in equity in 3 years, investor focus"
+      },
+      {
+        "name": "Short Term Rental Management",
+        "host": "Luke Carl",
+        "focus": "Remote management, operations",
+        "rating": "4.9/5 (841 reviews)",
+        "avgLength": "32 min",
+        "differentiation": "4000+ stays experience, longest-running Airbnb in Smokies"
+      },
+      {
+        "name": "Thanks for Visiting",
+        "hosts": "Sarah Karakaian & Annette Grant",
+        "focus": "Superhost strategies, fundamentals",
+        "differentiation": "Airbnb Superhosts, advocacy background"
+      },
+      {
+        "name": "Vacation Rental Machine",
+        "hosts": "Jon Bell & Julian Sage",
+        "focus": "Systems, automation, scaling",
+        "differentiation": "Automation focus, time/money freedom"
+      },
+      {
+        "name": "No Vacancy",
+        "host": "Natalie Palmer",
+        "focus": "Behind-the-scenes hosting, lifestyle fit",
+        "rating": "4.9/5 (268 reviews)",
+        "followers": "26.1K Instagram",
+        "differentiation": "Airbnb Ambassador, 26x Superhost, mom perspective"
+      },
+      {
+        "name": "Short Term Rental Secrets",
+        "hosts": "Michael Sjogren & Emanuele Pani",
+        "focus": "Launch, automate, scale for financial freedom",
+        "rating": "4.6/5 (127 reviews)",
+        "differentiation": "Real estate investor focus"
+      }
+    ],
+    "contentGaps": [
+      "Cabin/rustic property specific content (Jayna's expertise)",
+      "Regulatory compliance and legal issues (rapidly changing)",
+      "Small market/rural STR strategies",
+      "Family-friendly hosting (not party houses)",
+      "Sustainable/eco-friendly hosting",
+      "Maintenance systems (beyond basic checklists)",
+      "Direct booking growth for small operators",
+      "Seasonal property management"
+    ],
+    "audienceDemographics": {
+      "primary": "Aspiring and current STR hosts, real estate investors",
+      "secondary": "Property managers, service providers",
+      "painPoints": [
+        "Regulatory uncertainty",
+        "Market saturation in popular areas",
+        "Platform dependency (Airbnb/VRBO)",
+        "Guest screening and problem guests",
+        "Maintenance and turnover logistics",
+        "Pricing optimization",
+        "Direct booking challenges"
+      ],
+      "listeningBehavior": "Want actionable, specific strategies; tired of generic advice"
+    },
+    "monetizationOpportunities": [
+      "Property management software partnerships",
+      "Dynamic pricing tool affiliates",
+      "Cleaning service referrals",
+      "Courses on specific strategies",
+      "Coaching/consulting services",
+      "Digital products (templates, SOPs)",
+      "Property acquisition consulting"
+    ],
+    "differentiationOpportunities": [
+      "Cabin/rustic niche specialization",
+      "Regulatory compliance focus",
+      "Family-friendly hosting angle",
+      "Small market/rural strategies",
+      "Maintenance systems (Jayna's strength)",
+      "AI-automated content for busy hosts"
+    ],
+    "strategicAssessment": {
+      "competitionLevel": "VERY HIGH - 45+ established podcasts",
+      "barrierToEntry": "HIGH - Need unique angle or significant expertise",
+      "contentVelocity": "MEDIUM - Evergreen content works, but regulatory changes require updates",
+      "monetizationPotential": "HIGH - Industry has money, hosts invest in tools/services",
+      "jaynaAdvantage": "Built cabin business from scratch, knows maintenance systems, regulatory experience",
+      "recommendation": "Only pursue if combined with unique angle (cabin niche + maintenance systems) OR as secondary content pillar"
+    }
+  }
+}
