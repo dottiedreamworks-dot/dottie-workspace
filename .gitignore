@@ -11,8 +11,7 @@
 # Node modules
 node_modules/
 
-# Credentials
-gmail_credentials.json
+
 google_auth_url.txt
 oauth_client_id.json
 

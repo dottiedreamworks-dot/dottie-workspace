@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Wins v4 | ADHD-Optimized Micro-Tasks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 2.2rem;
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .card h2 {
+            color: #764ba2;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+        
+        .input-group {
+            margin-bottom: 16px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+        
+        textarea {
+            min-height: 80px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-check {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            width: auto;
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        
+        .btn-skip {
+            background: #e2e8f0;
+            color: #4a5568;
+            width: auto;
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+        
+        .tiny-step {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+            border-left: 4px solid #764ba2;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tiny-step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .tiny-step h3 {
+            color: #4a5568;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .tiny-step p {
+            color: #2d3748;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        
+        .time-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.6);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #764ba2;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        .done-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .done-count {
+            background: #48bb78;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .done-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+        
+        .done-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f7fafc;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .done-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #48bb78;
+            cursor: pointer;
+        }
+        
+        .done-item.completed span {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .done-item .timestamp {
+            font-size: 0.75rem;
+            color: #999;
+            margin-left: auto;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #999;
+            padding: 30px;
+            font-style: italic;
+        }
+        
+        .motivation {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #744210;
+        }
+        
+        .category-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        
+        .pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .pill:hover {
+            border-color: #764ba2;
+            color: #764ba2;
+        }
+        
+        .pill.active {
+            background: #764ba2;
+            border-color: #764ba2;
+            color: white;
+        }
+        
+        .success-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #48bb78;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease;
+            z-index: 1000;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        
+        /* Gamification elements */
+        .stats-bar {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        .streak-flame {
+            color: #ff6b35;
+        }
+        
+        .level-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+            color: #744210;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .celebration {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            animation: celebrate 0.8s ease-out;
+            pointer-events: none;
+            z-index: 2000;
+        }
+        
+        @keyframes celebrate {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Tiny Wins</h1>
+        <p class="subtitle">One micro-task. Zero decision fatigue.</p>
+        
+        <!-- Gamification Stats -->
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-value" id="todayCount">0</div>
+                <div class="stat-label">Today</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value streak-flame" id="streakCount">🔥 0</div>
+                <div class="stat-label">Day Streak</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value" id="totalCount">0</div>
+                <div class="stat-label">Total Wins</div>
+            </div>
+        </div>
+        
+        <div class="motivation" id="motivation">
+            💡 Consistency beats intensity. A 2-minute action today beats a perfect plan tomorrow.
+        </div>
+        
+        <div class="card">
+            <div class="level-badge" id="levelBadge">🌱 Seedling</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="levelProgress" style="width: 0%"></div>
+            </div>
+            
+            <h2 style="margin-top: 16px;">What big thing are you thinking about?</h2>
+            <p style="color: #666; margin-bottom: 16px; font-size: 0.9rem;">
+                Don't hold back. "Launch a business," "organize the entire house," "learn to code" — go big.
+            </p>
+            
+            <div class="category-pills">
+                <span class="pill active" data-category="home">🏠 Home</span>
+                <span class="pill" data-category="selfcare">💆 Self-Care</span>
+                <span class="pill" data-category="admin">📋 Admin</span>
+                <span class="pill" data-category="work">💼 Work</span>
+                <span class="pill" data-category="social">👥 Social</span>
+                <span class="pill" data-category="learning">📚 Learning</span>
+                <span class="pill" data-category="creative">🎨 Creative</span>
+            </div>
+            
+            <div class="input-group">
+                <textarea id="bigIdea" placeholder="I want to..."></textarea>
+            </div>
+            
+            <button class="btn" onclick="generateTinyStep()">
+                ✨ Make It Tiny
+            </button>
+            
+            <div id="result"></div>
+        </div>
+        
+        <div class="card done-section">
+            <h2>
+                ✅ Done List
+                <span class="done-count" id="doneCount">0</span>
+            </h2>
+            <div class="input-group" style="display: flex; gap: 10px;">
+                <input type="text" id="newDone" placeholder="What did you actually do? (e.g., 'Took out trash')" 
+                       style="flex: 1;" onkeypress="if(event.key==='Enter') addDone()">
+                <button class="btn" onclick="addDone()" id="addBtn" style="width: auto; padding: 12px 20px;">+</button>
+            </div>
+            <div id="errorMsg" class="error-message"></div>
+            <ul class="done-list" id="doneList">
+                <li class="empty-state">No wins yet today. That's okay — even getting out of bed counts.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Backend task database - 7 categories, 10 tasks each
+        const taskDatabase = {
+            home: [
+                "Put one thing back where it belongs",
+                "Wipe one surface (counter, table, or shelf)",
+                "Take out the trash bag",
+                "Put one load of laundry in the washer",
+                "Clean one toilet, sink, or mirror",
+                "Vacuum one room or one corner",
+                "Make your bed",
+                "Water one plant",
+                "Take 3 things off the floor and put them away",
+                "Switch laundry from washer to dryer"
+            ],
+            selfcare: [
+                "Brush your teeth",
+                "Wash your face",
+                "Take a 2-minute shower",
+                "Drink one full glass of water",
+                "Take your medication",
+                "Step outside for fresh air",
+                "Stretch for 60 seconds",
+                "Put on real clothes (not pajamas)",
+                "Comb or brush your hair",
+                "Apply lotion or sunscreen"
+            ],
+            admin: [
+                "Delete 5 emails",
+                "Pay one bill",
+                "Make one appointment",
+                "File one piece of paper",
+                "Send one text you've been avoiding",
+                "Set a timer for 10 minutes of paperwork",
+                "Write one thank you note",
+                "Return one phone call",
+                "Add one event to your calendar",
+                "Decline one meeting you don't need"
+            ],
+            work: [
+                "Open the document and read one paragraph",
+                "Send one work email",
+                "Write down 3 things you did today",
+                "Schedule one meeting",
+                "Research one question for 5 minutes",
+                "Draft one paragraph",
+                "Set a 10-minute timer and work",
+                "Close 5 browser tabs",
+                "Organize one desktop folder",
+                "Back up one important file"
+            ],
+            social: [
+                "Text one friend 'thinking of you'",
+                "Schedule one coffee date",
+                "Call a family member for 5 minutes",
+                "Send one thank you message",
+                "Reply to one message you've been avoiding",
+                "Invite someone to do something specific",
+                "Check in on one person you care about",
+                "Send a funny meme to someone",
+                "Write a quick appreciation note",
+                "Set a date to see someone in person"
+            ],
+            learning: [
+                "Read one page of a book",
+                "Watch one 5-minute tutorial video",
+                "Write down one question you have",
+                "Research one topic for 5 minutes",
+                "Practice one skill for 5 minutes",
+                "Take notes on one concept",
+                "Find one example of what you're learning",
+                "Explain what you learned out loud",
+                "Set a learning goal for the week",
+                "Review notes from yesterday"
+            ],
+            creative: [
+                "Doodle for 2 minutes",
+                "Write one sentence",
+                "Take one photo",
+                "Play one song on an instrument",
+                "Sketch one idea",
+                "Brainstorm 3 ideas",
+                "Organize one creative supply",
+                "Look at art for inspiration (5 min)",
+                "Write down one creative goal",
+                "Start one creative project for 5 minutes"
+            ],
+            default: [
+                "Write down the smallest possible version of this goal",
+                "Set a 2-minute timer and work until it rings",
+                "Break this into 3 tiny steps",
+                "Text someone: 'Working on this for 5 min'",
+                "Set a 5-minute timer and work until it rings",
+                "Ask: 'What would this look like if it were easy?'",
+                "Write down ONE thing you could do in 2 minutes",
+                "Open the document and look at it for 60 seconds",
+                "Write down 3 questions you have",
+                "Find one example of someone who's done this"
+            ]
+        };
+        
+        const motivations = [
+            "💡 Consistency beats intensity. A 2-minute action today beats a perfect plan tomorrow.",
+            "🌱 You don't need to finish. You just need to start.",
+            "✨ Done is better than perfect. Way better.",
+            "🎯 Small steps compound. Today's 2 minutes is tomorrow's momentum.",
+            "💪 You don't need more motivation. You need smaller tasks.",
+            "🌟 Progress, not perfection. Always.",
+            "🎉 Celebrate showing up, not just the outcome.",
+            "⚡ The best time to start was yesterday. The second best is right now."
+        ];
+        
+        // Level progression system
+        const levels = [
+            { name: "🌱 Seedling", min: 0 },
+            { name: "🌿 Sprout", min: 5 },
+            { name: "🌾 Growing", min: 15 },
+            { name: "🌳 Thriving", min: 30 },
+            { name: "🌻 Blooming", min: 50 },
+            { name: "⭐ Achiever", min: 75 },
+            { name: "🚀 Unstoppable", min: 100 }
+        ];
+        
+        const celebrations = ["🎉", "✨", "🌟", "💪", "🎯", "🔥", "⭐", "🏆"];
+        
+        let currentCategory = 'home';
+        let doneItems = [];
+        let storageAvailable = false;
+        let currentTask = null;
+        let stats = { today: 0, streak: 0, total: 0, lastDate: null };
+        
+        // Check if localStorage is available
+        try {
+            localStorage.setItem('test', 'test');
+            localStorage.removeItem('test');
+            storageAvailable = true;
+            doneItems = JSON.parse(localStorage.getItem('tinyWins') || '[]');
+            stats = JSON.parse(localStorage.getItem('tinyWinsStats') || JSON.stringify(stats));
+            checkAndResetDailyStats();
+        } catch (e) {
+            console.log('localStorage not available');
+            storageAvailable = false;
+        }
+        
+        function checkAndResetDailyStats() {
+            const today = new Date().toDateString();
+            if (stats.lastDate !== today) {
+                // Check if yesterday had activity for streak
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                if (stats.lastDate !== yesterday.toDateString() && stats.streak > 0) {
+                    stats.streak = 0; // Reset streak if missed a day
+                }
+                stats.today = 0;
+                stats.lastDate = today;
+                saveStats();
+            }
+        }
+        
+        function saveStats() {
+            if (storageAvailable) {
+                localStorage.setItem('tinyWinsStats', JSON.stringify(stats));
+            }
+            updateStatsDisplay();
+            updateLevel();
+        }
+        
+        function updateStatsDisplay() {
+            document.getElementById('todayCount').textContent = stats.today;
+            document.getElementById('streakCount').textContent = '🔥 ' + stats.streak;
+            document.getElementById('totalCount').textContent = stats.total;
+        }
+        
+        function updateLevel() {
+            let currentLevel = levels[0];
+            let nextLevel = levels[1];
+            
+            for (let i = levels.length - 1; i >= 0; i--) {
+                if (stats.total >= levels[i].min) {
+                    currentLevel = levels[i];
+                    nextLevel = levels[i + 1] || null;
+                    break;
+                }
+            }
+            
+            document.getElementById('levelBadge').textContent = currentLevel.name;
+            
+            if (nextLevel) {
+                const progress = ((stats.total - currentLevel.min) / (nextLevel.min - currentLevel.min)) * 100;
+                document.getElementById('levelProgress').style.width = progress + '%';
+            } else {
+                document.getElementById('levelProgress').style.width = '100%';
+            }
+        }
+        
+        function showCelebration() {
+            const emoji = celebrations[Math.floor(Math.random() * celebrations.length)];
+            const el = document.createElement('div');
+            el.className = 'celebration';
+            el.textContent = emoji;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 800);
+        }
+        
+        // Category selection
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+            });
+        });
+        
+        // Rotate motivation
+        setInterval(() => {
+            const idx = Math.floor(Math.random() * motivations.length);
+            const el = document.getElementById('motivation');
+            if (el) el.textContent = motivations[idx];
+        }, 10000);
+        
+        function generateTinyStep() {
+            // No need to type anything - just generate from category
+            const templates = taskDatabase[currentCategory] || taskDatabase.default;
+            currentTask = templates[Math.floor(Math.random() * templates.length)];
+            
+            document.getElementById('result').innerHTML = `
+                <div class="tiny-step">
+                    <div class="tiny-step-header">
+                        <h3>Your Tiny Next Step</h3>
+                        <div>
+                            <button class="btn btn-skip" onclick="generateTinyStep()" title="Get different task">↻</button>
+                            <button class="btn btn-check" onclick="addTaskToDone()" title="Mark as done">✓</button>
+                        </div>
+                    </div>
+                    <p>${escapeHtml(currentTask)}</p>
+                    <span class="time-badge">⏱️ 2-5 minutes max</span>
+                </div>
+            `;
+        }
+        
+        function addTaskToDone() {
+            if (!currentTask) return;
+            
+            const item = {
+                text: currentTask,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                id: Date.now()
+            };
+            
+            doneItems.unshift(item);
+            
+            // Update stats
+            stats.today++;
+            stats.total++;
+            if (stats.today === 1 && stats.streak === 0) {
+                stats.streak = 1; // First win of a new streak
+            }
+            saveStats();
+            
+            if (storageAvailable) {
+                localStorage.setItem('tinyWins', JSON.stringify(doneItems));
+            }
+            
+            renderDoneList();
+            showCelebration();
+            showToast('Win added! 🎉');
+            
+            // Clear the result after adding
+            document.getElementById('result').innerHTML = '';
+            currentTask = null;
+        }
+        
+        function addDone() {
+            const input = document.getElementById('newDone');
+            const btn = document.getElementById('addBtn');
+            const errorMsg = document.getElementById('errorMsg');
+            const text = input.value.trim();
+            
+            errorMsg.textContent = '';
+            
+            if (!text) {
+                errorMsg.textContent = 'Type something you did first!';
+                input.focus();
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.textContent = '...';
+            
+            try {
+                const item = {
+                    text: text,
+                    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    id: Date.now()
+                };
+                
+                doneItems.unshift(item);
+                
+                // Update stats
+                stats.today++;
+                stats.total++;
+                if (stats.today === 1 && stats.streak === 0) {
+                    stats.streak = 1;
+                }
+                saveStats();
+                
+                if (storageAvailable) {
+                    localStorage.setItem('tinyWins', JSON.stringify(doneItems));
+                }
+                
+                renderDoneList();
+                showCelebration();
+                input.value = '';
+                showToast('Win added! 🎉');
+                
+            } catch (err) {
+                console.error('Error adding item:', err);
+                errorMsg.textContent = 'Something went wrong. Try again!';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '+';
+            }
+        }
+        
+        function renderDoneList() {
+            const list = document.getElementById('doneList');
+            const count = document.getElementById('doneCount');
+            
+            count.textContent = doneItems.length;
+            
+            if (doneItems.length === 0) {
+                list.innerHTML = '<li class="empty-state">No wins yet today. That\'s okay — even getting out of bed counts.</li>';
+                return;
+            }
+            
+            list.innerHTML = doneItems.map(item => `
+                <li class="done-item">
+                    <input type="checkbox" checked disabled>
+                    <span>${escapeHtml(item.text)}</span>
+                    <span class="timestamp">${item.time}</span>
+                </li>
+            `).join('');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function showToast(message, type = 'success') {
+            const existing = document.querySelector('.success-toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'success-toast';
+            toast.style.background = type === 'error' ? '#e53e3e' : '#48bb78';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+        
+        // Initial render
+        updateStatsDisplay();
+        updateLevel();
+        renderDoneList();
+    </script>
+</body>
+</html>

@@ -157,6 +157,15 @@
       "error": null
     }
   ],
-  "backlog": [],
+  "backlog": [
+    {
+      "id": "cleanup-001",
+      "status": "pending",
+      "type": "workspace_cleanup",
+      "description": "Consolidate all project files into projects/ folder - ensure everything is in one place",
+      "created": "2026-03-07T03:45:00Z",
+      "notes": "Tiny Wins folder moved to projects/tiny-wins/. Check for any other folders outside projects/ that should be consolidated."
+    }
+  ],
   "improvementQueue": []
 }
