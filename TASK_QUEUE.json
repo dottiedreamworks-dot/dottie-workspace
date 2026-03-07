@@ -1,8 +1,8 @@
 {
   "version": "1.0",
   "meta": {
-    "lastUpdated": "2026-03-07T00:20:00Z",
-    "activeTask": "research-001",
+    "lastUpdated": "2026-03-07T00:23:00Z",
+    "activeTask": "travel-001",
     "completedToday": 0,
     "totalTasks": 3
   },
@@ -35,24 +35,33 @@
     },
     {
       "id": "travel-001",
-      "status": "pending",
+      "status": "in_progress",
       "type": "travel_research",
       "description": "Research flight options to Korea and alternative meeting locations",
       "created": "2026-03-06T16:31:00Z",
-      "started": null,
+      "started": "2026-03-07T00:23:00Z",
       "completed": null,
-      "progress": 0,
-      "checkpoints": [],
+      "progress": 25,
+      "checkpoints": [
+        {"step": 1, "description": "Research flights from Nashville to all destinations", "status": "completed", "timestamp": "2026-03-07T00:23:00Z"}
+      ],
       "subtasks": [
-        {"id": "travel-001-1", "description": "Research flights from Nashville (BNA) to Seoul", "status": "pending"},
-        {"id": "travel-001-2", "description": "Research flights from Nashville to Hawaii", "status": "pending"},
-        {"id": "travel-001-3", "description": "Research flights from Nashville to Philippines", "status": "pending"},
-        {"id": "travel-001-4", "description": "Research flights from Nashville to Australia", "status": "pending"},
+        {"id": "travel-001-1", "description": "Research flights from Nashville (BNA) to Seoul", "status": "completed"},
+        {"id": "travel-001-2", "description": "Research flights from Nashville to Hawaii", "status": "completed"},
+        {"id": "travel-001-3", "description": "Research flights from Nashville to Philippines", "status": "completed"},
+        {"id": "travel-001-4", "description": "Research flights from Nashville to Australia", "status": "completed"},
         {"id": "travel-001-5", "description": "Research flights from Seoul to each alternative location", "status": "pending"},
         {"id": "travel-001-6", "description": "Calculate total costs for each scenario", "status": "pending"},
         {"id": "travel-001-7", "description": "Create comparison report with recommendations", "status": "pending"}
       ],
-      "results": {},
+      "results": {
+        "nashville_flights": {
+          "seoul": {"round_trip": "$1,015-$1,500", "one_way": "$383+"},
+          "hawaii": {"round_trip": "$634-$800", "one_way": "$205+"},
+          "philippines": {"round_trip": "$850-$1,200", "one_way": "$427+"},
+          "australia": {"round_trip": "$1,400-$1,800", "one_way": "$464+"}
+        }
+      },
       "error": null
     },
     {

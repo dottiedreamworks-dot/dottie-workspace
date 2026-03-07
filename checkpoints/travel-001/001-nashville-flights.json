@@ -1,0 +1,35 @@
+{
+  "step": 1,
+  "description": "Research flights from Nashville to all destinations",
+  "timestamp": "2026-03-07T00:23:00Z",
+  "status": "completed",
+  "results": {
+    "nashville_to_seoul": {
+      "route": "BNA → ICN (Seoul)",
+      "one_way_min": "$383",
+      "round_trip_range": "$1,015 - $9,769",
+      "typical_round_trip": "$1,015 - $1,500",
+      "airlines": "Korean Air, Air Canada, American, United"
+    },
+    "nashville_to_hawaii": {
+      "route": "BNA → HNL (Honolulu)",
+      "one_way_min": "$205",
+      "round_trip_range": "$634 - $2,025",
+      "typical_round_trip": "$634 - $800",
+      "airlines": "Southwest, Delta, American"
+    },
+    "nashville_to_philippines": {
+      "route": "BNA → MNL (Manila)",
+      "one_way_min": "$427",
+      "round_trip_estimate": "$850 - $1,200",
+      "airlines": "China Eastern, STARLUX, Philippine Airlines"
+    },
+    "nashville_to_australia": {
+      "route": "BNA → SYD (Sydney)",
+      "one_way_min": "$464",
+      "round_trip_range": "$1,006 - $9,954",
+      "typical_round_trip": "$1,400 - $1,800",
+      "notes": "No direct flights, 1+ stops required"
+    }
+  }
+}
