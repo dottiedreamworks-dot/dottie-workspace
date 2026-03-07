@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Empire Implementation Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        .executive-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        .executive-summary h2 {
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+        tr:hover {
+            background: #f5f5f5;
+        }
+        .cost-highlight {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        .warning-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+        }
+        .tool-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        .tool-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .pricing-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+        .pricing-card.recommended {
+            border-color: #28a745;
+            background: linear-gradient(135deg, #f8fff8 0%, #f0f8f0 100%);
+        }
+        .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        .comparison-table {
+            font-size: 0.9em;
+        }
+        .yes { color: #28a745; font-weight: bold; }
+        .no { color: #dc3545; }
+        .maybe { color: #ffc107; }
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .roadmap {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        .roadmap-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .roadmap-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎙️ Audio Empire Implementation Guide</h1>
+        <p class="subtitle">Complete Technical Blueprint for Autonomous Audio Content Production</p>
+        <p class="subtitle">March 7, 2026</p>
+
+        <div class="executive-summary">
+            <h2>Executive Summary</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;">Building a fully autonomous audio empire requires a stack of AI tools, automation platforms, and strategic decisions about human involvement vs. automation.</p>
+            <p><strong>Bottom Line:</strong> You can launch with ~$100-200/month in tools. Full autonomy requires n8n or Make.com for orchestration + sub-agents for content generation. Jayna's role: voice samples, brand guidelines, and quality review.</p>
+        </div>
+
+        <div class="section">
+            <h2>💰 Monthly Cost Breakdown</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter Stack</h3>
+                    <div class="price">$45/mo</div>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>ElevenLabs Creator ($11)</li>
+                        <li>RSS.com Hosting ($12)</li>
+                        <li>n8n Cloud Starter ($20)</li>
+                        <li>GitHub (free)</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Testing one niche</p>
+                </div>
+                
+                <div class="pricing-card recommended">
+                    <h3>Professional</h3>
+                    <div class="price">$135/mo</div>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>ElevenLabs Pro ($99)</li>
+                        <li>RSS.com Hosting ($12)</li>
+                        <li>n8n Cloud Pro ($50)</li>
+                        <li>Claude API (~$20)</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Multi-show production</p>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$400+/mo</div>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>ElevenLabs Scale ($330)</li>
+                        <li>RSS.com Unlimited ($20)</li>
+                        <li>n8n Self-Hosted ($50)</li>
+                        <li>Multiple AI APIs ($50+)</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Full agency model</p>
+                </div>
+            </div>
+
+            <div class="cost-highlight">
+                <h3>💡 Recommended Starting Point: $135/month</h3>
+                <p>This gives you enough capacity for 3-4 shows with daily episodes, professional voice quality, and full automation capabilities.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎙️ Audio Production Stack</h2>
+            
+            <div class="tool-card">
+                <h4>ElevenLabs (Voice Generation) - REQUIRED</h4>
+                <p><strong>What it does:</strong> Converts text to human-like speech with emotional range, pacing control, and voice cloning.</p>
+                <p><strong>Pricing:</strong></p>
+                <ul>
+                    <li>Free: 10k credits (~10 min audio)</li>
+                    <li>Starter: $5/mo - 30k credits (~30 min)</li>
+                    <li>Creator: $11/mo - 100k credits (~100 min) ⭐ <strong>Recommended</strong></li>
+                    <li>Pro: $99/mo - 500k credits (~500 min)</li>
+                </ul>
+                <p><strong>Jayna needs to provide:</strong> Voice samples for cloning (30 min of clear speech) OR select from professional voice library.</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>Wondercraft / Podcastle (Alternative)</h4>
+                <p><strong>Wondercraft:</strong> AI podcast generator with script-to-podcast workflow. Good for beginners.</p>
+                <p><strong>Podcastle:</strong> All-in-one audio studio with AI voice cloning and editing.</p>
+                <p><strong>Verdict:</strong> ElevenLabs has best voice quality. Use Wondercraft for faster workflow if quality is less critical.</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>Music & Sound Effects</h4>
+                <p><strong>Options:</strong></p>
+                <ul>
+                    <li>ElevenLabs Sound Effects (included in credits)</li>
+                    <li>Epidemic Sound: $15/mo for royalty-free music</li>
+                    <li>Artlist: $17/mo for music + SFX</li>
+                    <li>Free: YouTube Audio Library, Free Music Archive</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📡 Distribution & Hosting</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Cost</th>
+                        <th>Storage</th>
+                        <th>Best For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RSS.com</strong></td>
+                        <td>$11.99/mo (annual)</td>
+                        <td>Unlimited</td>
+                        <td>⭐ Best value, auto-distribution</td>
+                    </tr>
+                    <tr>
+                        <td>Buzzsprout</td>
+                        <td>$19-79/mo</td>
+                        <td>4-35 hrs/month</td>
+                        <td>Detailed analytics</td>
+                    </tr>
+                    <tr>
+                        <td>Anchor (Spotify)</td>
+                        <td>Free</td>
+                        <td>Unlimited</td>
+                        <td>Budget option, Spotify only</td>
+                    </tr>
+                    <tr>
+                        <td>Transistor</td>
+                        <td>$19-99/mo</td>
+                        <td>Unlimited</td>
+                        <td>Multiple shows</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <strong>⚠️ Important:</strong> Apple takes 30-35% of subscription revenue. Spotify takes 50%. Factor this into monetization planning.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🤖 Sub-Agent Architecture</h2>
+            
+            <h3>Option 1: n8n (Recommended for Technical Users)</h3>
+            <div class="tool-card">
+                <h4>n8n - Workflow Automation with AI Agents</h4>
+                <p><strong>Pricing:</strong></p>
+                <ul>
+                    <li>Self-hosted: FREE (you manage server)</li>
+                    <li>Cloud Starter: $20/mo (2.5k workflow executions)</li>
+                    <li>Cloud Pro: $50/mo (10k executions)</li>
+                </ul>
+                <p><strong>Pros:</strong></p>
+                <ul>
+                    <li>Full control over workflows</li>
+                    <li>400+ integrations (RSS, APIs, databases)</li>
+                    <li>AI Agent nodes for LLM orchestration</li>
+                    <li>Can spawn sub-workflows (sub-agents)</li>
+                    <li>Self-hosted option = unlimited scale</li>
+                </ul>
+                <p><strong>Cons:</strong></p>
+                <ul>
+                    <li>Steeper learning curve</li>
+                    <li>Self-hosted requires technical setup</li>
+                </ul>
+                <p><strong>Best for:</strong> Complex multi-step automation, technical users, cost-conscious at scale</p>
+            </div>
+
+            <h3>Option 2: Make.com (Formerly Integromat)</h3>
+            <div class="tool-card">
+                <h4>Make.com - Visual Workflow Builder</h4>
+                <p><strong>Pricing:</strong></p>
+                <ul>
+                    <li>Free: 1,000 operations/mo</li>
+                    <li>Core: $9/mo (10,000 ops)</li>
+                    <li>Pro: $16/mo (10,000 ops, more features)</li>
+                    <li>Teams: $29/mo (10,000 ops, collaboration)</li>
+                </ul>
+                <p><strong>Pros:</strong></p>
+                <ul>
+                    <li>Easier visual interface</li>
+                    <li>More intuitive for beginners</li>
+                    <li>Good template library</li>
+                </ul>
+                <p><strong>Cons:</strong></p>
+                <ul>
+                    <li>Less flexible than n8n</li>
+                    <li>More expensive at scale</li>
+                    <li>Limited AI agent capabilities</li>
+                </ul>
+                <p><strong>Best for:</strong> Beginners, simpler workflows, faster setup</p>
+            </div>
+
+            <h3>Option 3: Claude Code / OpenAI Codex (Development Agents)</h3>
+            <div class="tool-card">
+                <h4>AI Coding Agents for Custom Solutions</h4>
+                <p><strong>Claude Code:</strong></p>
+                <ul>
+                    <li>Runs locally in terminal</li>
+                    <li>Continuous execution (doesn't stop every step)</li>
+                    <li>Best for: Building custom automation scripts</li>
+                    <li>Cost: Included with Claude Pro ($20/mo)</li>
+                </ul>
+                <p><strong>OpenAI Codex:</strong></p>
+                <ul>
+                    <li>Cloud-based via GitHub</li>
+                    <li>Stops frequently for approval</li>
+                    <li>Best for: GitHub-integrated workflows</li>
+                    <li>Cost: Usage-based</li>
+                </ul>
+                <p><strong>Verdict:</strong> Use these to BUILD your automation, not run it. Build custom scripts that n8n/Make can orchestrate.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔄 Recommended Architecture</h2>
+            
+            <div class="roadmap">
+                <h3>Autonomous Audio Production Pipeline</h3>
+                
+                <div class="roadmap-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4>Content Research Agent (n8n)</h4>
+                        <p>Runs daily to scrape trends, Reddit discussions, news in your niche. Generates 5-10 topic ideas. Stores in Airtable/Notion.</p>
+                        <p><strong>Tools:</strong> n8n + RSS feeds + Reddit API + NewsAPI</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4>Script Writing Agent (Claude API)</h4>
+                        <p>Takes topic from queue → Writes 5-10 minute script → Stores in Google Docs. Runs 2x daily.</p>
+                        <p><strong>Tools:</strong> n8n + Claude API + Google Docs</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4>Voice Generation (ElevenLabs API)</h4>
+                        <p>Converts script to audio → Adds intro/outro music → Normalizes audio. Fully automated.</p>
+                        <p><strong>Tools:</strong> n8n + ElevenLabs API + Audio processing</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4>Distribution Agent (RSS.com API)</h4>
+                        <p>Uploads episode → Updates RSS → Distributes to Spotify, Apple, etc. → Posts to social media.</p>
+                        <p><strong>Tools:</strong> n8n + RSS.com + Social media APIs</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <h4>Analytics & Optimization</h4>
+                        <p>Tracks downloads, reviews, engagement. Generates weekly report. Suggests topic adjustments.</p>
+                        <p><strong>Tools:</strong> n8n + Podcast analytics APIs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👤 What Jayna Needs to Provide</h2>
+            
+            <h3>Required (One-Time Setup)</h3>
+            <ul>
+                <li><strong>Voice samples:</strong> 30 minutes of clear speech for cloning (OR select professional voice)</li>
+                <li><strong>Brand guidelines:</strong> Tone, style, intro/outro scripts, music preferences</li>
+                <li><strong>Content boundaries:</strong> Topics to avoid, expertise areas, personal stories to include</li>
+                <li><strong>Review process:</strong> How many episodes to review before full automation</li>
+            </ul>
+
+            <h3>Ongoing (Minimal)</h3>
+            <ul>
+                <li><strong>Quality review:</strong> Spot-check 1-2 episodes/week initially</li>
+                <li><strong>Topic approval:</strong> Review and approve generated topic queue weekly</li>
+                <li><strong>Personal updates:</strong> Share new experiences/stories for content freshness</li>
+                <li><strong>Monetization decisions:</strong> Sponsor approvals, product recommendations</li>
+            </ul>
+
+            <h3>What Can Be Fully Automated</h3>
+            <ul>
+                <li>✅ Topic research and trend monitoring</li>
+                <li>✅ Script writing (with style guidelines)</li>
+                <li>✅ Voice generation and audio production</li>
+                <li>✅ Publishing and distribution</li>
+                <li>✅ Social media promotion</li>
+                <li>✅ Analytics tracking and reporting</li>
+                <li>✅ Email newsletter generation</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Implementation Roadmap</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Timeline</th>
+                        <th>Tasks</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Phase 1: Foundation</strong></td>
+                        <td>Week 1-2</td>
+                        <td>Choose niche, set up RSS.com, create brand guidelines, record voice samples</td>
+                        <td>$12</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 2: Manual Testing</strong></td>
+                        <td>Week 3-4</td>
+                        <td>Manually create 5-10 episodes, test voice, refine style, get feedback</td>
+                        <td>$11</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 3: Automation Setup</strong></td>
+                        <td>Week 5-6</td>
+                        <td>Build n8n workflows, integrate APIs, test automation pipeline</td>
+                        <td>$31</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 4: Semi-Autonomous</strong></td>
+                        <td>Month 2-3</td>
+                        <td>Automate script + voice, Jayna reviews before publish, refine workflows</td>
+                        <td>$135/mo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phase 5: Full Autonomy</strong></td>
+                        <td>Month 4+</td>
+                        <td>Fully automated pipeline, Jayna spot-checks weekly, scale to multiple shows</td>
+                        <td>$135/mo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>⚠️ Critical Decisions</h2>
+            
+            <div class="warning-box">
+                <h3>Decision 1: Voice Cloning vs. Professional Voice</h3>
+                <p><strong>Cloning Jayna's voice:</strong> More personal, builds brand equity, but requires good samples and Jayna's comfort.</p>
+                <p><strong>Professional voice:</strong> Faster setup, consistent quality, but less personal connection.</p>
+                <p><strong>Recommendation:</strong> Start with professional voice, clone Jayna's later if desired.</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>Decision 2: Single vs. Multiple Shows</h3>
+                <p><strong>Single show:</strong> Focused effort, easier to build audience, lower costs.</p>
+                <p><strong>Multiple shows:</strong> Diversified income, broader reach, but requires more automation complexity.</p>
+                <p><strong>Recommendation:</strong> Start with one show, automate fully, then replicate for second niche.</p>
+            </div>
+
+            <div class="warning-box">
+                <h3>Decision 3: n8n Self-Hosted vs. Cloud</h3>
+                <p><strong>Self-hosted:</strong> Free, unlimited executions, but requires server management (~$5-10/mo for VPS).</p>
+                <p><strong>Cloud:</strong> $20-50/mo, zero maintenance, but execution limits.</p>
+                <p><strong>Recommendation:</strong> Start with Cloud for speed, migrate to self-hosted when scaling.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 Success Metrics</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Month 1</th>
+                        <th>Month 3</th>
+                        <th>Month 6</th>
+                        <th>Month 12</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Episodes Published</td>
+                        <td>10</td>
+                        <td>60</td>
+                        <td>120</td>
+                        <td>240</td>
+                    </tr>
+                    <tr>
+                        <td>Downloads/Month</td>
+                        <td>100</td>
+                        <td>1,000</td>
+                        <td>5,000</td>
+                        <td>15,000</td>
+                    </tr>
+                    <tr>
+                        <td>Jayna Hours/Week</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0.5</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Cost</td>
+                        <td>$135</td>
+                        <td>$135</td>
+                        <td>$200</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>Revenue Potential</td>
+                        <td>$0</td>
+                        <td>$100</td>
+                        <td>$500</td>
+                        <td>$2,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Final Recommendations</h2>
+            
+            <div class="cost-highlight">
+                <h3>Start With This Stack ($135/month):</h3>
+                <ul>
+                    <li><strong>ElevenLabs Creator:</strong> $11/mo (100k credits = ~100 min audio)</li>
+                    <li><strong>RSS.com:</strong> $12/mo (unlimited hosting)</li>
+                    <li><strong>n8n Cloud Pro:</strong> $50/mo (10k workflow executions)</li>
+                    <li><strong>Claude API:</strong> ~$20/mo (script generation)</li>
+                    <li><strong>Artlist:</strong> $17/mo (music + SFX)</li>
+                    <li><strong>Buffer/Later:</strong> $15/mo (social scheduling)</li>
+                </ul>
+            </div>
+
+            <h3>Next Steps:</h3>
+            <ol>
+                <li>Choose your first niche (Perimenopause or ADHD recommended)</li>
+                <li>Set up RSS.com and create show artwork</li>
+                <li>Record 30 min voice samples OR select professional voice</li>
+                <li>Manually create 5 episodes to establish style</li>
+                <li>Build n8n automation workflow</li>
+                <li>Launch and iterate</li>
+            </ol>
+
+            <p style="margin-top: 20px; font-size: 1.1em;"><strong>Timeline to full autonomy:</strong> 3-4 months with consistent effort.</p>
+        </div>
+
+        <div class="footer">
+            <p>Report generated by Dottie | March 7, 2026</p>
+            <p>Based on current pricing and capabilities as of March 2026</p>
+        </div>
+    </div>
+</body>
+</html>
