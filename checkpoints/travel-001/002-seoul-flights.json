@@ -1,0 +1,26 @@
+{
+  "step": 2,
+  "description": "Research flights from Seoul to alternative locations",
+  "timestamp": "2026-03-07T00:26:00Z",
+  "status": "completed",
+  "results": {
+    "seoul_to_hawaii": {
+      "route": "ICN → HNL (Honolulu)",
+      "one_way_min": "$253",
+      "round_trip_estimate": "$600 - $800",
+      "airlines": "Air Premia, Korean Air, Asiana"
+    },
+    "seoul_to_philippines": {
+      "route": "ICN → MNL (Manila)",
+      "one_way_min": "$67",
+      "round_trip_estimate": "$133 - $200",
+      "airlines": "Jeju Air, Cebu Pacific, Philippine Airlines"
+    },
+    "seoul_to_australia": {
+      "route": "ICN → SYD (Sydney)",
+      "one_way_min": "$152",
+      "round_trip_estimate": "$362 - $500",
+      "airlines": "Jetstar, Korean Air, Asiana"
+    }
+  }
+}

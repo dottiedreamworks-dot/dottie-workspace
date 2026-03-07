@@ -1,0 +1,57 @@
+{
+  "step": 3,
+  "description": "Calculate total costs for each scenario",
+  "timestamp": "2026-03-07T00:26:30Z",
+  "status": "completed",
+  "results": {
+    "scenario_comparisons": {
+      "option_1_direct_seoul": {
+        "description": "Nashville → Seoul (round-trip)",
+        "flight_cost": "$1,015 - $1,500",
+        "total_estimate": "$1,015 - $1,500",
+        "pros": ["Direct meeting in Seoul", "Simplest itinerary", "Korean Air has good Nashville connections"],
+        "cons": ["Most expensive option", "Long flight (~14-16 hours)"]
+      },
+      "option_2_seoul_plus_hawaii": {
+        "description": "Nashville → Seoul + Seoul → Hawaii",
+        "flight_cost": "$1,615 - $2,300",
+        "breakdown": {
+          "nashville_to_seoul": "$1,015 - $1,500 (round-trip)",
+          "seoul_to_hawaii": "$600 - $800 (round-trip)"
+        },
+        "total_estimate": "$1,615 - $2,300",
+        "pros": ["Meet in Seoul, vacation in Hawaii", "Hawaii is relaxing after business", "Good flight connections"],
+        "cons": ["More expensive", "Two long-haul flights"]
+      },
+      "option_3_seoul_plus_philippines": {
+        "description": "Nashville → Seoul + Seoul → Philippines",
+        "flight_cost": "$1,148 - $1,700",
+        "breakdown": {
+          "nashville_to_seoul": "$1,015 - $1,500 (round-trip)",
+          "seoul_to_philippines": "$133 - $200 (round-trip)"
+        },
+        "total_estimate": "$1,148 - $1,700",
+        "pros": ["Cheapest add-on destination", "Beautiful beaches", "English widely spoken"],
+        "cons": ["Weather can be hot/humid in June", "Less developed infrastructure"]
+      },
+      "option_4_seoul_plus_australia": {
+        "description": "Nashville → Seoul + Seoul → Australia",
+        "flight_cost": "$1,377 - $2,000",
+        "breakdown": {
+          "nashville_to_seoul": "$1,015 - $1,500 (round-trip)",
+          "seoul_to_australia": "$362 - $500 (round-trip)"
+        },
+        "total_estimate": "$1,377 - $2,000",
+        "pros": ["Unique destination", "Good weather in June (winter)", "English-speaking"],
+        "cons": ["Expensive add-on", "Very long total travel time"]
+      },
+      "option_5_skip_seoul_meet_elsewhere": {
+        "description": "Alternative: Skip Seoul, meet in Hawaii/Philippines/Australia",
+        "hawaii_only": "$634 - $800 (Nashville round-trip)",
+        "philippines_only": "$850 - $1,200 (Nashville round-trip)",
+        "australia_only": "$1,400 - $1,800 (Nashville round-trip)",
+        "note": "Would need to coordinate with Seoul-based person to fly to meeting location"
+      }
+    }
+  }
+}

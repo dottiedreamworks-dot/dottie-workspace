@@ -1,9 +1,9 @@
 {
   "version": "1.0",
   "meta": {
-    "lastUpdated": "2026-03-07T00:23:00Z",
-    "activeTask": "travel-001",
-    "completedToday": 0,
+    "lastUpdated": "2026-03-07T00:28:00Z",
+    "activeTask": null,
+    "completedToday": 1,
     "totalTasks": 3
   },
   "tasks": [
@@ -35,24 +35,27 @@
     },
     {
       "id": "travel-001",
-      "status": "in_progress",
+      "status": "completed",
       "type": "travel_research",
       "description": "Research flight options to Korea and alternative meeting locations",
       "created": "2026-03-06T16:31:00Z",
       "started": "2026-03-07T00:23:00Z",
-      "completed": null,
-      "progress": 25,
+      "completed": "2026-03-07T00:28:00Z",
+      "progress": 100,
       "checkpoints": [
-        {"step": 1, "description": "Research flights from Nashville to all destinations", "status": "completed", "timestamp": "2026-03-07T00:23:00Z"}
+        {"step": 1, "description": "Research flights from Nashville to all destinations", "status": "completed", "timestamp": "2026-03-07T00:23:00Z"},
+        {"step": 2, "description": "Research flights from Seoul to alternative locations", "status": "completed", "timestamp": "2026-03-07T00:26:00Z"},
+        {"step": 3, "description": "Calculate total costs for each scenario", "status": "completed", "timestamp": "2026-03-07T00:26:30Z"},
+        {"step": 4, "description": "Create comparison report with recommendations", "status": "completed", "timestamp": "2026-03-07T00:28:00Z"}
       ],
       "subtasks": [
         {"id": "travel-001-1", "description": "Research flights from Nashville (BNA) to Seoul", "status": "completed"},
         {"id": "travel-001-2", "description": "Research flights from Nashville to Hawaii", "status": "completed"},
         {"id": "travel-001-3", "description": "Research flights from Nashville to Philippines", "status": "completed"},
         {"id": "travel-001-4", "description": "Research flights from Nashville to Australia", "status": "completed"},
-        {"id": "travel-001-5", "description": "Research flights from Seoul to each alternative location", "status": "pending"},
-        {"id": "travel-001-6", "description": "Calculate total costs for each scenario", "status": "pending"},
-        {"id": "travel-001-7", "description": "Create comparison report with recommendations", "status": "pending"}
+        {"id": "travel-001-5", "description": "Research flights from Seoul to each alternative location", "status": "completed"},
+        {"id": "travel-001-6", "description": "Calculate total costs for each scenario", "status": "completed"},
+        {"id": "travel-001-7", "description": "Create comparison report with recommendations", "status": "completed"}
       ],
       "results": {
         "nashville_flights": {
@@ -60,7 +63,14 @@
           "hawaii": {"round_trip": "$634-$800", "one_way": "$205+"},
           "philippines": {"round_trip": "$850-$1,200", "one_way": "$427+"},
           "australia": {"round_trip": "$1,400-$1,800", "one_way": "$464+"}
-        }
+        },
+        "seoul_flights": {
+          "hawaii": {"round_trip": "$600-$800", "one_way": "$253+"},
+          "philippines": {"round_trip": "$133-$200", "one_way": "$67+"},
+          "australia": {"round_trip": "$362-$500", "one_way": "$152+"}
+        },
+        "recommendation": "Seoul + Philippines offers best value ($1,148-$1,700 total)",
+        "reportLocation": "projects/korea-trip-flight-research.html"
       },
       "error": null
     },
