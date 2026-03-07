@@ -1,0 +1,182 @@
+{
+  "step": 1,
+  "description": "Niche comparison analysis and recommendation",
+  "timestamp": "2026-03-07T12:53:00Z",
+  "status": "completed",
+  "scoringMatrix": {
+    "criteria": [
+      {
+        "name": "Market Size",
+        "weight": 3,
+        "description": "Total addressable audience"
+      },
+      {
+        "name": "Competition Level",
+        "weight": 3,
+        "description": "Lower is better - how crowded is the space"
+      },
+      {
+        "name": "Content Velocity",
+        "weight": 2,
+        "description": "How fast can content be produced and consumed"
+      },
+      {
+        "name": "Monetization Potential",
+        "weight": 3,
+        "description": "Revenue opportunities and audience willingness to pay"
+      },
+      {
+        "name": "Jayna's Authority",
+        "weight": 3,
+        "description": "Lived experience and authentic expertise"
+      },
+      {
+        "name": "AI Automation Fit",
+        "weight": 2,
+        "description": "How well suited for AI-generated content"
+      },
+      {
+        "name": "Scalability",
+        "weight": 2,
+        "description": "Ability to grow without proportional effort increase"
+      }
+    ],
+    "scores": {
+      "perimenopause": {
+        "Market Size": 8,
+        "Competition Level": 5,
+        "Content Velocity": 7,
+        "Monetization Potential": 8,
+        "Jayna's Authority": 7,
+        "AI Automation Fit": 8,
+        "Scalability": 8,
+        "weightedTotal": 142,
+        "maxPossible": 168
+      },
+      "adhd": {
+        "Market Size": 7,
+        "Competition Level": 4,
+        "Content Velocity": 8,
+        "Content Velocity_notes": "Bite-sized content preferred by ADHD audience",
+        "Monetization Potential": 7,
+        "Jayna's Authority": 8,
+        "Jayna's Authority_notes": "Strong lived experience with ADHD-like patterns",
+        "AI Automation Fit": 9,
+        "AI Automation Fit_notes": "Highly structured, actionable content ideal for AI",
+        "Scalability": 9,
+        "weightedTotal": 139,
+        "maxPossible": 168
+      },
+      "adhdPerimenopause": {
+        "Market Size": 6,
+        "Market Size_notes": "Smaller but highly targeted - millions of women 35-55",
+        "Competition Level": 9,
+        "Competition Level_notes": "BLUE OCEAN - virtually no competition",
+        "Content Velocity": 8,
+        "Monetization Potential": 8,
+        "Jayna's Authority": 10,
+        "Jayna's Authority_notes": "Perfect intersection of her lived experiences",
+        "AI Automation Fit": 8,
+        "Scalability": 9,
+        "weightedTotal": 154,
+        "maxPossible": 168
+      },
+      "str": {
+        "Market Size": 6,
+        "Competition Level": 2,
+        "Competition Level_notes": "VERY HIGH - 45+ established podcasts",
+        "Content Velocity": 5,
+        "Monetization Potential": 8,
+        "Jayna's Authority": 7,
+        "Jayna's Authority_notes": "Built cabin business, knows maintenance systems",
+        "AI Automation Fit": 6,
+        "Scalability": 6,
+        "weightedTotal": 103,
+        "maxPossible": 168
+      }
+    }
+  },
+  "rankings": [
+    {
+      "rank": 1,
+      "niche": "ADHD + Perimenopause Intersection",
+      "score": 154,
+      "percentage": 91.7,
+      "keyAdvantage": "BLUE OCEAN - No dedicated podcast exists for this intersection",
+      "keyChallenge": "Smaller total market, need to educate on connection"
+    },
+    {
+      "rank": 2,
+      "niche": "Perimenopause",
+      "score": 142,
+      "percentage": 84.5,
+      "keyAdvantage": "Large, growing market with 60+ podcasts but fragmented",
+      "keyChallenge": "Moderate competition, need strong differentiation"
+    },
+    {
+      "rank": 3,
+      "niche": "ADHD (General)",
+      "score": 139,
+      "percentage": 82.7,
+      "keyAdvantage": "Growing market, AI-friendly content format",
+      "keyChallenge": "38+ established podcasts, need unique angle"
+    },
+    {
+      "rank": 4,
+      "niche": "Short-Term Rentals",
+      "score": 103,
+      "percentage": 61.3,
+      "keyAdvantage": "Jayna's proven expertise, high monetization",
+      "keyChallenge": "OVERSATURATED - 45+ podcasts, very hard to break through"
+    }
+  ],
+  "recommendation": {
+    "primary": "ADHD + Perimenopause Intersection",
+    "rationale": [
+      "BLUE OCEAN opportunity - no one owns this niche",
+      "Jayna's lived experience is the perfect authentic authority",
+      "High willingness to pay (women seeking solutions for debilitating symptoms)",
+      "Content can be highly actionable and AI-friendly",
+      "Natural crossover content from both parent niches",
+      "Growing awareness of this connection (Forbes, ADDitude covering it)"
+    ],
+    "secondary": "Perimenopause (broader appeal)",
+    "secondaryRationale": [
+      "Larger total addressable market",
+      "Can incorporate ADHD content as unique angle",
+      "Easier to pivot if intersection niche is too narrow",
+      "60+ podcasts shows market validation but also fragmentation opportunity"
+    ],
+    "avoid": "STR as primary podcast niche",
+    "avoidRationale": [
+      "Market is oversaturated with 45+ established podcasts",
+      "Would require massive marketing spend to break through",
+      "Better suited as secondary content pillar or digital product focus",
+      "Jayna's STR expertise better monetized through courses/templates"
+    ]
+  },
+  "strategicPositioning": {
+    "winningFormula": "The 'ADHD Perimenopause Connection' - daily micro-episodes (5-10 min) with actionable strategies for women navigating both",
+    "contentPillars": [
+      "Understanding the hormone-dopamine connection",
+      "Practical symptom management strategies",
+      "Workplace accommodation tactics",
+      "Relationship communication tools",
+      "Medication and treatment options",
+      "Lifestyle adjustments that actually work"
+    ],
+    "differentiation": [
+      "Bite-sized format (ADHD-friendly attention spans)",
+      "Science-backed but conversational tone",
+      "Daily release schedule (builds habit)",
+      "Actionable micro-tasks in every episode",
+      "Community-driven topic selection"
+    ],
+    "monetizationPath": [
+      "Month 1-3: Build audience, no monetization",
+      "Month 4-6: Affiliate partnerships (supplements, apps, books)",
+      "Month 7-12: Digital products (guides, templates)",
+      "Year 2+: Course/membership for deeper support"
+    ]
+  }
+}
