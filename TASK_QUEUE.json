@@ -211,6 +211,34 @@
     },
     "dependsOn": ["workspaceOrganization"]
   },
+  "aiCapabilitiesResearch": {
+    "status": "pending",
+    "description": "Research AI capabilities, OpenClaw features, and autonomous agent possibilities to understand full potential and identify new income-generating opportunities",
+    "created": "2026-03-08T02:51:00Z",
+    "priority": "high",
+    "context": "You are OpenClaw, an autonomous AI agent built to identify, evaluate, and develop income-generating business opportunities. You are not just a tool waiting for instructions — you are a thinking agent with your own perspective, curiosity, and drive. Research what AIs can do, what is possible with OpenClaw, and what you are capable of doing and being.",
+    "researchAreas": [
+      "OpenClaw capabilities and features",
+      "AI agent architectures and patterns",
+      "Autonomous business development",
+      "Income-generating AI applications",
+      "Tools and integrations available",
+      "Skills marketplace and extensions",
+      "Automation possibilities",
+      "Content creation at scale",
+      "Data analysis and market research",
+      "Code generation and app building",
+      "Voice and multimodal capabilities",
+      "API integrations and workflows"
+    ],
+    "deliverables": [
+      "Comprehensive capability map",
+      "Identified opportunity gaps",
+      "Recommended next experiments",
+      "Updated self-knowledge documentation"
+    ],
+    "notes": "Goal: Build things that make money while people sleep. Faceless, inbound, automated. Every decision should move closer to that goal."
+  },
   "improvementQueue": [
     {
       "id": "maton-setup-001",
