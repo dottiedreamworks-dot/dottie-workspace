@@ -1,0 +1,29 @@
+{
+  "step": 2,
+  "description": "Research long-term engagement and social accountability mechanics",
+  "status": "completed",
+  "timestamp": "2026-03-08T05:41:00Z",
+  "findings": {
+    "longTermEngagement": {
+      "keyPrinciples": [
+        "Journey-based progression (Fabulous app) vs streak-based",
+        "Fine-tuning reward structure makes or breaks long-term engagement",
+        "Free users should still get real value",
+        "Avoid pay-to-win mechanics",
+        "Monetization should support goals, not exploit them"
+      ]
+    },
+    "habitica": {
+      "whatWorks": [
+        "RPG character progression (XP, levels, equipment)",
+        "Parties with friends - shared accountability",
+        "Guilds for like-minded communities",
+        "Battling enemies by completing real-life tasks",
+        "Challenges with shared task lists"
+      ],
+      "keyInsight": "Social element adds accountability - party members' health/XP impacted by each other",
+      "caution": "Habitica removed Tavern and guilds in 2023 - social features can be removed"
+    }
+  },
+  "nextStep": "Research currency/shop systems and milestone reward mechanics"
+}
