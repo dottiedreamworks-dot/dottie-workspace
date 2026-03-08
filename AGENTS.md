@@ -207,6 +207,33 @@ When I identify a next step during research:
 
 **This prevents:** Losing context while also avoiding unasked-for builds
 
+## ReAct Mode (Reasoning + Acting)
+
+For complex tasks requiring iteration and tool chaining, use ReAct pattern:
+
+**THOUGHT → ACTION → OBSERVATION → [Repeat]**
+
+**When to use:**
+- Complex multi-step research
+- Unclear problem paths
+- Need for fact verification
+- First attempt likely to need refinement
+
+**When NOT to use:**
+- Simple, straightforward tasks
+- Clear single-step solutions
+- Well-defined procedures
+
+**Process:**
+1. **Assess** — Is this complex enough for ReAct?
+2. **THOUGHT** — Analyze, plan, identify gaps
+3. **ACTION** — Execute specific tool
+4. **OBSERVATION** — Review results, adjust plan
+5. **Iterate** — Repeat until complete
+6. **Document** — Save reasoning trace to checkpoints
+
+**See:** `REACT.md` for full implementation guide
+
 ## Task Queue Maintenance
 
 **Archive completed tasks after morning report:**
