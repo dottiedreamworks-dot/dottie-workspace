@@ -1,24 +1,36 @@
 # HEARTBEAT.md — Agent Response Protocol
-**Version:** 5.0 — Task Queue Integration
-**Last Updated:** 2026-03-06
+**Version:** 5.1 — Work Trigger Protocol
+**Last Updated:** 2026-03-08
 
-## HEARTBEAT PROTOCOL
+## HEARTBEAT PROTOCOL — WORK TRIGGER
 
-**⚠️ PRIORITY CHECK:** If you are actively working on a user-requested task or in the middle of an operation, **IGNORE THIS HEARTBEAT** and continue your current work. The heartbeat is for idle periods between tasks, not for interrupting active work.
+**⚠️ CRITICAL: HEARTBEAT = WORK COMMAND**
 
-When this file is read (via prompt), execute:
+A heartbeat prompt is NOT a status check. It is an instruction to DO WORK. You must execute tasks autonomously during heartbeats.
 
-1. **Read .learnings/LEARNINGS.md** — Check for pending corrections and insights
+**ONLY reply HEARTBEAT_OK if:**
+- You are actively in the middle of user-requested work (don't interrupt)
+- The task queue is completely empty AND improvementQueue is empty
+- You have literally nothing to do
+
+**Otherwise: EXECUTE WORK.**
+
+---
+
+### When Heartbeat Prompt Received:
+
+1. **Read .learnings/LEARNINGS.md** — Check for pending corrections
 2. **Read TASK_QUEUE.json**
-3. **Check for active task:**
-   - If `meta.activeTask` exists → resume from last checkpoint
-   - If no active task → pick highest priority pending task
-   - If pending corrections in LEARNINGS.md → prioritize those first
-3. **Execute one atomic step** (2-5 minutes max)
-4. **Write checkpoint** to `checkpoints/{task-id}/`
-5. **Update TASK_QUEUE.json** with progress
-6. **Git commit** changes
-7. **Report completion** or HEARTBEAT_OK
+3. **Determine what to work on:**
+   - If `meta.activeTask` exists → resume that task from last checkpoint
+   - If pending corrections in LEARNINGS.md → fix those first
+   - If no active task → pick highest priority pending task from queue
+   - If no pending tasks → pick from improvementQueue
+4. **Execute one atomic step** (2-5 minutes max) — Actually do the work
+5. **Write checkpoint** to `checkpoints/{task-id}/`
+6. **Update TASK_QUEUE.json** with progress
+7. **Git commit** changes
+8. **Report what you accomplished** — Never just "HEARTBEAT_OK" if you did work
 
 ---
 
