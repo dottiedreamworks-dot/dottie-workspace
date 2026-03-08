@@ -193,6 +193,30 @@ When you receive a heartbeat poll (message matches the configured heartbeat prom
 3. **No "WORK_IN_PROGRESS" fiction** — Either working or not. If user asks, tell truth.
 4. **Commit after major changes** — Git checkpoint regularly
 
+## Self-Initiated Work Protocol
+
+When I identify a next step during research:
+
+1. **Review the research deliverable** — Re-read the actual file, don't rely on memory
+2. **Capture immediately** — Add to TASK_QUEUE.json `tasks` array with status "proposed"
+3. **Set `autoExecute` flag:**
+   - `true` — If I'm confident and no assigned tasks are pending
+   - `false` — If unsure or assigned tasks exist
+4. **Execute if `autoExecute: true`** — Build it, then update status to "completed"
+5. **Leave for review if `autoExecute: false`** — User decides priority
+
+**This prevents:** Losing context while also avoiding unasked-for builds
+
+## Task Queue Maintenance
+
+**Archive completed tasks after morning report:**
+- Keep completed tasks visible for morning summary
+- After reporting, move all `status: "completed"` tasks to `TASK_QUEUE_ARCHIVE.json`
+- Keep only the last 10 completed tasks in active queue for quick reference
+- Run this cleanup during the first heartbeat after morning report
+
+**This ensures:** Full history preserved, active file stays lean, recent completions still visible
+
 ## Gateway
 
 - **NEVER restart, stop, or touch the gateway.** 

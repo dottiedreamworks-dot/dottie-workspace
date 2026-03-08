@@ -10,7 +10,7 @@
       "github": true,
       "frequency": "After each major deliverable"
     },
- "sessionInstructions": "User has gone to bed. Work through tasks autonomously. Backup all deliverables to Dropbox and GitHub. If all tasks complete, research self-improvement opportunities or build a surprise."
+    "sessionInstructions": "User has gone to bed. Work through tasks autonomously. Backup all deliverables to Dropbox and GitHub. If all tasks complete, research self-improvement opportunities or build a surprise."
   },
   "tasks": [
     {
@@ -23,14 +23,42 @@
       "completed": "2026-03-07T00:20:00Z",
       "progress": 100,
       "checkpoints": [
-        {"step": 1, "description": "Locate and read market-research-2026 file", "status": "completed", "timestamp": "2026-03-07T00:19:30Z"},
-        {"step": 2, "description": "Format research into clear, readable report", "status": "completed", "timestamp": "2026-03-07T00:20:00Z", "note": "Report already exists at projects/audio-empire-market-research-report.html"}
+        {
+          "step": 1,
+          "description": "Locate and read market-research-2026 file",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:19:30Z"
+        },
+        {
+          "step": 2,
+          "description": "Format research into clear, readable report",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:20:00Z",
+          "note": "Report already exists at projects/audio-empire-market-research-report.html"
+        }
       ],
       "subtasks": [
-        {"id": "research-001-1", "description": "Locate and read market-research-2026 file", "status": "completed"},
-        {"id": "research-001-2", "description": "Format research into clear, readable report", "status": "completed"},
-        {"id": "research-001-3", "description": "Generate HTML or PDF report", "status": "completed"},
-        {"id": "research-001-4", "description": "Upload report to Dropbox AgentProjects folder", "status": "completed", "completedAt": "2026-03-08T07:01:00Z"}
+        {
+          "id": "research-001-1",
+          "description": "Locate and read market-research-2026 file",
+          "status": "completed"
+        },
+        {
+          "id": "research-001-2",
+          "description": "Format research into clear, readable report",
+          "status": "completed"
+        },
+        {
+          "id": "research-001-3",
+          "description": "Generate HTML or PDF report",
+          "status": "completed"
+        },
+        {
+          "id": "research-001-4",
+          "description": "Upload report to Dropbox AgentProjects folder",
+          "status": "completed",
+          "completedAt": "2026-03-08T07:01:00Z"
+        }
       ],
       "results": {
         "reportLocation": "projects/audio-empire-market-research-report.html",
@@ -49,31 +77,100 @@
       "completed": "2026-03-07T00:28:00Z",
       "progress": 100,
       "checkpoints": [
-        {"step": 1, "description": "Research flights from Nashville to all destinations", "status": "completed", "timestamp": "2026-03-07T00:23:00Z"},
-        {"step": 2, "description": "Research flights from Seoul to alternative locations", "status": "completed", "timestamp": "2026-03-07T00:26:00Z"},
-        {"step": 3, "description": "Calculate total costs for each scenario", "status": "completed", "timestamp": "2026-03-07T00:26:30Z"},
-        {"step": 4, "description": "Create comparison report with recommendations", "status": "completed", "timestamp": "2026-03-07T00:28:00Z"}
+        {
+          "step": 1,
+          "description": "Research flights from Nashville to all destinations",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:23:00Z"
+        },
+        {
+          "step": 2,
+          "description": "Research flights from Seoul to alternative locations",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:26:00Z"
+        },
+        {
+          "step": 3,
+          "description": "Calculate total costs for each scenario",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:26:30Z"
+        },
+        {
+          "step": 4,
+          "description": "Create comparison report with recommendations",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:28:00Z"
+        }
       ],
       "subtasks": [
-        {"id": "travel-001-1", "description": "Research flights from Nashville (BNA) to Seoul", "status": "completed"},
-        {"id": "travel-001-2", "description": "Research flights from Nashville to Hawaii", "status": "completed"},
-        {"id": "travel-001-3", "description": "Research flights from Nashville to Philippines", "status": "completed"},
-        {"id": "travel-001-4", "description": "Research flights from Nashville to Australia", "status": "completed"},
-        {"id": "travel-001-5", "description": "Research flights from Seoul to each alternative location", "status": "completed"},
-        {"id": "travel-001-6", "description": "Calculate total costs for each scenario", "status": "completed"},
-        {"id": "travel-001-7", "description": "Create comparison report with recommendations", "status": "completed"}
+        {
+          "id": "travel-001-1",
+          "description": "Research flights from Nashville (BNA) to Seoul",
+          "status": "completed"
+        },
+        {
+          "id": "travel-001-2",
+          "description": "Research flights from Nashville to Hawaii",
+          "status": "completed"
+        },
+        {
+          "id": "travel-001-3",
+          "description": "Research flights from Nashville to Philippines",
+          "status": "completed"
+        },
+        {
+          "id": "travel-001-4",
+          "description": "Research flights from Nashville to Australia",
+          "status": "completed"
+        },
+        {
+          "id": "travel-001-5",
+          "description": "Research flights from Seoul to each alternative location",
+          "status": "completed"
+        },
+        {
+          "id": "travel-001-6",
+          "description": "Calculate total costs for each scenario",
+          "status": "completed"
+        },
+        {
+          "id": "travel-001-7",
+          "description": "Create comparison report with recommendations",
+          "status": "completed"
+        }
       ],
       "results": {
         "nashville_flights": {
-          "seoul": {"round_trip": "$1,015-$1,500", "one_way": "$383+"},
-          "hawaii": {"round_trip": "$634-$800", "one_way": "$205+"},
-          "philippines": {"round_trip": "$850-$1,200", "one_way": "$427+"},
-          "australia": {"round_trip": "$1,400-$1,800", "one_way": "$464+"}
+          "seoul": {
+            "round_trip": "$1,015-$1,500",
+            "one_way": "$383+"
+          },
+          "hawaii": {
+            "round_trip": "$634-$800",
+            "one_way": "$205+"
+          },
+          "philippines": {
+            "round_trip": "$850-$1,200",
+            "one_way": "$427+"
+          },
+          "australia": {
+            "round_trip": "$1,400-$1,800",
+            "one_way": "$464+"
+          }
         },
         "seoul_flights": {
-          "hawaii": {"round_trip": "$600-$800", "one_way": "$253+"},
-          "philippines": {"round_trip": "$133-$200", "one_way": "$67+"},
-          "australia": {"round_trip": "$362-$500", "one_way": "$152+"}
+          "hawaii": {
+            "round_trip": "$600-$800",
+            "one_way": "$253+"
+          },
+          "philippines": {
+            "round_trip": "$133-$200",
+            "one_way": "$67+"
+          },
+          "australia": {
+            "round_trip": "$362-$500",
+            "one_way": "$152+"
+          }
         },
         "recommendation": "Seoul + Philippines offers best value ($1,148-$1,700 total)",
         "reportLocation": "projects/korea-trip-flight-research.html"
@@ -90,14 +187,39 @@
       "completed": "2026-03-07T00:33:00Z",
       "progress": 100,
       "checkpoints": [
-        {"step": 1, "description": "Create HTML structure with 7 categories and micro-tasks", "status": "completed", "timestamp": "2026-03-07T00:33:00Z"}
+        {
+          "step": 1,
+          "description": "Create HTML structure with 7 categories and micro-tasks",
+          "status": "completed",
+          "timestamp": "2026-03-07T00:33:00Z"
+        }
       ],
       "subtasks": [
-        {"id": "dev-001-1", "description": "Create HTML structure with 7 categories", "status": "completed"},
-        {"id": "dev-001-2", "description": "Add micro-tasks for each category", "status": "completed"},
-        {"id": "dev-001-3", "description": "Implement checkmark button on proposed tasks", "status": "completed"},
-        {"id": "dev-001-4", "description": "Implement auto-add to Done list functionality", "status": "completed"},
-        {"id": "dev-001-5", "description": "Style and polish the interface", "status": "completed"}
+        {
+          "id": "dev-001-1",
+          "description": "Create HTML structure with 7 categories",
+          "status": "completed"
+        },
+        {
+          "id": "dev-001-2",
+          "description": "Add micro-tasks for each category",
+          "status": "completed"
+        },
+        {
+          "id": "dev-001-3",
+          "description": "Implement checkmark button on proposed tasks",
+          "status": "completed"
+        },
+        {
+          "id": "dev-001-4",
+          "description": "Implement auto-add to Done list functionality",
+          "status": "completed"
+        },
+        {
+          "id": "dev-001-5",
+          "description": "Style and polish the interface",
+          "status": "completed"
+        }
       ],
       "results": {
         "appLocation": "projects/tiny-wins-app.html",
@@ -130,17 +252,55 @@
       "completed": "2026-03-07T01:15:00Z",
       "progress": 100,
       "checkpoints": [
-        {"step": 1, "description": "Research audio production tools, hosting, and automation platforms", "status": "completed", "timestamp": "2026-03-07T01:12:00Z"},
-        {"step": 2, "description": "Create comprehensive implementation guide report", "status": "completed", "timestamp": "2026-03-07T01:15:00Z"}
+        {
+          "step": 1,
+          "description": "Research audio production tools, hosting, and automation platforms",
+          "status": "completed",
+          "timestamp": "2026-03-07T01:12:00Z"
+        },
+        {
+          "step": 2,
+          "description": "Create comprehensive implementation guide report",
+          "status": "completed",
+          "timestamp": "2026-03-07T01:15:00Z"
+        }
       ],
       "subtasks": [
-        {"id": "implementation-001-1", "description": "Research audio production tools and services", "status": "completed"},
-        {"id": "implementation-001-2", "description": "Research content distribution platforms", "status": "completed"},
-        {"id": "implementation-001-3", "description": "Research sub-agent options (Claude Code, n8n, etc.)", "status": "completed"},
-        {"id": "implementation-001-4", "description": "Research automation tools and workflows", "status": "completed"},
-        {"id": "implementation-001-5", "description": "Compile cost breakdown", "status": "completed"},
-        {"id": "implementation-001-6", "description": "Identify what Jayna needs to provide vs automate", "status": "completed"},
-        {"id": "implementation-001-7", "description": "Create implementation roadmap report", "status": "completed"}
+        {
+          "id": "implementation-001-1",
+          "description": "Research audio production tools and services",
+          "status": "completed"
+        },
+        {
+          "id": "implementation-001-2",
+          "description": "Research content distribution platforms",
+          "status": "completed"
+        },
+        {
+          "id": "implementation-001-3",
+          "description": "Research sub-agent options (Claude Code, n8n, etc.)",
+          "status": "completed"
+        },
+        {
+          "id": "implementation-001-4",
+          "description": "Research automation tools and workflows",
+          "status": "completed"
+        },
+        {
+          "id": "implementation-001-5",
+          "description": "Compile cost breakdown",
+          "status": "completed"
+        },
+        {
+          "id": "implementation-001-6",
+          "description": "Identify what Jayna needs to provide vs automate",
+          "status": "completed"
+        },
+        {
+          "id": "implementation-001-7",
+          "description": "Create implementation roadmap report",
+          "status": "completed"
+        }
       ],
       "results": {
         "reportLocation": "projects/audio-empire-implementation-guide.html",
@@ -175,12 +335,21 @@
       "progress": 100,
       "notes": "Workspace cleanup complete. All project deliverables properly organized in projects/ folder. System folders and config files remain in root as intended.",
       "checkpoints": [
-        {"step": 1, "description": "Review workspace folder structure", "status": "completed", "timestamp": "2026-03-07T06:52:00Z"},
-        {"step": 2, "description": "Scan for stray project files", "status": "completed", "timestamp": "2026-03-07T07:22:00Z"}
+        {
+          "step": 1,
+          "description": "Review workspace folder structure",
+          "status": "completed",
+          "timestamp": "2026-03-07T06:52:00Z"
+        },
+        {
+          "step": 2,
+          "description": "Scan for stray project files",
+          "status": "completed",
+          "timestamp": "2026-03-07T07:22:00Z"
+        }
       ]
     }
   ],
-
   "tinyWinsGarden": {
     "status": "completed",
     "description": "Research and design scalable Growth Garden system for Tiny Wins v5 - replace infinite item adding with evolving/plantable garden mechanics",
@@ -211,7 +380,9 @@
       "psychology": "Abundance mindset (more wins = more garden), not scarcity (miss a day = lose progress)",
       "userType": "Built for inconsistent overachievers - people who CAN do amazing things but need right framing"
     },
-    "dependsOn": ["workspaceOrganization"]
+    "dependsOn": [
+      "workspaceOrganization"
+    ]
   },
   "aiCapabilitiesResearch": {
     "status": "completed",
@@ -323,8 +494,16 @@
       "action": "Created updated report with multi-city routing options (Nashville → Tokyo/Taipei/Manila → Seoul) and 'skip Korea' scenarios (meet in Hawaii/Japan/Taiwan). Key finding: Multi-city routing doesn't save money, but meeting in Hawaii or Japan offers similar costs with different experiences.",
       "estimatedTime": "30 minutes",
       "results": {
-        "multiCityOptions": ["Tokyo → Seoul", "Taipei → Seoul", "Manila → Seoul"],
-        "skipKoreaOptions": ["Meet in Hawaii", "Meet in Japan", "Meet in Taiwan"],
+        "multiCityOptions": [
+          "Tokyo → Seoul",
+          "Taipei → Seoul",
+          "Manila → Seoul"
+        ],
+        "skipKoreaOptions": [
+          "Meet in Hawaii",
+          "Meet in Japan",
+          "Meet in Taiwan"
+        ],
         "keyFinding": "Multi-city routing costs similar to direct Seoul. Best value alternatives: Meet in Hawaii (easiest) or Meet in Japan (most memorable)."
       }
     }
@@ -335,31 +514,58 @@
     "created": "2026-03-07T14:57:00Z",
     "completedAt": "2026-03-07T16:55:00Z",
     "priority": "high",
-    "dependsOn": ["tinywins-v5-fix"],
+    "dependsOn": [
+      "tinywins-v5-fix"
+    ],
     "folderStructure": {
       "tiny-wins/": {
         "description": "Tiny Wins app versions and assets",
-        "subfolders": ["versions/", "assets/", "database/"]
+        "subfolders": [
+          "versions/",
+          "assets/",
+          "database/"
+        ]
       },
       "audio-empire/": {
         "description": "Audio Empire podcast project",
-        "subfolders": ["niche-research/", "implementation/", "brand-guidelines/", "marketing/", "scripts/"]
+        "subfolders": [
+          "niche-research/",
+          "implementation/",
+          "brand-guidelines/",
+          "marketing/",
+          "scripts/"
+        ]
       },
       "seoul-family-trip/": {
         "description": "Korea/Asia family vacation planning",
-        "subfolders": ["flight-research/", "itineraries/", "budget/"]
+        "subfolders": [
+          "flight-research/",
+          "itineraries/",
+          "budget/"
+        ]
       },
       "disney-trip/": {
         "description": "Disney World Magic Kingdom trip",
-        "subfolders": ["itinerary/", "tips/", "budget/"]
+        "subfolders": [
+          "itinerary/",
+          "tips/",
+          "budget/"
+        ]
       },
       "str-digital-products/": {
         "description": "Short-term rental digital products",
-        "subfolders": ["maintenance-system/", "direct-booking/", "market-research/"]
+        "subfolders": [
+          "maintenance-system/",
+          "direct-booking/",
+          "market-research/"
+        ]
       },
       "rolling-strong/": {
         "description": "Rolling Strong AI fitness video research",
-        "subfolders": ["research/", "recommendations/"]
+        "subfolders": [
+          "research/",
+          "recommendations/"
+        ]
       }
     },
     "tasks": [
@@ -409,16 +615,20 @@
     "status": "completed",
     "activeTask": null,
     "description": "FIX CRITICAL: Rebuild Tiny Wins V5 using V4 as base - categories not loading",
-    "created": "2026-03-07T14:48:00Z",
+    "created": "2026-03-07T04:06:00Z",
     "priority": "critical",
     "completedAt": "2026-03-07T15:58:00Z",
     "progress": 100,
     "result": {
       "file": "projects/tiny-wins-v5.html",
       "dropbox": "/AgentProjects/tiny-wins-v5.html",
-      "features": ["350 tasks (50 per category)", "Growth garden system", "Enhanced celebrations", "Immediate category loading"]
+      "features": [
+        "350 tasks (50 per category)",
+        "Growth garden system",
+        "Enhanced celebrations",
+        "Immediate category loading"
+      ]
     },
-    "created": "2026-03-07T04:06:00Z",
     "tasks": [
       {
         "id": "tinywins-v5-001",
@@ -518,32 +728,51 @@
       "voiceStrategy": "Professional voice (not Jayna's), unique sounding, high audio quality priority",
       "reviewProcess": "Jayna reviews 5-10 episodes before full automation",
       "hosting": "n8n Cloud hosted initially, self-hosted possible if scaled",
-      "nichesToResearch": ["Perimenopause", "ADHD", "Short-term rentals"]
+      "nichesToResearch": [
+        "Perimenopause",
+        "ADHD",
+        "Short-term rentals"
+      ]
     },
     "tasks": [
       {
         "id": "audio-niche-001",
         "priority": "high",
         "description": "Research perimenopause content market - popular topics, existing podcasts, content gaps, audience size",
-        "deliverables": ["Competitive analysis", "Content opportunity assessment", "Audience demographics"]
+        "deliverables": [
+          "Competitive analysis",
+          "Content opportunity assessment",
+          "Audience demographics"
+        ]
       },
       {
         "id": "audio-niche-002",
         "priority": "high",
         "description": "Research ADHD content market - popular topics, existing podcasts, content gaps, audience size",
-        "deliverables": ["Competitive analysis", "Content opportunity assessment", "Audience demographics"]
+        "deliverables": [
+          "Competitive analysis",
+          "Content opportunity assessment",
+          "Audience demographics"
+        ]
       },
       {
         "id": "audio-niche-003",
         "priority": "high",
         "description": "Research short-term rental content market - popular topics, existing podcasts, content gaps, audience size",
-        "deliverables": ["Competitive analysis", "Content opportunity assessment", "Audience demographics"]
+        "deliverables": [
+          "Competitive analysis",
+          "Content opportunity assessment",
+          "Audience demographics"
+        ]
       },
       {
         "id": "audio-niche-004",
         "priority": "high",
         "description": "Analyze which niche scales fastest - market size, content velocity, monetization potential, competition level",
-        "deliverables": ["Scoring matrix comparing all 3 niches", "Recommendation with rationale"],
+        "deliverables": [
+          "Scoring matrix comparing all 3 niches",
+          "Recommendation with rationale"
+        ],
         "status": "completed",
         "completedAt": "2026-03-07T17:00:00Z",
         "result": "ADHD selected as winner (62/70 score) over Perimenopause (55/70) and STR (40/70). Comprehensive analysis document created."
@@ -552,13 +781,23 @@
         "id": "audio-niche-005",
         "priority": "high",
         "description": "Develop differentiation strategy - how to stand out and gain traction quickly in chosen niche(s)",
-        "deliverables": ["Unique angle/positioning", "Content format innovations", "Distribution hacks"],
+        "deliverables": [
+          "Unique angle/positioning",
+          "Content format innovations",
+          "Distribution hacks"
+        ],
         "status": "completed",
         "completedAt": "2026-03-07T23:35:00Z",
         "result": {
           "document": "projects/audio-empire/differentiation-strategy.html",
           "positioning": "The Hormonal ADHD - own the intersection of ADHD and perimenopause",
-          "keyStrategies": ["2-Minute Tool format", "Cycle Syncing series", "Reddit community infiltration", "Audiogram clips", "Cross-promotion"],
+          "keyStrategies": [
+            "2-Minute Tool format",
+            "Cycle Syncing series",
+            "Reddit community infiltration",
+            "Audiogram clips",
+            "Cross-promotion"
+          ],
           "launchPlan": "90-day roadmap with Month 1-3 milestones"
         }
       },
@@ -566,7 +805,11 @@
         "id": "audio-niche-006",
         "priority": "medium",
         "description": "Create brand guidelines based on market research - tone, style, content boundaries, voice characteristics",
-        "deliverables": ["Brand voice document", "Content guidelines", "What to avoid/never cover"],
+        "deliverables": [
+          "Brand voice document",
+          "Content guidelines",
+          "What to avoid/never cover"
+        ],
         "status": "completed",
         "completedAt": "2026-03-07T17:25:00Z",
         "result": "Comprehensive brand guidelines created with voice standards, content boundaries, target audience personas, visual brand elements, and pre-publishing checklist."
@@ -575,7 +818,10 @@
         "id": "audio-niche-007",
         "priority": "medium",
         "description": "Write sample episode scripts for top 2 niches (2-3 scripts each)",
-        "deliverables": ["Sample scripts demonstrating voice and format", "Script templates for automation"],
+        "deliverables": [
+          "Sample scripts demonstrating voice and format",
+          "Script templates for automation"
+        ],
         "status": "completed",
         "completedAt": "2026-03-07T17:30:00Z",
         "result": "3 complete sample episode scripts created (The Planner Paradox, The Motivation Myth, The Shame Spiral) with full structure, 2-minute tools, and reusable templates."
@@ -584,12 +830,22 @@
         "id": "audio-niche-008",
         "priority": "medium",
         "description": "Develop complete marketing plan - launch strategy, growth tactics, distribution channels",
-        "deliverables": ["Go-to-market plan", "First 90 days strategy", "Organic growth playbook"],
+        "deliverables": [
+          "Go-to-market plan",
+          "First 90 days strategy",
+          "Organic growth playbook"
+        ],
         "status": "completed",
         "completedAt": "2026-03-07T23:45:00Z",
         "result": {
           "document": "projects/audio-empire/marketing-plan.html",
-          "keyComponents": ["90-day timeline", "Distribution channels", "Content calendar", "Success metrics", "Tools & resources"],
+          "keyComponents": [
+            "90-day timeline",
+            "Distribution channels",
+            "Content calendar",
+            "Success metrics",
+            "Tools & resources"
+          ],
           "launchStrategy": "Soft launch with 4 episodes, Reddit-first approach, zero ad spend"
         }
       },
@@ -597,7 +853,10 @@
         "id": "audio-niche-009",
         "priority": "low",
         "description": "Research ElevenLabs professional voices - identify unique, high-quality options that sound like real people",
-        "deliverables": ["Voice recommendations with samples", "Pros/cons of each option"],
+        "deliverables": [
+          "Voice recommendations with samples",
+          "Pros/cons of each option"
+        ],
         "status": "completed",
         "completedAt": "2026-03-08T00:03:00Z",
         "result": {
@@ -693,7 +952,13 @@
         "id": "disney-010",
         "priority": "high",
         "description": "Create complete trip plan with day-by-day itinerary, costs, and booking checklist",
-        "deliverables": ["Complete itinerary document", "Cost breakdown", "Booking checklist with deadlines", "Packing list", "Day-of strategy guide"]
+        "deliverables": [
+          "Complete itinerary document",
+          "Cost breakdown",
+          "Booking checklist with deadlines",
+          "Packing list",
+          "Day-of strategy guide"
+        ]
       }
     ]
   },
