@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR Maintenance Master Database - Part 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #667eea;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .frequency-daily { color: #28a745; font-weight: 600; }
+        .frequency-weekly { color: #17a2b8; font-weight: 600; }
+        .frequency-monthly { color: #fd7e14; font-weight: 600; }
+        .frequency-quarterly { color: #6f42c1; font-weight: 600; }
+        .frequency-annual { color: #dc3545; font-weight: 600; }
+        .frequency-seasonal { color: #e83e8c; font-weight: 600; }
+        
+        .priority-high { 
+            background: #f8d7da; 
+            color: #721c24;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .priority-medium { 
+            background: #fff3cd; 
+            color: #856404;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .priority-low { 
+            background: #d4edda; 
+            color: #155724;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .cat-appliances { background: #f3e5f5; color: #6a1b9a; }
+        .cat-exterior { background: #e8f5e9; color: #2e7d32; }
+        .cat-landscaping { background: #e0f7fa; color: #006064; }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 STR Maintenance Master Database</h1>
+            <p>Part 2: Appliances & Exterior Systems</p>
+        </div>
+        
+        <div class="content">
+            <!-- Appliances -->
+            <div class="section">
+                <h2>🔌 Appliances (28 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clean refrigerator coils</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Improves efficiency, extends life</td>
+                        </tr>
+                        <tr>
+                            <td>Deep clean refrigerator interior</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>Cleaner</td>
+                            <td>Part of turnover cleaning</td>
+                        </tr>
+                        <tr>
+                            <td>Check refrigerator temperature</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Should be 37-40°F (fridge), 0°F (freezer)</td>
+                        </tr>
+                        <tr>
+                            <td>Replace refrigerator water filter</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$30-60</td>
+                            <td>DIY</td>
+                            <td>Or per manufacturer recommendation</td>
+                        </tr>
+                        <tr>
+                            <td>Clean dishwasher filter</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Prevents odors, improves cleaning</td>
+                        </tr>
+                        <tr>
+                            <td>Run dishwasher cleaner cycle</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$5-10</td>
+                            <td>DIY</td>
+                            <td>Use Affresh or similar product</td>
+                        </tr>
+                        <tr>
+                            <td>Check dishwasher for leaks</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Water damage prevention</td>
+                        </tr>
+                        <tr>
+                            <td>Clean oven/stove thoroughly</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-20</td>
+                            <td>DIY or Cleaner</td>
+                            <td>Deep clean between guests</td>
+                        </tr>
+                        <tr>
+                            <td>Run oven self-clean cycle</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Or manual deep clean</td>
+                        </tr>
+                        <tr>
+                            <td>Check stove burners/elements</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-100</td>
+                            <td>DIY</td>
+                            <td>Ensure all burners working properly</td>
+                        </tr>
+                        <tr>
+                            <td>Clean microwave interior</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>Cleaner</td>
+                            <td>Part of turnover cleaning</td>
+                        </tr>
+                        <tr>
+                            <td>Test microwave heating</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Heat cup of water for 1 min</td>
+                        </tr>
+                        <tr>
+                            <td>Clean washing machine drum</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$5-10</td>
+                            <td>DIY</td>
+                            <td>Use washing machine cleaner tablet</td>
+                        </tr>
+                        <tr>
+                            <td>Check washing machine hoses</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Look for cracks, bulges, leaks</td>
+                        </tr>
+                        <tr>
+                            <td>Replace washing machine hoses</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$30-60</td>
+                            <td>DIY or Plumber</td>
+                            <td>Prevent burst hose flooding</td>
+                        </tr>
+                        <tr>
+                            <td>Clean dryer lint trap</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>Cleaner</td>
+                            <td>Fire hazard if clogged</td>
+                        </tr>
+                        <tr>
+                            <td>Deep clean dryer lint system</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-150</td>
+                            <td>DIY or Service</td>
+                            <td>Vent line, internal components</td>
+                        </tr>
+                        <tr>
+                            <td>Check dryer vent exterior</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Ensure clear of debris, opens properly</td>
+                        </tr>
+                        <tr>
+                            <td>Test coffee maker</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Run vinegar cycle, test brew</td>
+                        </tr>
+                        <tr>
+                            <td>Descale coffee maker</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$5-10</td>
+                            <td>DIY</td>
+                            <td>Or replace if cheaper</td>
+                        </tr>
+                        <tr>
+                            <td>Check toaster/toaster oven</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Clean crumb tray, test heating</td>
+                        </tr>
+                        <tr>
+                            <td>Test blender/food processor</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Ensure working, check for damage</td>
+                        </tr>
+                        <tr>
+                            <td>Check vacuum cleaner</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-50</td>
+                            <td>DIY</td>
+                            <td>Empty canister, check filters, test suction</td>
+                        </tr>
+                        <tr>
+                            <td>Replace vacuum filters</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$15-40</td>
+                            <td>DIY</td>
+                            <td>HEPA filters especially</td>
+                        </tr>
+                        <tr>
+                            <td>Test iron</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Ensure heats, no leaks</td>
+                        </tr>
+                        <tr>
+                            <td>Check hair dryer</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Test all settings, check cord</td>
+                        </tr>
+                        <tr>
+                            <td>Test TV and remotes</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>All functions, streaming services</td>
+                        </tr>
+                        <tr>
+                            <td>Update streaming service passwords</td>
+                            <td><span class="category-badge cat-appliances">Appliances</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Security, remove unauthorized users</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Exterior Systems -->
+            <div class="section">
+                <h2>🏠 Exterior Systems (22 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Inspect roof for damage</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-200</td>
+                            <td>DIY or Inspector</td>
+                            <td>Missing shingles, leaks, debris</td>
+                        </tr>
+                        <tr>
+                            <td>Professional roof inspection</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$200-400</td>
+                            <td>Roofing Contractor</td>
+                            <td>Detailed assessment, documentation</td>
+                        </tr>
+                        <tr>
+                            <td>Clean gutters and downspouts</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-200</td>
+                            <td>DIY or Service</td>
+                            <td>Prevent water damage</td>
+                        </tr>
+                        <tr>
+                            <td>Check gutter guards/screens</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Clear debris, check for damage</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect exterior paint/siding</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Peeling, cracking, damage</td>
+                        </tr>
+                        <tr>
+                            <td>Touch up exterior paint</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$50-200</td>
+                            <td>DIY or Painter</td>
+                            <td>Curb appeal, protection</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect deck/patio condition</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Rot, loose boards, railings</td>
+                        </tr>
+                        <tr>
+                            <td>Stain/seal deck</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$200-500</td>
+                            <td>DIY or Contractor</td>
+                            <td>Protect wood, prevent rot</td>
+                        </tr>
+                        <tr>
+                            <td>Check exterior caulking</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$20-100</td>
+                            <td>DIY</td>
+                            <td>Windows, doors, trim</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect foundation</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Cracks, water intrusion, settling</td>
+                        </tr>
+                        <tr>
+                            <td>Check driveway/walkways</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-500</td>
+                            <td>DIY or Contractor</td>
+                            <td>Cracks, trip hazards, ice damage</td>
+                        </tr>
+                        <tr>
+                            <td>Seal driveway</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$100-300</td>
+                            <td>DIY or Service</td>
+                            <td>Protect asphalt/concrete</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect garage door</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-150</td>
+                            <td>DIY or Technician</td>
+                            <td>Springs, opener, safety sensors</td>
+                        </tr>
+                        <tr>
+                            <td>Lubricate garage door components</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$10-20</td>
+                            <td>DIY</td>
+                            <td>Extend life, reduce noise</td>
+                        </tr>
+                        <tr>
+                            <td>Check exterior doors and locks</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-100</td>
+                            <td>DIY or Locksmith</td>
+                            <td>Security critical</td>
+                        </tr>
+                        <tr>
+                            <td>Rekey locks between guests</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$50-150</td>
+                            <td>DIY or Locksmith</td>
+                            <td>Or use smart locks with codes</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect windows and screens</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-200</td>
+                            <td>DIY</td>
+                            <td>Broken glass, torn screens, operation</td>
+                        </tr>
+                        <tr>
+                            <td>Clean windows exterior</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-300</td>
+                            <td>DIY or Service</td>
+                            <td>Curb appeal</td>
+                        </tr>
+                        <tr>
+                            <td>Check outdoor faucets/hoses</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-50</td>
+                            <td>DIY</td>
+                            <td>Leaks, winterize if needed</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect fence/gates</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-300</td>
+                            <td>DIY or Contractor</td>
+                            <td>Rot, damage, hinges, latches</td>
+                        </tr>
+                        <tr>
+                            <td>Stain/seal fence</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$200-600</td>
+                            <td>DIY or Contractor</td>
+                            <td>Extend wood fence life</td>
+                        </tr>
+                        <tr>
+                            <td>Check mailbox and house numbers</td>
+                            <td><span class="category-badge cat-exterior">Exterior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-100</td>
+                            <td>DIY</td>
+                            <td>Visible, secure, functional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>STR Maintenance Master Database Part 2 | Created March 8, 2026</p>
+            <p>Appliances (28 tasks) + Exterior Systems (22 tasks) = 50 tasks</p>
+            <p><em>Running total: 83 tasks (Part 1 + Part 2)</em></p>
+        </div>
+    </div>
+</body>
+</html>
