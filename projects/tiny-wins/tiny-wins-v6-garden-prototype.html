@@ -5,596 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tiny Wins v6 | Growth Garden</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #90EE90 100%);
-            min-height: 100vh;
-            color: #333;
-            overflow-x: hidden;
-        }
-        
-        .header {
-            background: rgba(255,255,255,0.95);
-            padding: 15px 20px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .stats {
-            display: flex;
-            gap: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .stat-icon {
-            font-size: 1.2rem;
-        }
-        
-        .stat-value {
-            font-weight: 700;
-            color: #764ba2;
-        }
-        
-        h1 {
-            font-size: 1.3rem;
-            color: #764ba2;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Garden View */
-        .garden-container {
-            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 30%, #98D98E 30%, #7CB87C 100%);
-            border-radius: 20px;
-            height: 400px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            margin-bottom: 20px;
-        }
-        
-        .sun {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, #FFD700 0%, #FFA500 70%);
-            border-radius: 50%;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        .cloud {
-            position: absolute;
-            background: white;
-            border-radius: 50px;
-            opacity: 0.8;
-            animation: float 20s ease-in-out infinite;
-        }
-        
-        .cloud1 {
-            width: 80px;
-            height: 30px;
-            top: 40px;
-            left: 10%;
-        }
-        
-        .cloud2 {
-            width: 60px;
-            height: 25px;
-            top: 70px;
-            left: 60%;
-            animation-delay: -10s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(30px); }
-        }
-        
-        .ground {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70%;
-            background: linear-gradient(180deg, #98D98E 0%, #7CB87C 50%, #6BA85C 100%);
-        }
-        
-        /* Evolution Stages */
-        .stage-seedling {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4rem;
-            animation: grow 2s ease-out;
-        }
-        
-        .stage-sprout {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 5rem;
-            animation: grow 2s ease-out;
-        }
-        
-        .stage-growing {
-            position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 6rem;
-            animation: grow 2s ease-out;
-        }
-        
-        .stage-thriving {
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            text-align: center;
-        }
-        
-        .stage-blooming {
-            position: absolute;
-            bottom: 5%;
-            left: 0;
-            right: 0;
-            height: 80%;
-        }
-        
-        .stage-ecosystem {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 90%;
-        }
-        
-        @keyframes grow {
-            0% { transform: translateX(-50%) scale(0); }
-            100% { transform: translateX(-50%) scale(1); }
-        }
-        
-        /* Plants by Category */
-        .plant {
-            position: absolute;
-            cursor: pointer;
-            transition: transform 0.3s;
-            font-size: 2.5rem;
-        }
-        
-        .plant:hover {
-            transform: scale(1.2);
-        }
-        
-        .plant-cleaning { filter: hue-rotate(0deg); } /* White daisies */
-        .plant-health { filter: hue-rotate(45deg); } /* Yellow sunflowers */
-        .plant-mental { filter: hue-rotate(270deg); } /* Purple lavender */
-        .plant-finance { filter: hue-rotate(90deg); } /* Green money tree */
-        .plant-social { filter: hue-rotate(320deg); } /* Pink roses */
-        .plant-creative { filter: hue-rotate(180deg); } /* Blue wildflowers */
-        .plant-home { filter: hue-rotate(120deg); } /* Green ferns */
-        
-        /* Trees */
-        .tree {
-            position: absolute;
-            font-size: 4rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .tree:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Task Section */
-        .task-section {
-            background: white;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .task-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        
-        .task-header h2 {
-            color: #764ba2;
-            font-size: 1.3rem;
-        }
-        
-        .category-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            margin-bottom: 16px;
-        }
-        
-        .category-tab {
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            cursor: pointer;
-            white-space: nowrap;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        
-        .category-tab.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-color: #764ba2;
-        }
-        
-        .category-tab:hover:not(.active) {
-            border-color: #764ba2;
-            color: #764ba2;
-        }
-        
-        .task-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 12px;
-            border-left: 4px solid #764ba2;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .task-category {
-            font-size: 0.8rem;
-            color: #764ba2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-        
-        .task-text {
-            font-size: 1.1rem;
-            color: #2d3748;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-        
-        .task-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .btn {
-            padding: 10px 20px;
-            border-radius: 10px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-        }
-        
-        .btn-complete {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
-            flex: 1;
-        }
-        
-        .btn-complete:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
-        }
-        
-        .btn-skip {
-            background: #e2e8f0;
-            color: #4a5568;
-        }
-        
-        .btn-skip:hover {
-            background: #cbd5e0;
-        }
-        
-        /* Celebration Overlay */
-        .celebration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1000;
-            overflow: hidden;
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            animation: confetti-fall 3s ease-out forwards;
-        }
-        
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Milestone Modal */
-        .milestone-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .milestone-modal.show {
-            display: flex;
-        }
-        
-        .milestone-content {
-            background: white;
-            border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            max-width: 400px;
-            animation: popIn 0.5s ease;
-        }
-        
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .milestone-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-        }
-        
-        .milestone-title {
-            font-size: 1.8rem;
-            color: #764ba2;
-            margin-bottom: 10px;
-        }
-        
-        .milestone-text {
-            color: #4a5568;
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-        
-        .milestone-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        /* Garden Info */
-        .garden-info {
-            background: rgba(255,255,255,0.9);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .garden-info h3 {
-            color: #764ba2;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-        }
-        
-        .stage-indicator {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        
-        .stage-bar {
-            flex: 1;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .stage-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-        
-        .stage-name {
-            font-weight: 600;
-            color: #764ba2;
-            font-size: 0.9rem;
-        }
-        
-        /* Tooltip */
-        .tooltip {
-            position: absolute;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            pointer-events: none;
-            z-index: 500;
-            opacity: 0;
-            transition: opacity 0.2s;
-            max-width: 200px;
-        }
-        
-        .tooltip.show {
-            opacity: 1;
-        }
-        
-        /* Responsive */
-        @media (max-width: 480px) {
-            .stats {
-                font-size: 0.8rem;
-                gap: 12px;
-            }
-            
-            h1 {
-                font-size: 1.1rem;
-            }
-            
-            .garden-container {
-                height: 300px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --sky-top: #87CEEB; --sky-bottom: #E0F6FF; --grass-top: #90EE90; --grass-bottom: #228B22; --text-dark: #2d3748; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; color: var(--text-dark); }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: white; text-align: center; margin-bottom: 8px; font-size: 2.2rem; }
+        .subtitle { color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 20px; }
+        .stats-bar { display: flex; gap: 16px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat { background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 12px 20px; border-radius: 12px; text-align: center; color: white; min-width: 100px; }
+        .stat-value { font-size: 1.5rem; font-weight: bold; }
+        .stat-label { font-size: 0.75rem; opacity: 0.9; }
+        .garden-container { background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 40%, var(--grass-top) 40%, var(--grass-bottom) 100%); border-radius: 20px; padding: 20px; margin-bottom: 20px; min-height: 300px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .garden-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .garden-title { color: var(--text-dark); font-size: 1.2rem; font-weight: 600; }
+        .evolution-badge { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #744210; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
+        .garden-plot { position: relative; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+        .stage-seedling { display: flex; justify-content: center; align-items: flex-end; height: 150px; }
+        .main-plant { font-size: 5rem; animation: gentleSway 3s ease-in-out infinite; transform-origin: bottom center; cursor: pointer; transition: transform 0.3s; }
+        .main-plant:hover { transform: scale(1.1); }
+        @keyframes gentleSway { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+        .stage-sprout { display: flex; justify-content: center; align-items: flex-end; gap: 20px; height: 180px; }
+        .sprout-plant { font-size: 3.5rem; animation: gentleSway 3s ease-in-out infinite; transform-origin: bottom center; }
+        .stage-growing { display: flex; justify-content: center; align-items: flex-end; gap: 15px; flex-wrap: wrap; padding: 0 20px; }
+        .growing-plant { font-size: 2.5rem; animation: gentleSway 4s ease-in-out infinite; transform-origin: bottom center; }
+        .stage-thriving { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 10px; max-width: 100%; }
+        .thriving-plant { font-size: 2rem; text-align: center; animation: gentleSway 5s ease-in-out infinite; }
+        .stage-blooming { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 10px; }
+        .blooming-plant { font-size: 1.8rem; text-align: center; animation: gentleSway 4s ease-in-out infinite; }
+        .milestone-tree { font-size: 3rem; grid-column: span 2; animation: none; }
+        .stage-ecosystem { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; padding: 10px; }
+        .ecosystem-element { font-size: 1.5rem; text-align: center; }
+        .wildlife { font-size: 2rem; animation: bounce 2s ease-in-out infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .energy-bar-container { background: rgba(255,255,255,0.3); border-radius: 20px; padding: 10px 15px; margin-top: 15px; }
+        .energy-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-dark); margin-bottom: 6px; }
+        .energy-bar { width: 100%; height: 12px; background: rgba(0,0,0,0.1); border-radius: 6px; overflow: hidden; }
+        .energy-fill { height: 100%; background: linear-gradient(90deg, #48bb78 0%, #38a169 50%, #FFD700 100%); border-radius: 6px; transition: width 0.5s ease; position: relative; }
+        .energy-fill::after { content: '✨'; position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 0.6rem; }
+        .card { background: rgba(255,255,255,0.95); border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .card h2 { color: #764ba2; margin-bottom: 16px; font-size: 1.3rem; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 14px 28px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.4); }
+        .btn-check { background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); width: auto; padding: 10px 20px; margin-left: 10px; }
+        .btn-skip { background: #e2e8f0; color: #4a5568; width: auto; padding: 10px 20px; margin-left: 10px; }
+        .category-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .pill { padding: 8px 16px; border-radius: 20px; border: 2px solid #e0e0e0; background: white; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+        .pill:hover { border-color: #764ba2; color: #764ba2; }
+        .pill.active { background: #764ba2; border-color: #764ba2; color: white; }
+        .tiny-step { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-radius: 12px; padding: 20px; margin-top: 16px; border-left: 4px solid #764ba2; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tiny-step-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; }
+        .tiny-step h3 { color: #4a5568; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .tiny-step p { color: #2d3748; font-size: 1.1rem; line-height: 1.5; font-weight: 500; }
+        .time-badge { display: inline-block; background: rgba(255,255,255,0.6); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; color: #764ba2; margin-top: 10px; font-weight: 600; }
+        .done-section h2 { display: flex; align-items: center; gap: 10px; }
+        .done-count { background: #48bb78; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; }
+        .done-list { list-style: none; margin-top: 12px; }
+        .done-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: #f7fafc; border-radius: 10px; margin-bottom: 8px; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .done-item .timestamp { font-size: 0.75rem; color: #999; margin-left: auto; }
+        .empty-state { text-align: center; color: #999; padding: 30px; font-style: italic; }
+        .motivation { background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: center; font-size: 0.95rem; color: #744210; }
+        .celebration { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; animation: celebrate 0.8s ease-out; pointer-events: none; z-index: 2000; }
+        @keyframes celebrate { 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; } 50% { transform: translate(-50%, -50%) scale(1.2); } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+        .confetti { position: fixed; width: 10px; height: 10px; pointer-events: none; z-index: 1999; animation: confetti-fall 3s ease-out forwards; }
+        @keyframes confetti-fall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+        .milestone-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 3000; animation: fadeIn 0.3s ease; }
+        .milestone-content { background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; width: 90%; animation: milestoneBounce 0.6s ease; }
+        @keyframes milestoneBounce { 0% { transform: scale(0); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .milestone-emoji { font-size: 5rem; margin-bottom: 20px; }
+        .milestone-title { font-size: 1.8rem; color: #764ba2; margin-bottom: 10px; }
+        .milestone-text { color: #666; margin-bottom: 20px; line-height: 1.5; }
+        .milestone-reward { background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #744210; padding: 10px 20px; border-radius: 20px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+        .milestone-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 14px 40px; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; }
+        .success-toast { position: fixed; bottom: 20px; right: 20px; background: #48bb78; color: white; padding: 12px 24px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); animation: slideUp 0.3s ease; z-index: 1000; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .category-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; background: rgba(255,255,255,0.5); padding: 4px 10px; border-radius: 15px; }
+        @media (max-width: 600px) { .stage-thriving, .stage-blooming { grid-template-columns: repeat(4, 1fr); } .stage-ecosystem { grid-template-columns: repeat(5, 1fr); } .main-plant { font-size: 4rem; } }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <h1>🌱 Tiny Wins</h1>
-            <div class="stats">
-                <div class="stat">
-                    <span class="stat-icon">☀️</span>
-                    <span class="stat-value" id="sunbeam-count">0</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-icon">🌿</span>
-                    <span class="stat-value" id="garden-stage">Seedling</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <div class="container">
-        <!-- Garden View -->
-        <div class="garden-container" id="garden">
-            <div class="sun"></div>
-            <div class="cloud cloud1"></div>
-            <div class="cloud cloud2"></div>
-            <div class="ground"></div>
-            <div id="garden-content">
-                <!-- Garden elements injected here -->
-            </div>
+        <h1>🌱 Tiny Wins</h1>
+        <p class="subtitle">Your Growth Garden - Celebrate what WAS done</p>
+        <div class="stats-bar">
+            <div class="stat"><div class="stat-value" id="sunbeamCount">☀️ 0</div><div class="stat-label">Sunbeams</div></div>
+            <div class="stat"><div class="stat-value" id="energyCount">⚡ 0</div><div class="stat-label">Growth Energy</div></div>
+            <div class="stat"><div class="stat-value" id="dayCount">🌱 Day 1</div><div class="stat-label">Garden Age</div></div>
+            <div class="stat"><div class="stat-value" id="todayCount">0</div><div class="stat-label">Today</div></div>
         </div>
-        
-        <!-- Garden Info -->
-        <div class="garden-info">
-            <h3>🌻 Your Victory Garden</h3>
-            <div class="stage-indicator">
-                <div class="stage-bar">
-                    <div class="stage-progress" id="stage-progress" style="width: 0%"></div>
-                </div>
-                <span class="stage-name" id="stage-text">Seedling Stage</span>
+        <div class="garden-container">
+            <div class="garden-header">
+                <div class="garden-title">🌻 Your Victory Garden</div>
+                <div class="evolution-badge" id="evolutionBadge">🌱 Seedling</div>
             </div>
-            <p style="color: #4a5568; font-size: 0.9rem;">
-                Complete tasks to grow your garden! Each win adds energy and beauty to your personal ecosystem.
-            </p>
+            <div class="garden-plot" id="gardenPlot"></div>
+            <div class="energy-bar-container">
+                <div class="energy-label"><span>Growth Progress</span><span id="nextStageText">Next: 🌿 Sprout</span></div>
+                <div class="energy-bar"><div class="energy-fill" id="energyFill" style="width: 0%"></div></div>
+            </div>
+            <div class="category-legend" id="categoryLegend"></div>
         </div>
-        
-        <!-- Task Section -->
-        <div class="task-section">
-            <div class="task-header">
-                <h2>✨ What tiny win will you claim?</h2>
+        <div class="motivation" id="motivation">💡 Your garden grows with every win. No pressure, just progress.</div>
+        <div class="card">
+            <h2>Pick a category</h2>
+            <p style="color: #666; margin-bottom: 16px; font-size: 0.9rem;">Select what type of task you need right now. Each category grows a different plant in your garden.</p>
+            <div class="category-pills">
+                <span class="pill active" data-category="cleaning">🧹 Cleaning</span>
+                <span class="pill" data-category="health">💪 Health</span>
+                <span class="pill" data-category="mental">🧠 Mental</span>
+                <span class="pill" data-category="finance">💰 Finance</span>
+                <span class="pill" data-category="social">👥 Social</span>
+                <span class="pill" data-category="creative">🎨 Creative</span>
+                <span class="pill" data-category="home">🏠 Home</span>
             </div>
-            
-            <div class="category-tabs" id="category-tabs">
-                <!-- Tabs injected here -->
-            </div>
-            
-            <div id="task-container">
-                <!-- Task card injected here -->
-            </div>
+            <button class="btn" onclick="generateTinyStep()">✨ Give Me a Tiny Task</button>
+            <div id="result"></div>
         </div>
-    </div>
-    
-    <!-- Celebration Overlay -->
-    <div class="celebration" id="celebration"></div>
-    
-    <!-- Tooltip -->
-    <div class="tooltip" id="tooltip"></div>
-    
-    <!-- Milestone Modal -->
-    <div class="milestone-modal" id="milestone-modal">
-        <div class="milestone-content">
-            <div class="milestone-icon" id="milestone-icon">🌳</div>
-            <h2 class="milestone-title" id="milestone-title">Milestone Reached!</h2>
-            <p class="milestone-text" id="milestone-text">Your garden is growing beautifully!</p>
-            <button class="milestone-btn" onclick="closeMilestone()">Continue Growing 🌱</button>
+        <div class="card done-section">
+            <h2>✅ Today's Wins<span class="done-count" id="doneCount">0</span></h2>
+            <ul class="done-list" id="doneList"><li class="empty-state">No wins yet today. That's okay — even getting out of bed counts.</li></ul>
         </div>
     </div>
-
     <script>
-        // Data
-        const categories = [
-            { id: 'cleaning', name: '🧹 Cleaning', color: '#48bb78' },
-            { id: 'health', name: '💪 Health', color: '#ed8936' },
-            { id: 'mental', name: '🧠 Mental', color: '#9f7aea' },
-            { id: 'finance', name: '💰 Finance', color: '#38b2ac' },
-            { id: 'social', name: '👥 Social', color: '#ed64a6' },
-            { id: 'creative', name: '🎨 Creative', color: '#667eea' },
-            { id: 'home', name: '🏠 Home', color: '#718096' }
+        // Evolution Stages Configuration
+        const EVOLUTION_STAGES = [
+            { id: 1, name: "🌱 Seedling", minEnergy: 0, maxEnergy: 7, description: "New beginnings" },
+            { id: 2, name: "🌿 Sprout", minEnergy: 8, maxEnergy: 30, description: "Establishing roots" },
+            { id: 3, name: "🌾 Growing", minEnergy: 31, maxEnergy: 90, description: "Building momentum" },
+            { id: 4, name: "🌳 Thriving", minEnergy: 91, maxEnergy: 180, description: "Abundance" },
+            { id: 5, name: "🌻 Blooming", minEnergy: 181, maxEnergy: 365, description: "Maturity" },
+            { id: 6, name: "🦋 Ecosystem", minEnergy: 366, maxEnergy: Infinity, description: "Legacy" }
         ];
         
-        const tasks = {
+        // Category Plants (7 types with emojis)
+        const CATEGORY_PLANTS = {
+            cleaning: { emoji: '\u{1F33C}', name: 'Daisy', color: '#FFF8DC' },
+            health: { emoji: '\u{1F33B}', name: 'Sunflower', color: '#FFD700' },
+            mental: { emoji: '\u{1FABB}', name: 'Lavender', color: '#E6E6FA' },
+            finance: { emoji: '\u{1F333}', name: 'Money Tree', color: '#228B22' },
+            social: { emoji: '\u{1F339}', name: 'Rose', color: '#FF69B4' },
+            creative: { emoji: '\u{1F33A}', name: 'Wildflower', color: '#FF6347' },
+            home: { emoji: '\u{1F33F}', name: 'Fern', color: '#90EE90' }
+        };
+        
+        // Milestone Trees
+        const MILESTONE_TREES = {
+            7: { emoji: '{1F332}', name: 'Week Sapling', message: 'First week complete! Your garden is taking root.', sunbeams: 10 },
+            30: { emoji: '🌳', name: 'Month Tree', message: 'One month thriving! Look how far you\'ve come.', sunbeams: 25 },
+            90: { emoji: '{1F334}', name: 'Season Tree', message: '90 days of growth! You\'re building something beautiful.', sunbeams: 50 },
+            180: { emoji: '{1F384}', name: 'Half-Year Pine', message: 'Six months of consistent wins! Amazing dedication.', sunbeams: 75 },
+            365: { emoji: '🌳', name: 'Ancient Oak', message: 'One year! You\'ve created a true legacy garden.', sunbeams: 100 },
+            500: { emoji: '{1FAB5}', name: 'Legendary Redwood', message: '500 wins! Your garden is truly legendary.', sunbeams: 200 }
+        };
+        
+        // Wildlife for Ecosystem stage
+        const WILDLIFE = ['{1F98B}','{1F41D}','{1F41E}','{1F997}','{1F98E}','{1F422}','{1F407}','{1F994}','{1F43F}','{1F98C}','{1F98A}','{1F985}','{1F989}','{1F99C}','{1F99A}'];
+        
+        // Task Database (50 tasks per category)
+        const TASK_DATABASE = {
             cleaning: [
                 "Put one thing back where it belongs","Wipe one surface (counter, table, or shelf)","Take out the trash bag",
                 "Put one load of laundry in the washer","Clean one toilet, sink, or mirror","Vacuum one room or one corner",
@@ -615,66 +185,59 @@
                 "Put all remotes in their place","Straighten the towel rack"
             ],
             health: [
-                "Brush your teeth","Wash your face","Take a 2-minute shower","Drink one full glass of water",
-                "Take your medication","Step outside for fresh air","Stretch for 60 seconds",
-                "Put on real clothes (not pajamas)","Comb or brush your hair","Apply lotion or sunscreen",
-                "Floss your teeth","Use mouthwash","Trim your nails","Apply lip balm","Take 3 deep breaths",
-                "Do a 1-minute meditation","Write down 3 things you're grateful for","Look in the mirror and smile",
-                "Put on deodorant","Wash your hands for 20 seconds","Apply hand cream","Clean your glasses",
-                "Put in/take out contacts","Shave one area","Apply a face mask","Soak your feet in warm water",
-                "Give yourself a hand massage","Roll your neck and shoulders","Do 5 shoulder rolls",
-                "Stand up and touch your toes","Do 10 jumping jacks","Hold a plank for 30 seconds",
-                "Do 5 push-ups","Dance to one song","Sing along to your favorite song","Read one page of a book",
-                "Write in your journal for 2 minutes","Call a friend or family member","Send a nice text to someone",
-                "Compliment yourself out loud","Set a bedtime alarm","Prepare your clothes for tomorrow",
-                "Make a healthy snack","Eat a piece of fruit","Take your vitamins","Put on comfortable socks",
-                "Open the windows for fresh air","Light a candle","Put on your favorite perfume/cologne",
-                "Do a face scrub","Apply eye cream"
+                "Do 5 jumping jacks","Hold a plank for 20 seconds","Do 5 push-ups (or knee push-ups)","Do 10 squats",
+                "Walk up and down stairs once","Stretch your hamstrings for 30 seconds","Do 5 lunges on each leg",
+                "Hold a wall sit for 30 seconds","Do arm circles for 30 seconds","March in place for 1 minute",
+                "Do calf raises for 30 seconds","Hold a tree pose for 30 seconds","Do 5 burpees","Run in place for 1 minute",
+                "Do high knees for 30 seconds","Do butt kicks for 30 seconds","Shadow box for 1 minute",
+                "Do jumping rope for 1 minute","Do bicycle crunches for 30 seconds","Hold a glute bridge for 30 seconds",
+                "Do superman holds for 30 seconds","Stretch your neck for 30 seconds","Roll your shoulders 10 times",
+                "Do wrist circles 10 times each direction","Stretch your hip flexors for 30 seconds each","Do cat-cow stretches for 1 minute",
+                "Child's pose for 1 minute","Downward dog for 30 seconds","Cobra stretch for 30 seconds",
+                "Spinal twist for 30 seconds each side","Drink a full glass of water","Eat a piece of fruit","Take your vitamins",
+                "Step outside for sunshine","Take 10 deep breaths","Close your eyes and rest for 2 minutes",
+                "Do a 1-minute meditation","Write down how you're feeling","Set a sleep alarm for tonight",
+                "Prepare a healthy snack","Meal prep one item","Track your water intake","Log your meals for the day",
+                "Weigh yourself","Take progress photos","Measure your waist","Schedule a workout for tomorrow",
+                "Put on workout clothes","Research a new healthy recipe","Plan your workouts for the week","Book a fitness class"
             ],
             mental: [
-                "Write down 3 things you're grateful for","Meditate for 2 minutes","Read one page of a book",
-                "Journal for 3 minutes","Listen to a favorite song","Step outside for fresh air",
-                "Do a brain dump for 5 minutes","Practice positive self-talk","Set one intention for tomorrow",
-                "Unplug for 10 minutes","Do 5 deep breaths","Name 3 things you can see right now",
-                "Name 3 things you can hear right now","Wiggle your toes and focus on the sensation",
-                "Close your eyes for 60 seconds","Think of one person who loves you","Smell something pleasant",
-                "Touch something with an interesting texture","Eat one thing mindfully","Drink tea slowly",
-                "Do a body scan for 2 minutes","Repeat a positive affirmation 5 times","Visualize your happy place",
-                "Write down one worry and crumple it up","List 3 things that went well today",
-                "Send a kind message to someone","Forgive yourself for one thing","Let go of one expectation",
-                "Set one boundary for the day","Ask yourself what you need right now","Give yourself permission to rest",
-                "Do one thing at a time","Turn off notifications for 30 minutes","Create a calming playlist",
-                "Watch a funny video","Look at photos that make you smile","Pet an animal or look at cute animals",
-                "Do a random act of kindness","Plan something to look forward to","Declutter one small area",
-                "Make your bed","Put on comfortable clothes","Light a scented candle",
-                "Take a warm shower","Wrap yourself in a blanket","Hold a warm drink in your hands",
-                "Sit in silence for 2 minutes","Write a letter to your future self","Draw or color for 5 minutes",
-                "Do a puzzle","Play a game","Read an inspiring quote"
+                "Take 3 deep breaths","Write down 3 things you're grateful for","Step outside for fresh air",
+                "Do a 1-minute meditation","Look in the mirror and smile","Close your eyes for 2 minutes",
+                "Write down how you're feeling","Listen to a calming song","Do a brain dump for 2 minutes",
+                "Set a positive intention for the day","Read an inspirational quote","Say one affirmation out loud",
+                "Stretch your body for 1 minute","Drink a glass of water mindfully","Notice 5 things you can see",
+                "Notice 4 things you can touch","Notice 3 things you can hear","Notice 2 things you can smell",
+                "Notice 1 thing you can taste","Name 3 things that went well today","Forgive yourself for one thing",
+                "Let go of one worry","Focus on your breath for 1 minute","Do a body scan meditation",
+                "Write a letter to your future self","Write a letter to your past self","Visualize your ideal day",
+                "Set one small goal for tomorrow","Celebrate one win from today","Compliment yourself out loud",
+                "Do something kind for yourself","Take a break from screens for 10 minutes","Read one page of a book",
+                "Journal for 2 minutes","Draw how you're feeling","Color in a coloring book for 5 minutes",
+                "Listen to nature sounds","Watch a funny video","Call a friend","Send a nice text to someone",
+                "Hug yourself for 20 seconds","Put on comfortable clothes","Light a candle","Open the window for fresh air",
+                "Sit in silence for 2 minutes","Practice mindful eating","Do one thing at a time","Say no to one thing",
+                "Set a boundary gently","Ask for help with one thing"
             ],
             finance: [
-                "Check account balance","Log one expense","Cancel one unused subscription",
-                "Transfer $5 to savings","Review one bill","Make a meal plan",
-                "Decline one unnecessary purchase","Research one investment","Create a budget category",
-                "File one receipt","Delete 5 emails","Pay one bill","Make one appointment",
-                "File one piece of paper","Send one text you've been avoiding","Set a timer for 10 minutes of paperwork",
-                "Write one thank you note","Return one phone call","Add one event to your calendar",
-                "Decline one meeting you don't need","Unsubscribe from one email list","Update your password on one account",
-                "Check your bank balance","Review one credit card statement","Schedule a dentist appointment",
-                "Schedule a doctor checkup","Renew one subscription if needed","Check your insurance coverage",
-                "Update your address with one service","Scan one important document","Back up your phone photos",
-                "Clear your downloads folder","Empty your email trash","Archive old emails from one sender",
-                "Create one folder in your email","Set up one automatic payment","Check your credit score",
-                "Review your budget for 5 minutes","Cancel one unused subscription","Compare prices on one recurring bill",
-                "Update your resume with one new item","Update your LinkedIn profile","Respond to one LinkedIn message",
-                "Send one networking email","Request one letter of recommendation","Apply to one job posting",
-                "Update your portfolio with one piece","Create a to-do list for tomorrow","Review and update your goals"
+                "Check your bank account balance","Review one credit card statement","Log one expense in your budget app",
+                "Transfer $5 to savings","Cancel one unused subscription","Compare prices on one bill",
+                "Research a cheaper phone plan","Check your credit score","Set up account alerts","Update your budget categories",
+                "Calculate your net worth","Review your investment portfolio","Research one stock or fund","Set up automatic savings",
+                "Create a savings goal","Calculate how much you need to retire","Research retirement accounts",
+                "Increase your 401k contribution by 1%","Review your insurance policies","Get quotes for cheaper insurance",
+                "Make a debt payment plan","Pay extra on one debt","Call to negotiate a lower interest rate",
+                "Consolidate accounts if needed","Organize financial documents","Scan important financial papers",
+                "Shred old financial documents","Update your beneficiaries","Create or update your will","Research estate planning",
+                "Set up a high-yield savings account","Research CD rates","Look into I Bonds","Research cryptocurrency basics",
+                "Learn about NFTs (just for knowledge)","Calculate your hourly worth","Track your time for one day",
+                "Identify one skill to monetize","Research side hustle ideas","List one item to sell",
+                "Research passive income ideas","Learn about dividend investing","Research real estate investing",
+                "Learn about REITs","Research tax deductions you might miss","Organize receipts for taxes",
+                "Set up a tax folder for next year","Learn about tax-advantaged accounts","Research HSA benefits",
+                "Calculate your emergency fund goal","Set a financial goal for the month"
             ],
             social: [
-                "Send a text to someone you care about","Make eye contact and smile at a stranger",
-                "Call a family member for 5 minutes","Give someone a genuine compliment",
-                "Respond to one pending message","Schedule time with a friend",
-                "Write a thank you note","Ask someone about their day",
-                "Share something positive online","Practice active listening",
                 "Text one friend 'thinking of you'","Schedule one coffee date","Call a family member for 5 minutes",
                 "Send one thank you message","Reply to one message you've been avoiding","Invite someone to do something specific",
                 "Check in on one person you care about","Send a funny meme to someone","Write a quick appreciation note",
@@ -687,308 +250,385 @@
                 "Join a club or group activity","Attend one social event","Say yes to one invitation",
                 "Say no to one thing you don't want to do","Set a boundary with someone gently","Have a difficult conversation you've been avoiding",
                 "Tell someone you love them","Give someone a genuine compliment","Ask someone about their dreams",
-                "Listen to someone without interrupting","Remember someone's birthday","Send a birthday message"
+                "Listen to someone without interrupting","Remember someone's birthday","Send a birthday message",
+                "Check on a friend going through a hard time","Celebrate a friend's win","Be happy for someone's success",
+                "Let go of a grudge","Reach out to an old friend","Make a new friend","Be vulnerable with someone",
+                "Ask for help when you need it","Accept help when offered","Thank someone for being in your life",
+                "Tell someone what they mean to you","Create a new tradition with someone"
             ],
             creative: [
-                "Doodle for 5 minutes","Write 3 sentences of fiction","Take 5 photos of interesting things",
-                "Color in a coloring book","Play an instrument for 5 minutes","Rearrange one room",
-                "Try a new recipe","Make a playlist","Write a poem","Learn one new thing",
-                "Read one page of a book","Watch one 5-minute tutorial video","Write down one question you have",
-                "Research one topic for 5 minutes","Practice one skill for 5 minutes","Take notes on one concept",
-                "Explain one idea out loud to yourself","Draw one diagram","Make a mind map of one topic",
-                "Write a summary of what you learned","Teach someone one thing you know","Ask someone to teach you one thing",
-                "Listen to a podcast episode","Watch a documentary for 10 minutes","Read an article on a new topic",
-                "Learn one new word and use it","Practice a new language for 5 minutes","Learn one keyboard shortcut",
-                "Watch a TED talk","Read a Wikipedia article on something random","Learn about a historical event",
-                "Research a topic you're curious about","Learn one new fact","Practice a musical instrument for 5 minutes",
-                "Draw something from your room","Take a photo of something beautiful","Write a haiku",
-                "Create a collage from magazine cutouts","Make a playlist for a specific mood","Try a new hobby for 10 minutes",
-                "Learn one magic trick","Practice origami with one piece of paper","Write a short story opening",
-                "Create a character profile","Design a logo for a fictional company","Plan a dream vacation",
-                "Sketch a floor plan of your ideal home","Write a letter to your past self","Create a vision board",
-                "Brainstorm 10 ideas for anything","Make a list of books to read"
+                "Doodle for 2 minutes","Write one sentence","Take one photo","Play one song on an instrument",
+                "Sketch one idea","Brainstorm 3 ideas","Organize one creative supply","Look at art for inspiration (5 min)",
+                "Write down one creative goal","Start one creative project for 5 minutes","Write a haiku","Draw your coffee mug",
+                "Color in a coloring book for 5 minutes","Make a collage with magazine cutouts","Write a 6-word story",
+                "Take a photo of something blue","Write a thank you poem","Sketch your hand","Create a mood board",
+                "Design a logo for a fake company","Write a character description","Plot a story in 3 sentences",
+                "Compose a melody for 2 minutes","Freestyle rap or sing for 1 minute","Dance to express an emotion",
+                "Paint with watercolors for 5 minutes","Sculpt something with clay or playdough","Make origami",
+                "Create a zentangle pattern","Design a tattoo you'd never get","Write a letter to your future self",
+                "Create a vision board","Design your dream home","Plan a dream vacation","Write a movie review",
+                "Create a playlist with a theme","Make up a recipe","Invent a new word","Create a fictional language phrase",
+                "Design a board game concept","Write a commercial script","Create a marketing campaign idea",
+                "Design an app interface","Plan a photoshoot concept","Write a scene of dialogue",
+                "Create a character backstory","Design a costume","Plan a party theme","Create a gift idea",
+                "Write a joke","Make a meme"
             ],
             home: [
-                "Water one plant","Change one light bulb","Make your bed",
-                "Open windows for 10 minutes","Put out fresh towels","Clean one window",
-                "Organize shoes by the door","Wipe door handles","Check smoke detector",
-                "Plan one home improvement","Put one thing back where it belongs","Wipe one surface (counter, table, or shelf)",
-                "Take out the trash bag","Put one load of laundry in the washer","Clean one toilet, sink, or mirror",
-                "Vacuum one room or one corner","Make your bed","Water one plant",
-                "Take 3 things off the floor and put them away","Switch laundry from washer to dryer","Fold one basket of laundry",
-                "Empty the dishwasher","Load the dishwasher","Wipe down the kitchen counters",
-                "Clean the bathroom mirror","Take out the recycling","Change one lightbulb",
-                "Dust one shelf","Organize one drawer","Clean the microwave",
-                "Wipe down the stovetop","Sweep one room","Mop one room",
-                "Clean the shower door","Scrub the toilet bowl","Take everything off one surface and wipe it",
-                "Put away 5 things that are out of place","Clean out the fridge door shelves","Wipe down the sink faucet",
-                "Empty all trash cans in one room","Fluff the couch pillows","Straighten one bookshelf",
-                "Organize the shoe rack","Clean the windowsill","Wipe down the front of appliances",
-                "Sweep the entryway","Hang up 3 pieces of clothing","Put all dirty dishes in the sink"
+                "Change one lightbulb","Fix one squeaky hinge","Organize one drawer","Clean out one closet shelf",
+                "Tighten one loose handle","Water all your plants","Dust one ceiling fan","Vacuum under one piece of furniture",
+                "Wipe down baseboards in one room","Clean one window inside","Organize the junk drawer","Label one storage container",
+                "Hang one picture or decoration","Rearrange one piece of furniture","Declutter one surface",
+                "Donate 3 items you don't use","Organize the pantry one shelf","Clean the refrigerator coils",
+                "Descale the coffee maker","Clean the dryer lint trap thoroughly","Organize the tool drawer",
+                "Check smoke detector batteries","Replace the air filter","Organize the linen closet",
+                "Fold and organize towels","Clean the showerhead","Unclog one drain","Fix a running toilet",
+                "Caulk one small area","Touch up paint on one wall","Organize the entryway","Create a drop zone for keys",
+                "Set up a mail sorting system","Organize the spice rack alphabetically","Clean the oven",
+                "Organize the freezer","Meal prep containers for the week","Create a weekly cleaning schedule",
+                "Set up a recycling station","Organize the bathroom cabinets","Declutter the medicine cabinet",
+                "Organize makeup or toiletries","Clean makeup brushes","Organize the closet by color",
+                "Switch out seasonal clothes","Organize shoes","Clean and organize the car","Wash bedsheets and towels",
+                "Deep clean one appliance","Organize digital photos for 10 minutes","Back up important documents"
             ]
         };
         
-        // State
-        let state = {
-            sunbeams: 0,
-            totalWins: 0,
-            gardenStage: 1,
-            growthEnergy: 0,
-            currentCategory: 'cleaning',
-            plants: [],
-            trees: [],
-            lastVisit: new Date().toISOString()
-        };
-        
-        // Stage thresholds
-        const stages = [
-            { name: 'Seedling', threshold: 0, emoji: '🌱' },
-            { name: 'Sprout', threshold: 7, emoji: '🌿' },
-            { name: 'Growing', threshold: 30, emoji: '🪴' },
-            { name: 'Thriving', threshold: 90, emoji: '🌳' },
-            { name: 'Blooming', threshold: 180, emoji: '🌸' },
-            { name: 'Ecosystem', threshold: 365, emoji: '🏞️' }
+        const MOTIVATIONS = [
+            "💡 Your garden grows with every win. No pressure, just progress.",
+            "🌱 You don't need to finish. You just need to start.",
+            "✨ Done is better than perfect. Way better.",
+            "🎯 Small steps compound. Today's 2 minutes is tomorrow's momentum.",
+            "💪 You don't need more motivation. You need smaller tasks.",
+            "🌟 Progress, not perfection. Always.",
+            "🎉 Celebrate showing up, not just the outcome.",
+            "⚡ The best time to start was yesterday. The second best is right now.",
+            "🌈 Every expert was once a beginner who didn't give up.",
+            "💫 You're not behind. You're exactly where you need to be."
         ];
         
+        // State
+        let currentCategory = 'cleaning';
+        let doneItems = [];
+        let currentTask = null;
+        let storageAvailable = false;
+        let gardenState = {
+            sunbeams: 0,
+            growthEnergy: 0,
+            daysActive: 1,
+            firstVisit: new Date().toISOString(),
+            lastVisit: new Date().toISOString(),
+            milestonesReached: [],
+            tasksCompleted: [],
+            todayCount: 0,
+            lastDate: new Date().toDateString()
+        };
+        
         // Initialize
-        function init() {
-            loadState();
-            renderCategoryTabs();
-            showRandomTask();
-            renderGarden();
-            updateStats();
-        }
+        try {
+            localStorage.setItem('test', 'test');
+            localStorage.removeItem('test');
+            storageAvailable = true;
+            loadGardenState();
+        } catch (e) { console.log('localStorage not available'); }
         
-        // Load state from localStorage
-        function loadState() {
-            const saved = localStorage.getItem('tinyWinsV6');
+        function loadGardenState() {
+            if (!storageAvailable) return;
+            const saved = localStorage.getItem('tinyWinsV6_Garden');
+            const savedTasks = localStorage.getItem('tinyWinsV6_Tasks');
             if (saved) {
-                state = JSON.parse(saved);
+                gardenState = JSON.parse(saved);
+                checkNewDay();
+            }
+            if (savedTasks) doneItems = JSON.parse(savedTasks);
+        }
+        
+        function saveGardenState() {
+            if (!storageAvailable) return;
+            localStorage.setItem('tinyWinsV6_Garden', JSON.stringify(gardenState));
+            localStorage.setItem('tinyWinsV6_Tasks', JSON.stringify(doneItems));
+        }
+        
+        function checkNewDay() {
+            const today = new Date().toDateString();
+            if (gardenState.lastDate !== today) {
+                const lastVisit = new Date(gardenState.lastVisit);
+                const daysSince = Math.floor((new Date() - lastVisit) / (1000 * 60 * 60 * 24));
+                if (daysSince > 1) showWelcomeBack(daysSince);
+                gardenState.todayCount = 0;
+                gardenState.lastDate = today;
+                gardenState.daysActive++;
+                doneItems = [];
+                saveGardenState();
             }
         }
         
-        // Save state to localStorage
-        function saveState() {
-            localStorage.setItem('tinyWinsV6', JSON.stringify(state));
+        function showWelcomeBack(days) {
+            const modal = document.createElement('div');
+            modal.className = 'milestone-modal welcome-modal';
+            modal.innerHTML = '<div class="milestone-content"><div class="milestone-emoji">🌻</div><div class="milestone-title">Welcome Back!</div><div class="milestone-text">Your garden missed you! It has been ' + days + ' days since your last visit.<br><br>Remember: There is no penalty for taking breaks. Your garden waits patiently and celebrates your return.</div><button class="milestone-btn" onclick="this.closest(\'.milestone-modal\').remove()">Let\'s Grow Together 🌱</button></div>';
+            document.body.appendChild(modal);
         }
         
-        // Render category tabs
-        function renderCategoryTabs() {
-            const container = document.getElementById('category-tabs');
-            container.innerHTML = categories.map(cat => `
-                <button class="category-tab ${cat.id === state.currentCategory ? 'active' : ''}" 
-                        onclick="selectCategory('${cat.id}')">
-                    ${cat.name}
-                </button>
-            `).join('');
-        }
-        
-        // Select category
-        function selectCategory(categoryId) {
-            state.currentCategory = categoryId;
-            renderCategoryTabs();
-            showRandomTask();
-        }
-        
-        // Show random task
-        function showRandomTask() {
-            const categoryTasks = tasks[state.currentCategory];
-            const randomTask = categoryTasks[Math.floor(Math.random() * categoryTasks.length)];
-            const category = categories.find(c => c.id === state.currentCategory);
-            
-            document.getElementById('task-container').innerHTML = `
-                <div class="task-card">
-                    <div class="task-category">${category.name}</div>
-                    <div class="task-text">${randomTask}</div>
-                    <div class="task-actions">
-                        <button class="btn btn-complete" onclick="completeTask('${randomTask.replace(/'/g, "\\'")}')">
-                            ✓ Complete
-                        </button>
-                        <button class="btn btn-skip" onclick="showRandomTask()">
-                            ↻ Skip
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // Complete task
-        function completeTask(taskText) {
-            // Update state
-            state.totalWins++;
-            state.growthEnergy++;
-            state.sunbeams++;
-            
-            // Check for stage advancement
-            const newStage = getCurrentStage();
-            if (newStage > state.gardenStage) {
-                state.gardenStage = newStage;
-                showMilestone(newStage);
-            }
-            
-            // Add plant to garden
-            addPlant();
-            
-            // Save and update
-            saveState();
-            renderGarden();
-            updateStats();
-            
-            // Celebrate
-            createConfetti();
-            
-            // Show new task
-            setTimeout(showRandomTask, 500);
-        }
-        
-        // Get current stage based on growth energy
         function getCurrentStage() {
-            for (let i = stages.length - 1; i >= 0; i--) {
-                if (state.growthEnergy >= stages[i].threshold) {
-                    return i + 1;
-                }
+            for (let i = EVOLUTION_STAGES.length - 1; i >= 0; i--) {
+                if (gardenState.growthEnergy >= EVOLUTION_STAGES[i].minEnergy) return EVOLUTION_STAGES[i];
             }
-            return 1;
+            return EVOLUTION_STAGES[0];
         }
         
-        // Add plant to garden
-        function addPlant() {
-            const positions = [
-                { left: '20%', bottom: '15%' },
-                { left: '35%', bottom: '20%' },
-                { left: '50%', bottom: '15%' },
-                { left: '65%', bottom: '20%' },
-                { left: '80%', bottom: '15%' },
-                { left: '25%', bottom: '35%' },
-                { left: '45%', bottom: '40%' },
-                { left: '60%', bottom: '35%' },
-                { left: '75%', bottom: '40%' },
-                { left: '40%', bottom: '55%' }
-            ];
-            
-            const emojis = ['🌼', '🌻', '🌷', '🌹', '🌺', '🌸', '🏵️', '🌱', '🌿', '☘️'];
-            const pos = positions[state.plants.length % positions.length];
-            
-            state.plants.push({
-                emoji: emojis[Math.floor(Math.random() * emojis.length)],
-                category: state.currentCategory,
-                left: pos.left,
-                bottom: pos.bottom,
-                task: taskText
-            });
+        function getNextStage() {
+            const current = getCurrentStage();
+            return EVOLUTION_STAGES.find(s => s.id === current.id + 1) || null;
         }
         
-        // Render garden
         function renderGarden() {
-            const garden = document.getElementById('garden-content');
-            const stage = stages[state.gardenStage - 1];
+            const stage = getCurrentStage();
+            const plot = document.getElementById('gardenPlot');
+            const legend = document.getElementById('categoryLegend');
+            document.getElementById('evolutionBadge').textContent = stage.name;
             
-            let html = '';
+            const nextStage = getNextStage();
+            if (nextStage) {
+                const progress = ((gardenState.growthEnergy - stage.minEnergy) / (nextStage.minEnergy - stage.minEnergy)) * 100;
+                document.getElementById('energyFill').style.width = progress + '%';
+                document.getElementById('nextStageText').textContent = 'Next: ' + nextStage.name;
+            } else {
+                document.getElementById('energyFill').style.width = '100%';
+                document.getElementById('nextStageText').textContent = 'Max Level!';
+            }
             
-            // Render based on stage
-            switch(state.gardenStage) {
+            plot.innerHTML = '';
+            
+            switch (stage.id) {
                 case 1:
-                    html = `<div class="stage-seedling">${stage.emoji}</div>`;
+                    plot.innerHTML = '<div class="stage-seedling"><div class="main-plant" title="Your garden has begun!">🌱</div></div>';
                     break;
                 case 2:
-                    html = `<div class="stage-sprout">${stage.emoji}</div>`;
+                    plot.innerHTML = '<div class="stage-sprout"><div class="sprout-plant">\u{1F33F}</div><div class="sprout-plant">\u{1F331}</div></div>';
                     break;
                 case 3:
-                    html = `<div class="stage-growing">${stage.emoji}</div>`;
+                    const growingPlants = gardenState.tasksCompleted.slice(-8).map(t => CATEGORY_PLANTS[t.category]?.emoji || '\u{1F33F}').join('');
+                    plot.innerHTML = '<div class="stage-growing">' + growingPlants.split('').map((p, i) => '<div class="growing-plant" style="animation-delay:' + (i * 0.2) + 's">' + p + '</div>').join('') + '</div>';
                     break;
                 case 4:
+                    const thrivingHTML = [];
+                    for (let i = 0; i < 15; i++) {
+                        const task = gardenState.tasksCompleted[i];
+                        const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['{1F33C}','{1F33B}','{1FABB}','{1F333}','{1F339}','{1F33A}','{1F33F}'][i % 7];
+                        thrivingHTML.push('<div class="thriving-plant" style="animation-delay:' + (i * 0.1) + 's">' + emoji + '</div>');
+                    }
+                    plot.innerHTML = '<div class="stage-thriving">' + thrivingHTML.join('') + '</div>';
+                    break;
                 case 5:
+                    const bloomingHTML = [];
+                    const milestones = Object.keys(MILESTONE_TREES).filter(m => gardenState.growthEnergy >= parseInt(m));
+                    for (let i = 0; i < 18; i++) {
+                        if (i % 6 === 0 && milestones.length > 0) {
+                            const m = milestones.shift();
+                            bloomingHTML.push('<div class="blooming-plant milestone-tree">' + MILESTONE_TREES[m].emoji + '</div>');
+                        } else {
+                            const task = gardenState.tasksCompleted[i];
+                            const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['{1F33C}','{1F33B}','{1FABB}','{1F333}','{1F339}','{1F33A}','{1F33F}'][i % 7];
+                            bloomingHTML.push('<div class="blooming-plant" style="animation-delay:' + (i * 0.08) + 's">' + emoji + '</div>');
+                        }
+                    }
+                    plot.innerHTML = '<div class="stage-blooming">' + bloomingHTML.join('') + '</div>';
+                    break;
                 case 6:
-                    // Render plants
-                    html = state.plants.map((plant, i) => `
-                        <div class="plant plant-${plant.category}" 
-                             style="left: ${plant.left}; bottom: ${plant.bottom};"
-                             onmouseenter="showTooltip(event, '${plant.task}')"
-                             onmouseleave="hideTooltip()">
-                            ${plant.emoji}
-                        </div>
-                    `).join('');
-                    
-                    // Add milestone trees
-                    if (state.growthEnergy >= 7) {
-                        html += `<div class="tree" style="left: 10%; bottom: 20%;">🌳</div>`;
+                    const ecosystemHTML = [];
+                    for (let i = 0; i < 24; i++) {
+                        if (i % 8 === 0 && i > 0) {
+                            ecosystemHTML.push('<div class="ecosystem-element wildlife">' + WILDLIFE[(i / 8 - 1) % WILDLIFE.length] + '</div>');
+                        } else {
+                            const task = gardenState.tasksCompleted[i];
+                            const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['{1F33C}','{1F33B}','{1FABB}','{1F333}','{1F339}','{1F33A}','{1F33F}'][i % 7];
+                            ecosystemHTML.push('<div class="ecosystem-element">' + emoji + '</div>');
+                        }
                     }
-                    if (state.growthEnergy >= 30) {
-                        html += `<div class="tree" style="right: 10%; bottom: 25%;">🌲</div>`;
-                    }
-                    if (state.growthEnergy >= 90) {
-                        html += `<div class="tree" style="left: 50%; bottom: 35%; transform: translateX(-50%);">🌳</div>`;
-                    }
+                    plot.innerHTML = '<div class="stage-ecosystem">' + ecosystemHTML.join('') + '</div>';
                     break;
             }
             
-            garden.innerHTML = html;
-            
-            // Update progress bar
-            const nextStage = stages[state.gardenStage];
-            const currentThreshold = stages[state.gardenStage - 1].threshold;
-            const progress = nextStage 
-                ? ((state.growthEnergy - currentThreshold) / (nextStage.threshold - currentThreshold)) * 100
-                : 100;
-            
-            document.getElementById('stage-progress').style.width = `${Math.min(progress, 100)}%`;
-            document.getElementById('stage-text').textContent = `${stage.name} Stage`;
+            // Render legend
+            legend.innerHTML = Object.entries(CATEGORY_PLANTS).map(([key, plant]) => 
+                '<div class="legend-item"><span>' + plant.emoji + '</span><span>' + plant.name + '</span></div>'
+            ).join('');
         }
         
-        // Update stats display
         function updateStats() {
-            document.getElementById('sunbeam-count').textContent = state.sunbeams;
-            document.getElementById('garden-stage').textContent = stages[state.gardenStage - 1].emoji;
+            document.getElementById('sunbeamCount').textContent = '☀️ ' + gardenState.sunbeams;
+            document.getElementById('energyCount').textContent = '⚡ ' + gardenState.growthEnergy;
+            document.getElementById('dayCount').textContent = '🌱 Day ' + gardenState.daysActive;
+            document.getElementById('todayCount').textContent = gardenState.todayCount;
         }
         
-        // Show milestone modal
-        function showMilestone(stage) {
-            const stageInfo = stages[stage - 1];
-            document.getElementById('milestone-icon').textContent = stageInfo.emoji;
-            document.getElementById('milestone-title').textContent = `${stageInfo.name} Stage Reached!`;
-            document.getElementById('milestone-text').textContent = 
-                `Your garden has grown to the ${stageInfo.name} stage! Keep nurturing it with tiny wins.`;
-            document.getElementById('milestone-modal').classList.add('show');
+        function checkMilestones() {
+            const milestones = Object.keys(MILESTONE_TREES).map(Number).sort((a, b) => a - b);
+            for (const milestone of milestones) {
+                if (gardenState.growthEnergy >= milestone && !gardenState.milestonesReached.includes(milestone)) {
+                    gardenState.milestonesReached.push(milestone);
+                    const tree = MILESTONE_TREES[milestone];
+                    gardenState.sunbeams += tree.sunbeams;
+                    showMilestoneModal(tree);
+                    return true;
+                }
+            }
+            return false;
         }
         
-        // Close milestone modal
-        function closeMilestone() {
-            document.getElementById('milestone-modal').classList.remove('show');
+        function showMilestoneModal(tree) {
+            const modal = document.createElement('div');
+            modal.className = 'milestone-modal';
+            modal.innerHTML = '<div class="milestone-content"><div class="milestone-emoji">' + tree.emoji + '</div><div class="milestone-title">Milestone Reached!</div><div class="milestone-text">' + tree.message + '</div><div class="milestone-reward">+' + tree.sunbeams + ' Sunbeams ☀️</div><button class="milestone-btn" onclick="this.closest(\'.milestone-modal\').remove()">Keep Growing! 🌱</button></div>';
+            document.body.appendChild(modal);
+            showConfetti();
         }
         
-        // Create confetti celebration
-        function createConfetti() {
-            const celebration = document.getElementById('celebration');
-            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                celebration.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 3000);
+        function showCelebration() {
+            const emojis = ['🎉', '✨', '🌟', '💪', '🎯', '🔥', '⭐', '🏆', '🎊', '💫'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const el = document.createElement('div');
+            el.className = 'celebration';
+            el.textContent = emoji;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 800);
+        }
+        
+        function showConfetti() {
+            const colors = ['#ff6b35', '#f7931e', '#ffd700', '#48bb78', '#667eea', '#764ba2', '#ff69b4'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 50);
             }
         }
         
-        // Tooltip functions
-        function showTooltip(event, text) {
-            const tooltip = document.getElementById('tooltip');
-            tooltip.textContent = text;
-            tooltip.style.left = event.pageX + 10 + 'px';
-            tooltip.style.top = event.pageY - 30 + 'px';
-            tooltip.classList.add('show');
+        function showToast(message) {
+            const existing = document.querySelector('.success-toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'success-toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
         }
         
-        function hideTooltip() {
-            document.getElementById('tooltip').classList.remove('show');
+        // Category selection
+        document.querySelectorAll('.pill').forEach(pill => {
+            pill.addEventListener('click', function() {
+                document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                currentCategory = this.dataset.category;
+            });
+        });
+        
+        // Rotate motivation
+        setInterval(() => {
+            const idx = Math.floor(Math.random() * MOTIVATIONS.length);
+            document.getElementById('motivation').textContent = MOTIVATIONS[idx];
+        }, 10000);
+        
+        function generateTinyStep() {
+            const templates = TASK_DATABASE[currentCategory] || TASK_DATABASE.cleaning;
+            currentTask = templates[Math.floor(Math.random() * templates.length)];
+            
+            document.getElementById('result').innerHTML = '<div class="tiny-step"><div class="tiny-step-header"><h3>Your Tiny Next Step</h3><div><button class="btn btn-skip" onclick="generateTinyStep()" title="Get different task">↻ Skip</button><button class="btn btn-check" onclick="addTaskToDone()" title="Mark as done">✓ Done!</button></div></div><p>' + escapeHtml(currentTask) + '</p><span class="time-badge">⏱️ 2-5 minutes max</span></div>';
         }
         
-        // Initialize on load
-        init();
+        function addTaskToDone() {
+            if (!currentTask) return;
+            
+            const oldStage = getCurrentStage();
+            
+            const item = {
+                text: currentTask,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                id: Date.now(),
+                category: currentCategory
+            };
+            
+            doneItems.unshift(item);
+            gardenState.tasksCompleted.push(item);
+            
+            // Update stats
+            gardenState.todayCount++;
+            gardenState.growthEnergy++;
+            gardenState.sunbeams += 1; // +1 sunbeam per task
+            
+            // Check for variety bonus
+            const uniqueCategories = [...new Set(doneItems.map(i => i.category))];
+            if (uniqueCategories.length >= 3 && gardenState.todayCount <= 5) {
+                gardenState.sunbeams += 3; // Variety bonus
+            }
+            
+            gardenState.lastVisit = new Date().toISOString();
+            saveGardenState();
+            
+            renderDoneList();
+            updateStats();
+            renderGarden();
+            
+            // Check for milestone
+            const milestoneHit = checkMilestones();
+            
+            // Check for stage evolution
+            const newStage = getCurrentStage();
+            if (newStage.id !== oldStage.id) {
+                setTimeout(() => {
+                    const modal = document.createElement('div');
+                    modal.className = 'milestone-modal';
+                    modal.innerHTML = '<div class="milestone-content"><div class="milestone-emoji">🌱</div><div class="milestone-title">Garden Evolved!</div><div class="milestone-text">Your garden has evolved to ' + newStage.name + '!<br><br>' + newStage.description + '</div><button class="milestone-btn" onclick="this.closest(\'.milestone-modal\').remove()">Amazing! 🎉</button></div>';
+                    document.body.appendChild(modal);
+                    showConfetti();
+                }, 500);
+            }
+            
+            if (!milestoneHit) {
+                showCelebration();
+                showConfetti();
+            }
+            
+            showToast('Win added! +1 Sunbeam ☀️');
+            
+            document.getElementById('result').innerHTML = '';
+            currentTask = null;
+        }
+        
+        function renderDoneList() {
+            const list = document.getElementById('doneList');
+            const count = document.getElementById('doneCount');
+            
+            count.textContent = doneItems.length;
+            
+            if (doneItems.length === 0) {
+                list.innerHTML = '<li class="empty-state">No wins yet today. That\'s okay — even getting out of bed counts.</li>';
+                return;
+            }
+            
+            const recentItems = doneItems.slice(0, 5);
+            list.innerHTML = recentItems.map(item => '<li class="done-item"><span>' + CATEGORY_PLANTS[item.category]?.emoji + '</span><span>' + escapeHtml(item.text) + '</span><span class="timestamp">' + item.time + '</span></li>').join('');
+            
+            if (doneItems.length > 5) {
+                list.innerHTML += '<li class="empty-state" style="padding: 10px;">+ ' + (doneItems.length - 5) + ' more wins today!</li>';
+            }
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Initial render
+        updateStats();
+        renderGarden();
+        renderDoneList();
     </script>
 </body>
 </html>
