@@ -53,7 +53,7 @@ Copied template files to ~/.openclaw/workspace/.learnings/
 
 **Logged**: 2026-03-07T17:10:00Z  
 **Priority**: high  
-**Status**: pending  
+**Status**: resolved  
 **Area**: workflow  
 **Pattern-Key**: workflow.learnings_usage
 
