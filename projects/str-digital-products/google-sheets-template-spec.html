@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR Maintenance System - Google Sheets Template</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 15px; }
+        .content { padding: 50px 40px; }
+        .section { margin-bottom: 40px; }
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+        .code-block {
+            background: #f4f4f4;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .step-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .step-box h4 { color: #1565c0; margin-bottom: 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #e9ecef;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        ul { margin: 10px 0; padding-left: 20px; }
+        li { margin: 8px 0; }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 STR Maintenance System</h1>
+            <p>Google Sheets Template - Setup Guide</p>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <strong>Template Structure:</strong> 5 interconnected sheets<br>
+                <strong>Total Tasks:</strong> 130 maintenance items<br>
+                <strong>Automation:</strong> Email reminders via Apps Script (optional)<br>
+                <strong>Cost:</strong> Free to use, $37 one-time purchase
+            </div>
+
+            <div class="section">
+                <h2>📋 Sheet Structure</h2>
+                
+                <table>
+                    <tr>
+                        <th>Sheet Name</th>
+                        <th>Purpose</th>
+                        <th>Rows</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Dashboard</strong></td>
+                        <td>Overview, stats, upcoming tasks</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Master Task List</strong></td>
+                        <td>All 130 tasks with details</td>
+                        <td>131</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. My Schedule</strong></td>
+                        <td>Tasks assigned to your property</td>
+                        <td>Dynamic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Vendor Directory</strong></td>
+                        <td>Contact info for service providers</td>
+                        <td>Custom</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Cost Tracker</strong></td>
+                        <td>Log expenses, track budget</td>
+                        <td>Dynamic</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>📊 Sheet 1: Dashboard</h2>
+                <p><strong>Purpose:</strong> At-a-glance view of your maintenance status</p>
+                
+                <h3>Columns:</h3>
+                <div class="code-block">
+A1: "STR MAINTENANCE DASHBOARD"
+A3: "Property Name:"
+B3: [User enters property name]
+A4: "Date Created:"
+B4: =TODAY()
+A5: "Last Updated:"
+B5: =MAX('My Schedule'!D:D)
+
+A7: "QUICK STATS"
+A8: "Total Tasks:"
+B8: =COUNTA('Master Task List'!A:A)-1
+A9: "High Priority:"
+B9: =COUNTIF('Master Task List'!D:D,"High")
+A10: "Completed This Month:"
+B10: =COUNTIFS('My Schedule'!E:E,"Done",'My Schedule'!D:D,">="&EOMONTH(TODAY(),-1)+1,'My Schedule'!D:D,"<="&EOMONTH(TODAY(),0))
+A11: "Overdue Tasks:"
+B11: =COUNTIFS('My Schedule'!D:D,"<"&TODAY(),'My Schedule'!E:E,"<>Done")
+
+A13: "UPCOMING TASKS (Next 30 Days)"
+A14: =QUERY('My Schedule'!A:E,"SELECT A, B, C, D WHERE D <= date '"&TEXT(TODAY()+30,"yyyy-mm-dd")&"' AND D >= date '"&TEXT(TODAY(),"yyyy-mm-dd")&"' AND E <> 'Done' ORDER BY D ASC LIMIT 10")
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📋 Sheet 2: Master Task List</h2>
+                <p><strong>Purpose:</strong> Complete database of all 130 maintenance tasks</p>
+                
+                <h3>Column Headers (Row 1):</h3>
+                <div class="code-block">
+A1: "Task ID"
+B1: "Task Name"
+C1: "Category"
+D1: "Priority"
+E1: "Frequency"
+F1: "Est. Cost"
+G1: "Vendor Type"
+H1: "Season"
+I1: "Notes"
+J1: "Default Due Date"
+                </div>
+
+                <h3>Sample Data (First 10 Tasks):</h3>
+                <div class="code-block">
+Row 2: HVAC-001 | Replace HVAC air filters | HVAC | High | Monthly | $15-30 | DIY or Handyman | All | Critical for air quality | =EOMONTH(TODAY(),0)
+Row 3: HVAC-002 | Clean AC condenser coils | HVAC | Medium | Quarterly | $0-100 | DIY or HVAC Tech | Spring/Summer | Improves efficiency | =EOMONTH(TODAY(),3)
+Row 4: HVAC-003 | Professional HVAC inspection | HVAC | High | Annual | $100-200 | HVAC Contractor | Spring/Fall | Pre-season check | =DATE(YEAR(TODAY()),3,31)
+Row 5: HVAC-004 | Clean air vents and returns | HVAC | Medium | Quarterly | $0-50 | DIY or Cleaner | All | Improves air quality | =EOMONTH(TODAY(),3)
+Row 6: HVAC-005 | Check thermostat functionality | HVAC | Medium | Monthly | $0 | DIY | All | Test heating and cooling | =EOMONTH(TODAY(),0)
+Row 7: HVAC-006 | Inspect ductwork for leaks | HVAC | Medium | Annual | $0-300 | HVAC Contractor | Fall | Seal leaks for efficiency | =DATE(YEAR(TODAY()),10,31)
+Row 8: HVAC-007 | Clean/replace humidifier pads | HVAC | Medium | Seasonal | $20-40 | DIY | Winter | If whole-house humidifier | =DATE(YEAR(TODAY()),11,30)
+Row 9: HVAC-008 | Check refrigerant levels | HVAC | High | Annual | $100-300 | HVAC Contractor | Spring | Low refrigerant = leak | =DATE(YEAR(TODAY()),4,30)
+Row 10: HVAC-009 | Inspect heat exchanger | HVAC | High | Annual | $100-200 | HVAC Contractor | Fall | CO risk if cracked | =DATE(YEAR(TODAY()),9,30)
+Row 11: HVAC-010 | Clean dryer vent (if HVAC connected) | HVAC | High | Quarterly | $0-150 | DIY or Service | All | Fire hazard if clogged | =EOMONTH(TODAY(),3)
+                </div>
+
+                <h3>Data Validation Rules:</h3>
+                <ul>
+                    <li><strong>Category (Column C):</strong> Dropdown - HVAC, Safety, Appliances, Exterior, Landscaping, Interior, Seasonal, Compliance</li>
+                    <li><strong>Priority (Column D):</strong> Dropdown - High, Medium, Low</li>
+                    <li><strong>Frequency (Column E):</strong> Dropdown - Daily, Weekly, Monthly, Quarterly, Annual, Seasonal</li>
+                    <li><strong>Vendor Type (Column G):</strong> Dropdown - DIY, Cleaner, Handyman, Service, Contractor</li>
+                    <li><strong>Season (Column H):</strong> Dropdown - All, Spring, Summer, Fall, Winter, Spring/Summer, Fall/Winter</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>📅 Sheet 3: My Schedule</h2>
+                <p><strong>Purpose:</strong> Your active task list with due dates and status</p>
+                
+                <h3>Column Headers:</h3>
+                <div class="code-block">
+A1: "Task ID"
+B1: "Task Name"
+C1: "Category"
+D1: "Due Date"
+E1: "Status"
+F1: "Date Completed"
+G1: "Cost Actual"
+H1: "Vendor Used"
+I1: "Notes"
+J1: "Photo Link"
+                </div>
+
+                <h3>Formula for Auto-Populating:</h3>
+                <div class="code-block">
+// In A2 of My Schedule:
+=IF(ROW()-1<=COUNTA('Master Task List'!A:A)-1, 
+   INDEX('Master Task List'!A:A,ROW()),"")
+
+// In D2 (Due Date - auto-calculates based on frequency):
+=IF(B2="","",
+   IF(E2="Done",F2,
+   IF(INDEX('Master Task List'!E:E,MATCH(A2,'Master Task List'!A:A,0))="Monthly",
+      EOMONTH(TODAY(),0),
+   IF(INDEX('Master Task List'!E:E,MATCH(A2,'Master Task List'!A:A,0))="Quarterly",
+      EOMONTH(TODAY(),3),
+   IF(INDEX('Master Task List'!E:E,MATCH(A2,'Master Task List'!A:A,0))="Annual",
+      DATE(YEAR(TODAY()),MONTH(INDEX('Master Task List'!J:J,MATCH(A2,'Master Task List'!A:A,0))),DAY(INDEX('Master Task List'!J:J,MATCH(A2,'Master Task List'!A:A,0)))),
+   TODAY())))))
+                </div>
+
+                <h3>Status Dropdown:</h3>
+                <ul>
+                    <li>Not Started</li>
+                    <li>In Progress</li>
+                    <li>Done</li>
+                    <li>Overdue</li>
+                    <li>Skipped</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>👥 Sheet 4: Vendor Directory</h2>
+                <p><strong>Purpose:</strong> Store contact info for all your service providers</p>
+                
+                <h3>Column Headers:</h3>
+                <div class="code-block">
+A1: "Vendor Name"
+B1: "Category"
+C1: "Contact Name"
+D1: "Phone"
+E1: "Email"
+F1: "Website"
+G1: "Address"
+H1: "Hourly Rate"
+I1: "Rating (1-5)"
+J1: "Notes"
+K1: "Last Used"
+                </div>
+
+                <h3>Sample Entry:</h3>
+                <div class="code-block">
+ABC HVAC Services | HVAC | John Smith | (555) 123-4567 | john@abchvac.com | www.abchvac.com | 123 Main St | $85/hr | 5 | Reliable, licensed | 1/15/2026
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💰 Sheet 5: Cost Tracker</h2>
+                <p><strong>Purpose:</strong> Log all maintenance expenses</p>
+                
+                <h3>Column Headers:</h3>
+                <div class="code-block">
+A1: "Date"
+B1: "Task ID"
+C1: "Task Name"
+D1: "Vendor"
+E1: "Description"
+F1: "Cost"
+G1: "Category"
+H1: "Receipt Link"
+I1: "Tax Deductible"
+                </div>
+
+                <h3>Summary Formulas:</h3>
+                <div class="code-block">
+// Total spent this year:
+=SUMIFS(F:F,A:A,">="&DATE(YEAR(TODAY()),1,1),A:A,"<="&DATE(YEAR(TODAY()),12,31))
+
+// By category:
+=SUMIF(G:G,"HVAC",F:F)
+=SUMIF(G:G,"Safety",F:F)
+=SUMIF(G:G,"Appliances",F:F)
+// etc.
+
+// Monthly average:
+=SUM(F:F)/COUNTUNIQUE(TEXT(A:A,"YYYY-MM"))
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🤖 Optional: Apps Script Automation</h2>
+                
+                <h3>Email Reminder Script:</h3>
+                <div class="code-block">
+function sendMaintenanceReminders() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("My Schedule");
+  var data = sheet.getDataRange().getValues();
+  var today = new Date();
+  var upcoming = [];
+  
+  // Find tasks due in next 7 days
+  for (var i = 1; i < data.length; i++) {
+    var dueDate = new Date(data[i][3]);
+    var status = data[i][4];
+    var daysUntil = Math.floor((dueDate - today) / (1000 * 60 * 60 * 24));
+    
+    if (daysUntil <= 7 && daysUntil >= 0 && status !== "Done") {
+      upcoming.push({
+        task: data[i][1],
+        category: data[i][2],
+        due: data[i][3],
+        daysLeft: daysUntil
+      });
+    }
+  }
+  
+  if (upcoming.length > 0) {
+    var emailBody = "Upcoming Maintenance Tasks:\n\n";
+    for (var j = 0; j < upcoming.length; j++) {
+      emailBody += upcoming[j].task + " (" + upcoming[j].category + ") - Due: " + 
+                   Utilities.formatDate(upcoming[j].due, Session.getScriptTimeZone(), "MM/dd/yyyy") + 
+                   " (" + upcoming[j].daysLeft + " days)\n";
+    }
+    
+    MailApp.sendEmail({
+      to: Session.getEffectiveUser().getEmail(),
+      subject: "Maintenance Reminders: " + upcoming.length + " tasks due this week",
+      body: emailBody
+    });
+  }
+}
+
+// Set trigger to run weekly:
+function createTrigger() {
+  ScriptApp.newTrigger('sendMaintenanceReminders')
+    .timeBased()
+    .everyWeeks(1)
+    .onWeekDay(ScriptApp.WeekDay.MONDAY)
+    .atHour(9)
+    .create();
+}
+                </div>
+
+                <div class="warning-box">
+                    <strong>Note:</strong> Apps Script requires Google account and has daily email quotas (100 emails/day for free accounts). For production, include instructions but let users set up themselves.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎨 Formatting & Visual Design</h2>
+                
+                <h3>Color Coding:</h3>
+                <ul>
+                    <li><strong>High Priority:</strong> Light red background (#ffebee)</li>
+                    <li><strong>Medium Priority:</strong> Light yellow (#fff3cd)</li>
+                    <li><strong>Low Priority:</strong> Light green (#d4edda)</li>
+                    <li><strong>Overdue:</strong> Red text, bold</li>
+                    <li><strong>Completed:</strong> Strikethrough, gray text</li>
+                    <li><strong>Header Row:</strong> Dark blue (#667eea), white text</li>
+                </ul>
+
+                <h3>Conditional Formatting Rules:</h3>
+                <div class="code-block">
+// Rule 1: Overdue tasks (red background)
+Apply to range: D2:D
+Format cells if: Less than =TODAY()
+And: E2:E is not "Done"
+
+// Rule 2: High priority (light red)
+Apply to range: A2:J
+Format cells if: D2:D = "High"
+
+// Rule 3: Completed (gray text + strikethrough)
+Apply to range: A2:J
+Format cells if: E2:E = "Done"
+Text color: #999999
+Strikethrough: true
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📦 Delivery Package</h2>
+                
+                <h3>What Buyers Get:</h3>
+                <ol>
+                    <li><strong>Google Sheets Template</strong> - Pre-formatted with all 130 tasks</li>
+                    <li><strong>Setup Video</strong> - 10-minute walkthrough (Loom/YouTube)</li>
+                    <li><strong>Quick Start Guide</strong> - PDF with instructions</li>
+                    <li><strong>Customization Guide</strong> - How to add/remove tasks</li>
+                    <li><strong>Apps Script Code</strong> - Optional email automation</li>
+                    <li><strong>Vendor Directory Template</strong> - Pre-formatted</li>
+                    <li><strong>Cost Tracker Template</strong> - With formulas</li>
+                </ol>
+
+                <h3>Setup Instructions for Buyers:</h3>
+                <div class="step-box">
+                    <h4>Step 1: Make a Copy</h4>
+                    <p>File → Make a Copy → Rename to "[Your Property] Maintenance System"</p>
+                </div>
+                <div class="step-box">
+                    <h4>Step 2: Customize Dashboard</h4>
+                    <p>Enter your property name, review the stats</p>
+                </div>
+                <div class="step-box">
+                    <h4>Step 3: Review Master Task List</h4>
+                    <p>Delete tasks that don't apply to your property</p>
+                </div>
+                <div class="step-box">
+                    <h4>Step 4: Set Up Your Schedule</h4>
+                    <p>Copy relevant tasks to "My Schedule" sheet, set initial due dates</p>
+                </div>
+                <div class="step-box">
+                    <h4>Step 5: Add Your Vendors</h4>
+                    <p>Fill in Vendor Directory with your service providers</p>
+                </div>
+                <div class="step-box">
+                    <h4>Step 6: Optional - Enable Email Reminders</h4>
+                    <p>Follow Apps Script setup guide (advanced users)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Google Sheets Template Specification | Created March 8, 2026</p>
+            <p>Ready for development and testing</p>
+        </div>
+    </div>
+</body>
+</html>
