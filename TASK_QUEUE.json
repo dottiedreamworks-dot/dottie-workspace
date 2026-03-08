@@ -700,6 +700,9 @@
         "id": "str-maint-001",
         "priority": "high",
         "description": "Research comprehensive STR maintenance requirements - all tasks owners need to track",
+        "status": "completed",
+        "completedAt": "2026-03-08T03:29:00Z",
+        "deliverable": "projects/str-digital-products/maintenance-system/maintenance-requirements-research.md",
         "deliverables": [
           "HVAC maintenance (filters, servicing)",
           "Safety systems (fire extinguishers, smoke/CO detectors, inspections)",
@@ -752,6 +755,9 @@
         "id": "str-direct-001",
         "priority": "high",
         "description": "Research direct booking strategies for STR owners and property managers",
+        "status": "completed",
+        "completedAt": "2026-03-08T04:12:00Z",
+        "deliverable": "projects/str-digital-products/direct-booking/direct-booking-strategies-research.md",
         "topicsToCover": [
           "Website building options (low-cost to premium)",
           "Booking engine solutions",
