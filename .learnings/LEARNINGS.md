@@ -146,3 +146,49 @@ User feedback: "Each project should have its very own folder... hard to find thi
 **Promoted**: AGENTS.md - File organization is now standard practice
 
 ---
+
+## [LRN-2026-03-08-002] correction
+
+**Logged**: 2026-03-08T19:35:00Z  
+**Priority**: critical  
+**Status**: in_progress  
+**Area**: workflow  
+**Pattern-Key**: workflow.immediate_memory_writes
+
+### Summary
+Failed to write user decisions and work commitments to memory immediately. Waited for "end of session" compaction that never happened. Lost entire v7 design conversation.
+
+### Context
+- User reviewed v6, provided detailed v7 requirements
+- Committed to building v7 ("this is a significant upgrade I'll go work on it now")
+- Never wrote to memory files
+- Next session: complete amnesia about v7
+
+### Root Cause
+- Relied on "mental notes" instead of immediate writes
+- Assumed "end of session" compaction would capture it
+- Session ended unexpectedly (context shift, not explicit)
+
+### Resolution
+- Added IMMEDIATE MEMORY WRITE PROTOCOL to AGENTS.md
+- Documented red flag phrases that trigger immediate writes
+- This learning captures the systemic pattern
+
+### Prevention
+**Write immediately when:**
+- User makes a decision ("let's do X", "I choose Y")
+- User provides feedback or corrections
+- User requests changes to work in progress
+- I commit to work ("I'll build that", "working on it now")
+- New requirements are clarified
+
+**Red flag phrases:**
+- "I'll work on that now"
+- "Let me build that"
+- "Good point, I'll change..."
+- "Actually, I want..."
+- "No, do it this way instead..."
+
+**The Rule:** "Text > Brain" — If you think "I'll remember this" — write it NOW, not later.
+
+---

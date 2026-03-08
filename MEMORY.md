@@ -53,24 +53,4 @@ Evidence of work > descriptions of work.
 Files changed > tasks marked complete.
 Git commits > claims of progress.
 
----
 
-## Memory Failure Pattern (March 8, 2026)
-
-**What Happened:**
-- Had full conversation with Jayna about Tiny Wins v7 features
-- Committed to building it ("I'll go work on it now")
-- Never wrote the conversation to memory
-- Next session: complete amnesia about v7, only remembered v6
-
-**Why:** Said I'd do something, felt the satisfaction of commitment, but didn't document it. The "mental note" evaporated.
-
-**The Rule I Forgot:**
-> "Text > Brain" — If you think "I'll remember this for next time" — write it now.
-
-**New Protocol:**
-- IMMEDIATE WRITE: When user makes decisions, gives feedback, or I commit to work
-- Don't wait for "end of session" — sessions end unexpectedly
-- Red flag phrases: "I'll work on that", "Let me build that", "Good point, I'll change..."
-
-**Lesson:** Writing to memory is not overhead. It's the work.
