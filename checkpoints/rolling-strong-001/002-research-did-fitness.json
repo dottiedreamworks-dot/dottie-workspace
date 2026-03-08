@@ -1,0 +1,48 @@
+{
+  "step": 2,
+  "description": "Research D-ID and fitness-specific AI video capabilities",
+  "status": "completed",
+  "timestamp": "2026-03-08T06:04:00Z",
+  "findings": {
+    "d-id": {
+      "pricing": {
+        "studioLite": "$5.99/month - 5-10 minutes video",
+        "studioPro": "$49/month - 15-20 minutes, premium avatars",
+        "apiBuild": "$18/month - API access, streaming",
+        "enterprise": "Custom - unlimited, custom agents"
+      },
+      "features": [
+        "Seamless API integration",
+        "Multilingual at scale",
+        "Brand-adaptable avatars",
+        "High-quality content in minutes"
+      ],
+      "fitnessSuitability": "Medium - good API, but limited minutes on lower tiers"
+    },
+    "fitnessSpecific": {
+      "hyperhuman": {
+        "description": "AI-Powered Fitness OS",
+        "features": [
+          "CloneMotion - generate clips from photo",
+          "AI adapts workouts based on goals/level/equipment",
+          "Publish to apps, web, API, video, social",
+          "Zero filming or editing required"
+        ],
+        "relevance": "Purpose-built for fitness - strongest candidate"
+      },
+      "limitations": [
+        "Text-to-image tools struggle with consistent trainer appearance across frames",
+        "Movement accuracy varies by body type and lighting",
+        "Real-time processing ideal but not mandatory",
+        "Hybrid approach works better for mid-range smartphones"
+      ],
+      "bestPractices": [
+        "Design simple, structured exercise plans",
+        "Avoid overly complex movements",
+        "Focus on movement accuracy over aesthetic complexity",
+        "Test across different devices"
+      ]
+    }
+  },
+  "nextStep": "Research cost analysis and create comprehensive comparison document"
+}

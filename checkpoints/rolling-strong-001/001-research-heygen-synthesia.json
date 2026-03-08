@@ -1,0 +1,38 @@
+{
+  "step": 1,
+  "description": "Research AI avatar video platforms - HeyGen and Synthesia",
+  "status": "completed",
+  "timestamp": "2026-03-08T06:02:00Z",
+  "findings": {
+    "heygen": {
+      "pricing": {
+        "free": "3 videos/month, 3 min max",
+        "classic": "$39/month - unlimited avatar videos, AI clone",
+        "api": "From $5"
+      },
+      "features": [
+        "1080p or 4K cinematic videos",
+        "AI avatars with voiceovers",
+        "API access available",
+        "AI video generator end-to-end"
+      ],
+      "fitnessSuitability": "High - supports long videos, API for automation"
+    },
+    "synthesia": {
+      "pricing": {
+        "starter": "$18/month (annual)",
+        "creator": "$64/month (annual)",
+        "enterprise": "Custom"
+      },
+      "features": [
+        "Custom personal avatars (included in annual plans)",
+        "API access (Creator+ plans)",
+        "1-click translation to 80+ languages",
+        "Team collaboration, workspaces",
+        "Customizable avatars with action capabilities"
+      ],
+      "fitnessSuitability": "High - action capabilities good for exercise demos"
+    }
+  },
+  "nextStep": "Research more platforms (D-ID, Colossyan, Runway ML) and fitness-specific capabilities"
+}
