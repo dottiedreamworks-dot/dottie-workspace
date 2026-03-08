@@ -85,6 +85,48 @@ NOT for:
 
 ---
 
+## [LRN-2026-03-08-001] correction
+
+**Logged**: 2026-03-08T02:37:00Z  
+**Priority**: high  
+**Status**: resolved  
+**Area**: workflow  
+**Pattern-Key**: workflow.task_queue_structure
+
+### Summary
+Misplaced product deliverable in `improvementQueue` instead of as a top-level project. The `improvementQueue` is strictly for MY system/capability improvements, not for Jayna's product work.
+
+### Context
+User corrected me when I put Tiny Wins garden system (a product feature) in the improvement queue. User clarified: "improvement queue is for improvements to your systems."
+
+### The Rule
+- **Top-level projects** = Product deliverables, research, apps, content FOR Jayna
+- **improvementQueue** = MY infrastructure, skills, capabilities, automation
+- **backlog** = Completed/cleanup tasks
+
+### Examples
+✅ **improvementQueue** items:
+- Maton.ai setup (my Google Sheets capability)
+- Voice communication (my feature)
+- New skill installation
+- Workflow automation for me
+
+❌ **NOT improvementQueue** items:
+- Tiny Wins garden (product feature for Jayna)
+- STR maintenance system (product for Jayna)
+- Audio Empire research (work product for Jayna)
+
+### Resolution
+- Moved `tinywins-garden-001` to top-level `tinyWinsGarden` project
+- Kept only `maton-setup-001` and `voice-communication-001` in improvementQueue
+
+### Prevention
+Before adding to improvementQueue, ask: "Is this making ME better, or is this delivering value TO Jayna?"
+- If ME → improvementQueue
+- If Jayna → top-level project or tasks array
+
+---
+
 ## [LRN-2026-03-07-004] best_practice
 
 **Logged**: 2026-03-07T14:57:00Z  
