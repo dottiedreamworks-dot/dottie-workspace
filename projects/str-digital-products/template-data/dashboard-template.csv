@@ -1,0 +1,40 @@
+Metric,Value,Formula/Note
+STR MAINTENANCE DASHBOARD,,
+,,
+Property Name:,Enter your property name here,Manual entry
+Date Created:,=TODAY(),Auto-generated
+Last Updated:,=MAX('My Schedule'!F:F),Auto-generated from completed dates
+,,
+QUICK STATS,,
+Total Tasks:,=COUNTA('Master Task List'!A:A)-1,Counts all tasks in database
+High Priority:,=COUNTIF('Master Task List'!D:D,"High"),Critical safety items
+Medium Priority:,=COUNTIF('Master Task List'!D:D,"Medium"),Preventive maintenance
+Low Priority:,=COUNTIF('Master Task List'!D:D,"Low"),Aesthetic items
+Completed This Month:,=COUNTIFS('My Schedule'!E:E,"Done",'My Schedule'!F:F,">="&EOMONTH(TODAY(),-1)+1,'My Schedule'!F:F,"<="&EOMONTH(TODAY(),0)),Tracks progress
+Overdue Tasks:,=COUNTIFS('My Schedule'!D:D,"<"&TODAY(),'My Schedule'!E:E,"<>Done"),Needs attention
+,,
+UPCOMING TASKS (Next 30 Days),,
+Task ID,Task Name,Due Date
+,=QUERY('My Schedule'!A:I,"SELECT A, B, D WHERE D <= date '"&TEXT(TODAY()+30,"yyyy-mm-dd")&"' AND D >= date '"&TEXT(TODAY(),"yyyy-mm-dd")&"' AND E <> 'Done' ORDER BY D ASC LIMIT 10"),Auto-populated
+,,
+COST SUMMARY,,
+Total Spent This Year:,=SUMIFS('Cost Tracker'!F:F,'Cost Tracker'!A:A,">="&DATE(YEAR(TODAY()),1,1),'Cost Tracker'!A:A,"<="&DATE(YEAR(TODAY()),12,31)),Tracks expenses
+,,
+By Category:,,
+HVAC Costs:,=SUMIF('Cost Tracker'!G:G,"HVAC",'Cost Tracker'!F:F),
+Safety Costs:,=SUMIF('Cost Tracker'!G:G,"Safety",'Cost Tracker'!F:F),
+Appliance Costs:,=SUMIF('Cost Tracker'!G:G,"Appliances",'Cost Tracker'!F:F),
+Exterior Costs:,=SUMIF('Cost Tracker'!G:G,"Exterior",'Cost Tracker'!F:F),
+Landscaping Costs:,=SUMIF('Cost Tracker'!G:G,"Landscaping",'Cost Tracker'!F:F),
+Interior Costs:,=SUMIF('Cost Tracker'!G:G,"Interior",'Cost Tracker'!F:F),
+Seasonal Costs:,=SUMIF('Cost Tracker'!G:G,"Seasonal",'Cost Tracker'!F:F),
+Compliance Costs:,=SUMIF('Cost Tracker'!G:G,"Compliance",'Cost Tracker'!F:F),
+,,
+Monthly Average:,=SUM('Cost Tracker'!F:F)/COUNTUNIQUE(TEXT('Cost Tracker'!A:A,"YYYY-MM")),
+,,
+TASKS BY STATUS,,
+Not Started:,=COUNTIF('My Schedule'!E:E,"Not Started"),
+In Progress:,=COUNTIF('My Schedule'!E:E,"In Progress"),
+Done:,=COUNTIF('My Schedule'!E:E,"Done"),
+Overdue:,=COUNTIF('My Schedule'!E:E,"Overdue"),
+Skipped:,=COUNTIF('My Schedule'!E:E,"Skipped"),

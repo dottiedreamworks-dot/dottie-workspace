@@ -1,0 +1,34 @@
+Task ID,Task Name,Category,Priority,Frequency,Est. Cost,Vendor Type,Season,Notes,Default Month
+HVAC-001,Replace HVAC air filters,HVAC,High,Monthly,$15-30,DIY or Handyman,All,Critical for air quality and system efficiency,1
+HVAC-002,Clean AC condenser coils,HVAC,Medium,Quarterly,$0-100,DIY or HVAC Tech,Spring/Summer,Improves efficiency prevents breakdowns,4
+HVAC-003,Professional HVAC inspection,HVAC,High,Annual,$100-200,HVAC Contractor,Spring/Fall,Pre-season check,3
+HVAC-004,Clean air vents and returns,HVAC,Medium,Quarterly,$0-50,DIY or Cleaner,All,Improves air quality and system efficiency,1
+HVAC-005,Check thermostat functionality,HVAC,Medium,Monthly,$0,DIY,All,Test heating and cooling modes,1
+HVAC-006,Inspect ductwork for leaks,HVAC,Medium,Annual,$0-300,HVAC Contractor,Fall,Seal leaks to improve efficiency,10
+HVAC-007,Clean/replace humidifier pads,HVAC,Medium,Seasonal,$20-40,DIY,Winter,If property has whole-house humidifier,11
+HVAC-008,Check refrigerant levels,HVAC,High,Annual,$100-300,HVAC Contractor,Spring,Low refrigerant indicates leak,4
+HVAC-009,Inspect heat exchanger,HVAC,High,Annual,$100-200,HVAC Contractor,Fall,Cracked exchanger = carbon monoxide risk,9
+HVAC-010,Clean dryer vent,HVAC,High,Quarterly,$0-150,DIY or Service,All,Fire hazard if clogged,1
+HVAC-011,Test emergency shut-off switches,HVAC,High,Annual,$0,DIY,All,Ensure safety switches work properly,1
+HVAC-012,Replace thermostat batteries,HVAC,Medium,Annual,$10-20,DIY,All,Prevent guest complaints,1
+HVAC-013,Clean ceiling fans,HVAC,Low,Monthly,$0,DIY or Cleaner,All,Part of turnover cleaning,1
+HVAC-014,Inspect fireplace/chimney,HVAC,High,Annual,$100-300,Chimney Sweep,Fall/Winter,Fire safety critical,9
+HVAC-015,Clean bathroom exhaust fans,HVAC,Medium,Quarterly,$0-50,DIY,All,Prevents mold improves air flow,1
+HVAC-016,Check kitchen range hood filter,HVAC,Medium,Monthly,$0-30,DIY,All,Clean or replace as needed,1
+HVAC-017,Inspect weatherstripping,HVAC,Medium,Quarterly,$20-100,DIY or Handyman,All,Improves energy efficiency,1
+HVAC-018,Test carbon monoxide detector integration,HVAC,High,Annual,$0,DIY,All,Ensure HVAC-related CO risks are monitored,1
+SAFETY-001,Test smoke detectors,Safety,High,Monthly,$0,DIY,All,Press test button verify sound,1
+SAFETY-002,Test carbon monoxide detectors,Safety,High,Monthly,$0,DIY,All,Required by most jurisdictions,1
+SAFETY-003,Replace smoke/CO detector batteries,Safety,High,Annual,$20-40,DIY,All,Or when low battery chirps,1
+SAFETY-004,Replace smoke detectors (10-year rule),Safety,High,Annual,$100-300,DIY or Electrician,All,Check manufacture dates replace if 10+ years,1
+SAFETY-005,Inspect fire extinguishers,Safety,High,Monthly,$0,DIY,All,Check pressure gauge expiration date,1
+SAFETY-006,Replace fire extinguishers,Safety,High,Annual,$50-150,DIY,All,Every 5-12 years depending on type,1
+SAFETY-007,Test security system/alarm,Safety,Medium,Monthly,$0,DIY or Security Co,All,If property has security system,1
+SAFETY-008,Check outdoor lighting,Safety,Medium,Monthly,$0-50,DIY,All,Entry pathway and parking lighting,1
+SAFETY-009,Inspect handrails and stairs,Safety,High,Quarterly,$0-200,DIY or Handyman,All,Liability protection,1
+SAFETY-010,Check for trip hazards,Safety,High,Monthly,$0-100,DIY,All,Rugs cords uneven surfaces,1
+SAFETY-011,Inspect deck/patio for safety,Safety,High,Quarterly,$0-500,DIY or Contractor,All,Check for rot loose boards railings,1
+SAFETY-012,Test GFCI outlets,Safety,High,Monthly,$0,DIY,All,Press test/reset buttons,1
+SAFETY-013,Check water heater temperature,Safety,High,Quarterly,$0,DIY,All,Should be 120F max to prevent scalding,1
+SAFETY-014,Inspect for mold/moisture,Safety,High,Monthly,$0-500,DIY or Inspector,All,Check bathrooms basement around windows,1
+SAFETY-015,Update emergency contact info,Safety,Medium,Annual,$0,DIY,All,Plumber electrician HVAC poison control,1
