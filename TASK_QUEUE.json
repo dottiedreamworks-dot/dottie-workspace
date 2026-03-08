@@ -10,9 +10,83 @@
       "github": true,
       "frequency": "After each major deliverable"
     },
-    "sessionInstructions": "User has gone to bed. Work through tasks autonomously. Backup all deliverables to Dropbox and GitHub. If all tasks complete, research self-improvement opportunities or build a surprise."
+    "sessionInstructions": "User has gone to bed. Work through tasks autonomously. Backup all deliverables to Dropbox and GitHub. If all tasks complete, research self-improvement opportunities or build a surprise.",
+    "activeTask": "tinywins-garden-prototype"
   },
   "tasks": [
+    {
+      "id": "tinywins-garden-prototype",
+      "status": "in_progress",
+      "type": "app_development",
+      "description": "Build Tiny Wins Growth Garden prototype v6 with evolving plants, milestone rewards, and scalable 500+ day system",
+      "created": "2026-03-08T15:10:00Z",
+      "started": "2026-03-08T15:10:00Z",
+      "priority": "high",
+      "autoExecute": true,
+      "context": "Daughter is excited to help test. Based on garden research: preserve confetti/celebrations, evolving plants, visual trophy case (not obligation), scale to 500+ days",
+      "deliverable": "projects/tiny-wins/tiny-wins-v6-garden-prototype.html",
+      "checkpoints": []
+    },
+    {
+      "id": "str-cleaning-checklist",
+      "status": "proposed",
+      "type": "digital_product",
+      "description": "Build STR Cleaning Checklist Templates ($29) - room-by-room turnover checklists",
+      "created": "2026-03-08T15:10:00Z",
+      "priority": "medium",
+      "autoExecute": false,
+      "deliverable": "projects/str-digital-products/cleaning-checklist-templates.html"
+    },
+    {
+      "id": "str-welcome-book",
+      "status": "proposed",
+      "type": "digital_product",
+      "description": "Build STR Welcome Book Templates ($39) - customizable guest welcome guides",
+      "created": "2026-03-08T15:10:00Z",
+      "priority": "medium",
+      "autoExecute": false,
+      "deliverable": "projects/str-digital-products/welcome-book-templates.html"
+    },
+    {
+      "id": "str-guest-communication",
+      "status": "proposed",
+      "type": "digital_product",
+      "description": "Build STR Guest Communication Templates ($49) - pre-written message sequences",
+      "created": "2026-03-08T15:10:00Z",
+      "priority": "medium",
+      "autoExecute": false,
+      "deliverable": "projects/str-digital-products/guest-communication-templates.html"
+    },
+    {
+      "id": "str-house-rules",
+      "status": "proposed",
+      "type": "digital_product",
+      "description": "Build STR House Rules Templates ($29) - legal-friendly house rules by jurisdiction",
+      "created": "2026-03-08T15:10:00Z",
+      "priority": "medium",
+      "autoExecute": false,
+      "deliverable": "projects/str-digital-products/house-rules-templates.html"
+    },
+    {
+      "id": "str-expense-tracker",
+      "status": "proposed",
+      "type": "digital_product",
+      "description": "Build STR Expense Tracking Template ($39) - tax-ready expense categories",
+      "created": "2026-03-08T15:10:00Z",
+      "priority": "medium",
+      "autoExecute": false,
+      "deliverable": "projects/str-digital-products/expense-tracking-template.html"
+    },
+    {
+      "id": "str-pricing-calculator",
+      "status": "proposed",
+      "type": "digital_product",
+      "description": "Build STR Pricing Calculator ($79) - nightly rate optimizer with formulas",
+      "created": "2026-03-08T15:10:00Z",
+      "priority": "medium",
+      "autoExecute": false,
+      "deliverable": "projects/str-digital-products/pricing-calculator.html"
+    },
     {
       "id": "research-001",
       "status": "completed",
