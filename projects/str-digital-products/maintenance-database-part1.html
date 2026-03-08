@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR Maintenance Master Database</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #667eea;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.4em;
+            margin: 30px 0 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .frequency-daily { color: #28a745; font-weight: 600; }
+        .frequency-weekly { color: #17a2b8; font-weight: 600; }
+        .frequency-monthly { color: #fd7e14; font-weight: 600; }
+        .frequency-quarterly { color: #6f42c1; font-weight: 600; }
+        .frequency-annual { color: #dc3545; font-weight: 600; }
+        .frequency-seasonal { color: #e83e8c; font-weight: 600; }
+        
+        .priority-high { 
+            background: #f8d7da; 
+            color: #721c24;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .priority-medium { 
+            background: #fff3cd; 
+            color: #856404;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .priority-low { 
+            background: #d4edda; 
+            color: #155724;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        
+        .cat-hvac { background: #e3f2fd; color: #1565c0; }
+        .cat-safety { background: #ffebee; color: #c62828; }
+        .cat-appliances { background: #f3e5f5; color: #6a1b9a; }
+        .cat-exterior { background: #e8f5e9; color: #2e7d32; }
+        .cat-interior { background: #fff3e0; color: #ef6c00; }
+        .cat-seasonal { background: #fce4ec; color: #c2185b; }
+        .cat-compliance { background: #e0f2f1; color: #00695c; }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 STR Maintenance Master Database</h1>
+            <p>Comprehensive Task List for Short-Term Rental Properties</p>
+        </div>
+        
+        <div class="content">
+            <!-- Summary -->
+            <div class="section">
+                <h2>📊 Database Overview</h2>
+                <div class="summary-box">
+                    <strong>Total Tasks:</strong> 127 maintenance items across 7 categories<br>
+                    <strong>High Priority:</strong> 34 tasks (safety & compliance critical)<br>
+                    <strong>Medium Priority:</strong> 58 tasks (preventive maintenance)<br>
+                    <strong>Low Priority:</strong> 35 tasks (aesthetic & comfort)
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="category-badge cat-hvac">HVAC</span>
+                        <span>Heating, Ventilation, AC</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="category-badge cat-safety">Safety</span>
+                        <span>Detectors, extinguishers, security</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="category-badge cat-appliances">Appliances</span>
+                        <span>Kitchen, laundry, electronics</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="category-badge cat-exterior">Exterior</span>
+                        <span>Roof, gutters, landscaping</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="category-badge cat-interior">Interior</span>
+                        <span>Walls, floors, fixtures</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="category-badge cat-seasonal">Seasonal</span>
+                        <span>Weather-specific tasks</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="category-badge cat-compliance">Compliance</span>
+                        <span>Permits, inspections, legal</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HVAC Systems -->
+            <div class="section">
+                <h2>🌡️ HVAC Systems (18 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Replace HVAC air filters</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$15-30</td>
+                            <td>DIY or Handyman</td>
+                            <td>Critical for air quality and system efficiency</td>
+                        </tr>
+                        <tr>
+                            <td>Clean AC condenser coils</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-100</td>
+                            <td>DIY or HVAC Tech</td>
+                            <td>Improves efficiency, prevents breakdowns</td>
+                        </tr>
+                        <tr>
+                            <td>Professional HVAC inspection</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-200</td>
+                            <td>HVAC Contractor</td>
+                            <td>Pre-season check (spring for AC, fall for heat)</td>
+                        </tr>
+                        <tr>
+                            <td>Clean air vents and returns</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-50</td>
+                            <td>DIY or Cleaner</td>
+                            <td>Improves air quality and system efficiency</td>
+                        </tr>
+                        <tr>
+                            <td>Check thermostat functionality</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Test heating and cooling modes</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect ductwork for leaks</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-300</td>
+                            <td>HVAC Contractor</td>
+                            <td>Seal leaks to improve efficiency</td>
+                        </tr>
+                        <tr>
+                            <td>Clean/replace humidifier pads</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-seasonal">Seasonal</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$20-40</td>
+                            <td>DIY</td>
+                            <td>If property has whole-house humidifier</td>
+                        </tr>
+                        <tr>
+                            <td>Check refrigerant levels</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-300</td>
+                            <td>HVAC Contractor</td>
+                            <td>Low refrigerant indicates leak</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect heat exchanger</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-200</td>
+                            <td>HVAC Contractor</td>
+                            <td>Cracked exchanger = carbon monoxide risk</td>
+                        </tr>
+                        <tr>
+                            <td>Clean dryer vent (if connected to HVAC)</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-150</td>
+                            <td>DIY or Service</td>
+                            <td>Fire hazard if clogged</td>
+                        </tr>
+                        <tr>
+                            <td>Test emergency shut-off switches</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Ensure safety switches work properly</td>
+                        </tr>
+                        <tr>
+                            <td>Replace thermostat batteries</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$10-20</td>
+                            <td>DIY</td>
+                            <td>Prevent guest complaints about non-working heat/AC</td>
+                        </tr>
+                        <tr>
+                            <td>Clean ceiling fans</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY or Cleaner</td>
+                            <td>Part of turnover cleaning</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect fireplace/chimney</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-300</td>
+                            <td>Chimney Sweep</td>
+                            <td>Fire safety critical</td>
+                        </tr>
+                        <tr>
+                            <td>Clean bathroom exhaust fans</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-50</td>
+                            <td>DIY</td>
+                            <td>Prevents mold, improves air flow</td>
+                        </tr>
+                        <tr>
+                            <td>Check kitchen range hood filter</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-30</td>
+                            <td>DIY</td>
+                            <td>Clean or replace as needed</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect weatherstripping around doors/windows</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$20-100</td>
+                            <td>DIY or Handyman</td>
+                            <td>Improves energy efficiency</td>
+                        </tr>
+                        <tr>
+                            <td>Test carbon monoxide detector integration</td>
+                            <td><span class="category-badge cat-hvac">HVAC</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Ensure HVAC-related CO risks are monitored</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Safety Systems -->
+            <div class="section">
+                <h2>🚨 Safety Systems (15 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Test smoke detectors</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Press test button, verify sound</td>
+                        </tr>
+                        <tr>
+                            <td>Test carbon monoxide detectors</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Required by most jurisdictions</td>
+                        </tr>
+                        <tr>
+                            <td>Replace smoke/CO detector batteries</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$20-40</td>
+                            <td>DIY</td>
+                            <td>Or when low battery chirps</td>
+                        </tr>
+                        <tr>
+                            <td>Replace smoke detectors (10-year rule)</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-300</td>
+                            <td>DIY or Electrician</td>
+                            <td>Check manufacture dates, replace if 10+ years</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect fire extinguishers</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Check pressure gauge, expiration date</td>
+                        </tr>
+                        <tr>
+                            <td>Replace fire extinguishers</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$50-150</td>
+                            <td>DIY</td>
+                            <td>Every 5-12 years depending on type</td>
+                        </tr>
+                        <tr>
+                            <td>Test security system/alarm</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY or Security Co</td>
+                            <td>If property has security system</td>
+                        </tr>
+                        <tr>
+                            <td>Check outdoor lighting</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-50</td>
+                            <td>DIY</td>
+                            <td>Entry, pathway, and parking lighting</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect handrails and stairs</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-200</td>
+                            <td>DIY or Handyman</td>
+                            <td>Liability protection</td>
+                        </tr>
+                        <tr>
+                            <td>Check for trip hazards</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-100</td>
+                            <td>DIY</td>
+                            <td>Rugs, cords, uneven surfaces</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect deck/patio for safety</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-500</td>
+                            <td>DIY or Contractor</td>
+                            <td>Check for rot, loose boards, railings</td>
+                        </tr>
+                        <tr>
+                            <td>Test GFCI outlets</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Press test/reset buttons</td>
+                        </tr>
+                        <tr>
+                            <td>Check water heater temperature</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Should be 120°F max to prevent scalding</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect for mold/moisture</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-500</td>
+                            <td>DIY or Inspector</td>
+                            <td>Check bathrooms, basement, around windows</td>
+                        </tr>
+                        <tr>
+                            <td>Update emergency contact info</td>
+                            <td><span class="category-badge cat-safety">Safety</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Plumber, electrician, HVAC, poison control</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p>STR Maintenance Master Database | Created March 8, 2026</p>
+                <p>Part 1 of 3: HVAC & Safety Systems (33 tasks)</p>
+                <p><em>Note: This is a preview. Full database includes 127+ tasks across all categories.</em></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
