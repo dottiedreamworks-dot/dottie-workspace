@@ -20,6 +20,14 @@
     "github": {
       "version": "1.0.0",
       "installedAt": 1772604385201
+    },
+    "office": {
+      "version": "1.0.0",
+      "installedAt": 1772936063477
+    },
+    "google-sheets": {
+      "version": "1.0.6",
+      "installedAt": 1772936082933
     }
   }
 }

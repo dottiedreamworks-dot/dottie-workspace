@@ -213,6 +213,49 @@
   },
   "improvementQueue": [
     {
+      "id": "maton-setup-001",
+      "status": "pending",
+      "type": "infrastructure_setup",
+      "description": "Set up Maton.ai integration for full Google Sheets API access including formatting, conditional formatting, and automated styling",
+      "created": "2026-03-08T02:23:00Z",
+      "priority": "medium",
+      "steps": [
+        {
+          "id": "maton-001",
+          "description": "Sign up for Maton.ai account",
+          "status": "pending"
+        },
+        {
+          "id": "maton-002",
+          "description": "Get MATON_API_KEY from settings",
+          "status": "pending"
+        },
+        {
+          "id": "maton-003",
+          "description": "Connect Google account via OAuth",
+          "status": "pending"
+        },
+        {
+          "id": "maton-004",
+          "description": "Add MATON_API_KEY to .env file",
+          "status": "pending"
+        },
+        {
+          "id": "maton-005",
+          "description": "Test formatting capabilities on STR Maintenance sheet",
+          "status": "pending"
+        }
+      ],
+      "benefits": [
+        "Full Google Sheets formatting automation",
+        "Conditional formatting via API",
+        "Bold headers, colors, auto-resize columns",
+        "Create new sheets programmatically",
+        "No manual formatting needed in future"
+      ],
+      "notes": "This will enable Dottie to fully automate Google Sheets styling and formatting without manual intervention"
+    },
+    {
       "id": "tinywins-garden-001",
       "status": "pending",
       "type": "ux_research",
