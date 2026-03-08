@@ -43,7 +43,8 @@
       ],
       "results": {
         "fileLocation": "projects/tiny-wins/tiny-wins-v6-garden-prototype.html",
-        "fileSize": "30KB",
+        "dropboxLocation": "/AgentProjects/tiny-wins-v6-garden-prototype.html",
+        "fileSize": "39KB",
         "features": [
           "6 evolution stages (Seedling → Sprout → Growing → Thriving → Blooming → Ecosystem)",
           "Growth energy system - each task adds energy",
