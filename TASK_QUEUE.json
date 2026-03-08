@@ -181,6 +181,36 @@
     }
   ],
 
+  "tinyWinsGarden": {
+    "status": "pending",
+    "description": "Research and design scalable Growth Garden system for Tiny Wins v5 - replace infinite item adding with evolving/plantable garden mechanics",
+    "created": "2026-03-07T16:33:00Z",
+    "priority": "high",
+    "notes": "USER FEEDBACK CAPTURED - CRITICAL DESIGN PRINCIPLES: Current garden adds items infinitely - will overwhelm UI at scale. Need system for 500+ day streaks with multiple tasks/day. PRESERVE EXISTING: confetti celebrations, level-up modal popups, task generation mechanism, category system - these are working excellently. GARDEN PHILOSOPHY: Must reinforce positive psychology (accumulation of wins, not obligation). Unlike Finch which created pressure through daily requirements, Tiny Wins should celebrate what WAS done, not punish what wasn't. Garden = visual trophy case of accomplishments, not maintenance obligation. RESEARCH: Finch (what worked vs pressure), Forest, Flora, other habit apps. CONSIDER: evolving plants, currency/shop systems, star collection, milestone rewards. CONSTRAINTS: Scale infinitely without UI overwhelm, zero guilt/pressure mechanics, remain motivating at 500+ days, fit reasonable screen space.",
+    "researchAreas": [
+      "Finch app motivation mechanics (what worked vs what created pressure)",
+      "Other habit apps with garden/visual progression (Forest, Flora, etc.)",
+      "Scalable visual systems for long-term streaks (500+ days)",
+      "Currency/shop mechanics that feel rewarding not punishing",
+      "Evolving plant/animal systems vs collection systems"
+    ],
+    "constraints": [
+      "PRESERVE: All existing celebration mechanics (confetti, level-up modals, task generation)",
+      "PRESERVE: Current category system and task database",
+      "Must scale to 500+ day streaks with multiple tasks per day",
+      "Must not create guilt/pressure (Finch problem)",
+      "Must remain motivating over long term",
+      "Must fit in reasonable screen space",
+      "Must reinforce positive psychology - accumulation of wins, not obligation"
+    ],
+    "designPrinciples": {
+      "corePhilosophy": "Celebrate what WAS done, not punish what wasn't",
+      "gardenMetaphor": "Visual trophy case of accomplishments, not maintenance obligation",
+      "psychology": "Abundance mindset (more wins = more garden), not scarcity (miss a day = lose progress)",
+      "userType": "Built for inconsistent overachievers - people who CAN do amazing things but need right framing"
+    },
+    "dependsOn": ["workspaceOrganization"]
+  },
   "improvementQueue": [
     {
       "id": "maton-setup-001",
@@ -224,38 +254,6 @@
         "No manual formatting needed in future"
       ],
       "notes": "This will enable Dottie to fully automate Google Sheets styling and formatting without manual intervention"
-    },
-    {
-      "id": "tinywins-garden-001",
-      "status": "pending",
-      "type": "ux_research",
-      "description": "Research and design scalable Growth Garden system for Tiny Wins v5 - replace infinite item adding with evolving/plantable garden mechanics",
-      "created": "2026-03-07T16:33:00Z",
-      "priority": "high",
-      "notes": "USER FEEDBACK CAPTURED - CRITICAL DESIGN PRINCIPLES: Current garden adds items infinitely - will overwhelm UI at scale. Need system for 500+ day streaks with multiple tasks/day. PRESERVE EXISTING: confetti celebrations, level-up modal popups, task generation mechanism, category system - these are working excellently. GARDEN PHILOSOPHY: Must reinforce positive psychology (accumulation of wins, not obligation). Unlike Finch which created pressure through daily requirements, Tiny Wins should celebrate what WAS done, not punish what wasn't. Garden = visual trophy case of accomplishments, not maintenance obligation. RESEARCH: Finch (what worked vs pressure), Forest, Flora, other habit apps. CONSIDER: evolving plants, currency/shop systems, star collection, milestone rewards. CONSTRAINTS: Scale infinitely without UI overwhelm, zero guilt/pressure mechanics, remain motivating at 500+ days, fit reasonable screen space.",
-      "researchAreas": [
-        "Finch app motivation mechanics (what worked vs what created pressure)",
-        "Other habit apps with garden/visual progression (Forest, Flora, etc.)",
-        "Scalable visual systems for long-term streaks (500+ days)",
-        "Currency/shop mechanics that feel rewarding not punishing",
-        "Evolving plant/animal systems vs collection systems"
-      ],
-      "constraints": [
-        "PRESERVE: All existing celebration mechanics (confetti, level-up modals, task generation)",
-        "PRESERVE: Current category system and task database",
-        "Must scale to 500+ day streaks with multiple tasks per day",
-        "Must not create guilt/pressure (Finch problem)",
-        "Must remain motivating over long term",
-        "Must fit in reasonable screen space",
-        "Must reinforce positive psychology - accumulation of wins, not obligation"
-      ],
-      "designPrinciples": {
-        "corePhilosophy": "Celebrate what WAS done, not punish what wasn't",
-        "gardenMetaphor": "Visual trophy case of accomplishments, not maintenance obligation",
-        "psychology": "Abundance mindset (more wins = more garden), not scarcity (miss a day = lose progress)",
-        "userType": "Built for inconsistent overachievers - people who CAN do amazing things but need right framing"
-      },
-      "dependsOn": ["workspaceOrganization"]
     }
   ],
   "pendingCorrections": [
