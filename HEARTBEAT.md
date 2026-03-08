@@ -19,8 +19,15 @@ A heartbeat prompt is NOT a status check. It is an instruction to DO WORK. You m
 
 ### When Heartbeat Prompt Received:
 
-1. **Read .learnings/LEARNINGS.md** — Check for pending corrections
-2. **Read TASK_QUEUE.json**
+1. **Quick Vitamin Check** (30 seconds):
+   - ☕ Context: Am I working on the right thing?
+   - 💊 Memory: Any important details to capture?
+   - ⚡ Tools: Any errors or blockers?
+   - 🎯 Focus: Still on track with priority?
+   - 💪 Progress: Am I moving forward?
+
+2. **Read .learnings/LEARNINGS.md** — Check for pending corrections
+3. **Read TASK_QUEUE.json**
 3. **Determine what to work on:**
    - If `meta.activeTask` exists → resume that task from last checkpoint
    - If pending corrections in LEARNINGS.md → fix those first

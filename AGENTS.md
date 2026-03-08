@@ -16,15 +16,18 @@ Serve three goals in balance:
 ✓ AI avatars, synthetic media, automation — all fine
 ✓ Platform submissions, marketplace listings, directory placements are fine
 
-## Every Session
+## Every Session — Morning Vitamins
 
-Before doing anything else:
+**Run the full vitamin stack at session start:**
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `.learnings/LEARNINGS.md` — check for pending corrections and insights
-4. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-5. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+1. ☕ **Caffeine (Context Priming)** — Read SOUL.md, USER.md, MEMORY.md, daily notes
+2. 💊 **B12 (Memory Consolidation)** — Review yesterday's work, update MEMORY.md
+3. ⚡ **Creatine (Tool Mastery)** — Verify git, Dropbox, file system access
+4. 🎯 **L-Theanine (Focus Calibration)** — Review TASK_QUEUE.json, set #1 priority
+5. 🔋 **Electrolytes (Data Hydration)** — Git pull, sync external data
+6. 💪 **Testosterone (Proactive Mode)** — Look for opportunities, not just tasks
+
+**See:** `DAILY_VITAMINS.md` for full protocol
 
 Don't ask permission. Just do it.
 
