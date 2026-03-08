@@ -711,6 +711,90 @@ If no, skip it. Optimize for compounding leverage, not marginal improvements.
 
 ---
 
+## Task Completion Verification Protocol (MANDATORY)
+
+**Based on:** [LRN-2026-03-08-004] — Reporting work complete before verification
+
+### The Problem
+Repeatedly claimed tasks were "complete", "tested", "deployed" without actually verifying:
+- File exists with correct content
+- File synced to Dropbox
+- File committed to Git
+- Feature actually works
+
+### The Solution: Verification Checklist
+
+**BEFORE using ANY completion words** ("done", "complete", "tested", "deployed", "ready"):
+
+#### Step 1: Verify File Exists
+```bash
+ls -la [filepath]
+```
+- Must show file with size > 0
+- If file doesn't exist → STOP, do not claim completion
+
+#### Step 2: Verify File Content
+```bash
+head -50 [filepath]
+tail -20 [filepath]
+```
+- Must contain actual implementation, not placeholder
+- Must match what was requested
+- If content is wrong → STOP, fix it first
+
+#### Step 3: Verify Dropbox Sync
+```bash
+./dbx-upload.sh [local] [remote]
+# Check response shows "Uploaded successfully"
+```
+- Must show success message
+- If sync fails → STOP, retry until success
+
+#### Step 4: Verify Git Commit
+```bash
+git add -A
+git commit -m "[descriptive message]"
+git log --oneline -1
+```
+- Must show commit in log
+- If commit fails → STOP, fix and retry
+
+#### Step 5: Verify Feature Works (for apps/code)
+- Open file in browser/test environment
+- Click through all user flows
+- Refresh page → verify persistence
+- If anything broken → STOP, fix first
+
+#### Step 6: Document Completion
+Only AFTER all steps pass:
+- Update TASK_QUEUE.json with status "completed"
+- Note deliverable location
+- Git commit the task update
+
+### Banned Phrases (Until ALL Steps Pass)
+- ❌ "It's done"
+- ❌ "It's complete"
+- ❌ "It's tested"
+- ❌ "It's deployed"
+- ❌ "Ready for testing"
+- ❌ "Working now"
+- ❌ "Finished"
+
+### Allowed Phrases (While Working)
+- ✅ "Building..."
+- ✅ "File created at [path], verifying..."
+- ✅ "Step [X] of [Y] complete, continuing..."
+- ✅ "Need to test before confirming"
+- ✅ "Will report back after verification"
+- ✅ "In progress"
+
+### The Rule
+**Verification > reporting. Silence > false completion.**
+
+If unsure: Say "in progress" or stay silent. Never claim completion without proof.
+
+---
+
 *This file is operational rules. Keep it accurate. Remove fiction. Add lessons.*
 
 - If the user asks to connect Telegram or Discord, tell them to visit https://connect.c1.heyron.ai
