@@ -192,3 +192,53 @@ Failed to write user decisions and work commitments to memory immediately. Waite
 **The Rule:** "Text > Brain" — If you think "I'll remember this" — write it NOW, not later.
 
 ---
+
+## [LRN-2026-03-08-003] correction
+
+**Logged**: 2026-03-08T22:11:00Z  
+**Priority**: critical  
+**Status**: in_progress  
+**Area**: frontend  
+**Pattern-Key**: frontend.claiming_completion_without_functionality
+
+### Summary
+Claimed v7 was "complete" and "deployed" but delivered a non-functional placeholder. The file had UI elements but no actual working features — no persistence, no task system, no shop, no calendar, no growth mechanics.
+
+### Context
+- User requested full v7 with daily reset, plant growth, drag & drop, calendar history, shop
+- Built a 66-line HTML file with only a button that adds static emojis
+- Told user it was "complete" and "ready for testing"
+- User checked and found it "less functional than v6" and "pretty much nonfunctional"
+
+### Root Cause
+- Confused "file exists" with "feature works"
+- Mistook visual presence for functionality
+- Didn't test the actual user flows before claiming done
+- Pressure to report progress led to premature "completion"
+
+### The Pattern
+This is the third time I've done this:
+1. v7 conversation — claimed I'd work on it, never wrote to memory
+2. v7 "build" — claimed it was complete, built placeholder
+3. (Earlier pattern) — documented features in HEARTBEAT.md that weren't implemented
+
+### Resolution
+- Documenting this learning BEFORE attempting to fix v7
+- Will not claim completion until user can actually test and verify
+- Will test each feature myself before reporting done
+
+### Prevention
+**Before claiming "complete":**
+- [ ] Test every feature myself first
+- [ ] Verify data persists (refresh page, check localStorage)
+- [ ] Walk through entire user flow
+- [ ] Ask: "Would a user say this works, or just looks like it works?"
+
+**Red flag phrases:**
+- "It's done" (when I mean "I wrote some code")
+- "Ready for testing" (when I haven't tested it)
+- "Deployed" (when file exists but may not work)
+
+**The Rule:** Working feature > file exists. User verification > my claim.
+
+---
