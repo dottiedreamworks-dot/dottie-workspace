@@ -246,7 +246,7 @@
   "improvementQueue": [
     {
       "id": "maton-setup-001",
-      "status": "pending",
+      "status": "awaiting_user_action",
       "type": "infrastructure_setup",
       "description": "Set up Maton.ai integration for full Google Sheets API access including formatting, conditional formatting, and automated styling",
       "created": "2026-03-08T02:23:00Z",
@@ -255,27 +255,35 @@
         {
           "id": "maton-001",
           "description": "Sign up for Maton.ai account",
-          "status": "pending"
+          "status": "awaiting_user",
+          "who": "Jayna",
+          "instructions": "See notes/maton-setup-instructions.md"
         },
         {
           "id": "maton-002",
           "description": "Get MATON_API_KEY from settings",
-          "status": "pending"
+          "status": "awaiting_user",
+          "who": "Jayna"
         },
         {
           "id": "maton-003",
           "description": "Connect Google account via OAuth",
-          "status": "pending"
+          "status": "awaiting_user",
+          "who": "Jayna"
         },
         {
           "id": "maton-004",
           "description": "Add MATON_API_KEY to .env file",
-          "status": "pending"
+          "status": "pending",
+          "who": "Dottie",
+          "blockedBy": "Steps 1-3"
         },
         {
           "id": "maton-005",
           "description": "Test formatting capabilities on STR Maintenance sheet",
-          "status": "pending"
+          "status": "pending",
+          "who": "Dottie",
+          "blockedBy": "Step 4"
         }
       ],
       "benefits": [
@@ -285,7 +293,7 @@
         "Create new sheets programmatically",
         "No manual formatting needed in future"
       ],
-      "notes": "This will enable Dottie to fully automate Google Sheets styling and formatting without manual intervention"
+      "notes": "Awaiting Jayna to complete account creation and OAuth (Steps 1-3). Instructions in notes/maton-setup-instructions.md"
     }
   ],
   "pendingCorrections": [
