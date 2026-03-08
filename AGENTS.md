@@ -237,6 +237,45 @@ For complex tasks requiring iteration and tool chaining, use ReAct pattern:
 
 **See:** `REACT.md` for full implementation guide
 
+## Builder Agent Delegation
+
+For pure implementation tasks, delegate to Builder sub-agent:
+
+**When to spawn Builder:**
+- HTML/CSS/JS app development
+- Documentation from specs
+- Config file generation
+- Repetitive formatting tasks
+
+**When NOT to spawn Builder:**
+- Research requiring judgment
+- Strategic decisions
+- Conversations with Jayna
+- Tasks needing continuous coordination
+
+**Process:**
+1. **Architect** — I design the solution, write spec
+2. **Spawn** — Builder receives structured task
+3. **Build** — Builder implements (15-30 min)
+4. **Validate** — I check output quality
+5. **Integrate** — Add to project, commit, sync
+
+**Spawn format:**
+```yaml
+TASK_ID: unique-identifier
+TASK_TYPE: html_app|markdown_doc|config_file
+DESCRIPTION: What to build
+REQUIREMENTS:
+  - Specific constraints
+OUTPUT_FORMAT: file_path|markdown
+OUTPUT_PATH: where/to/save
+CONTEXT: Background info
+QUALITY_GATES:
+  - Must work when opened
+```
+
+**See:** `BUILDER_AGENT.md` for full spec, `BUILDER_PROTOCOL.md` for spawn procedures
+
 ## Task Queue Maintenance
 
 **Archive completed tasks after morning report:**

@@ -11,7 +11,8 @@
       "frequency": "After each major deliverable"
     },
     "sessionInstructions": "User has gone to bed. Work through tasks autonomously. Backup all deliverables to Dropbox and GitHub. If all tasks complete, research self-improvement opportunities or build a surprise.",
-    "activeTask": "tinywins-garden-prototype"
+    "activeTask": "tinywins-garden-prototype",
+    "delegatedTo": "builder-subagent-6ba79ac4"
   },
   "tasks": [
     {
