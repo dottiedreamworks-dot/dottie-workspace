@@ -1,0 +1,80 @@
+{
+  "step": 3,
+  "description": "Research cost analysis for AI avatar video platforms",
+  "status": "completed",
+  "timestamp": "2026-03-08T07:15:00Z",
+  "findings": {
+    "heygen": {
+      "plans": {
+        "free": {
+          "price": "$0/month",
+          "videos": "3 per month",
+          "maxDuration": "3 minutes",
+          "features": ["1 Custom Digital Twin", "500+ stock avatars", "720p export"]
+        },
+        "creator": {
+          "price": "$29/month",
+          "maxDuration": "30 minutes per video",
+          "features": ["Unlimited photo avatars", "700+ stock video avatars", "Voice cloning", "175+ languages", "1080p export", "Brand kit"],
+          "estimatedMinutes": "~30-60 min/month implied"
+        },
+        "pro": {
+          "price": "$99/month",
+          "features": ["10x premium usage", "4K export", "Faster processing"],
+          "estimatedMinutes": "~300-600 min/month"
+        }
+      },
+      "apiPricing": {
+        "starting": "$5",
+        "rate": "1 credit = 1 minute of standard video",
+        "avatarIV": "1 credit per 10 seconds (~6 credits/min)"
+      },
+      "fitnessSuitability": "Good - supports 30-min videos on Creator plan, API available"
+    },
+    "synthesia": {
+      "plans": {
+        "free": {
+          "price": "$0",
+          "features": ["Limited features", "Watermark"]
+        },
+        "starter": {
+          "price": "$29/month ($18/month annual)",
+          "minutes": "10 minutes/month",
+          "avatars": "125+ AI avatars",
+          "features": ["1 editor, 3 guests"]
+        },
+        "creator": {
+          "price": "Higher tier",
+          "minutes": "30 minutes/month",
+          "avatars": "180+ AI avatars",
+          "features": ["1 editor, 5 guests", "5 personal avatars"]
+        },
+        "enterprise": {
+          "price": "Custom",
+          "minutes": "Unlimited",
+          "avatars": "240+ AI avatars",
+          "studioAvatar": "$1,000/year add-on"
+        }
+      },
+      "fitnessSuitability": "Limited - only 10-30 min/month on standard plans, expensive for fitness content"
+    },
+    "costComparison": {
+      "singleVideo10Min": {
+        "heygen": "$29/month (Creator plan)",
+        "synthesia": "$29/month (Starter plan)",
+        "did": "$49/month (Studio Pro)"
+      },
+      "monthly20Videos": {
+        "heygen": "$99/month (Pro plan) + API credits",
+        "synthesia": "Enterprise (custom pricing, likely $500+/month)",
+        "did": "$49/month + overage fees"
+      },
+      "apiAutomation": {
+        "heygen": "$5 starting + per-minute credits",
+        "synthesia": "Enterprise only",
+        "did": "$18/month (API Build plan)"
+      }
+    }
+  },
+  "nextStep": "Create comprehensive recommendation report with final platform recommendation"
+}
