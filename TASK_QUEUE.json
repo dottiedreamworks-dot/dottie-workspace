@@ -844,6 +844,9 @@
         "id": "str-opportunity-002",
         "priority": "high",
         "description": "Brainstorm monetizable digital products and services for STR owners",
+        "status": "completed",
+        "completedAt": "2026-03-08T07:15:00Z",
+        "deliverable": "projects/str-digital-products/str-monetization-brainstorm.md",
         "productCategories": [
           "Templates and systems (SOPs, checklists, spreadsheets)",
           "Educational content (courses, guides, ebooks)",
