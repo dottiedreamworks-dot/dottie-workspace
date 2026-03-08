@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR Maintenance Master Database - Part 3</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 15px; }
+        .content { padding: 50px 40px; }
+        .section { margin-bottom: 50px; }
+        .section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #667eea;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #667eea;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover { background: #f8f9fa; }
+        .frequency-daily { color: #28a745; font-weight: 600; }
+        .frequency-weekly { color: #17a2b8; font-weight: 600; }
+        .frequency-monthly { color: #fd7e14; font-weight: 600; }
+        .frequency-quarterly { color: #6f42c1; font-weight: 600; }
+        .frequency-annual { color: #dc3545; font-weight: 600; }
+        .frequency-seasonal { color: #e83e8c; font-weight: 600; }
+        .priority-high { 
+            background: #f8d7da; color: #721c24;
+            padding: 4px 10px; border-radius: 12px;
+            font-size: 0.85em; font-weight: 600;
+        }
+        .priority-medium { 
+            background: #fff3cd; color: #856404;
+            padding: 4px 10px; border-radius: 12px;
+            font-size: 0.85em; font-weight: 600;
+        }
+        .priority-low { 
+            background: #d4edda; color: #155724;
+            padding: 4px 10px; border-radius: 12px;
+            font-size: 0.85em; font-weight: 600;
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2px;
+        }
+        .cat-landscaping { background: #e0f7fa; color: #006064; }
+        .cat-interior { background: #fff3e0; color: #ef6c00; }
+        .cat-seasonal { background: #fce4ec; color: #c2185b; }
+        .cat-compliance { background: #e0f2f1; color: #00695c; }
+        .footer {
+            background: #f8f9fa;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 STR Maintenance Master Database</h1>
+            <p>Part 3: Landscaping, Interior, Seasonal & Compliance</p>
+        </div>
+        
+        <div class="content">
+            <div class="summary-box">
+                <strong>Complete Database Summary:</strong><br>
+                Part 1 (HVAC & Safety): 33 tasks<br>
+                Part 2 (Appliances & Exterior): 50 tasks<br>
+                Part 3 (This document): 44 tasks<br>
+                <strong>Total: 127 maintenance tasks</strong>
+            </div>
+
+            <div class="section">
+                <h2>🌿 Landscaping (18 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mow lawn</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$30-60</td>
+                            <td>Service</td>
+                            <td>Or DIY if local</td>
+                        </tr>
+                        <tr>
+                            <td>Edge lawn and walkways</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-30</td>
+                            <td>Service</td>
+                            <td>Curb appeal</td>
+                        </tr>
+                        <tr>
+                            <td>Trim shrubs/bushes</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-100</td>
+                            <td>Service</td>
+                            <td>Keep neat, don't block walkways</td>
+                        </tr>
+                        <tr>
+                            <td>Weed flower beds</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-50</td>
+                            <td>Service</td>
+                            <td>Appearance</td>
+                        </tr>
+                        <tr>
+                            <td>Mulch flower beds</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$100-300</td>
+                            <td>DIY or Service</td>
+                            <td>Spring refresh</td>
+                        </tr>
+                        <tr>
+                            <td>Fertilize lawn</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$50-150</td>
+                            <td>Service</td>
+                            <td>Or per local climate needs</td>
+                        </tr>
+                        <tr>
+                            <td>Aerate lawn</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$75-200</td>
+                            <td>Service</td>
+                            <td>Fall or spring</td>
+                        </tr>
+                        <tr>
+                            <td>Rake leaves</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-seasonal">Seasonal</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$100-300</td>
+                            <td>Service</td>
+                            <td>Fall cleanup</td>
+                        </tr>
+                        <tr>
+                            <td>Remove snow/ice</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-seasonal">Seasonal</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$50-200</td>
+                            <td>Service</td>
+                            <td>Safety, liability</td>
+                        </tr>
+                        <tr>
+                            <td>Clean outdoor furniture</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-50</td>
+                            <td>DIY</td>
+                            <td>Pressure wash if needed</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect trees for dead branches</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-500</td>
+                            <td>DIY or Arborist</td>
+                            <td>Safety hazard if falling</td>
+                        </tr>
+                        <tr>
+                            <td>Trim tree branches from roof</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$200-800</td>
+                            <td>Tree Service</td>
+                            <td>Prevent roof damage</td>
+                        </tr>
+                        <tr>
+                            <td>Clean pool/hot tub</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-200</td>
+                            <td>Pool Service</td>
+                            <td>If applicable - critical for safety</td>
+                        </tr>
+                        <tr>
+                            <td>Check pool chemical levels</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$50-100</td>
+                            <td>Pool Service</td>
+                            <td>Health and safety critical</td>
+                        </tr>
+                        <tr>
+                            <td>Winterize irrigation system</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-seasonal">Seasonal</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$75-200</td>
+                            <td>Service</td>
+                            <td>Prevent freeze damage</td>
+                        </tr>
+                        <tr>
+                            <td>Start up irrigation system</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-seasonal">Seasonal</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$75-200</td>
+                            <td>Service</td>
+                            <td>Spring startup</td>
+                        </tr>
+                        <tr>
+                            <td>Check sprinkler heads</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-100</td>
+                            <td>DIY or Service</td>
+                            <td>Repair broken heads</td>
+                        </tr>
+                        <tr>
+                            <td>Clean grill/BBQ</td>
+                            <td><span class="category-badge cat-landscaping">Landscaping</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-50</td>
+                            <td>DIY</td>
+                            <td>Deep clean grates, check propane</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>🏠 Interior Systems (15 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Deep clean carpets</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$100-300</td>
+                            <td>Service</td>
+                            <td>Professional steam clean</td>
+                        </tr>
+                        <tr>
+                            <td>Clean hardwood/laminate floors</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-100</td>
+                            <td>DIY or Cleaner</td>
+                            <td>Proper cleaning products</td>
+                        </tr>
+                        <tr>
+                            <td>Touch up paint/walls</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$50-200</td>
+                            <td>DIY or Painter</td>
+                            <td>Between guests as needed</td>
+                        </tr>
+                        <tr>
+                            <td>Check for wall damage</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Holes, scuffs, marks</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect plumbing fixtures</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-200</td>
+                            <td>DIY or Plumber</td>
+                            <td>Leaks, drips, running toilets</td>
+                        </tr>
+                        <tr>
+                            <td>Deep clean bathrooms</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>Cleaner</td>
+                            <td>Part of turnover cleaning</td>
+                        </tr>
+                        <tr>
+                            <td>Check caulk/grout in bathrooms</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$20-100</td>
+                            <td>DIY</td>
+                            <td>Prevent water damage, mold</td>
+                        </tr>
+                        <tr>
+                            <td>Replace shower curtain/liner</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$20-50</td>
+                            <td>DIY</td>
+                            <td>Or wash if fabric</td>
+                        </tr>
+                        <tr>
+                            <td>Deep clean kitchen</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-weekly">Weekly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>Cleaner</td>
+                            <td>Part of turnover cleaning</td>
+                        </tr>
+                        <tr>
+                            <td>Clean out kitchen cabinets</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Check for expired items, damage</td>
+                        </tr>
+                        <tr>
+                            <td>Inspect light fixtures</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0-100</td>
+                            <td>DIY</td>
+                            <td>Replace bulbs, clean fixtures</td>
+                        </tr>
+                        <tr>
+                            <td>Check blinds/curtains</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0-100</td>
+                            <td>DIY</td>
+                            <td>Clean, repair, replace if needed</td>
+                        </tr>
+                        <tr>
+                            <td>Flip/rotate mattresses</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-quarterly">Quarterly</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Extend mattress life</td>
+                        </tr>
+                        <tr>
+                            <td>Deep clean upholstery</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td>$100-400</td>
+                            <td>Service</td>
+                            <td>Sofas, chairs</td>
+                        </tr>
+                        <tr>
+                            <td>Check for pests</td>
+                            <td><span class="category-badge cat-interior">Interior</span></td>
+                            <td class="frequency-monthly">Monthly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-150</td>
+                            <td>DIY or Pest Control</td>
+                            <td>Signs of rodents, insects</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>❄️ Seasonal Maintenance (8 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>When</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Spring: HVAC system check</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">March-May</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-200</td>
+                            <td>HVAC Contractor</td>
+                            <td>Before AC season</td>
+                        </tr>
+                        <tr>
+                            <td>Spring: Exterior inspection</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">March-May</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Winter damage assessment</td>
+                        </tr>
+                        <tr>
+                            <td>Summer: Pest control treatment</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">June-Aug</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$100-300</td>
+                            <td>Pest Control</td>
+                            <td>Preventative treatment</td>
+                        </tr>
+                        <tr>
+                            <td>Fall: Winterization prep</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">Sept-Nov</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$200-500</td>
+                            <td>Various</td>
+                            <td>Pipes, irrigation, exterior</td>
+                        </tr>
+                        <tr>
+                            <td>Fall: HVAC heating check</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">Sept-Nov</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-200</td>
+                            <td>HVAC Contractor</td>
+                            <td>Before heating season</td>
+                        </tr>
+                        <tr>
+                            <td>Fall: Gutter cleaning</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">Oct-Nov</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-300</td>
+                            <td>Service</td>
+                            <td>After leaves fall</td>
+                        </tr>
+                        <tr>
+                            <td>Winter: Pipe freeze protection</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">Dec-Feb</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$50-200</td>
+                            <td>DIY or Plumber</td>
+                            <td>Insulation, heat tape</td>
+                        </tr>
+                        <tr>
+                            <td>Winter: Deep interior clean</td>
+                            <td><span class="category-badge cat-seasonal">Seasonal</span></td>
+                            <td class="frequency-seasonal">Jan-Feb</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$200-500</td>
+                            <td>Service</td>
+                            <td>When bookings slow</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>📋 Compliance & Legal (6 tasks)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Frequency</th>
+                            <th>Priority</th>
+                            <th>Est. Cost</th>
+                            <th>Vendor Type</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Business license renewal</td>
+                            <td><span class="category-badge cat-compliance">Compliance</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$50-500</td>
+                            <td>DIY</td>
+                            <td>City/county requirements</td>
+                        </tr>
+                        <tr>
+                            <td>Short-term rental permit renewal</td>
+                            <td><span class="category-badge cat-compliance">Compliance</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0-1000</td>
+                            <td>DIY</td>
+                            <td>If required by jurisdiction</td>
+                        </tr>
+                        <tr>
+                            <td>Sales tax filing</td>
+                            <td><span class="category-badge cat-compliance">Compliance</span></td>
+                            <td class="frequency-monthly">Monthly/Quarterly</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>Accountant</td>
+                            <td>Varies by state</td>
+                        </tr>
+                        <tr>
+                            <td>Property tax assessment review</td>
+                            <td><span class="category-badge cat-compliance">Compliance</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td>$0</td>
+                            <td>DIY</td>
+                            <td>Appeal if over-assessed</td>
+                        </tr>
+                        <tr>
+                            <td>Insurance policy review</td>
+                            <td><span class="category-badge cat-compliance">Compliance</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$0</td>
+                            <td>Insurance Agent</td>
+                            <td>Coverage adequate? Rates competitive?</td>
+                        </tr>
+                        <tr>
+                            <td>Safety inspection (if required)</td>
+                            <td><span class="category-badge cat-compliance">Compliance</span></td>
+                            <td class="frequency-annual">Annual</td>
+                            <td><span class="priority-high">High</span></td>
+                            <td>$100-300</td>
+                            <td>Inspector</td>
+                            <td>Fire marshal, health dept</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="summary-box">
+                <h3>🎯 Complete Database Summary</h3>
+                <table style="margin: 15px 0;">
+                    <tr>
+                        <th>Category</th>
+                        <th>Tasks</th>
+                        <th>High Priority</th>
+                        <th>Est. Annual Cost</th>
+                    </tr>
+                    <tr>
+                        <td>HVAC Systems</td>
+                        <td>18</td>
+                        <td>11</td>
+                        <td>$800-1,500</td>
+                    </tr>
+                    <tr>
+                        <td>Safety Systems</td>
+                        <td>15</td>
+                        <td>13</td>
+                        <td>$400-800</td>
+                    </tr>
+                    <tr>
+                        <td>Appliances</td>
+                        <td>28</td>
+                        <td>8</td>
+                        <td>$300-600</td>
+                    </tr>
+                    <tr>
+                        <td>Exterior Systems</td>
+                        <td>22</td>
+                        <td>9</td>
+                        <td>$1,500-3,000</td>
+                    </tr>
+                    <tr>
+                        <td>Landscaping</td>
+                        <td>18</td>
+                        <td>5</td>
+                        <td>$2,000-4,000</td>
+                    </tr>
+                    <tr>
+                        <td>Interior Systems</td>
+                        <td>15</td>
+                        <td>6</td>
+                        <td>$600-1,200</td>
+                    </tr>
+                    <tr>
+                        <td>Seasonal Maintenance</td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>$800-1,500</td>
+                    </tr>
+                    <tr>
+                        <td>Compliance & Legal</td>
+                        <td>6</td>
+                        <td>6</td>
+                        <td>$200-2,000</td>
+                    </tr>
+                    <tr style="background: #f8f9fa; font-weight: bold;">
+                        <td>TOTAL</td>
+                        <td>130</td>
+                        <td>64</td>
+                        <td>$6,600-14,600</td>
+                    </tr>
+                </table>
+                <p><em>Note: Costs vary significantly by property size, location, and whether work is DIY or contracted.</em></p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>STR Maintenance Master Database - Complete | Created March 8, 2026</p>
+            <p><strong>Total: 130 maintenance tasks across 8 categories</strong></p>
+            <p>Ready for implementation in Google Sheets, Notion, or Airtable template</p>
+        </div>
+    </div>
+</body>
+</html>
