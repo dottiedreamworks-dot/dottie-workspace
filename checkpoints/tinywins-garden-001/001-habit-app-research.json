@@ -1,0 +1,77 @@
+{
+  "step": 1,
+  "description": "Research habit app garden mechanics and gamification psychology",
+  "status": "completed",
+  "timestamp": "2026-03-08T07:45:00Z",
+  "findings": {
+    "finchApp": {
+      "whatWorked": [
+        "Virtual pet bird that grows when you complete self-care tasks",
+        "Gamification makes self-care feel like a game instead of a chore",
+        "High ratings (4.9 stars) for anxiety, low mood, ADHD support",
+        "Mix of to-do list and pet game creates engagement",
+        "Free version available with Finch Plus for extras"
+      ],
+      "criticism": [
+        "Some users feel pressure from daily goals and login rewards",
+        "Daily requirements can create obligation rather than motivation",
+        "Risk of app becoming another source of stress"
+      ],
+      "keyInsight": "The bird grows as YOU do self-care - parallel growth creates emotional bond"
+    },
+    "forestApp": {
+      "mechanics": [
+        "Plant virtual tree that grows while you stay off phone",
+        "Tree dies if you exit app before timer ends",
+        "Visual representation of focused work time",
+        "Achievements and badges for milestones",
+        "Real trees planted based on user focus time"
+      ],
+      "psychology": [
+        "Immediate visual feedback - watching tree grow",
+        "Consequence mechanism - threat of withered tree",
+        "Tangible representation of abstract time",
+        "White and black hat gamification techniques"
+      ],
+      "keyInsight": "Loss aversion (tree dying) is powerful motivator, but creates pressure"
+    },
+    "floraApp": {
+      "mechanics": [
+        "Grow virtual trees while focusing",
+        "Trees last only 7 days to encourage consistency",
+        "Partners with Trees for the Future for real tree planting",
+        "Variety of plants from different regions"
+      ],
+      "keyInsight": "Time-bound trees (7 days) create urgency but also pressure"
+    },
+    "avocationApp": {
+      "philosophy": "No streaks to avoid pressure - plant grows by completing habits",
+      "keyInsight": "Explicit rejection of streaks to reduce guilt/pressure"
+    },
+    "habitsGarden": {
+      "mechanics": [
+        "Complete daily quests to earn rewards",
+        "Unlock and plant beautiful flowers",
+        "Leaderboards and friend competition"
+      ],
+      "keyInsight": "Collection mechanics (unlocking flowers) drive engagement"
+    }
+  },
+  "designImplications": {
+    "whatToAvoid": [
+      "Daily login requirements that create pressure",
+      "Streaks that cause guilt when broken",
+      "Time-bound elements that expire (causes FOMO)",
+      "Loss aversion mechanics (things dying)",
+      "Leaderboards that encourage comparison"
+    ],
+    "whatToEmulate": [
+      "Visual representation of accumulated effort",
+      "Collection mechanics (unlocking new items)",
+      "Parallel growth (garden grows as user grows)",
+      "No penalty for missing days",
+      "Celebration of what WAS done"
+    ]
+  },
+  "nextStep": "Design scalable garden system architecture for 500+ day streaks"
+}
