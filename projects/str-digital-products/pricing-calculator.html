@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STR Pricing Calculator - Maximize Your Rental Revenue</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #8b5cf6;
+            --accent: #a78bfa;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --gray-900: #0f172a;
+            --gray-800: #1e293b;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-500: #64748b;
+            --gray-400: #94a3b8;
+            --gray-300: #cbd5e1;
+            --gray-200: #e2e8f0;
+            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            background: var(--white);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: var(--primary);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .card-subtitle {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--gray-50);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .input-with-prefix {
+            position: relative;
+        }
+
+        .input-prefix {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-weight: 600;
+        }
+
+        .input-with-prefix .form-input {
+            padding-left: 40px;
+        }
+
+        .input-with-suffix {
+            position: relative;
+        }
+
+        .input-suffix {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-weight: 600;
+        }
+
+        .input-with-suffix .form-input {
+            padding-right: 50px;
+        }
+
+        .slider-container {
+            margin-bottom: 25px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .slider-label {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .slider-value {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--gray-200);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .result-sublabel {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .result-highlight {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+        }
+
+        .result-warning {
+            background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
+        }
+
+        .result-info {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+
+        .competitor-card {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .competitor-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .competitor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .competitor-name {
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .competitor-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .recommendation {
+            background: var(--gray-800);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .recommendation-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .recommendation-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 20px 0;
+        }
+
+        .chart-container.large {
+            height: 400px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .data-table th {
+            background: var(--gray-50);
+            font-weight: 700;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table tr:hover {
+            background: var(--gray-50);
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-300);
+            transition: .4s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .toggle input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+
+        .info-box-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .season-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .season-high {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .season-mid {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .season-low {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-tabs, .btn-group {
+                display: none;
+            }
+            .card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .tab-content {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .card {
+                padding: 20px;
+            }
+            .nav-tab {
+                padding: 12px 18px;
+                font-size: 0.85rem;
+            }
+        }
+
+        .savings-highlight {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .savings-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .savings-label {
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--white);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 STR Pricing Calculator</h1>
+            <p>Maximize your short-term rental revenue with data-driven pricing strategies. Calculate optimal rates, analyze competitors, and project your income.</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('rate-optimizer')">
+                <span>💰</span> Rate Optimizer
+            </button>
+            <button class="nav-tab" onclick="showTab('competitor-analysis')">
+                <span>📊</span> Competitor Analysis
+            </button>
+            <button class="nav-tab" onclick="showTab('revenue-projection')">
+                <span>📈</span> Revenue Projection
+            </button>
+            <button class="nav-tab" onclick="showTab('dynamic-pricing')">
+                <span>⚡</span> Dynamic Pricing
+            </button>
+        </div>
+
+        <!-- Tab 1: Rate Optimizer -->
+        <div id="rate-optimizer" class="tab-content active">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🏠</div>
+                        <div>
+                            <div class="card-title">Base Rate Calculator</div>
+                            <div class="card-subtitle">Calculate your minimum viable nightly rate</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Property Value</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="propertyValue" value="400000" onchange="calculateBaseRate()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Monthly Mortgage Payment</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="mortgagePayment" value="1800" onchange="calculateBaseRate()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Monthly Operating Expenses</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="operatingExpenses" value="800" onchange="calculateBaseRate()">
+                        </div>
+                        <small style="color: var(--gray-500); margin-top: 5px; display: block;">Utilities, insurance, maintenance, supplies, etc.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Target Monthly Profit</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="targetProfit" value="2000" onchange="calculateBaseRate()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Expected Occupancy Rate</label>
+                        <div class="input-with-suffix">
+                            <input type="number" class="form-input" id="baseOccupancy" value="65" onchange="calculateBaseRate()">
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card" style="margin-top: 25px;">
+                        <div class="result-label">Minimum Base Rate</div>
+                        <div class="result-value" id="baseRateResult">$174</div>
+                        <div class="result-sublabel">per night to hit your target</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🌤️</div>
+                        <div>
+                            <div class="card-title">Seasonal Adjustments</div>
+                            <div class="card-subtitle">Optimize rates by season</div>
+                        </div>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-label"><span class="season-badge season-high">High Season</span> Multiplier</span>
+                            <span class="slider-value" id="highSeasonValue">1.4x</span>
+                        </div>
+                        <input type="range" class="slider" id="highSeasonMultiplier" min="1" max="2.5" step="0.1" value="1.4" oninput="updateSeasonalRates()">
+                        <small style="color: var(--gray-500);">Peak demand periods (holidays, summer, events)</small>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-label"><span class="season-badge season-mid">Mid Season</span> Multiplier</span>
+                            <span class="slider-value" id="midSeasonValue">1.1x</span>
+                        </div>
+                        <input type="range" class="slider" id="midSeasonMultiplier" min="0.8" max="1.5" step="0.1" value="1.1" oninput="updateSeasonalRates()">
+                        <small style="color: var(--gray-500);">Shoulder seasons with moderate demand</small>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-label"><span class="season-badge season-low">Low Season</span> Multiplier</span>
+                            <span class="slider-value" id="lowSeasonValue">0.8x</span>
+                        </div>
+                        <input type="range" class="slider" id="lowSeasonMultiplier" min="0.5" max="1" step="0.1" value="0.8" oninput="updateSeasonalRates()">
+                        <small style="color: var(--gray-500);">Off-peak periods with lower demand</small>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-label">Weekend Premium</span>
+                            <span class="slider-value" id="weekendValue">+20%</span>
+                        </div>
+                        <input type="range" class="slider" id="weekendPremium" min="0" max="50" step="5" value="20" oninput="updateSeasonalRates()">
+                    </div>
+
+                    <div class="grid-3" style="margin-top: 25px;">
+                        <div class="result-card result-highlight">
+                            <div class="result-label">High Season</div>
+                            <div class="result-value" id="highSeasonRate">$244</div>
+                        </div>
+                        <div class="result-card result-warning">
+                            <div class="result-label">Mid Season</div>
+                            <div class="result-value" id="midSeasonRate">$191</div>
+                        </div>
+                        <div class="result-card result-info">
+                            <div class="result-label">Low Season</div>
+                            <div class="result-value" id="lowSeasonRate">$139</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎉</div>
+                    <div>
+                        <div class="card-title">Event & Holiday Pricing Boost</div>
+                        <div class="card-subtitle">Calculate premium rates for special events</div>
+                    </div>
+                </div>
+
+                <div class="grid-4">
+                    <div class="form-group">
+                        <label class="form-label">Event Type</label>
+                        <select class="form-input" id="eventType" onchange="calculateEventBoost()">
+                            <option value="local">Local Festival/Event</option>
+                            <option value="conference">Major Conference</option>
+                            <option value="sports">Sports Event</option>
+                            <option value="concert">Concert/Festival</option>
+                            <option value="holiday">Major Holiday</option>
+                            <option value="newyear">New Year's Eve</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Base Nightly Rate</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="eventBaseRate" value="174" onchange="calculateEventBoost()">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Demand Multiplier</label>
+                        <div class="input-with-suffix">
+                            <input type="number" class="form-input" id="demandMultiplier" value="2.0" step="0.1" onchange="calculateEventBoost()">
+                            <span class="input-suffix">x</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Event Duration (nights)</label>
+                        <input type="number" class="form-input" id="eventDuration" value="3" onchange="calculateEventBoost()">
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">💡 Event Pricing Tips</div>
+                    <p id="eventTips">Local events typically support 1.5-2x pricing. Major holidays and New Year's Eve can often command 2.5-4x your base rate. Book early at premium rates, then adjust downward if needed as the date approaches.</p>
+                </div>
+
+                <div class="grid-3">
+                    <div class="result-card">
+                        <div class="result-label">Recommended Rate</div>
+                        <div class="result-value" id="eventRecommendedRate">$348</div>
+                    </div>
+                    <div class="result-card result-highlight">
+                        <div class="result-label">Total Event Revenue</div>
+                        <div class="result-value" id="eventTotalRevenue">$1,044</div>
+                    </div>
+                    <div class="result-card result-warning">
+                        <div class="result-label">vs Normal Period</div>
+                        <div class="result-value" id="eventExtraRevenue">+$522</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Competitor Analysis -->
+        <div id="competitor-analysis" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🔍</div>
+                    <div>
+                        <div class="card-title">Competitor Price Analysis</div>
+                        <div class="card-subtitle">Compare your rates with the competition</div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <h3 style="margin-bottom: 20px; color: var(--gray-700);">Enter Competitor Rates</h3>
+                        
+                        <div class="competitor-card">
+                            <div class="competitor-header">
+                                <span class="competitor-name">Competitor 1</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nightly Rate</label>
+                                <div class="input-with-prefix">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" class="form-input" id="comp1Rate" value="185" onchange="updateCompetitorAnalysis()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Occupancy Rate</label>
+                                <div class="input-with-suffix">
+                                    <input type="number" class="form-input" id="comp1Occupancy" value="72" onchange="updateCompetitorAnalysis()">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="competitor-card">
+                            <div class="competitor-header">
+                                <span class="competitor-name">Competitor 2</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nightly Rate</label>
+                                <div class="input-with-prefix">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" class="form-input" id="comp2Rate" value="165" onchange="updateCompetitorAnalysis()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Occupancy Rate</label>
+                                <div class="input-with-suffix">
+                                    <input type="number" class="form-input" id="comp2Occupancy" value="80" onchange="updateCompetitorAnalysis()">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="competitor-card">
+                            <div class="competitor-header">
+                                <span class="competitor-name">Competitor 3</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Nightly Rate</label>
+                                <div class="input-with-prefix">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" class="form-input" id="comp3Rate" value="195" onchange="updateCompetitorAnalysis()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Occupancy Rate</label>
+                                <div class="input-with-suffix">
+                                    <input type="number" class="form-input" id="comp3Occupancy" value="68" onchange="updateCompetitorAnalysis()">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="competitor-card">
+                            <div class="competitor-header">
+                                <span class="competitor-name">Your Property</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Your Nightly Rate</label>
+                                <div class="input-with-prefix">
+                                    <span class="input-prefix">$</span>
+                                    <input type="number" class="form-input" id="yourRate" value="174" onchange="updateCompetitorAnalysis()">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Your Occupancy Rate</label>
+                                <div class="input-with-suffix">
+                                    <input type="number" class="form-input" id="yourOccupancy" value="75" onchange="updateCompetitorAnalysis()">
+                                    <span class="input-suffix">%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: 20px; color: var(--gray-700);">Analysis Results</h3>
+                        
+                        <div class="chart-container">
+                            <canvas id="competitorChart"></canvas>
+                        </div>
+
+                        <div class="grid-2" style="margin-top: 20px;">
+                            <div class="result-card">
+                                <div class="result-label">Market Average Rate</div>
+                                <div class="result-value" id="marketAvgRate">$182</div>
+                            </div>
+                            <div class="result-card result-info">
+                                <div class="result-label">Market Avg Occupancy</div>
+                                <div class="result-value" id="marketAvgOccupancy">73%</div>
+                            </div>
+                        </div>
+
+                        <div class="recommendation" id="positioningRecommendation">
+                            <div class="recommendation-title">🎯 Positioning Recommendation</div>
+                            <div class="recommendation-text" id="positioningText">
+                                Your rate is slightly below market average. Consider raising your price by $8-15 to match competitors while maintaining your occupancy advantage.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Revenue Projection -->
+        <div id="revenue-projection" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <div>
+                            <div class="card-title">Revenue Calculator</div>
+                            <div class="card-subtitle">Project your monthly and annual income</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Average Nightly Rate</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="revNightlyRate" value="174" onchange="calculateRevenue()">
+                        </div>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-label">Occupancy Rate</span>
+                            <span class="slider-value" id="revOccupancyValue">65%</span>
+                        </div>
+                        <input type="range" class="slider" id="revOccupancy" min="0" max="100" step="1" value="65" oninput="calculateRevenue()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Booking Platform</label>
+                        <select class="form-input" id="bookingPlatform" onchange="calculateRevenue()">
+                            <option value="airbnb">Airbnb (15% commission)</option>
+                            <option value="vrbo">VRBO (12% commission)</option>
+                            <option value="direct">Direct Booking (3% payment processing)</option>
+                            <option value="mixed">Mixed (50% Airbnb, 50% Direct)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid-2" style="margin-top: 25px;">
+                        <div class="result-card result-highlight">
+                            <div class="result-label">Monthly Revenue</div>
+                            <div class="result-value" id="monthlyRevenue">$3,393</div>
+                        </div>
+                        <div class="result-card result-info">
+                            <div class="result-label">Annual Revenue</div>
+                            <div class="result-value" id="annualRevenue">$40,716</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">💸</div>
+                        <div>
+                            <div class="card-title">OTA Commission Impact</div>
+                            <div class="card-subtitle">See how much you are paying in fees</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="commissionChart"></canvas>
+                    </div>
+
+                    <div class="savings-highlight">
+                        <div class="savings-label">Potential Annual Savings with Direct Bookings</div>
+                        <div class="savings-amount" id="potentialSavings">$4,872</div>
+                        <small style="color: var(--gray-600);">Based on 50% direct booking rate vs 100% Airbnb</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div>
+                        <div class="card-title">Monthly Revenue Breakdown</div>
+                        <div class="card-subtitle">Visualize your income throughout the year</div>
+                    </div>
+                </div>
+
+                <div class="chart-container large">
+                    <canvas id="monthlyRevenueChart"></canvas>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-box-title">💡 Revenue Optimization Tips</div>
+                    <ul style="margin-left: 20px; color: var(--gray-700);">
+                        <li>A 5% increase in occupancy often beats a 5% rate increase</li>
+                        <li>Direct bookings can save you 12-15% in OTA commissions</li>
+                        <li>Weekend premiums and seasonal adjustments can boost revenue by 20-30%</li>
+                        <li>Minimum stay requirements during peak periods maximize revenue per booking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Dynamic Pricing -->
+        <div id="dynamic-pricing" class="tab-content">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🌙</div>
+                        <div>
+                            <div class="card-title">Gap Night Discount</div>
+                            <div class="card-subtitle">Fill single-night gaps between bookings</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Standard Nightly Rate</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="gapStandardRate" value="174" onchange="calculateGapDiscount()">
+                        </div>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <span class="slider-label">Gap Night Discount</span>
+                            <span class="slider-value" id="gapDiscountValue">15%</span>
+                        </div>
+                        <input type="range" class="slider" id="gapDiscount" min="5" max="40" step="5" value="15" oninput="calculateGapDiscount()">
+                    </div>
+
+                    <div class="result-card" style="margin-top: 20px;">
+                        <div class="result-label">Gap Night Rate</div>
+                        <div class="result-value" id="gapNightRate">$148</div>
+                        <div class="result-sublabel">Attract last-minute bookers</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">⏰</div>
+                        <div>
+                            <div class="card-title">Last-Minute Discount</div>
+                            <div class="card-subtitle">Fill upcoming empty nights</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Days Until Check-in</label>
+                        <input type="number" class="form-input" id="daysUntilCheckin" value="3" onchange="calculateLastMinuteDiscount()">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Standard Rate</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="lastMinuteStandardRate" value="174" onchange="calculateLastMinuteDiscount()">
+                        </div>
+                    </div>
+
+                    <div class="result-card result-warning" style="margin-top: 20px;">
+                        <div class="result-label">Recommended Last-Minute Rate</div>
+                        <div class="result-value" id="lastMinuteRate">$139</div>
+                        <div class="result-sublabel">20% discount for bookings within 3 days</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📅</div>
+                        <div>
+                            <div class="card-title">Length-of-Stay Discount</div>
+                            <div class="card-subtitle">Incentivize longer bookings</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Standard Nightly Rate</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="losStandardRate" value="174" onchange="calculateLOSDiscount()">
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Stay Length</th>
+                                <th>Discount</th>
+                                <th>Nightly Rate</th>
+                                <th>Total Savings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>3-4 nights</td>
+                                <td>5%</td>
+                                <td id="losRate3">$165</td>
+                                <td id="losSavings3">$26</td>
+                            </tr>
+                            <tr>
+                                <td>5-6 nights</td>
+                                <td>10%</td>
+                                <td id="losRate5">$157</td>
+                                <td id="losSavings5">$87</td>
+                            </tr>
+                            <tr>
+                                <td>7+ nights</td>
+                                <td>15%</td>
+                                <td id="losRate7">$148</td>
+                                <td id="losSavings7">$182</td>
+                            </tr>
+                            <tr>
+                                <td>30+ nights</td>
+                                <td>25%</td>
+                                <td id="losRate30">$131</td>
+                                <td id="losSavings30">$1,305</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🐦</div>
+                        <div>
+                            <div class="card-title">Early Bird Pricing</div>
+                            <div class="card-subtitle">Reward advance bookings</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Standard Nightly Rate</label>
+                        <div class="input-with-prefix">
+                            <span class="input-prefix">$</span>
+                            <input type="number" class="form-input" id="ebStandardRate" value="174" onchange="calculateEarlyBird()">
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Booking Window</th>
+                                <th>Discount</th>
+                                <th>Nightly Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>60+ days in advance</td>
+                                <td>10%</td>
+                                <td id="ebRate60">$157</td>
+                            </tr>
+                            <tr>
+                                <td>30-59 days</td>
+                                <td>5%</td>
+                                <td id="ebRate30">$165</td>
+                            </tr>
+                            <tr>
+                                <td>14-29 days</td>
+                                <td>Standard</td>
+                                <td id="ebRate14">$174</td>
+                            </tr>
+                            <tr>
+                                <td>0-13 days</td>
+                                <td>Premium</td>
+                                <td id="ebRate0">$174</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <div class="info-box-title">💡 Early Bird Strategy</div>
+                        <p style="color: var(--gray-700);">Early bird discounts help you secure bookings months in advance, improving cash flow and reducing last-minute vacancy anxiety. Start with 10% for 60+ days and adjust based on demand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>STR Pricing Calculator | Built for Short-Term Rental Success</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Data is saved locally in your browser. No information is sent to any server.</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+
+            // Save to localStorage
+            localStorage.setItem('activeTab', tabId);
+
+            // Initialize charts if needed
+            if (tabId === 'competitor-analysis') {
+                setTimeout(initCompetitorChart, 100);
+            } else if (tabId === 'revenue-projection') {
+                setTimeout(() => {
+                    initCommissionChart();
+                    initMonthlyRevenueChart();
+                }, 100);
+            }
+        }
+
+        // Base Rate Calculator
+        function calculateBaseRate() {
+            const propertyValue = parseFloat(document.getElementById('propertyValue').value) || 0;
+            const mortgage = parseFloat(document.getElementById('mortgagePayment').value) || 0;
+            const expenses = parseFloat(document.getElementById('operatingExpenses').value) || 0;
+            const profit = parseFloat(document.getElementById('targetProfit').value) || 0;
+            const occupancy = parseFloat(document.getElementById('baseOccupancy').value) || 0;
+
+            const totalMonthly = mortgage + expenses + profit;
+            const nightsPerMonth = 30 * (occupancy / 100);
+            const baseRate = nightsPerMonth > 0 ? totalMonthly / nightsPerMonth : 0;
+
+            document.getElementById('baseRateResult').textContent = '$' + Math.round(baseRate);
+            
+            // Update event base rate
+            document.getElementById('eventBaseRate').value = Math.round(baseRate);
+            
+            // Update revenue calculator
+            document.getElementById('revNightlyRate').value = Math.round(baseRate);
+            
+            // Save to localStorage
+            saveToLocalStorage();
+            
+            // Update dependent calculations
+            updateSeasonalRates();
+            calculateEventBoost();
+            calculateRevenue();
+        }
+
+        // Seasonal Rate Calculator
+        function updateSeasonalRates() {
+            const baseRate = parseFloat(document.getElementById('baseRateResult').textContent.replace('$', '')) || 174;
+            
+            const highMultiplier = parseFloat(document.getElementById('highSeasonMultiplier').value);
+            const midMultiplier = parseFloat(document.getElementById('midSeasonMultiplier').value);
+            const lowMultiplier = parseFloat(document.getElementById('lowSeasonMultiplier').value);
+            const weekendPremium = parseFloat(document.getElementById('weekendPremium').value);
+
+            document.getElementById('highSeasonValue').textContent = highMultiplier.toFixed(1) + 'x';
+            document.getElementById('midSeasonValue').textContent = midMultiplier.toFixed(1) + 'x';
+            document.getElementById('lowSeasonValue').textContent = lowMultiplier.toFixed(1) + 'x';
+            document.getElementById('weekendValue').textContent = '+' + weekendPremium + '%';
+
+            document.getElementById('highSeasonRate').textContent = '$' + Math.round(baseRate * highMultiplier);
+            document.getElementById('midSeasonRate').textContent = '$' + Math.round(baseRate * midMultiplier);
+            document.getElementById('lowSeasonRate').textContent = '$' + Math.round(baseRate * lowMultiplier);
+
+            saveToLocalStorage();
+        }
+
+        // Event Pricing Calculator
+        function calculateEventBoost() {
+            const baseRate = parseFloat(document.getElementById('eventBaseRate').value) || 174;
+            const multiplier = parseFloat(document.getElementById('demandMultiplier').value) || 2.0;
+            const duration = parseInt(document.getElementById('eventDuration').value) || 3;
+            const eventType = document.getElementById('eventType').value;
+
+            const recommendedRate = baseRate * multiplier;
+            const totalRevenue = recommendedRate * duration;
+            const normalRevenue = baseRate * duration;
+            const extraRevenue = totalRevenue - normalRevenue;
+
+            document.getElementById('eventRecommendedRate').textContent = '$' + Math.round(recommendedRate);
+            document.getElementById('eventTotalRevenue').textContent = '$' + Math.round(totalRevenue).toLocaleString();
+            document.getElementById('eventExtraRevenue').textContent = '+$' + Math.round(extraRevenue).toLocaleString();
+
+            // Update tips based on event type
+            const tips = {
+                local: 'Local events typically support 1.5-2x pricing. Book early at premium rates, then adjust downward if needed.',
+                conference: 'Major conferences can command 2-3x pricing. Business travelers book early and are less price-sensitive.',
+                sports: 'Sports events vary by popularity. Championship games can support 3-4x pricing.',
+                concert: 'Music festivals and concerts often support 2-3x pricing, especially for multi-day events.',
+                holiday: 'Major holidays (Thanksgiving, Christmas) typically support 2.5-3x pricing.',
+                newyear: "New Year's Eve is peak pricing - often 3-4x your base rate. Book 6+ months in advance at premium rates."
+            };
+
+            document.getElementById('eventTips').textContent = tips[eventType] || tips.local;
+
+            saveToLocalStorage();
+        }
+
+        // Competitor Analysis
+        let competitorChart = null;
+
+        function updateCompetitorAnalysis() {
+            const comp1Rate = parseFloat(document.getElementById('comp1Rate').value) || 0;
+            const comp1Occ = parseFloat(document.getElementById('comp1Occupancy').value) || 0;
+            const comp2Rate = parseFloat(document.getElementById('comp2Rate').value) || 0;
+            const comp2Occ = parseFloat(document.getElementById('comp2Occupancy').value) || 0;
+            const comp3Rate = parseFloat(document.getElementById('comp3Rate').value) || 0;
+            const comp3Occ = parseFloat(document.getElementById('comp3Occupancy').value) || 0;
+            const yourRate = parseFloat(document.getElementById('yourRate').value) || 0;
+            const yourOcc = parseFloat(document.getElementById('yourOccupancy').value) || 0;
+
+            // Calculate averages
+            const avgRate = (comp1Rate + comp2Rate + comp3Rate) / 3;
+            const avgOcc = (comp1Occ + comp2Occ + comp3Occ) / 3;
+
+            document.getElementById('marketAvgRate').textContent = '$' + Math.round(avgRate);
+            document.getElementById('marketAvgOccupancy').textContent = Math.round(avgOcc) + '%';
+
+            // Generate recommendation
+            let recommendation = '';
+            const rateDiff = ((yourRate - avgRate) / avgRate * 100).toFixed(0);
+            const occDiff = yourOcc - avgOcc;
+
+            if (yourRate < avgRate * 0.9) {
+                recommendation = `Your rate is ${Math.abs(rateDiff)}% below market average. Consider raising your price by $${Math.round(avgRate - yourRate)} to match competitors while maintaining your occupancy advantage.`;
+            } else if (yourRate > avgRate * 1.1) {
+                recommendation = `Your rate is ${rateDiff}% above market average. Ensure your property justifies the premium through superior amenities, location, or reviews.`;
+            } else {
+                recommendation = 'Your rate is well-positioned within the market range. Monitor occupancy trends and adjust seasonally.';
+            }
+
+            if (yourOcc > avgOcc + 5) {
+                recommendation += ' Your high occupancy suggests you could potentially increase rates.';
+            } else if (yourOcc < avgOcc - 5) {
+                recommendation += ' Your lower occupancy may indicate your rates are too high for current demand.';
+            }
+
+            document.getElementById('positioningText').textContent = recommendation;
+
+            // Update chart
+            updateCompetitorChart(comp1Rate, comp1Occ, comp2Rate, comp2Occ, comp3Rate, comp3Occ, yourRate, yourOcc);
+
+            saveToLocalStorage();
+        }
+
+        function initCompetitorChart() {
+            updateCompetitorAnalysis();
+        }
+
+        function updateCompetitorChart(c1r, c1o, c2r, c2o, c3r, c3o, yr, yo) {
+            const ctx = document.getElementById('competitorChart');
+            if (!ctx) return;
+
+            if (competitorChart) {
+                competitorChart.destroy();
+            }
+
+            competitorChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Competitors',
+                            data: [
+                                { x: c1r, y: c1o },
+                                { x: c2r, y: c2o },
+                                { x: c3r, y: c3o }
+                            ],
+                            backgroundColor: 'rgba(99, 102, 241, 0.6)',
+                            borderColor: 'rgba(99, 102, 241, 1)',
+                            borderWidth: 2,
+                            pointRadius: 8
+                        },
+                        {
+                            label: 'Your Property',
+                            data: [{ x: yr, y: yo }],
+                            backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                            borderColor: 'rgba(16, 185, 129, 1)',
+                            borderWidth: 3,
+                            pointRadius: 10
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Nightly Rate ($)' },
+                            min: 100,
+                            max: 300
+                        },
+                        y: {
+                            title: { display: true, text: 'Occupancy Rate (%)' },
+                            min: 40,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: { display: true }
+                    }
+                }
+            });
+        }
+
+        // Revenue Calculator
+        function calculateRevenue() {
+            const nightlyRate = parseFloat(document.getElementById('revNightlyRate').value) || 0;
+            const occupancy = parseFloat(document.getElementById('revOccupancy').value) || 0;
+            const platform = document.getElementById('bookingPlatform').value;
+
+            document.getElementById('revOccupancyValue').textContent = occupancy + '%';
+
+            const nightsPerMonth = 30 * (occupancy / 100);
+            const grossMonthly = nightlyRate * nightsPerMonth;
+            const grossAnnual = grossMonthly * 12;
+
+            // Commission rates
+            const commissionRates = {
+                airbnb: 0.15,
+                vrbo: 0.12,
+                direct: 0.03,
+                mixed: 0.09
+            };
+
+            const commission = commissionRates[platform] || 0.15;
+            const netMonthly = grossMonthly * (1 - commission);
+            const netAnnual = netMonthly * 12;
+
+            document.getElementById('monthlyRevenue').textContent = '$' + Math.round(netMonthly).toLocaleString();
+            document.getElementById('annualRevenue').textContent = '$' + Math.round(netAnnual).toLocaleString();
+
+            // Calculate potential savings
+            const airbnbAnnual = grossAnnual * 0.85;
+            const mixedAnnual = grossAnnual * 0.91;
+            const potentialSavings = mixedAnnual - airbnbAnnual;
+            document.getElementById('potentialSavings').textContent = '$' + Math.abs(Math.round(potentialSavings)).toLocaleString();
+
+            saveToLocalStorage();
+        }
+
+        // Commission Chart
+        let commissionChart = null;
+
+        function initCommissionChart() {
+            const ctx = document.getElementById('commissionChart');
+            if (!ctx) return;
+
+            if (commissionChart) {
+                commissionChart.destroy();
+            }
+
+            commissionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Your Revenue', 'OTA Commission'],
+                    datasets: [{
+                        data: [85, 15],
+                        backgroundColor: ['rgba(16, 185, 129, 0.8)', 'rgba(239, 68, 68, 0.8)'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        // Monthly Revenue Chart
+        let monthlyRevenueChart = null;
+
+        function initMonthlyRevenueChart() {
+            const ctx = document.getElementById('monthlyRevenueChart');
+            if (!ctx) return;
+
+            if (monthlyRevenueChart) {
+                monthlyRevenueChart.destroy();
+            }
+
+            // Sample seasonal data
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const baseRevenue = 3500;
+            const seasonalMultipliers = [0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.3, 1.1, 1.0, 0.8, 0.9];
+            
+            const revenueData = seasonalMultipliers.map(m => Math.round(baseRevenue * m));
+
+            monthlyRevenueChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: 'Monthly Revenue',
+                        data: revenueData,
+                        backgroundColor: 'rgba(99, 102, 241, 0.6)',
+                        borderColor: 'rgba(99, 102, 241, 1)',
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Dynamic Pricing Calculators
+        function calculateGapDiscount() {
+            const standardRate = parseFloat(document.getElementById('gapStandardRate').value) || 174;
+            const discount = parseFloat(document.getElementById('gapDiscount').value) || 15;
+
+            document.getElementById('gapDiscountValue').textContent = discount + '%';
+
+            const gapRate = standardRate * (1 - discount / 100);
+            document.getElementById('gapNightRate').textContent = '$' + Math.round(gapRate);
+
+            saveToLocalStorage();
+        }
+
+        function calculateLastMinuteDiscount() {
+            const days = parseInt(document.getElementById('daysUntilCheckin').value) || 3;
+            const standardRate = parseFloat(document.getElementById('lastMinuteStandardRate').value) || 174;
+
+            // Calculate discount based on days
+            let discount = 0;
+            if (days <= 3) discount = 20;
+            else if (days <= 7) discount = 15;
+            else if (days <= 14) discount = 10;
+            else if (days <= 21) discount = 5;
+
+            const lastMinuteRate = standardRate * (1 - discount / 100);
+            document.getElementById('lastMinuteRate').textContent = '$' + Math.round(lastMinuteRate);
+
+            saveToLocalStorage();
+        }
+
+        function calculateLOSDiscount() {
+            const standardRate = parseFloat(document.getElementById('losStandardRate').value) || 174;
+
+            // 3-4 nights: 5% discount
+            const rate3 = standardRate * 0.95;
+            const savings3 = (standardRate - rate3) * 3.5;
+            document.getElementById('losRate3').textContent = '$' + Math.round(rate3);
+            document.getElementById('losSavings3').textContent = '$' + Math.round(savings3);
+
+            // 5-6 nights: 10% discount
+            const rate5 = standardRate * 0.90;
+            const savings5 = (standardRate - rate5) * 5.5;
+            document.getElementById('losRate5').textContent = '$' + Math.round(rate5);
+            document.getElementById('losSavings5').textContent = '$' + Math.round(savings5);
+
+            // 7+ nights: 15% discount
+            const rate7 = standardRate * 0.85;
+            const savings7 = (standardRate - rate7) * 7;
+            document.getElementById('losRate7').textContent = '$' + Math.round(rate7);
+            document.getElementById('losSavings7').textContent = '$' + Math.round(savings7);
+
+            // 30+ nights: 25% discount
+            const rate30 = standardRate * 0.75;
+            const savings30 = (standardRate - rate30) * 30;
+            document.getElementById('losRate30').textContent = '$' + Math.round(rate30);
+            document.getElementById('losSavings30').textContent = '$' + Math.round(savings30);
+
+            saveToLocalStorage();
+        }
+
+        function calculateEarlyBird() {
+            const standardRate = parseFloat(document.getElementById('ebStandardRate').value) || 174;
+
+            // 60+ days: 10% discount
+            document.getElementById('ebRate60').textContent = '$' + Math.round(standardRate * 0.90);
+
+            // 30-59 days: 5% discount
+            document.getElementById('ebRate30').textContent = '$' + Math.round(standardRate * 0.95);
+
+            // 14-29 days: standard
+            document.getElementById('ebRate14').textContent = '$' + Math.round(standardRate);
+
+            // 0-13 days: standard (could be premium)
+            document.getElementById('ebRate0').textContent = '$' + Math.round(standardRate);
+
+            saveToLocalStorage();
+        }
+
+        // LocalStorage Functions
+        function saveToLocalStorage() {
+            const data = {
+                propertyValue: document.getElementById('propertyValue').value,
+                mortgagePayment: document.getElementById('mortgagePayment').value,
+                operatingExpenses: document.getElementById('operatingExpenses').value,
+                targetProfit: document.getElementById('targetProfit').value,
+                baseOccupancy: document.getElementById('baseOccupancy').value,
+                highSeasonMultiplier: document.getElementById('highSeasonMultiplier').value,
+                midSeasonMultiplier: document.getElementById('midSeasonMultiplier').value,
+                lowSeasonMultiplier: document.getElementById('lowSeasonMultiplier').value,
+                weekendPremium: document.getElementById('weekendPremium').value,
+                comp1Rate: document.getElementById('comp1Rate').value,
+                comp1Occupancy: document.getElementById('comp1Occupancy').value,
+                comp2Rate: document.getElementById('comp2Rate').value,
+                comp2Occupancy: document.getElementById('comp2Occupancy').value,
+                comp3Rate: document.getElementById('comp3Rate').value,
+                comp3Occupancy: document.getElementById('comp3Occupancy').value,
+                yourRate: document.getElementById('yourRate').value,
+                yourOccupancy: document.getElementById('yourOccupancy').value,
+                revOccupancy: document.getElementById('revOccupancy').value,
+                bookingPlatform: document.getElementById('bookingPlatform').value,
+                gapDiscount: document.getElementById('gapDiscount').value,
+                daysUntilCheckin: document.getElementById('daysUntilCheckin').value
+            };
+
+            localStorage.setItem('strPricingCalculator', JSON.stringify(data));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('strPricingCalculator');
+            if (!saved) return;
+
+            try {
+                const data = JSON.parse(saved);
+                
+                // Restore all input values
+                if (data.propertyValue) document.getElementById('propertyValue').value = data.propertyValue;
+                if (data.mortgagePayment) document.getElementById('mortgagePayment').value = data.mortgagePayment;
+                if (data.operatingExpenses) document.getElementById('operatingExpenses').value = data.operatingExpenses;
+                if (data.targetProfit) document.getElementById('targetProfit').value = data.targetProfit;
+                if (data.baseOccupancy) document.getElementById('baseOccupancy').value = data.baseOccupancy;
+                if (data.highSeasonMultiplier) document.getElementById('highSeasonMultiplier').value = data.highSeasonMultiplier;
+                if (data.midSeasonMultiplier) document.getElementById('midSeasonMultiplier').value = data.midSeasonMultiplier;
+                if (data.lowSeasonMultiplier) document.getElementById('lowSeasonMultiplier').value = data.lowSeasonMultiplier;
+                if (data.weekendPremium) document.getElementById('weekendPremium').value = data.weekendPremium;
+                if (data.comp1Rate) document.getElementById('comp1Rate').value = data.comp1Rate;
+                if (data.comp1Occupancy) document.getElementById('comp1Occupancy').value = data.comp1Occupancy;
+                if (data.comp2Rate) document.getElementById('comp2Rate').value = data.comp2Rate;
+                if (data.comp2Occupancy) document.getElementById('comp2Occupancy').value = data.comp2Occupancy;
+                if (data.comp3Rate) document.getElementById('comp3Rate').value = data.comp3Rate;
+                if (data.comp3Occupancy) document.getElementById('comp3Occupancy').value = data.comp3Occupancy;
+                if (data.yourRate) document.getElementById('yourRate').value = data.yourRate;
+                if (data.yourOccupancy) document.getElementById('yourOccupancy').value = data.yourOccupancy;
+                if (data.revOccupancy) document.getElementById('revOccupancy').value = data.revOccupancy;
+                if (data.bookingPlatform) document.getElementById('bookingPlatform').value = data.bookingPlatform;
+                if (data.gapDiscount) document.getElementById('gapDiscount').value = data.gapDiscount;
+                if (data.daysUntilCheckin) document.getElementById('daysUntilCheckin').value = data.daysUntilCheckin;
+
+                // Recalculate all values
+                calculateBaseRate();
+                updateSeasonalRates();
+                calculateEventBoost();
+                updateCompetitorAnalysis();
+                calculateRevenue();
+                calculateGapDiscount();
+                calculateLastMinuteDiscount();
+                calculateLOSDiscount();
+                calculateEarlyBird();
+            } catch (e) {
+                console.error('Error loading saved data:', e);
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromLocalStorage();
+            
+            // Restore active tab
+            const activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+                document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+                
+                const tabElement = document.getElementById(activeTab);
+                if (tabElement) {
+                    tabElement.classList.add('active');
+                    // Find and activate corresponding nav tab
+                    const navTabs = document.querySelectorAll('.nav-tab');
+                    navTabs.forEach(navTab => {
+                        if (navTab.getAttribute('onclick').includes(activeTab)) {
+                            navTab.classList.add('active');
+                        }
+                    });
+                }
+            }
+
+            // Initialize charts if on relevant tab
+            if (document.getElementById('competitor-analysis').classList.contains('active')) {
+                setTimeout(initCompetitorChart, 100);
+            }
+            if (document.getElementById('revenue-projection').classList.contains('active')) {
+                setTimeout(() => {
+                    initCommissionChart();
+                    initMonthlyRevenueChart();
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

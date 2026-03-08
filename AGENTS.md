@@ -69,6 +69,31 @@ Before session ends or context gets long:
 
 **Rule:** If you think "I'll remember this for next time" — **write it now**.
 
+### 🚨 IMMEDIATE MEMORY WRITE PROTOCOL (NEW)
+
+**When to write immediately (don't wait for end-of-session):**
+- User makes a decision ("let's do X", "I choose Y")
+- User provides feedback or corrections
+- User requests a change to work in progress
+- Commitments are made ("I'll build that", "working on it now")
+- New requirements are clarified
+
+**Format for immediate writes:**
+```
+[HH:MM] [TOPIC] - [Decision/Action/Feedback]
+Context: [Brief background]
+Next: [What was agreed]
+```
+
+**Why this matters:** Sessions can end unexpectedly (disconnects, restarts, context limits). If you don't write immediately, you lose it.
+
+**Red flag phrases that trigger immediate write:**
+- "I'll work on that now"
+- "Let me build that"
+- "Good point, I'll change..."
+- "Actually, I want..."
+- "No, do it this way instead..."
+
 ## Safety
 
 ### Core Rules

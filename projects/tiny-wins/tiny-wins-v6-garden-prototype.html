@@ -152,12 +152,12 @@
         
         // Milestone Trees
         const MILESTONE_TREES = {
-            7: { emoji: '{1F332}', name: 'Week Sapling', message: 'First week complete! Your garden is taking root.', sunbeams: 10 },
+            7: { emoji: '\u{1F332}', name: 'Week Sapling', message: 'First week complete! Your garden is taking root.', sunbeams: 10 },
             30: { emoji: '🌳', name: 'Month Tree', message: 'One month thriving! Look how far you\'ve come.', sunbeams: 25 },
-            90: { emoji: '{1F334}', name: 'Season Tree', message: '90 days of growth! You\'re building something beautiful.', sunbeams: 50 },
-            180: { emoji: '{1F384}', name: 'Half-Year Pine', message: 'Six months of consistent wins! Amazing dedication.', sunbeams: 75 },
+            90: { emoji: '\u{1F334}', name: 'Season Tree', message: '90 days of growth! You\'re building something beautiful.', sunbeams: 50 },
+            180: { emoji: '\u{1F384}', name: 'Half-Year Pine', message: 'Six months of consistent wins! Amazing dedication.', sunbeams: 75 },
             365: { emoji: '🌳', name: 'Ancient Oak', message: 'One year! You\'ve created a true legacy garden.', sunbeams: 100 },
-            500: { emoji: '{1FAB5}', name: 'Legendary Redwood', message: '500 wins! Your garden is truly legendary.', sunbeams: 200 }
+            500: { emoji: '\u{1FAB5}', name: 'Legendary Redwood', message: '500 wins! Your garden is truly legendary.', sunbeams: 200 }
         };
         
         // Wildlife for Ecosystem stage
@@ -406,14 +406,14 @@
                     plot.innerHTML = '<div class="stage-sprout"><div class="sprout-plant">\u{1F33F}</div><div class="sprout-plant">\u{1F331}</div></div>';
                     break;
                 case 3:
-                    const growingPlants = gardenState.tasksCompleted.slice(-8).map(t => CATEGORY_PLANTS[t.category]?.emoji || '\u{1F33F}').join('');
-                    plot.innerHTML = '<div class="stage-growing">' + growingPlants.split('').map((p, i) => '<div class="growing-plant" style="animation-delay:' + (i * 0.2) + 's">' + p + '</div>').join('') + '</div>';
+                    const growingPlants = gardenState.tasksCompleted.slice(-8).map(t => CATEGORY_PLANTS[t.category]?.emoji || '\u{1F33F}');
+                    plot.innerHTML = '<div class="stage-growing">' + growingPlants.map((p, i) => '<div class="growing-plant" style="animation-delay:' + (i * 0.2) + 's">' + p + '</div>').join('') + '</div>';
                     break;
                 case 4:
                     const thrivingHTML = [];
                     for (let i = 0; i < 15; i++) {
                         const task = gardenState.tasksCompleted[i];
-                        const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['{1F33C}','{1F33B}','{1FABB}','{1F333}','{1F339}','{1F33A}','{1F33F}'][i % 7];
+                        const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['\u{1F33C}','\u{1F33B}','\u{1FABB}','\u{1F333}','\u{1F339}','\u{1F33A}','\u{1F33F}'][i % 7];
                         thrivingHTML.push('<div class="thriving-plant" style="animation-delay:' + (i * 0.1) + 's">' + emoji + '</div>');
                     }
                     plot.innerHTML = '<div class="stage-thriving">' + thrivingHTML.join('') + '</div>';
@@ -427,7 +427,7 @@
                             bloomingHTML.push('<div class="blooming-plant milestone-tree">' + MILESTONE_TREES[m].emoji + '</div>');
                         } else {
                             const task = gardenState.tasksCompleted[i];
-                            const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['{1F33C}','{1F33B}','{1FABB}','{1F333}','{1F339}','{1F33A}','{1F33F}'][i % 7];
+                            const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['\u{1F33C}','\u{1F33B}','\u{1FABB}','\u{1F333}','\u{1F339}','\u{1F33A}','\u{1F33F}'][i % 7];
                             bloomingHTML.push('<div class="blooming-plant" style="animation-delay:' + (i * 0.08) + 's">' + emoji + '</div>');
                         }
                     }
@@ -440,7 +440,7 @@
                             ecosystemHTML.push('<div class="ecosystem-element wildlife">' + WILDLIFE[(i / 8 - 1) % WILDLIFE.length] + '</div>');
                         } else {
                             const task = gardenState.tasksCompleted[i];
-                            const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['{1F33C}','{1F33B}','{1FABB}','{1F333}','{1F339}','{1F33A}','{1F33F}'][i % 7];
+                            const emoji = task ? CATEGORY_PLANTS[task.category]?.emoji : ['\u{1F33C}','\u{1F33B}','\u{1FABB}','\u{1F333}','\u{1F339}','\u{1F33A}','\u{1F33F}'][i % 7];
                             ecosystemHTML.push('<div class="ecosystem-element">' + emoji + '</div>');
                         }
                     }
