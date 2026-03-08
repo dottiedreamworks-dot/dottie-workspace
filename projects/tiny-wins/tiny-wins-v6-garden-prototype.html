@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Wins v6 | Growth Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 50%, #90EE90 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: rgba(255,255,255,0.95);
+            padding: 15px 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .stat-icon {
+            font-size: 1.2rem;
+        }
+        
+        .stat-value {
+            font-weight: 700;
+            color: #764ba2;
+        }
+        
+        h1 {
+            font-size: 1.3rem;
+            color: #764ba2;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Garden View */
+        .garden-container {
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 30%, #98D98E 30%, #7CB87C 100%);
+            border-radius: 20px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+        
+        .sun {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #FFD700 0%, #FFA500 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .cloud1 {
+            width: 80px;
+            height: 30px;
+            top: 40px;
+            left: 10%;
+        }
+        
+        .cloud2 {
+            width: 60px;
+            height: 25px;
+            top: 70px;
+            left: 60%;
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+        
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: linear-gradient(180deg, #98D98E 0%, #7CB87C 50%, #6BA85C 100%);
+        }
+        
+        /* Evolution Stages */
+        .stage-seedling {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            animation: grow 2s ease-out;
+        }
+        
+        .stage-sprout {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5rem;
+            animation: grow 2s ease-out;
+        }
+        
+        .stage-growing {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6rem;
+            animation: grow 2s ease-out;
+        }
+        
+        .stage-thriving {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+        }
+        
+        .stage-blooming {
+            position: absolute;
+            bottom: 5%;
+            left: 0;
+            right: 0;
+            height: 80%;
+        }
+        
+        .stage-ecosystem {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 90%;
+        }
+        
+        @keyframes grow {
+            0% { transform: translateX(-50%) scale(0); }
+            100% { transform: translateX(-50%) scale(1); }
+        }
+        
+        /* Plants by Category */
+        .plant {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-size: 2.5rem;
+        }
+        
+        .plant:hover {
+            transform: scale(1.2);
+        }
+        
+        .plant-cleaning { filter: hue-rotate(0deg); } /* White daisies */
+        .plant-health { filter: hue-rotate(45deg); } /* Yellow sunflowers */
+        .plant-mental { filter: hue-rotate(270deg); } /* Purple lavender */
+        .plant-finance { filter: hue-rotate(90deg); } /* Green money tree */
+        .plant-social { filter: hue-rotate(320deg); } /* Pink roses */
+        .plant-creative { filter: hue-rotate(180deg); } /* Blue wildflowers */
+        .plant-home { filter: hue-rotate(120deg); } /* Green ferns */
+        
+        /* Trees */
+        .tree {
+            position: absolute;
+            font-size: 4rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .tree:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Task Section */
+        .task-section {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .task-header h2 {
+            color: #764ba2;
+            font-size: 1.3rem;
+        }
+        
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .category-tab {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .category-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #764ba2;
+        }
+        
+        .category-tab:hover:not(.active) {
+            border-color: #764ba2;
+            color: #764ba2;
+        }
+        
+        .task-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border-left: 4px solid #764ba2;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .task-category {
+            font-size: 0.8rem;
+            color: #764ba2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        
+        .task-text {
+            font-size: 1.1rem;
+            color: #2d3748;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .btn-complete {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-complete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+        }
+        
+        .btn-skip {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .btn-skip:hover {
+            background: #cbd5e0;
+        }
+        
+        /* Celebration Overlay */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Milestone Modal */
+        .milestone-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .milestone-modal.show {
+            display: flex;
+        }
+        
+        .milestone-content {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            animation: popIn 0.5s ease;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .milestone-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        
+        .milestone-title {
+            font-size: 1.8rem;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+        
+        .milestone-text {
+            color: #4a5568;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+        
+        .milestone-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Garden Info */
+        .garden-info {
+            background: rgba(255,255,255,0.9);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .garden-info h3 {
+            color: #764ba2;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        
+        .stage-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .stage-bar {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .stage-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .stage-name {
+            font-weight: 600;
+            color: #764ba2;
+            font-size: 0.9rem;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            pointer-events: none;
+            z-index: 500;
+            opacity: 0;
+            transition: opacity 0.2s;
+            max-width: 200px;
+        }
+        
+        .tooltip.show {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .stats {
+                font-size: 0.8rem;
+                gap: 12px;
+            }
+            
+            h1 {
+                font-size: 1.1rem;
+            }
+            
+            .garden-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>🌱 Tiny Wins</h1>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-icon">☀️</span>
+                    <span class="stat-value" id="sunbeam-count">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-icon">🌿</span>
+                    <span class="stat-value" id="garden-stage">Seedling</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Garden View -->
+        <div class="garden-container" id="garden">
+            <div class="sun"></div>
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="ground"></div>
+            <div id="garden-content">
+                <!-- Garden elements injected here -->
+            </div>
+        </div>
+        
+        <!-- Garden Info -->
+        <div class="garden-info">
+            <h3>🌻 Your Victory Garden</h3>
+            <div class="stage-indicator">
+                <div class="stage-bar">
+                    <div class="stage-progress" id="stage-progress" style="width: 0%"></div>
+                </div>
+                <span class="stage-name" id="stage-text">Seedling Stage</span>
+            </div>
+            <p style="color: #4a5568; font-size: 0.9rem;">
+                Complete tasks to grow your garden! Each win adds energy and beauty to your personal ecosystem.
+            </p>
+        </div>
+        
+        <!-- Task Section -->
+        <div class="task-section">
+            <div class="task-header">
+                <h2>✨ What tiny win will you claim?</h2>
+            </div>
+            
+            <div class="category-tabs" id="category-tabs">
+                <!-- Tabs injected here -->
+            </div>
+            
+            <div id="task-container">
+                <!-- Task card injected here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Celebration Overlay -->
+    <div class="celebration" id="celebration"></div>
+    
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+    
+    <!-- Milestone Modal -->
+    <div class="milestone-modal" id="milestone-modal">
+        <div class="milestone-content">
+            <div class="milestone-icon" id="milestone-icon">🌳</div>
+            <h2 class="milestone-title" id="milestone-title">Milestone Reached!</h2>
+            <p class="milestone-text" id="milestone-text">Your garden is growing beautifully!</p>
+            <button class="milestone-btn" onclick="closeMilestone()">Continue Growing 🌱</button>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const categories = [
+            { id: 'cleaning', name: '🧹 Cleaning', color: '#48bb78' },
+            { id: 'health', name: '💪 Health', color: '#ed8936' },
+            { id: 'mental', name: '🧠 Mental', color: '#9f7aea' },
+            { id: 'finance', name: '💰 Finance', color: '#38b2ac' },
+            { id: 'social', name: '👥 Social', color: '#ed64a6' },
+            { id: 'creative', name: '🎨 Creative', color: '#667eea' },
+            { id: 'home', name: '🏠 Home', color: '#718096' }
+        ];
+        
+        const tasks = {
+            cleaning: [
+                "Wipe down one counter",
+                "Put away 5 items",
+                "Sweep one room",
+                "Clean one mirror",
+                "Empty a trash bin",
+                "Wipe a sink",
+                "Fold 3 items of laundry",
+                "Clean one toilet",
+                "Dust one shelf",
+                "Organize one drawer"
+            ],
+            health: [
+                "Drink a full glass of water",
+                "Stretch for 2 minutes",
+                "Take 10 deep breaths",
+                "Walk around the block",
+                "Do 5 push-ups",
+                "Eat one vegetable",
+                "Stand up and move for 1 minute",
+                "Close eyes and rest for 3 minutes",
+                "Do 10 jumping jacks",
+                "Take vitamins"
+            ],
+            mental: [
+                "Write down 3 things you're grateful for",
+                "Meditate for 2 minutes",
+                "Read one page of a book",
+                "Journal for 3 minutes",
+                "Listen to a favorite song",
+                "Step outside for fresh air",
+                "Do a brain dump for 5 minutes",
+                "Practice positive self-talk",
+                "Set one intention for tomorrow",
+                "Unplug for 10 minutes"
+            ],
+            finance: [
+                "Check account balance",
+                "Log one expense",
+                "Cancel one unused subscription",
+                "Transfer $5 to savings",
+                "Review one bill",
+                "Make a meal plan",
+                "Decline one unnecessary purchase",
+                "Research one investment",
+                "Create a budget category",
+                "File one receipt"
+            ],
+            social: [
+                "Send a text to someone you care about",
+                "Make eye contact and smile at a stranger",
+                "Call a family member for 5 minutes",
+                "Give someone a genuine compliment",
+                "Respond to one pending message",
+                "Schedule time with a friend",
+                "Write a thank you note",
+                "Ask someone about their day",
+                "Share something positive online",
+                "Practice active listening"
+            ],
+            creative: [
+                "Doodle for 5 minutes",
+                "Write 3 sentences of fiction",
+                "Take 5 photos of interesting things",
+                "Color in a coloring book",
+                "Play an instrument for 5 minutes",
+                "Rearrange one room",
+                "Try a new recipe",
+                "Make a playlist",
+                "Write a poem",
+                "Learn one new thing"
+            ],
+            home: [
+                "Water one plant",
+                "Change one light bulb",
+                "Make your bed",
+                "Open windows for 10 minutes",
+                "Put out fresh towels",
+                "Clean one window",
+                "Organize shoes by the door",
+                "Wipe door handles",
+                "Check smoke detector",
+                "Plan one home improvement"
+            ]
+        };
+        
+        // State
+        let state = {
+            sunbeams: 0,
+            totalWins: 0,
+            gardenStage: 1,
+            growthEnergy: 0,
+            currentCategory: 'cleaning',
+            plants: [],
+            trees: [],
+            lastVisit: new Date().toISOString()
+        };
+        
+        // Stage thresholds
+        const stages = [
+            { name: 'Seedling', threshold: 0, emoji: '🌱' },
+            { name: 'Sprout', threshold: 7, emoji: '🌿' },
+            { name: 'Growing', threshold: 30, emoji: '🪴' },
+            { name: 'Thriving', threshold: 90, emoji: '🌳' },
+            { name: 'Blooming', threshold: 180, emoji: '🌸' },
+            { name: 'Ecosystem', threshold: 365, emoji: '🏞️' }
+        ];
+        
+        // Initialize
+        function init() {
+            loadState();
+            renderCategoryTabs();
+            showRandomTask();
+            renderGarden();
+            updateStats();
+        }
+        
+        // Load state from localStorage
+        function loadState() {
+            const saved = localStorage.getItem('tinyWinsV6');
+            if (saved) {
+                state = JSON.parse(saved);
+            }
+        }
+        
+        // Save state to localStorage
+        function saveState() {
+            localStorage.setItem('tinyWinsV6', JSON.stringify(state));
+        }
+        
+        // Render category tabs
+        function renderCategoryTabs() {
+            const container = document.getElementById('category-tabs');
+            container.innerHTML = categories.map(cat => `
+                <button class="category-tab ${cat.id === state.currentCategory ? 'active' : ''}" 
+                        onclick="selectCategory('${cat.id}')">
+                    ${cat.name}
+                </button>
+            `).join('');
+        }
+        
+        // Select category
+        function selectCategory(categoryId) {
+            state.currentCategory = categoryId;
+            renderCategoryTabs();
+            showRandomTask();
+        }
+        
+        // Show random task
+        function showRandomTask() {
+            const categoryTasks = tasks[state.currentCategory];
+            const randomTask = categoryTasks[Math.floor(Math.random() * categoryTasks.length)];
+            const category = categories.find(c => c.id === state.currentCategory);
+            
+            document.getElementById('task-container').innerHTML = `
+                <div class="task-card">
+                    <div class="task-category">${category.name}</div>
+                    <div class="task-text">${randomTask}</div>
+                    <div class="task-actions">
+                        <button class="btn btn-complete" onclick="completeTask('${randomTask.replace(/'/g, "\\'")}')">
+                            ✓ Complete
+                        </button>
+                        <button class="btn btn-skip" onclick="showRandomTask()">
+                            ↻ Skip
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Complete task
+        function completeTask(taskText) {
+            // Update state
+            state.totalWins++;
+            state.growthEnergy++;
+            state.sunbeams++;
+            
+            // Check for stage advancement
+            const newStage = getCurrentStage();
+            if (newStage > state.gardenStage) {
+                state.gardenStage = newStage;
+                showMilestone(newStage);
+            }
+            
+            // Add plant to garden
+            addPlant();
+            
+            // Save and update
+            saveState();
+            renderGarden();
+            updateStats();
+            
+            // Celebrate
+            createConfetti();
+            
+            // Show new task
+            setTimeout(showRandomTask, 500);
+        }
+        
+        // Get current stage based on growth energy
+        function getCurrentStage() {
+            for (let i = stages.length - 1; i >= 0; i--) {
+                if (state.growthEnergy >= stages[i].threshold) {
+                    return i + 1;
+                }
+            }
+            return 1;
+        }
+        
+        // Add plant to garden
+        function addPlant() {
+            const positions = [
+                { left: '20%', bottom: '15%' },
+                { left: '35%', bottom: '20%' },
+                { left: '50%', bottom: '15%' },
+                { left: '65%', bottom: '20%' },
+                { left: '80%', bottom: '15%' },
+                { left: '25%', bottom: '35%' },
+                { left: '45%', bottom: '40%' },
+                { left: '60%', bottom: '35%' },
+                { left: '75%', bottom: '40%' },
+                { left: '40%', bottom: '55%' }
+            ];
+            
+            const emojis = ['🌼', '🌻', '🌷', '🌹', '🌺', '🌸', '🏵️', '🌱', '🌿', '☘️'];
+            const pos = positions[state.plants.length % positions.length];
+            
+            state.plants.push({
+                emoji: emojis[Math.floor(Math.random() * emojis.length)],
+                category: state.currentCategory,
+                left: pos.left,
+                bottom: pos.bottom,
+                task: taskText
+            });
+        }
+        
+        // Render garden
+        function renderGarden() {
+            const garden = document.getElementById('garden-content');
+            const stage = stages[state.gardenStage - 1];
+            
+            let html = '';
+            
+            // Render based on stage
+            switch(state.gardenStage) {
+                case 1:
+                    html = `<div class="stage-seedling">${stage.emoji}</div>`;
+                    break;
+                case 2:
+                    html = `<div class="stage-sprout">${stage.emoji}</div>`;
+                    break;
+                case 3:
+                    html = `<div class="stage-growing">${stage.emoji}</div>`;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    // Render plants
+                    html = state.plants.map((plant, i) => `
+                        <div class="plant plant-${plant.category}" 
+                             style="left: ${plant.left}; bottom: ${plant.bottom};"
+                             onmouseenter="showTooltip(event, '${plant.task}')"
+                             onmouseleave="hideTooltip()">
+                            ${plant.emoji}
+                        </div>
+                    `).join('');
+                    
+                    // Add milestone trees
+                    if (state.growthEnergy >= 7) {
+                        html += `<div class="tree" style="left: 10%; bottom: 20%;">🌳</div>`;
+                    }
+                    if (state.growthEnergy >= 30) {
+                        html += `<div class="tree" style="right: 10%; bottom: 25%;">🌲</div>`;
+                    }
+                    if (state.growthEnergy >= 90) {
+                        html += `<div class="tree" style="left: 50%; bottom: 35%; transform: translateX(-50%);">🌳</div>`;
+                    }
+                    break;
+            }
+            
+            garden.innerHTML = html;
+            
+            // Update progress bar
+            const nextStage = stages[state.gardenStage];
+            const currentThreshold = stages[state.gardenStage - 1].threshold;
+            const progress = nextStage 
+                ? ((state.growthEnergy - currentThreshold) / (nextStage.threshold - currentThreshold)) * 100
+                : 100;
+            
+            document.getElementById('stage-progress').style.width = `${Math.min(progress, 100)}%`;
+            document.getElementById('stage-text').textContent = `${stage.name} Stage`;
+        }
+        
+        // Update stats display
+        function updateStats() {
+            document.getElementById('sunbeam-count').textContent = state.sunbeams;
+            document.getElementById('garden-stage').textContent = stages[state.gardenStage - 1].emoji;
+        }
+        
+        // Show milestone modal
+        function showMilestone(stage) {
+            const stageInfo = stages[stage - 1];
+            document.getElementById('milestone-icon').textContent = stageInfo.emoji;
+            document.getElementById('milestone-title').textContent = `${stageInfo.name} Stage Reached!`;
+            document.getElementById('milestone-text').textContent = 
+                `Your garden has grown to the ${stageInfo.name} stage! Keep nurturing it with tiny wins.`;
+            document.getElementById('milestone-modal').classList.add('show');
+        }
+        
+        // Close milestone modal
+        function closeMilestone() {
+            document.getElementById('milestone-modal').classList.remove('show');
+        }
+        
+        // Create confetti celebration
+        function createConfetti() {
+            const celebration = document.getElementById('celebration');
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                celebration.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+        
+        // Tooltip functions
+        function showTooltip(event, text) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.textContent = text;
+            tooltip.style.left = event.pageX + 10 + 'px';
+            tooltip.style.top = event.pageY - 30 + 'px';
+            tooltip.classList.add('show');
+        }
+        
+        function hideTooltip() {
+            document.getElementById('tooltip').classList.remove('show');
+        }
+        
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
