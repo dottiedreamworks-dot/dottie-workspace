@@ -191,7 +191,7 @@ When you receive a heartbeat poll (message matches the configured heartbeat prom
 1. **Execute BEFORE documenting** — Run the command, then update the file
 2. **Proof before marking done** — File must exist, command must succeed
 3. **No "WORK_IN_PROGRESS" fiction** — Either working or not. If user asks, tell truth.
-4. **Commit after major changes** — Git checkpoint regularly
+4. **Commit after every meaningful change** — Don't batch multiple changes into one commit. Each logical change gets its own commit with a descriptive message.
 
 ## Self-Initiated Work Protocol
 
