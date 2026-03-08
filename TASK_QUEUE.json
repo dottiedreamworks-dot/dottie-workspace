@@ -180,37 +180,7 @@
       ]
     }
   ],
-  "voiceCommunication": {
-    "status": "pending",
-    "description": "Enable two-way voice communication via Telegram using ElevenLabs",
-    "created": "2026-03-07T22:59:00Z",
-    "priority": "medium",
-    "approach": "ElevenLabs API for both transcription (STT) and voice generation (TTS)",
-    "costEstimate": "$11/month for ElevenLabs Creator plan",
-    "constraints": [
-      "Must work within container environment",
-      "No OpenAI API costs (separate from ChatGPT Pro)",
-      "Budget-conscious solution"
-    ],
-    "steps": [
-      {
-        "id": "voice-001",
-        "description": "Set up ElevenLabs API integration for voice transcription (user voice messages → text)",
-        "status": "pending"
-      },
-      {
-        "id": "voice-002",
-        "description": "Set up ElevenLabs TTS for voice replies (text → audio responses)",
-        "status": "pending"
-      },
-      {
-        "id": "voice-003",
-        "description": "Test and refine voice quality and transcription accuracy",
-        "status": "pending"
-      }
-    ],
-    "notes": "Jayna wants full voice conversation capability. ElevenLabs handles both directions with one API key. Container-friendly solution."
-  },
+
   "improvementQueue": [
     {
       "id": "maton-setup-001",
@@ -261,7 +231,7 @@
       "type": "ux_research",
       "description": "Research and design scalable Growth Garden system for Tiny Wins v5 - replace infinite item adding with evolving/plantable garden mechanics",
       "created": "2026-03-07T16:33:00Z",
-      "priority": "medium",
+      "priority": "high",
       "notes": "USER FEEDBACK CAPTURED - CRITICAL DESIGN PRINCIPLES: Current garden adds items infinitely - will overwhelm UI at scale. Need system for 500+ day streaks with multiple tasks/day. PRESERVE EXISTING: confetti celebrations, level-up modal popups, task generation mechanism, category system - these are working excellently. GARDEN PHILOSOPHY: Must reinforce positive psychology (accumulation of wins, not obligation). Unlike Finch which created pressure through daily requirements, Tiny Wins should celebrate what WAS done, not punish what wasn't. Garden = visual trophy case of accomplishments, not maintenance obligation. RESEARCH: Finch (what worked vs pressure), Forest, Flora, other habit apps. CONSIDER: evolving plants, currency/shop systems, star collection, milestone rewards. CONSTRAINTS: Scale infinitely without UI overwhelm, zero guilt/pressure mechanics, remain motivating at 500+ days, fit reasonable screen space.",
       "researchAreas": [
         "Finch app motivation mechanics (what worked vs what created pressure)",
