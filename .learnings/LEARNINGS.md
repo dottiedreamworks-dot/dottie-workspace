@@ -242,3 +242,38 @@ This is the third time I've done this:
 **The Rule:** Working feature > file exists. User verification > my claim.
 
 ---
+
+## Tiny Wins v7 Build Plan — Phased Approach [2026-03-08]
+
+**Decision:** Build in 2 phases to ensure quality at each step
+
+### v7.1 — Core Features (Build First)
+- Daily garden plot with automatic midnight reset
+- 3 starter plants (sunflower, rose, tulip)
+- 4-phase growth system (seed → sprout → growing → bloom)
+- Task completion system with sunbeam rewards
+- Basic localStorage persistence
+- Simple "add plant" functionality
+
+### v7.2 — Advanced Features (Build Second)
+- 7 additional unlockable plants (100 sunbeams each)
+- Monthly calendar history view
+- Sunbeam shop with 4 decorations
+- Drag & drop positioning
+- Streak bonuses and energy system
+
+**Design Decisions Captured:**
+- Daily reset: Automatic at midnight
+- Plant selection: User picks from unlocked varieties
+- History view: Calendar grid (like GitHub contribution graph)
+- Growth system: Emoji-based with increasing font sizes
+- Shop decorations: Butterfly, ladybug, bee, rainbow
+
+**Success Criteria for v7.1:**
+- [ ] User can add plants to today's garden
+- [ ] Plants visibly grow when tasks are completed
+- [ ] Garden resets automatically at midnight
+- [ ] Progress persists after page refresh
+- [ ] Sunbeams accumulate from completed tasks
+
+---
