@@ -27,10 +27,19 @@ A heartbeat prompt is NOT a status check. It is an instruction to DO WORK. You m
    - If no active task → pick highest priority pending task from queue
    - If no pending tasks → pick from improvementQueue
 4. **Execute one atomic step** (2-5 minutes max) — Actually do the work
-5. **Write checkpoint** to `checkpoints/{task-id}/`
-6. **Update TASK_QUEUE.json** with progress
-7. **Git commit** changes
-8. **Report what you accomplished** — Never just "HEARTBEAT_OK" if you did work
+5. **Document the work:**
+   - **Write checkpoint** to `checkpoints/{task-id}/` with findings, progress, next steps
+   - **Create/update deliverable** if research/content work (markdown file with synthesized findings)
+   - **Never rely on chat history** — it gets truncated; files persist
+6. **Update TASK_QUEUE.json** with:
+   - Status changes (pending → in_progress → completed)
+   - Progress notes
+   - Deliverable locations
+7. **Git commit** all changes (checkpoints, deliverables, TASK_QUEUE.json)
+8. **Sync to Dropbox** if deliverable complete
+9. **Report what you accomplished** — Never just "HEARTBEAT_OK" if you did work
+
+**CRITICAL RULE: If you did work, you must have created a file. No file = no proof = didn't happen.**
 
 ---
 
@@ -64,13 +73,27 @@ When operator asks for specific task:
 1. Acknowledge receipt immediately
 2. Add to TASK_QUEUE.json with status "pending"
 3. Execute task fully (may take multiple heartbeats)
-4. Provide completion notification:
+4. **Before marking complete, verify:**
+   - ✅ Deliverable file exists and contains actual content
+   - ✅ Checkpoints document the work progression
+   - ✅ TASK_QUEUE.json updated with status "completed" and deliverable path
+   - ✅ Git commit with descriptive message
+   - ✅ Dropbox sync (if applicable)
+5. Provide completion notification:
    - ✅ Status (completed/partial/blocked)
    - 📊 What was accomplished
    - 📁 Files changed (if any)
    - ⏭️ Next steps (if applicable)
 
 **Rule:** Only mark done when you have PROOF (file exists, command succeeded)
+
+**COMPLETION CHECKLIST:**
+- [ ] Research/documentation saved to file (not just chat)
+- [ ] Checkpoints created for each work session
+- [ ] TASK_QUEUE.json updated (status, timestamps, deliverables)
+- [ ] Git commit with all changes
+- [ ] Dropbox sync complete (if deliverable)
+- [ ] User can find the work without asking "what did you do?"
 
 ---
 
