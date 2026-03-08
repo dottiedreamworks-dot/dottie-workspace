@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Wins v7 | Daily Garden</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: white; text-align: center; margin-bottom: 8px; }
+        .subtitle { color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 20px; }
+        .stats-bar { display: flex; gap: 16px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat { background: rgba(255,255,255,0.2); padding: 12px 20px; border-radius: 12px; text-align: center; color: white; }
+        .stat-value { font-size: 1.5rem; font-weight: bold; }
+        .card { background: rgba(255,255,255,0.95); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .garden-container {
+            background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 40%, #90EE90 40%, #228B22 100%);
+            border-radius: 20px; padding: 20px; min-height: 400px; position: relative;
+        }
+        .garden-plot { position: relative; min-height: 320px; }
+        .plant { position: absolute; cursor: grab; z-index: 10; transition: transform 0.2s; }
+        .plant:hover { transform: scale(1.1); }
+        .stage-seed { font-size: 1.5rem; }
+        .stage-sprout { font-size: 2.2rem; }
+        .stage-growing { font-size: 3rem; }
+        .stage-bloom { font-size: 4rem; }
+        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 14px 28px; border-radius: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Tiny Wins Daily Garden</h1>
+        <p class="subtitle">v7 - Daily reset with drag & drop</p>
+        <div class="stats-bar">
+            <div class="stat"><div class="stat-value" id="sunbeams">0</div><div>☀️ Sunbeams</div></div>
+            <div class="stat"><div class="stat-value" id="streak">0</div><div>🔥 Streak</div></div>
+        </div>
+        <div class="garden-container">
+            <div class="garden-plot" id="garden"></div>
+        </div>
+        <div class="card">
+            <button class="btn" onclick="addPlant()">🌱 Add Plant</button>
+        </div>
+    </div>
+    <script>
+        let state = { sunbeams: 0, streak: 0, plants: [] };
+        function addPlant() {
+            const garden = document.getElementById('garden');
+            const plant = document.createElement('div');
+            plant.className = 'plant stage-seed';
+            plant.textContent = '🌱';
+            plant.style.left = Math.random() * 300 + 'px';
+            plant.style.top = Math.random() * 200 + 'px';
+            plant.draggable = true;
+            garden.appendChild(plant);
+            state.plants.push(plant);
+        }
+    </script>
+</body>
+</html>
